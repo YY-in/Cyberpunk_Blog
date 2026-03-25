@@ -4,7 +4,7 @@ category: NEURAL_SYSTEM
 date: 2024-11-21
 status: ACTIVE
 engine: Unity 2077 // V-MOD
-thumbnail: https://lh3.googleusercontent.com/aida-public/AB6AXuDumX5PLeg3hgaoRAfZXFpQ2s_ILmoq9V6-BcwgG2jtzFwp6c8F6TbN2DHbFGlBjn6hACv8dZmmmOIykZWzLV7LebbVSVivySPn2IYNa0fSmRBFlToX0YaQepLfObPceLtkMiDkhO44OcrRTlSGZIgHvXMtVA5IoFhyF3AnmU6HldQHAXMhd2IRglI2e-g7hLb1PFbuUNGo4HyFGL7chCTEq4qUkHu3c_tJnrdpiKwUwTHuEBJraPQsUyU1ejn5vvXy7HWSZ48_eGA
+thumbnail: /static/images/project-synergy.jpg
 video_url: /static/videos/demo.mp4
 tags: Unity, C#, Neural-Link, P2P, VR
 

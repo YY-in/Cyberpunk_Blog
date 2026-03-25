@@ -4,7 +4,7 @@ category: GAME_ENGINE
 date: 2024-08-12
 status: DEPLOYED
 engine: Custom C++ / Vulkan
-thumbnail: https://lh3.googleusercontent.com/aida-public/AB6AXuCorQO-FvyyD84xInK235u0PDF_wLLYih1aJg4SCUTBkux4x6kJjyXExKLF8MHJSl3BZSxApMdFpBhH9FTN8J1baL7iK-MY24O_aiWeBCm_qHXa9psUs4lAl77ZmSxFjoi68dhR4U6T0yUcDbI7jY69QSWc_zAQGE5bnXzZZcOrjZe2cpmJ5Q0yO9axpChVlyHQ4eh5v-nIqPdGJvsZAyMdqfJeaotNFyuOZywXk1t1ZR4oe165ooXckvGvHSde766mS4uQIYnXZeU
+thumbnail: /static/images/project-voxel.jpg
 tags: C++, Vulkan, Physics, Voxel
 
 ## Overview

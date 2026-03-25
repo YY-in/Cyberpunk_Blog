@@ -218,6 +218,27 @@ tailwind.config = {
 @keyframes gate-blink{50%{opacity:.1}}
 #gate-scanbeam{position:fixed;left:0;right:0;height:6px;top:66px;z-index:48;pointer-events:none;background:linear-gradient(90deg,transparent,#f5e642ee,transparent);box-shadow:0 0 16px 6px #f5e64299;opacity:0}
 #gate-glitch{position:fixed;top:72px;left:0;right:0;bottom:68px;z-index:49;pointer-events:none;opacity:0;width:100%;height:100%}
+
+/* ====== Mobile Responsive ====== */
+@media (max-width: 767px) {
+  /* Gate: use simpler full-width horizontal slide on mobile */
+  .gate-panel{width:110%;height:120%}
+  #gate-tl{left:-110%;top:-10%;clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+  #gate-br{right:-110%;bottom:-10%;clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+  .gate-label,.gate-code,.gate-rivet{display:none}
+  .gate-stripe{height:24px}
+  /* HUD text smaller on mobile */
+  .gate-hud-main{font-size:1.2rem;letter-spacing:.2em;padding:8px 16px}
+  .gate-hud-sub{font-size:.55rem;letter-spacing:.15em}
+  /* Header: shrink title, tighter padding */
+  header.fixed{padding:0.5rem 0.75rem}
+  /* Footer: smaller on mobile */
+  footer.fixed{padding:0.25rem 0.5rem}
+  /* Gate area adapts to smaller header */
+  #gate,#gate-scanlines,#gate-hud{top:56px;bottom:56px}
+  #gate-glitch{top:56px;bottom:56px}
+  #gate-scanbeam{top:50px}
+}
 {% block extra_css %}{% endblock %}
 </style>
 </head>
@@ -260,7 +281,7 @@ tailwind.config = {
 
 <!-- NAVIGATION -->
 <header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-[#131318] border-b-4 border-[#f5e642] shadow-[0_0_15px_rgba(245,230,66,0.15)]">
-  <a href="/" class="text-[#f5e642] font-black italic tracking-tighter text-2xl font-headline">{{ cfg.site.title }}</a>
+  <a href="/" class="text-[#f5e642] font-black italic tracking-tighter text-base md:text-2xl font-headline whitespace-nowrap">{{ cfg.site.title }}</a>
   <nav class="hidden md:flex items-center gap-1 font-body uppercase tracking-[0.1em] text-sm font-bold">
     {% for item in cfg.navigation %}
     {% if item.url == active_url %}
@@ -293,7 +314,7 @@ tailwind.config = {
 </header>
 
 <!-- Mobile nav -->
-<nav id="mobile-nav" class="hidden fixed top-[72px] left-0 w-full bg-[#131318]/95 backdrop-blur-md z-40 border-b-2 border-[#f5e642]/30 md:hidden">
+<nav id="mobile-nav" class="hidden fixed top-[56px] md:top-[72px] left-0 w-full bg-[#131318]/95 backdrop-blur-md z-40 border-b-2 border-[#f5e642]/30 md:hidden">
   {% for item in cfg.navigation %}
   <a class="block px-6 py-3 text-[#f5e642] font-body uppercase tracking-widest text-sm border-b border-[#f5e642]/10 hover:bg-[#f5e642]/10 {% if item.url == active_url %}bg-[#f5e642]/20 font-black{% endif %}" href="{{ item.url }}">{{ item.label }}</a>
   {% endfor %}
@@ -356,7 +377,11 @@ tailwind.config = {
   const gCtx = gCanvas.getContext('2d');
   let gRaf = null, gFrames = 0, gTotal = 0;
 
-  function gResize(){ gCanvas.width = window.innerWidth; gCanvas.height = window.innerHeight - 72 - 68; }
+  function isMobile(){ return window.innerWidth < 768; }
+  function headerH(){ return isMobile() ? 56 : 72; }
+  function footerH(){ return isMobile() ? 56 : 68; }
+  function offPos(){ return isMobile() ? '-110%' : '-70%'; }
+  function gResize(){ gCanvas.width = window.innerWidth; gCanvas.height = window.innerHeight - headerH() - footerH(); }
   gResize(); window.addEventListener('resize', gResize);
 
   const C1=[245,230,66], C2=[0,212,253], C3=[255,45,120];
@@ -365,8 +390,9 @@ tailwind.config = {
 
   function drawGlitch(intensity){
     const W=gCanvas.width, H=gCanvas.height;
+    const m = isMobile() ? 0.5 : 1; // reduce on mobile
     gCtx.clearRect(0,0,W,H);
-    for(let i=0,n=ri(8,18+intensity*12);i<n;i++){
+    for(let i=0,n=ri(4*m,Math.floor((18+intensity*12)*m));i<n;i++){
       const c=[C1,C2,C3][ri(0,3)];
       gCtx.fillStyle=`rgba(${c[0]},${c[1]},${c[2]},${rand(.12,.55)})`;
       gCtx.fillRect(ri(0,W),ri(0,H),ri(20,W*.55),ri(2,intensity>0?22:10));
@@ -383,7 +409,7 @@ tailwind.config = {
       gCtx.fillStyle=`rgba(${c[0]},${c[1]},${c[2]},${rand(.08,.3)})`;
       gCtx.fillRect(ri(0,W),0,ri(1,6),H);
     }
-    for(let i=0,n=ri(200,600+intensity*400);i<n;i++){
+    for(let i=0,n=ri(Math.floor(100*m),Math.floor((600+intensity*400)*m));i<n;i++){
       const c=[C1,C2,C3][ri(0,3)];
       gCtx.fillStyle=`rgba(${c[0]},${c[1]},${c[2]},${rand(.3,.9)})`;
       gCtx.fillRect(ri(0,W),ri(0,H),ri(1,3),ri(1,3));
@@ -412,10 +438,10 @@ tailwind.config = {
   }
 
   function fireScanBeam(){
-    gScanbeam.style.transition='none'; gScanbeam.style.top='-10px'; gScanbeam.style.opacity='1';
+    gScanbeam.style.transition='none'; gScanbeam.style.top=(headerH()-6)+'px'; gScanbeam.style.opacity='1';
     requestAnimationFrame(()=>requestAnimationFrame(()=>{
       gScanbeam.style.transition='top .5s linear,opacity .15s .42s';
-      gScanbeam.style.top='calc(100vh - 68px)';
+      gScanbeam.style.top='calc(100vh - '+footerH()+'px)';
       setTimeout(()=>gScanbeam.style.opacity='0',450);
     }));
   }
@@ -451,8 +477,8 @@ tailwind.config = {
     setPanel(gTL,'left','2%',75,'ease-in');
     setPanel(gBR,'right','2%',75,'ease-in',function(){
       triggerGlitch(0,5);
-      setPanel(gTL,'left','-70%',560,'cubic-bezier(0.7,0,0.84,0)');
-      setPanel(gBR,'right','-70%',560,'cubic-bezier(0.7,0,0.84,0)',function(){
+      setPanel(gTL,'left',offPos(),560,'cubic-bezier(0.7,0,0.84,0)');
+      setPanel(gBR,'right',offPos(),560,'cubic-bezier(0.7,0,0.84,0)',function(){
         if(onOpened) onOpened();
       });
     });
@@ -475,6 +501,9 @@ tailwind.config = {
       // Skip if same page, external, or anchor
       if (!href || href === '#' || href === window.location.pathname) return;
       e.preventDefault();
+      // Close mobile nav if open
+      var mobileNav = document.getElementById('mobile-nav');
+      if (mobileNav) mobileNav.classList.add('hidden');
       // Set HUD text
       const key = Object.keys(hudTexts).find(k => href.startsWith(k) && k !== '/') || (href === '/' ? '/' : '');
       gHudText.textContent = hudTexts[key] || 'ACCESSING...';

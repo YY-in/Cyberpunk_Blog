@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% set pg = cfg.pages.projects %}
+{% block title %}{{ cfg.site.title }} // PROJECT_ARCHIVE{% endblock %}
+
+{% block extra_css %}
+.clip-br { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%); }
+.clip-tr { clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 0 100%); }
+.clip-cyber-card { clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%); }
+.pixel-bg { background-image: radial-gradient(#ffffff22 1px, transparent 1px); background-size: 10px 10px; }
+@keyframes scan { 0% { top: -10%; } 100% { top: 110%; } }
+.scanner-line { height: 2px; background: linear-gradient(90deg, transparent, #f5e642, transparent); box-shadow: 0 0 15px #f5e642; position: absolute; width: 100%; animation: scan 3s linear infinite; }
+@keyframes glitch { 0%{transform:translate(0)} 20%{transform:translate(-2px,2px)} 40%{transform:translate(-2px,-2px)} 60%{transform:translate(2px,2px)} 80%{transform:translate(2px,-2px)} 100%{transform:translate(0)} }
+.glitch-hover:hover { animation: glitch 0.2s infinite; text-shadow: 2px 0 #ff2d78, -2px 0 #00d4ff; }
+.concrete-texture { background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); opacity: 0.05; }
+{% endblock %}
+
+{% block content %}
+<main class="pt-24 pb-20 px-6 md:px-12 max-w-7xl mx-auto relative">
+  <div class="absolute inset-0 scanline-overlay opacity-30 z-0 pointer-events-none"></div>
+  <div class="fixed inset-0 concrete-texture pointer-events-none"></div>
+
+  {% set feat = cfg.featured_project %}
+  <section class="relative z-10 mb-20 group">
+    <div class="flex flex-col md:flex-row bg-[#f5e642] border-4 border-[#f5e642] clip-cyber-card overflow-hidden">
+      <div class="w-full md:w-1/2 relative h-64 md:h-[450px] overflow-hidden bg-black">
+        <img class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" src="{{ feat.image }}" alt="{{ feat.title }}"/>
+        <div class="absolute inset-0 bg-[#f5e642]/5 mix-blend-overlay"></div>
+        <div class="scanner-line"></div>
+        <div class="absolute top-0 left-0 bg-black text-[#f5e642] px-6 py-2 font-label text-sm font-black uppercase tracking-widest clip-tr">{{ pg.featured_badge }}</div>
+      </div>
+      <div class="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center bg-[#f5e642] text-[#131318]">
+        <div class="mb-2 font-label text-xs font-bold tracking-[0.3em] opacity-80 uppercase">{{ pg.featured_subtitle }}</div>
+        <h2 class="font-headline text-5xl md:text-7xl font-black mb-6 leading-[0.85] tracking-tighter uppercase italic">
+          {% for line in feat.title.split('\n') %}
+            {% if loop.last %}<span class="bg-black text-[#f5e642] px-2">{{ line }}</span>{% else %}{{ line }}<br/>{% endif %}
+          {% endfor %}
+        </h2>
+        <p class="font-body text-xl mb-10 max-w-md font-bold leading-tight">{{ feat.description }}</p>
+        <div class="flex flex-wrap gap-6 font-label font-bold text-sm">
+          {% for stat in feat.stats %}
+          <span class="flex items-center gap-2"><span class="material-symbols-outlined text-lg">{{ stat.icon }}</span> {{ stat.label }}</span>
+          {% endfor %}
+        </div>
+        <div class="mt-10">
+          <a href="/projects/{{ feat.slug }}" class="bg-[#131318] text-[#f5e642] font-headline text-xl px-10 py-4 clip-tr flex items-center gap-4 hover:bg-black hover:scale-105 active:scale-95 transition-all glitch-hover inline-block no-underline">
+            {{ pg.featured_btn }} <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative z-10 mb-12 flex flex-wrap items-center justify-between gap-6 border-b-4 border-[#f5e642]/30 pb-6">
+    <div class="flex flex-wrap gap-4 font-label" id="filter-bar">
+      {% for f in cfg.project_filters %}
+      {% if f.value == 'all' %}
+      <button class="filter-btn px-6 py-2 bg-[#f5e642] text-black font-black text-sm clip-tr glitch-hover" data-filter="all">{{ f.label }}</button>
+      {% else %}
+      <button class="filter-btn px-6 py-2 bg-surface-container-high text-[{{ f.color }}] font-black text-sm border-2 border-[{{ f.color }}]/30 hover:bg-[{{ f.color }}]/10 transition-all uppercase" data-filter="{{ f.value }}">{{ f.label }}</button>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <div class="text-xs font-label font-bold text-white/50 uppercase tracking-widest bg-black/50 px-4 py-2 border-l-4 border-[#00d4ff]">
+      {{ pg.query_status }} <span class="text-[#00d4ff]">READY</span> [<span id="entry-count">{{ cfg.project_cards | length }}</span>_ENTRIES_FOUND]
+    </div>
+  </section>
+
+  <section class="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="project-grid">
+    {% for card in cfg.project_cards %}
+    <div class="project-card group relative bg-[#1a1a20] clip-cyber-card border-l-8 transition-all duration-300 shadow-xl pixel-bg" data-category="{{ card.category }}" style="border-left-color: {{ card.color }};">
+      <div class="h-56 relative overflow-hidden bg-black">
+        <img class="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" src="{{ card.image }}" alt="{{ card.title }}"/>
+        <div class="absolute top-0 right-0 px-3 py-1 text-xs font-label font-black italic" style="background-color: {{ card.color }}; color: {% if card.color == '#f5e642' or card.color == '#00d4ff' %}#131318{% else %}#fff{% endif %};">{{ card.category }}</div>
+        <div class="absolute inset-0 scanline-overlay opacity-20 pointer-events-none"></div>
+      </div>
+      <div class="p-8">
+        <h3 class="font-headline text-2xl font-black mb-3 tracking-tighter text-[#f5e642] uppercase italic group-hover:translate-x-2 transition-transform">
+          <a href="/projects/{{ card.slug }}" class="hover:text-[#00d4ff] transition-colors">{{ card.title }}</a>
+        </h3>
+        <p class="text-on-surface-variant text-sm font-body font-bold mb-8 line-clamp-2 leading-tight border-l-2 pl-4" style="border-left-color: {{ card.color }}30;">{{ card.description }}</p>
+        <div class="flex gap-4 font-label">
+          <a href="/projects/{{ card.slug }}" class="flex-1 py-3 font-black text-xs border-2 transition-colors flex items-center justify-center gap-2 uppercase italic" style="background-color: {{ card.color }}15; color: {{ card.color }}; border-color: {{ card.color }};">
+            <span class="material-symbols-outlined text-sm">{{ card.btn1_icon }}</span> {{ card.btn1_label }}
+          </a>
+          <button class="flex-1 py-3 bg-black/40 text-white font-black text-xs border-2 border-white/20 hover:border-[#f5e642] hover:text-[#f5e642] transition-colors flex items-center justify-center gap-2 uppercase italic">
+            <span class="material-symbols-outlined text-sm">{{ card.btn2_icon }}</span> {{ card.btn2_label }}
+          </button>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+    <div class="project-card group relative bg-[#131318] clip-cyber-card border-l-8 border-white/10 transition-all duration-300 overflow-hidden pixel-bg border-4 border-transparent hover:border-[#f5e642]/30" data-category="all">
+      <div class="absolute inset-0 scanline-overlay opacity-20"></div>
+      <div class="h-56 flex items-center justify-center bg-black/40">
+        <span class="material-symbols-outlined text-white/20 text-6xl group-hover:text-[#f5e642]/40 transition-colors">lock</span>
+      </div>
+      <div class="p-8 opacity-60">
+        <h3 class="font-headline text-2xl font-black mb-3 tracking-tighter text-white uppercase italic">{{ pg.encrypted_title }}</h3>
+        <p class="text-on-surface-variant text-sm font-body font-bold mb-8 leading-tight">{{ pg.encrypted_desc }}</p>
+        <div class="h-3 bg-black border border-white/10 overflow-hidden mb-2">
+          <div class="h-full bg-[#f5e642] animate-pulse" style="width: {{ pg.encrypted_progress }}%"></div>
+        </div>
+        <div class="text-[10px] font-label font-black uppercase text-[#f5e642]">{{ pg.encrypted_label }}: {{ pg.encrypted_progress }}%</div>
+      </div>
+    </div>
+  </section>
+
+  {% if projects %}
+  <section class="relative z-10 mt-20">
+    <div class="flex items-center gap-4 mb-8 border-b-4 border-[#00d4ff]/20 pb-4">
+      <span class="material-symbols-outlined text-[#00d4ff] text-3xl">folder_open</span>
+      <h2 class="font-headline text-3xl font-black text-[#00d4ff] italic tracking-tighter">{{ pg.archives_title }}</h2>
+      <span class="font-label text-[10px] text-[#00d4ff]/40 ml-auto">{{ projects | length }} FILE(S)</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for p in projects %}
+      <a href="/projects/{{ p.slug }}" class="group block">
+        <div class="bg-[#1a1a20] border border-[#00d4ff]/10 hover:border-[#00d4ff]/40 transition-all clip-cyber-card overflow-hidden">
+          {% if p.meta.get('thumbnail') %}
+          <div class="h-48 overflow-hidden bg-black relative">
+            <img src="{{ p.meta.thumbnail }}" alt="{{ p.meta.get('title', p.slug) }}" class="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110"/>
+            <div class="absolute inset-0 scanline-overlay opacity-20 pointer-events-none"></div>
+            {% if p.meta.get('category') %}<div class="absolute top-0 right-0 bg-[#00d4ff] text-[#131318] px-3 py-1 text-xs font-label font-black italic">{{ p.meta.category }}</div>{% endif %}
+          </div>
+          {% else %}
+          <div class="h-48 bg-black/40 flex items-center justify-center"><span class="material-symbols-outlined text-6xl text-[#00d4ff]/20">folder</span></div>
+          {% endif %}
+          <div class="p-6">
+            <h3 class="font-headline text-xl font-black text-[#f5e642] uppercase italic tracking-tighter mb-2 group-hover:translate-x-2 transition-transform">{{ p.meta.get('title', p.slug | upper) }}</h3>
+            <p class="text-on-surface-variant text-sm font-body font-bold line-clamp-2 leading-tight border-l-2 border-[#00d4ff]/30 pl-4">{{ p.meta.get('summary', '') }}</p>
+            {% if p.meta.get('tags') %}{% set tag_str = p.meta.get('tags', '') %}{% if tag_str is string %}
+            <div class="mt-4 flex flex-wrap gap-2">{% for tag in tag_str.split(',') %}<span class="font-label text-[9px] px-2 py-0.5 bg-[#00d4ff]/10 border border-[#00d4ff]/30 text-[#00d4ff] uppercase">{{ tag.strip() }}</span>{% endfor %}</div>
+            {% endif %}{% endif %}
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <div class="relative z-10 mt-20 border-t-4 border-[#f5e642]/30 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="font-label text-sm font-black text-[#ff2d78] flex items-center gap-6 bg-black/50 px-6 py-2 border-l-4 border-[#ff2d78]">
+      <span>{{ pg.log_id }}</span><span class="hidden md:inline">{{ pg.uptime }}</span><span class="text-[#00d4ff]">{{ pg.buffer }}</span>
+    </div>
+    <div class="flex gap-4 font-label">
+      <button class="w-12 h-12 flex items-center justify-center bg-[#f5e642] text-black font-black text-lg border-2 border-black clip-tr glitch-hover">1</button>
+      <button class="w-12 h-12 flex items-center justify-center bg-[#1a1a20] text-[#f5e642] font-black text-lg border-2 border-[#f5e642]/30 hover:border-[#f5e642] transition-colors clip-tr">2</button>
+      <button class="w-12 h-12 flex items-center justify-center bg-[#1a1a20] text-[#f5e642] font-black text-lg border-2 border-[#f5e642]/30 hover:border-[#f5e642] transition-colors clip-tr">3</button>
+      <button class="w-12 h-12 flex items-center justify-center bg-[#1a1a20] text-[#f5e642] border-2 border-[#f5e642]/30 hover:border-[#f5e642] transition-colors clip-tr"><span class="material-symbols-outlined">chevron_right</span></button>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.filter-btn').forEach(b => { if (b !== btn) b.classList.add('bg-surface-container-high'); });
+    btn.classList.remove('bg-surface-container-high');
+    const cards = document.querySelectorAll('.project-card'); let count = 0;
+    cards.forEach(card => { const cat = card.dataset.category; if (filter === 'all' || cat === filter || cat === 'all') { card.style.display = ''; count++; } else { card.style.display = 'none'; } });
+    document.getElementById('entry-count').textContent = count;
+  });
+});
+</script>
+{% endblock %}

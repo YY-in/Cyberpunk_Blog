@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% set pg = cfg.pages.about %}
+{% block title %}{{ cfg.site.title }} // ABOUT{% endblock %}
+
+{% block extra_css %}
+@keyframes glitch-anim {
+  0% { text-shadow: 3px 0 #ff2d78, -3px 0 #00d4ff; transform: translate(0); }
+  20% { text-shadow: -3px 0 #ff2d78, 3px 0 #00d4ff; transform: translate(-2px, 1px); }
+  40% { text-shadow: 2px 0 #ff2d78, -2px 0 #00d4ff; transform: translate(2px, -1px); }
+  60% { text-shadow: -2px 0 #ff2d78, 2px 0 #00d4ff; transform: translate(-1px, 2px); }
+  80% { text-shadow: 3px 0 #ff2d78, -3px 0 #00d4ff; transform: translate(1px, -2px); }
+  100% { text-shadow: -3px 0 #ff2d78, 3px 0 #00d4ff; transform: translate(0); }
+}
+{% endblock %}
+
+{% block content %}
+<main class="relative pt-24 min-h-screen">
+  <section class="relative z-10 px-6 py-12 md:py-24 max-w-[1400px] mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-0 border-4 border-[#f5e642]/20 bg-black/50 overflow-hidden">
+      <div class="lg:col-span-7 p-8 md:p-16 border-r-4 border-[#f5e642]/20 flex flex-col justify-center">
+        <div class="font-label text-[#00d4ff] mb-6 flex items-center gap-3">
+          <span class="w-12 h-[3px] bg-[#00d4ff] animate-pulse"></span>
+          {{ pg.breadcrumb }}
+        </div>
+        <h1 class="text-7xl md:text-[10rem] font-black font-headline tracking-tighter glitch-text text-[#f5e642] mb-6 flicker-animation leading-[0.85] italic">
+          {{ cfg.owner.name | replace(' ', '<br/>') | safe }}
+        </h1>
+        <div class="font-label text-2xl md:text-4xl text-[#00d4ff] typewriter-cursor flex items-center gap-4 bg-[#f5e642]/10 w-fit px-4 py-2 border-l-8 border-[#f5e642]">
+          <span class="opacity-50">$</span>
+          <span id="typewriter-text">{{ cfg.owner.roles[0] }}</span>
+        </div>
+        <div class="mt-16 flex flex-wrap gap-8">
+          <a href="/projects" class="bg-[#f5e642] text-black px-10 py-5 font-label font-black tracking-widest text-lg flex items-center gap-4 hover:bg-[#ff2d78] hover:text-white transition-all [clip-path:polygon(0_0,100%_0,100%_70%,85%_100%,0_100%)] shadow-[10px_10px_0px_theme(colors.on-tertiary-container)] active:translate-x-1 active:translate-y-1 active:shadow-none">
+            {{ pg.btn_cta }} <span class="material-symbols-outlined">bolt</span>
+          </a>
+        </div>
+      </div>
+      <div class="lg:col-span-5 relative min-h-[500px] overflow-hidden group">
+        <div class="absolute inset-0 bg-[#ff2d78]/20 mix-blend-color group-hover:bg-transparent transition-all duration-500"></div>
+        <img class="w-full h-full object-cover grayscale brightness-50 contrast-125 group-hover:grayscale-0 group-hover:brightness-90 transition-all duration-1000 scale-110 group-hover:scale-100"
+             src="{{ cfg.owner.avatar }}" alt="Profile"/>
+        <div class="absolute inset-0 pointer-events-none border-[20px] border-black/50"></div>
+        <div class="absolute top-0 right-0 bg-[#f5e642] text-black font-label px-4 py-2 text-sm font-bold">NODE_077_ALPHA</div>
+        <div class="absolute bottom-8 left-8 text-[#00d4ff] font-label text-xs tracking-[0.5em] bg-black/90 p-2 border border-[#00d4ff]/50">BIOMETRIC_ID: 994-A7</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative z-10 px-6 py-24 bg-black">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-20 flex items-center justify-between border-b-8 border-[#f5e642]/10 pb-8">
+        <h2 class="text-6xl md:text-8xl font-headline font-black text-white italic tracking-tighter">{{ pg.modules_title }}</h2>
+        <div class="hidden md:block font-label text-[#ff2d78] text-xl animate-pulse">{{ pg.modules_status }}</div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        {% for mod in cfg.core_modules %}
+        {% set colors = {"primary": "#f5e642", "secondary": "#00d4ff", "tertiary": "#ff2d78"} %}
+        {% set c = colors.get(mod.color, "#f5e642") %}
+        <div class="group bg-[{{ c }}] p-1 clip-monolith hover:scale-[1.02] transition-transform">
+          <div class="bg-black p-8 h-full clip-monolith group-hover:bg-[{{ c }}]/5 transition-colors">
+            <div class="text-[{{ c }}] mb-8 group-hover:text-[#ff2d78] transition-colors">
+              <span class="material-symbols-outlined text-6xl" style="font-variation-settings: 'FILL' 1;">{{ mod.icon }}</span>
+            </div>
+            <h3 class="text-3xl font-headline font-bold mb-4 text-[{{ c }}] italic">{{ mod.title }}</h3>
+            <p class="font-body text-zinc-400 mb-10 leading-tight">{{ mod.description }}</p>
+            <div class="font-label text-[10px] flex flex-wrap gap-2 uppercase tracking-widest">
+              {% for tag in mod.tags %}
+              <span class="px-3 py-1 bg-[{{ c }}]/10 border border-[{{ c }}]/30 text-[{{ c }}]">{{ tag }}</span>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="relative z-10 py-24 px-6 border-t-8 border-[#ff2d78]/20">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
+      <div class="space-y-6">
+        <h2 class="text-4xl font-headline font-black tracking-tight text-[#f5e642] flex items-center gap-4 italic">
+          <span class="text-[#ff2d78]">#</span> {{ pg.logs_title }}
+        </h2>
+        <div class="bg-[#131318] p-8 font-label text-sm text-[#00d4ff] border-l-8 border-[#00d4ff] shadow-[10px_10px_0px_rgba(0,212,255,0.1)]">
+          {% for log in cfg.system_logs %}
+          <div class="flex gap-4 {% if not loop.last %}mb-4 border-b border-[#00d4ff]/10 pb-2{% endif %}">
+            <span class="{% if log.type == 'error' %}text-[#ff2d78]{% else %}text-[#f5e642]{% endif %}">[{{ log.date }}]</span>
+            {{ log.message }}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="relative flex items-center">
+        <div class="absolute -top-10 -right-4 text-[150px] font-headline font-black text-[#f5e642]/5 pointer-events-none select-none italic">{{ pg.logs_watermark }}</div>
+        <div class="relative z-10 border-t-8 border-[#ff2d78] pt-10">
+          <p class="font-body text-2xl md:text-3xl font-light italic text-white leading-snug">{{ pg.quote }}</p>
+          <div class="mt-8 flex gap-3">
+            <div class="h-2 w-32 bg-[#f5e642]"></div>
+            <div class="h-2 w-8 bg-[#00d4ff]"></div>
+            <div class="h-2 w-4 bg-[#ff2d78]"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function(){
+  const roles = {{ cfg.owner.roles | tojson }};
+  const el = document.getElementById('typewriter-text');
+  let ri = 0, ci = 0, deleting = false;
+  function tick() {
+    const word = roles[ri];
+    if (!deleting) { el.textContent = word.substring(0, ++ci); if (ci === word.length) { deleting = true; setTimeout(tick, 2000); return; } }
+    else { el.textContent = word.substring(0, --ci); if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; setTimeout(tick, 400); return; } }
+    setTimeout(tick, deleting ? 50 : 100);
+  }
+  tick();
+})();
+</script>
+{% endblock %}

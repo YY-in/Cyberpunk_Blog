@@ -1,0 +1,261 @@
+import os
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from pathlib import Path
+
+import copy
+
+import yaml
+import markdown
+from flask import Flask, render_template, request, jsonify, abort, make_response
+
+# ---------------------------------------------------------------------------
+# App factory
+# ---------------------------------------------------------------------------
+
+BASE_DIR = Path(__file__).resolve().parent
+
+app = Flask(__name__, static_folder="static", template_folder="templates")
+app.secret_key = os.environ.get("SECRET_KEY", "change-me-in-production")
+
+
+# ---------------------------------------------------------------------------
+# Load YAML config
+# ---------------------------------------------------------------------------
+
+def load_config():
+    with open(BASE_DIR / "config.yaml", "r", encoding="utf-8") as f:
+        return yaml.safe_load(f)
+
+
+def load_lang_config(lang: str):
+    """Load language-specific override file (e.g. config.zh.yaml)."""
+    path = BASE_DIR / f"config.{lang}.yaml"
+    if path.exists():
+        with open(path, "r", encoding="utf-8") as f:
+            return yaml.safe_load(f) or {}
+    return {}
+
+
+def deep_merge(base: dict, override: dict) -> dict:
+    """Recursively merge override into a copy of base."""
+    result = copy.deepcopy(base)
+    for key, val in override.items():
+        if key in result and isinstance(result[key], dict) and isinstance(val, dict):
+            result[key] = deep_merge(result[key], val)
+        else:
+            result[key] = copy.deepcopy(val)
+    return result
+
+
+SUPPORTED_LANGS = ["en", "zh"]
+DEFAULT_LANG = "en"
+
+CONFIG = load_config()
+LANG_CONFIGS: dict[str, dict] = {}
+for _lang in SUPPORTED_LANGS:
+    if _lang != DEFAULT_LANG:
+        LANG_CONFIGS[_lang] = load_lang_config(_lang)
+
+
+def get_current_lang() -> str:
+    """Determine language from ?lang= param, cookie, or default."""
+    lang = request.args.get("lang", "").strip().lower()
+    if lang in SUPPORTED_LANGS:
+        return lang
+    lang = request.cookies.get("lang", "").strip().lower()
+    if lang in SUPPORTED_LANGS:
+        return lang
+    return DEFAULT_LANG
+
+
+@app.context_processor
+def inject_config():
+    """Make config available in every template. Reload in debug mode."""
+    global CONFIG, LANG_CONFIGS
+    if app.debug:
+        CONFIG = load_config()
+        for _lang in SUPPORTED_LANGS:
+            if _lang != DEFAULT_LANG:
+                LANG_CONFIGS[_lang] = load_lang_config(_lang)
+
+    lang = get_current_lang()
+    if lang != DEFAULT_LANG and lang in LANG_CONFIGS:
+        cfg = deep_merge(CONFIG, LANG_CONFIGS[lang])
+    else:
+        cfg = CONFIG
+    # Map request path to nav URL for active tab highlighting
+    path = request.path.rstrip("/") or "/"
+    url_map = {"/": "/", "/about": "/about", "/projects": "/projects",
+               "/skills": "/skills", "/contact": "/contact", "/blog": "/blog"}
+    active_url = url_map.get(path, "")
+    # Also match sub-paths like /projects/synergy → /projects
+    if not active_url:
+        for prefix in ["/projects", "/blog"]:
+            if path.startswith(prefix):
+                active_url = prefix
+                break
+
+    return {"cfg": cfg, "current_lang": lang, "supported_langs": SUPPORTED_LANGS,
+            "active_url": active_url}
+
+
+@app.after_request
+def set_lang_cookie(response):
+    """Persist language choice in cookie when ?lang= is used."""
+    lang = request.args.get("lang", "").strip().lower()
+    if lang in SUPPORTED_LANGS:
+        response.set_cookie("lang", lang, max_age=365 * 24 * 3600, samesite="Lax")
+    return response
+
+
+# ---------------------------------------------------------------------------
+# Markdown helpers
+# ---------------------------------------------------------------------------
+
+MD_EXTENSIONS = ["extra", "codehilite", "meta", "toc", "tables", "fenced_code"]
+
+
+def load_markdown(folder: str, slug: str):
+    """Load a .md file from content/<folder>/<slug>.md and return (meta, html)."""
+    md_path = BASE_DIR / "content" / folder / f"{slug}.md"
+    if not md_path.exists():
+        return None, None
+    text = md_path.read_text(encoding="utf-8")
+    md = markdown.Markdown(extensions=MD_EXTENSIONS)
+    html = md.convert(text)
+    meta = {k: v[0] if len(v) == 1 else v for k, v in md.Meta.items()} if hasattr(md, "Meta") else {}
+    return meta, html
+
+
+def list_markdown(folder: str):
+    """List all .md files in content/<folder>/ and return list of (slug, meta, html)."""
+    content_dir = BASE_DIR / "content" / folder
+    if not content_dir.exists():
+        return []
+    results = []
+    for p in sorted(content_dir.glob("*.md"), key=lambda x: x.stat().st_mtime, reverse=True):
+        md = markdown.Markdown(extensions=MD_EXTENSIONS)
+        html = md.convert(p.read_text(encoding="utf-8"))
+        meta = {k: v[0] if len(v) == 1 else v for k, v in md.Meta.items()} if hasattr(md, "Meta") else {}
+        results.append({"slug": p.stem, "meta": meta, "html": html})
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Routes
+# ---------------------------------------------------------------------------
+
+@app.route("/")
+def home():
+    return render_template("home.html", active="HOME")
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html", active="ABOUT")
+
+
+@app.route("/projects")
+def projects():
+    items = list_markdown("projects")
+    return render_template("projects.html", active="PROJECTS", projects=items)
+
+
+@app.route("/projects/<slug>")
+def project_detail(slug):
+    meta, html = load_markdown("projects", slug)
+    if html is None:
+        abort(404)
+    return render_template("project_detail.html", active="PROJECTS", meta=meta, content=html, slug=slug)
+
+
+@app.route("/skills")
+def skills():
+    return render_template("skills.html", active="SKILLS")
+
+
+@app.route("/blog")
+def blog():
+    posts = list_markdown("blog")
+    return render_template("blog.html", active="BLOG", posts=posts)
+
+
+@app.route("/blog/<slug>")
+def blog_post(slug):
+    meta, html = load_markdown("blog", slug)
+    if html is None:
+        abort(404)
+    return render_template("blog_post.html", active="BLOG", meta=meta, content=html)
+
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html", active="CONTACT")
+
+
+# ---------------------------------------------------------------------------
+# Contact form → SMTP
+# ---------------------------------------------------------------------------
+
+@app.route("/api/contact", methods=["POST"])
+def api_contact():
+    data = request.get_json(silent=True) or request.form
+    name = data.get("name", "").strip()
+    email_addr = data.get("email", "").strip()
+    subject = data.get("subject", "GENERAL_SIGNAL").strip()
+    message = data.get("message", "").strip()
+
+    if not name or not email_addr or not message:
+        return jsonify({"ok": False, "error": "Missing required fields"}), 400
+
+    email_cfg = CONFIG.get("email", {})
+    smtp_server = os.environ.get("SMTP_SERVER", email_cfg.get("smtp_server", ""))
+    smtp_port = int(os.environ.get("SMTP_PORT", email_cfg.get("smtp_port", 587)))
+    smtp_user = os.environ.get("SMTP_USER", email_cfg.get("smtp_user", ""))
+    smtp_password = os.environ.get("SMTP_PASSWORD", email_cfg.get("smtp_password", ""))
+    recipient = os.environ.get("MAIL_RECIPIENT", email_cfg.get("recipient", ""))
+    prefix = email_cfg.get("subject_prefix", "[CONTACT]")
+
+    if not smtp_user or not smtp_password or not recipient:
+        return jsonify({"ok": False, "error": "Mail server not configured"}), 500
+
+    msg = MIMEMultipart()
+    msg["From"] = smtp_user
+    msg["To"] = recipient
+    msg["Reply-To"] = email_addr
+    msg["Subject"] = f"{prefix} {subject} — from {name}"
+
+    body = f"Name: {name}\nEmail: {email_addr}\nSubject: {subject}\n\n{message}"
+    msg.attach(MIMEText(body, "plain", "utf-8"))
+
+    try:
+        with smtplib.SMTP(smtp_server, smtp_port) as server:
+            server.starttls()
+            server.login(smtp_user, smtp_password)
+            server.send_message(msg)
+    except Exception as e:
+        app.logger.error("SMTP error: %s", e)
+        return jsonify({"ok": False, "error": "Failed to send message"}), 500
+
+    return jsonify({"ok": True, "message": "TRANSMISSION_SUCCESS"})
+
+
+# ---------------------------------------------------------------------------
+# Error handlers
+# ---------------------------------------------------------------------------
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404
+
+
+# ---------------------------------------------------------------------------
+# Run
+# ---------------------------------------------------------------------------
+
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=5000,
+            extra_files=[str(BASE_DIR / "config.yaml"),
+                         str(BASE_DIR / "config.zh.yaml")])

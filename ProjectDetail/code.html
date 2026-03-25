@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Share+Tech+Mono&amp;family=Orbitron:wght@400;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-fixed-variant": "#90003d",
+              "surface-container-lowest": "#0e0e13",
+              "inverse-on-surface": "#303036",
+              "on-surface-variant": "#ccc7ad",
+              "background": "#131318",
+              "secondary-fixed-dim": "#3cd7ff",
+              "on-tertiary-container": "#c70057",
+              "inverse-primary": "#676000",
+              "tertiary-fixed": "#ffd9df",
+              "on-primary-fixed-variant": "#4e4800",
+              "error-container": "#93000a",
+              "surface": "#131318",
+              "on-error": "#690005",
+              "surface-container-highest": "#35343a",
+              "primary-fixed": "#f5e642",
+              "on-primary": "#363100",
+              "primary-container": "#f5e642",
+              "primary": "#ffffff",
+              "surface-container": "#1f1f25",
+              "on-error-container": "#ffdad6",
+              "surface-variant": "#35343a",
+              "surface-bright": "#39383e",
+              "tertiary-container": "#ffd9df",
+              "surface-tint": "#d8ca23",
+              "surface-container-high": "#2a292f",
+              "on-secondary-fixed-variant": "#004e5f",
+              "error": "#ffb4ab",
+              "inverse-surface": "#e4e1e9",
+              "tertiary": "#ffffff",
+              "surface-container-low": "#1b1b20",
+              "outline-variant": "#4a4734",
+              "on-primary-fixed": "#1f1c00",
+              "surface-dim": "#131318",
+              "on-secondary-container": "#005669",
+              "tertiary-fixed-dim": "#ffb1c0",
+              "secondary": "#a2e7ff",
+              "on-primary-container": "#6e6600",
+              "secondary-fixed": "#b4ebff",
+              "on-tertiary-fixed": "#3f0017",
+              "secondary-container": "#00d2fd",
+              "on-secondary": "#003642",
+              "on-tertiary": "#660029",
+              "on-surface": "#e4e1e9",
+              "primary-fixed-dim": "#d8ca23",
+              "on-background": "#e4e1e9",
+              "outline": "#95917a",
+              "on-secondary-fixed": "#001f27"
+            },
+            fontFamily: {
+              "headline": ["Orbitron", "sans-serif"],
+              "body": ["Space Grotesk", "sans-serif"],
+              "mono": ["Share Tech Mono", "monospace"],
+              "label": ["Space Grotesk", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #131318;
+            background-image: linear-gradient(rgba(19, 19, 24, 0.97) 50%, rgba(0, 0, 0, 0) 50%), linear-gradient(90deg, rgba(245, 230, 66, 0.03) 1px, transparent 1px);
+            background-size: 100% 4px, 40px 100%;
+            position: relative;
+        }
+        .scanlines::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+            z-index: 9999;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+        .clip-hero {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
+        }
+        .clip-card {
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+        .clip-notch-tr {
+            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
+        }
+        .glitch-text {
+            text-shadow: 2px 0 #ff2d78, -2px 0 #00d4ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        /* Styles imported from SCREEN_29 */
+        .clip-nav-v2 { clip-path: polygon(0 0, 100% 0, 100% 70%, 98% 100%, 0 100%); }
+        .clip-footer-v2 { clip-path: polygon(2% 0, 100% 0, 100% 100%, 0 100%, 0 30%); }
+        @keyframes flicker {
+            0% { opacity: 1; }
+            5% { opacity: 0.8; }
+            10% { opacity: 1; }
+            15% { opacity: 0.9; }
+            20% { opacity: 1; }
+        }
+        .active-flicker:active { animation: flicker 100ms infinite; transform: scale(0.95); }
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="font-body text-on-background min-h-screen selection:bg-primary-container selection:text-on-primary-container scanlines">
+<canvas id="bg-canvas"></canvas>
+<!-- BOTTOM MARQUEE TICKER -->
+<div class="fixed bottom-0 left-0 w-full overflow-hidden bg-black/90 backdrop-blur-md h-8 border-t border-[#f5e642]/30 flex items-center z-[60] pointer-events-none">
+<div class="whitespace-nowrap flex gap-12 font-['Share_Tech_Mono'] text-xs text-[#f5e642] uppercase tracking-[0.3em] animate-[marquee_20s_linear_infinite]">
+<span>SYSTEM_OVERLOAD // THERMAL_CRITICAL // NEURAL_LINK_99% // PK_ENCRYPTION_ACTIVE // SYSTEM_OVERLOAD // THERMAL_CRITICAL // NEURAL_LINK_99% // PK_ENCRYPTION_ACTIVE //</span>
+<span>SYSTEM_OVERLOAD // THERMAL_CRITICAL // NEURAL_LINK_99% // PK_ENCRYPTION_ACTIVE // SYSTEM_OVERLOAD // THERMAL_CRITICAL // NEURAL_LINK_99% // PK_ENCRYPTION_ACTIVE //</span>
+</div>
+</div>
+<!-- NAVIGATION -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-[#131318] border-b-4 border-[#f5e642] shadow-[0_0_15px_rgba(245,230,66,0.15)]">
+<div class="text-[#f5e642] font-black italic tracking-tighter text-2xl font-['Orbitron']">PROJECT_DETAIL.log</div>
+<nav class="hidden md:flex items-center gap-1 font-['Space_Grotesk'] uppercase tracking-[0.1em] text-sm font-bold">
+<a class="text-[#f5e642] hover:text-[#00d4ff] px-4 py-1 transition-colors duration-100 hover:skew-x-[-6deg] hover:bg-[#f5e642]/10" href="../Home/code.html">HOME</a>
+<a class="text-[#f5e642] hover:text-[#00d4ff] px-4 py-1 transition-colors duration-100 hover:skew-x-[-6deg] hover:bg-[#f5e642]/10" href="../About/code.html">ABOUT</a>
+<a class="text-[#131318] bg-[#f5e642] px-4 py-1 skew-x-[-12deg] font-black shadow-[4px_4px_0px_#ff2d78]" href="../Project/code.html">PROJECTS</a>
+<a class="text-[#f5e642] hover:text-[#00d4ff] px-4 py-1 transition-colors duration-100 hover:skew-x-[-6deg] hover:bg-[#f5e642]/10" href="../Skill/code.html">SKILLS</a>
+<a class="text-[#f5e642] hover:text-[#00d4ff] px-4 py-1 transition-colors duration-100 hover:skew-x-[-6deg] hover:bg-[#f5e642]/10" href="../Contact/code.html">CONTACT</a>
+</nav>
+<div class="flex items-center gap-4 text-[#f5e642]">
+<span class="material-symbols-outlined cursor-pointer hover:scale-110 transition-transform">terminal</span>
+<span class="material-symbols-outlined cursor-pointer hover:scale-110 transition-transform">settings_input_component</span>
+</div>
+</header>
+<main class="pt-24 pb-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+<!-- Hero Header -->
+<header class="relative group">
+<div class="bg-primary-container text-on-primary-container p-8 md:p-12 clip-hero relative overflow-hidden border-l-8 border-on-tertiary-container shadow-[20px_20px_0px_rgba(255,45,120,0.2)]">
+<div class="absolute top-0 right-0 p-4 font-mono text-xs opacity-40">NODE_ID: 77-ALPHA-4</div>
+<div class="relative z-10">
+<h2 class="font-mono text-sm tracking-[0.3em] mb-2 opacity-80">PROJECT://NEURAL_OVERRIDE</h2>
+<h1 class="font-headline text-5xl md:text-8xl font-black uppercase tracking-tighter glitch-text leading-none">
+                        PROJECT://<br/>SYNERGY
+                    </h1>
+<div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-sm border-t border-black/10 pt-6">
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 bg-on-tertiary-container animate-pulse"></span>
+<span>DECRYPTING: 98.4%</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 bg-secondary-container"></span>
+<span>BUFFER_STATUS: STABLE</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-xs">refresh</span>
+<span>SIGNAL_STRENGTH: NOMINAL</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Media Module -->
+<section class="grid grid-cols-1 gap-4">
+<div class="relative bg-surface-container-low p-2 clip-card border-r-4 border-secondary-container/50">
+<div class="relative aspect-video overflow-hidden bg-black flex items-center justify-center">
+<img class="w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-500" data-alt="futuristic dark server room with glowing blue wires and neon interface panels in high tech industrial environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDumX5PLeg3hgaoRAfZXFpQ2s_ILmoq9V6-BcwgG2jtzFwp6c8F6TbN2DHbFGlBjn6hACv8dZmmmOIykZWzLV7LebbVSVivySPn2IYNa0fSmRBFlToX0YaQepLfObPceLtkMiDkhO44OcrRTlSGZIgHvXMtVA5IoFhyF3AnmU6HldQHAXMhd2IRglI2e-g7hLb1PFbuUNGo4HyFGL7chCTEq4qUkHu3c_tJnrdpiKwUwTHuEBJraPQsUyU1ejn5vvXy7HWSZ48_eGA"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-20 h-20 bg-primary-container/90 text-on-primary-container flex items-center justify-center clip-card cursor-pointer hover:scale-110 transition-transform shadow-[0_0_30px_rgba(245,230,66,0.5)]">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div class="absolute bottom-4 left-4 bg-black/80 p-2 border-l-2 border-primary-container font-mono text-[10px] text-primary-container">
+                        REC_STREAM: LIVE_FEED_001 // SECURE_LINE
+                    </div>
+</div>
+</div>
+</section>
+<!-- Intel Dossier -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+<div class="space-y-4">
+<h3 class="font-headline text-2xl font-bold flex items-center gap-3">
+<span class="w-8 h-1 bg-secondary-container"></span> TECHNICAL_SPECS
+                </h3>
+<div class="grid grid-cols-1 gap-2">
+<div class="bg-surface-container p-4 flex justify-between items-center border-l-4 border-secondary-container clip-notch-tr">
+<span class="font-mono text-sm opacity-60">ENGINE_CORE</span>
+<span class="font-mono text-secondary-container font-bold">UNITY 2077 // V-MOD</span>
+</div>
+<div class="bg-surface-container-high p-4 flex justify-between items-center border-l-4 border-on-tertiary-container clip-notch-tr">
+<span class="font-mono text-sm opacity-60">NEURAL_LATENCY</span>
+<span class="font-mono text-on-tertiary-container font-bold">5MS [ULTRA-LOW]</span>
+</div>
+<div class="bg-surface-container p-4 flex justify-between items-center border-l-4 border-primary-container clip-notch-tr">
+<span class="font-mono text-sm opacity-60">PROTOCOL</span>
+<span class="font-mono text-primary-container font-bold">P2P_DECENTRALIZED</span>
+</div>
+<div class="bg-surface-container-high p-4 flex justify-between items-center border-l-4 border-secondary-container clip-notch-tr">
+<span class="font-mono text-sm opacity-60">COMPATIBILITY</span>
+<span class="font-mono text-secondary-container font-bold">NEURAL_LINK_V4+</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-8 border-t-4 border-primary-container relative">
+<div class="absolute top-0 right-0 w-12 h-12 bg-primary-container clip-notch-tr opacity-20"></div>
+<h3 class="font-headline text-2xl font-bold mb-6">MISSION_OBJECTIVE</h3>
+<p class="font-mono text-on-surface-variant leading-relaxed text-sm md:text-base">
+                    SYNERGY represents the final frontier in human-machine integration. Our proprietary Neural Override protocol bypasses standard sensory filtering to achieve 1:1 data throughput. 
+                    <br/><br/>
+                    By leveraging quantized neural architectures, we've eliminated the 'ghosting' effect prevalent in legacy interfaces. The project's ultimate goal is to redefine how consciousness interacts with the global data-sphere, enabling direct neural manifestation of digital assets.
+                </p>
+<div class="mt-8 flex gap-4">
+<button class="bg-primary-container text-on-primary font-bold px-6 py-3 uppercase text-sm clip-notch-tr hover:brightness-110 active:scale-95 transition-all">
+                        INITIALIZE_LINK
+                    </button>
+<button class="border border-secondary-container text-secondary font-bold px-6 py-3 uppercase text-sm hover:bg-secondary-container/10 transition-all">
+                        VIEW_SOURCE
+                    </button>
+</div>
+</div>
+</section>
+<!-- Gallery Grid -->
+<section class="space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="font-headline text-2xl font-bold">SYSTEM_ARCHITECTURE</h3>
+<span class="font-mono text-xs opacity-40">IMG_COUNT: 04</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="group relative aspect-square overflow-hidden bg-surface-container-highest border border-white/5 cursor-pointer">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 hover:scale-110 transition-all duration-300" data-alt="abstract glowing blue network topology wires in dark virtual space with circuit board patterns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCorQO-FvyyD84xInK235u0PDF_wLLYih1aJg4SCUTBkux4x6kJjyXExKLF8MHJSl3BZSxApMdFpBhH9FTN8J1baL7iK-MY24O_aiWeBCm_qHXa9psUs4lAl77ZmSxFjoi68dhR4U6T0yUcDbI7jY69QSWc_zAQGE5bnXzZZcOrjZe2cpmJ5Q0yO9axpChVlyHQ4eh5v-nIqPdGJvsZAyMdqfJeaotNFyuOZywXk1t1ZR4oe165ooXckvGvHSde766mS4uQIYnXZeU"/>
+<div class="absolute inset-0 border-4 border-secondary-container opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+</div>
+<div class="group relative aspect-square overflow-hidden bg-surface-container-highest border border-white/5 cursor-pointer">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 hover:scale-110 transition-all duration-300" data-alt="close up of electronic microchip with pink and blue neon lights reflecting on silicon surfaces" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCC_13bcZM1JzzJORsQbXkLUEXcrpdDda-Elm12KjtLD93QkwUIoL7GSYmeQzW74DKMSOms25ci6jjuBbEpvGINrPr7RaVxMAXCk_ovf96cUTgA_eiJiALOtT_P_Cuo8u_HBTciBeR1bZj3AEYBiR0TTx_7djDJ6cptb9tUT1y77DEcy021gDx4IJco1F7vriTEO8nifDh8WNTEn1KlR0mKpPwIpPNb5v5JtmeBQKGp_pQJsDzOgVRjbzKOcNU_6mRNOPlwdCfQFU"/>
+<div class="absolute inset-0 border-4 border-on-tertiary-container opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+</div>
+<div class="group relative aspect-square overflow-hidden bg-surface-container-highest border border-white/5 cursor-pointer">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 hover:scale-110 transition-all duration-300" data-alt="mathematical visualization of a complex sphere with light particles and neon geometry" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuaMIbpVPFzLAfZWZpem2fVyWYdpGlnCnkdV7TUiDtll_1RoShgAdckm5zrEl11v7tJa-zmaDL5jQNzHN2ynUG33SRqyrLeMwgxtk04VmHgGNtrDhV1JUbIRmw4K9iYox4fUbIBirOG3Nzhh4oA9Iw19TES3pZaaO-lkBipk8aSD4JzcfQAHLvOocUwAqilLU-Z7KigN9m2jOX2ySmLb55MnW-c6j2yNrlnjbGsOK52Qj2kWR0pcdT2R5uAVm7fWQ5K8pX9zWWD50"/>
+<div class="absolute inset-0 border-4 border-primary-container opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+</div>
+<div class="group relative aspect-square overflow-hidden bg-surface-container-highest border border-white/5 cursor-pointer">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 hover:scale-110 transition-all duration-300" data-alt="digital binary code raining down in neon green and cyan colors on a black background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTgMo817qFvmPzI9iaiflk7d5FkEHeZAHzkxd72jtBS2-ATiA4r7Le4T5ybHAyeGIql7h0Ix62pt4ys3nITUY7tuMtHEtst1MzrfirSOqXFLARl4jOGoUdWrmyF2A1JHc2mzITJR5dLwV7sNzKUcyFO3uGB5hWJksfvFegFXlJE94ARtaz9mLqlcrhsw408zv9F8lH0lLcnk5P-zRlYyZDg8hNCPg-a8yJlmmRWhSQJOh5lN84ipYtPNdrjOaz7zBplfPqzo1W9hs"/>
+<div class="absolute inset-0 border-4 border-secondary-container opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+</div>
+</div>
+</section>
+<!-- Technical Logs Terminal -->
+<section class="bg-black border-2 border-on-tertiary-container/30 p-1">
+<div class="bg-surface-container-low p-4 font-mono text-xs overflow-hidden relative">
+<div class="flex items-center gap-2 mb-4 border-b border-white/10 pb-2">
+<div class="w-2 h-2 rounded-full bg-on-tertiary-container"></div>
+<span class="text-on-tertiary-container font-bold uppercase">SYNERGY_CORE_LOGS</span>
+</div>
+<div class="space-y-1 h-48 overflow-y-auto custom-scrollbar opacity-80">
+<p class="text-secondary">[14:22:09] Initializing neural handshake protocol...</p>
+<p class="text-on-surface">[14:22:11] HANDSHAKE_SUCCESSFUL (LATENCY: 4.8ms)</p>
+<p class="text-on-surface">[14:23:45] Allocating memory blocks 0x44F - 0x99A</p>
+<p class="text-primary-container">[14:25:12] WARNING: Signal degradation in sector 7</p>
+<p class="text-on-tertiary-container font-bold">[14:25:13] RE-ROUTING VIA SECONDARY BUFFER...</p>
+<p class="text-on-surface">[14:25:15] SIGNAL_STABILIZED</p>
+<p class="text-on-surface">[14:28:33] Injecting visual assets into cortex...</p>
+<p class="text-secondary">[14:29:00] RENDER_CORE_ACTIVE</p>
+<p class="text-on-surface">[14:30:12] Monitoring biometric feedback: STABLE</p>
+<p class="text-on-surface">[14:32:44] Data stream encrypted with protocol 2077.v2</p>
+<p class="animate-pulse text-primary-container">_</p>
+</div>
+<!-- Scanning line effect for terminal -->
+<div class="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-primary-container/5 to-transparent h-12 w-full top-0 animate-[scan_4s_linear_infinite]"></div>
+</div>
+</section>
+</main>
+<!-- Updated Footer from SCREEN_29 -->
+<footer class="fixed bottom-0 w-full z-40 flex justify-between items-center px-4 py-2 border-t border-[#00d4ff]/20 bg-[#131318]/90 backdrop-blur-md">
+<div class="flex gap-6 font-['Share_Tech_Mono'] text-[10px] tracking-widest uppercase">
+<span class="text-[#00d4ff]/60">SYS.ADMIN // UNKNOWN_USER</span>
+</div>
+<div class="flex gap-4">
+<a class="text-[#00d4ff]/60 hover:text-[#f5e642] hover:bg-[#00d4ff]/5 font-['Share_Tech_Mono'] text-[10px] tracking-widest uppercase transition-colors duration-200" href="#">REBOOT_SYSTEM</a>
+<a class="text-[#00d4ff]/60 hover:text-[#f5e642] hover:bg-[#00d4ff]/5 font-['Share_Tech_Mono'] text-[10px] tracking-widest uppercase transition-colors duration-200" href="#">ENCRYPT_DATA</a>
+<a class="text-[#00d4ff]/60 hover:text-[#f5e642] hover:bg-[#00d4ff]/5 font-['Share_Tech_Mono'] text-[10px] tracking-widest uppercase transition-colors duration-200" href="#">CLEAR_CACHE</a>
+</div>
+<div class="hidden md:block font-['Share_Tech_Mono'] text-[10px] text-[#00d4ff]">v2.0.77_STABLE</div>
+</footer>
+<style>
+        @keyframes scan {
+            from { top: -10%; }
+            to { top: 110%; }
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.3);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #ff2d78;
+        }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    </style>
+<script>
+(function(){
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  const symbols = "01#$%&<>[]{}?/\\|~_".split("");
+  const fontSize = 14;
+  let drops = [];
+  function init() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    drops = new Array(Math.floor(canvas.width / fontSize)).fill(1);
+  }
+  function draw() {
+    ctx.fillStyle = "rgba(10, 10, 15, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < drops.length; i++) {
+      ctx.fillStyle = Math.random() > 0.5 ? "#f5e642" : "#00d2fd";
+      ctx.font = fontSize + "px 'Share Tech Mono'";
+      ctx.fillText(symbols[Math.floor(Math.random() * symbols.length)], i * fontSize, drops[i] * fontSize);
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    }
+  }
+  window.addEventListener('resize', init);
+  init();
+  setInterval(draw, 50);
+})();
+</script>
+</body></html>

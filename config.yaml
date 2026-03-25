@@ -1,0 +1,439 @@
+# ============================================================
+# SITE CONFIGURATION — Night City Protocol
+# ============================================================
+
+site:
+  title: "NET_RUNNER//2077"
+  description: "Decentralized neural network orchestration. Accessing the encrypted strata of the Night City mainframe."
+  version: "v2.0.77_STABLE"
+  lang: "en"
+
+# Owner / profile info
+owner:
+  name: "Zhihao Ian"
+  alias: "PHANTOM_LINK"
+  bio: "Decentralized neural network orchestration. Accessing the encrypted strata of the Night City mainframe."
+  avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuCdYZ0sGVVMEUBhBA5tQld6XHxDkPEHeCXuljvB_63-GCq_QPP1q4Gome0mxsEwoZcMytOFxBKGNrTuEzPtUWjCrTK58E-TVQ-Ap8JM_wAmMiagsjxcJBDE23zSJW7wgNIoyze79vFyI-rpZM_uLJOHc_d9Jl1h2q2GjjxJnLJarTvN7_tujtpla1LgurnbQtEs8d4rMyQ42fR5XYuVZku_14jhT5NZrhPnYnshPLpuwA-WWtFZQM-esPyk575HkBsEgHm6V2FtOxs"
+  roles:
+    - "GAME_DEVELOPER"
+    - "FULLSTACK_ARCHITECT"
+    - "HCI_RESEARCHER"
+    - "NEURAL_ENGINEER"
+  resume_url: "#"
+
+# ============================================================
+# PAGE TITLES & HEADINGS — all UI text in one place
+# ============================================================
+pages:
+  home:
+    hero_line1: "CORE"
+    hero_line2: "INTERFACE"
+    kernel_status: "KERNEL_READY // BUILD 77.01"
+    btn_primary: "INITIATE_PROTOCOL"
+    btn_secondary: "DOWNLOAD_CV"
+    badge_error: "CRITICAL_ERROR"
+    terminal_logs:
+      - { color: "green", text: "Initializing telemetry data..." }
+      - { color: "white/60", text: "ping response from edge_server_04: 12ms" }
+      - { color: "#f5e642", text: "Handshake protocol 0x889 established with host: void_gate" }
+      - { color: "#ff2d78", text: "ALERT: Unknown signature detected in Layer 4" }
+      - { color: "white/60", text: "Rerouting traffic through shadow_proxy_01..." }
+      - { color: "green", text: "Subsystem heartbeat: OK" }
+
+  about:
+    breadcrumb: "ROOT@SYSTEM_LOGS: ACTIVE_BREACH"
+    modules_title: "CORE_MODULES"
+    modules_status: "STATUS: OVERLOAD"
+    logs_title: "SYSTEM_LOGS"
+    logs_watermark: "LOGS"
+    quote: "\"The machine doesn't have a soul, but it can have a skeleton of perfect logic.\""
+    btn_cta: "INITIATE_PROTOCOL"
+
+  projects:
+    featured_badge: "URGENT // FEATURED_ENTRY"
+    featured_subtitle: "SYSTEM_OVERRIDE_ACTIVE"
+    featured_btn: "INITIALIZE_DEMO"
+    query_status: "QUERY_STATUS:"
+    encrypted_title: "ENCRYPTED_ENTRY"
+    encrypted_desc: "SUBJECT UNDER NDA. SYSTEM AUTHENTICATION REQUIRED FOR ACCESS TO DOCUMENTATION AND SCHEMATICS."
+    encrypted_progress: 33
+    encrypted_label: "DECRYPTION_IN_PROGRESS"
+    archives_title: "DECRYPTED_ARCHIVES"
+    log_id: "[LOG_ID: 9942-X]"
+    uptime: "SYSTEM_UPTIME: 4209:12:04"
+    buffer: "BUFFER_STATUS: NOMINAL"
+
+  skills:
+    page_title: "SKILL_TREE.exe"
+    scan_message: "SCANNING NEURAL IMPLANTS... > 3 SKILL BRANCHES DETECTED"
+    radar_title: "Proficiency Matrix"
+    radar_ref: "REF_ID: RADAR_09X"
+    radar_labels: ["Game Dev", "Frontend", "Backend", "HCI", "UI/UX", "DevOps"]
+    sync_label: "SYNCHRONIZATION"
+    sync_value: "98.4%"
+    columns:
+      - title: "GAME DEV"
+        icon: "sports_esports"
+        color: "#ff2d78"
+        skills:
+          - { name: "Unity", level: 9, pct: 90 }
+          - { name: "C#", level: 9, pct: 90 }
+          - { name: "Shader Graph", level: 7, pct: 70 }
+          - { name: "Unreal", level: 6, pct: 60 }
+          - { name: "C++", level: 5, pct: 50 }
+          - { name: "Godot", level: 8, pct: 80 }
+          - { name: "VFX / Niagara", level: 7, pct: 70 }
+      - title: "FULLSTACK"
+        icon: "layers"
+        color: "#00d4ff"
+        skills:
+          - { name: "React / Next.js", level: 10, pct: 100 }
+          - { name: "Node.js", level: 9, pct: 90 }
+          - { name: "Python", level: 8, pct: 80 }
+          - { name: "PostgreSQL", level: 8, pct: 80 }
+          - { name: "GraphQL", level: 7, pct: 70 }
+          - { name: "Docker / K8s", level: 6, pct: 60 }
+      - title: "HCI / UX"
+        icon: "visibility"
+        color: "#b43fff"
+        skills:
+          - { name: "User Research", level: 9, pct: 90 }
+          - { name: "Figma", level: 10, pct: 100 }
+          - { name: "Eye Tracking", level: 8, pct: 80 }
+          - { name: "Data Viz", level: 9, pct: 90 }
+          - { name: "Ergonomics", level: 7, pct: 70 }
+    tools_title: "Integrated Development Environments & Tools"
+    tools:
+      - { icon: "terminal", label: "VS_CODE" }
+      - { icon: "code", label: "GIT" }
+      - { icon: "database", label: "REDIS" }
+      - { icon: "cloud_done", label: "AWS" }
+      - { icon: "token", label: "FIGMA" }
+      - { icon: "hub", label: "JIRA" }
+      - { icon: "architecture", label: "POSTMAN" }
+      - { icon: "developer_board", label: "LINUX" }
+      - { icon: "rebase_edit", label: "GITHUB" }
+      - { icon: "api", label: "OPENAI" }
+      - { icon: "memory", label: "ARDUINO" }
+      - { icon: "settings_ethernet", label: "WIRESHARK" }
+    separator_text: "ACCESSING CLASSIFIED DATA"
+    separator_sub: "> PERSONAL SUBROUTINES DETECTED > LOADING OFF-DUTY PROTOCOLS..."
+    offd_title: "OFF-DUTY_PROTOCOLS"
+    protocols:
+      - id: "body"
+        sidebar_label: "BODY"
+        sidebar_icon: "fitness_center"
+        sidebar_color: "#f5e642"
+        file_id: "PHYS-001"
+        code: "PHYS-001"
+        status: "STATUS: ACTIVE // PRIORITY: HIGH"
+        access_label: "BODY_AUGMENTATION"
+        icons: ["fitness_center", "directions_run", "nutrition"]
+        quote: "\"The body is just another system to optimize. Debugging mortality, one rep at a time.\""
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDhaMtBexEwF6VbxU0sI9Ull3tiAzLTehEJiEAXvcJphQymEQIPVVEjDZnLbfCMnU6fsCcbDSkl8S1wRjUzGSe5ApqcOcwiV91meSXrye4G1S1vtCO2AWqi5h9yNYsoQqLch6ARZhFRvsYaDFJ_jByJdnvMrKy9_3QsI43-MbZzLGAp1d7t7tXcmtkMdk327W_dly0Kf0zC6ZNaQdQzBMMiPQvZtV7Mejpv8Qop4RXs5z11qwIMhABQlbzEQTSaWqU0Ur6CtgiPzxs"
+        stats: ["CORE_TEMP: 36.8°C", "HEART_RATE: 140 BPM"]
+      - id: "synth"
+        sidebar_label: "SYNTH"
+        sidebar_icon: "local_bar"
+        sidebar_color: "#00d4ff"
+        file_id: "CHEM-002"
+        code: "CHEM-002"
+        status: "STATUS: ACTIVE // PRIORITY: MEDIUM"
+        access_label: "SYNTH_COMPOUNDS"
+        icons: ["local_bar", "science", "emoji_food_beverage"]
+        quote: "\"Chemistry is just cooking with better equipment. Molecular gastronomy meets neural enhancement.\""
+        image: ""
+        placeholder_icon: "science"
+        stats: ["COMPOUND_PH: 7.2", "REACTION_TIME: 2.4s"]
+      - id: "audio"
+        sidebar_label: "AUDIO"
+        sidebar_icon: "electric_guitar"
+        sidebar_color: "#ff2d78"
+        file_id: "AUDIO-003"
+        code: "AUDIO-003"
+        status: "STATUS: ACTIVE // PRIORITY: LOW"
+        access_label: "AUDIO_PROCESSING"
+        icons: ["electric_guitar", "headphones", "graphic_eq"]
+        quote: "\"Sound is data you can feel. Every frequency is a signal waiting to be decoded.\""
+        image: ""
+        placeholder_icon: "graphic_eq"
+        stats: ["FREQ_RANGE: 20Hz-20kHz", "BIT_DEPTH: 24-bit"]
+
+  contact:
+    page_title: "ESTABLISH_CONNECTION.exe"
+    port_scan: "[ PORT_SCAN: 80, 443, 8080 // ACTIVE ]"
+    typewriter_phrases:
+      - "OPEN TO: RESEARCH PARTNERSHIPS"
+      - "SEEKING: GAME DEV COLLABORATION"
+      - "MODE: FULLSTACK_ARCHITECT"
+      - "PROTOCOL: ACTIVE_LISTENING"
+    hud:
+      - { label: "STATUS", value: "ONLINE", module: "MODULE_01" }
+      - { label: "LOCATION", value: "NEO_TOKYO.grid", module: "MODULE_02" }
+      - { label: "RESPONSE_TIME", value: "< 150MS", module: "MODULE_03" }
+    nodes_title: "Contact Nodes"
+    availability_title: "Current Availability"
+    availability_sub: "Accepting New Contracts"
+    form_title: "COMPOSE TRANSMISSION"
+    form_fields:
+      name_label: "Uplink_Identity"
+      name_placeholder: "NAME / ALIAS"
+      email_label: "Return_Frequency"
+      email_placeholder: "EMAIL_ADDRESS"
+      subject_label: "Transmission_Subject"
+      subject_options: ["G_DEV_COLLABORATION", "SYS_ARCHITECTURE_QUERY", "RECRUITMENT_OFFER", "GENERAL_SIGNAL"]
+      message_label: "Data_Payload"
+      message_placeholder: "ENTER MESSAGE CONTENT..."
+    btn_submit: "SEND_TRANSMISSION"
+    encryption_label: "ENCRYPTION: AES-256-GCM // STATUS: READY_FOR_UPLINK"
+    success_title: "TRANSMISSION_SUCCESS"
+    success_message: "Message has been encrypted and buffered for delivery. Expect response on the provided frequency."
+    success_btn: "[ ACKNOWLEDGE ]"
+    error_title: "TRANSMISSION_FAILED"
+    error_btn: "[ RETRY ]"
+    dossier_title: "WANT THE FULL DOSSIER?"
+    dossier_desc: "Access detailed experience logs, certification keys, and full biometric career history in a standardized PDF format."
+    dossier_btn: "[ ↓ DOWNLOAD_DOSSIER ]"
+
+  blog:
+    page_title: "DATA_LOGS"
+    empty_title: "NO_BLOG_ENTRIES"
+    back_label: "< BACK_TO_LOGS"
+
+  error_404:
+    title: "SIGNAL_LOST"
+    message: "The requested node does not exist in this sector."
+    btn: "RETURN_TO_MAINFRAME"
+
+# Navigation links
+navigation:
+  - label: "HOME"
+    url: "/"
+    icon: "home"
+  - label: "ABOUT"
+    url: "/about"
+    icon: "person"
+  - label: "PROJECTS"
+    url: "/projects"
+    icon: "folder"
+  - label: "SKILLS"
+    url: "/skills"
+    icon: "build"
+  - label: "CONTACT"
+    url: "/contact"
+    icon: "mail"
+
+# Social / contact nodes
+contact_nodes:
+  - type: "Email Protocol"
+    icon: "alternate_email"
+    value: "root@cyberport.sys"
+    url: "mailto:root@cyberport.sys"
+  - type: "GitHub Repo"
+    icon: "code"
+    value: "GH/NEURAL_ARCHIVE"
+    url: "https://github.com/NEURAL_ARCHIVE"
+  - type: "LinkedIn Mesh"
+    icon: "diversity_3"
+    value: "IN/CYBER_DEV_01"
+    url: "https://linkedin.com/in/CYBER_DEV_01"
+  - type: "Itch.io Ops"
+    icon: "stadia_controller"
+    value: "neural_void.itch"
+    url: "https://neural_void.itch.io"
+  - type: "Twitter / X"
+    icon: "chat"
+    value: "@cyber_protocol"
+    url: "https://twitter.com/cyber_protocol"
+  - type: "Discord Node"
+    icon: "voice_chat"
+    value: "CyberDev#0001"
+    url: "#"
+
+# Skill categories
+skills:
+  - category: "LANGUAGES"
+    icon: "code"
+    color: "primary"
+    entries:
+      - name: "C++"
+        level: 95
+      - name: "Python"
+        level: 90
+      - name: "Rust"
+        level: 85
+      - name: "TypeScript"
+        level: 80
+      - name: "Go"
+        level: 75
+      - name: "HLSL/GLSL"
+        level: 88
+
+  - category: "ENGINES_&_FRAMEWORKS"
+    icon: "videogame_asset"
+    color: "secondary"
+    entries:
+      - name: "Unreal Engine 5"
+        level: 92
+      - name: "Unity"
+        level: 88
+      - name: "React"
+        level: 78
+      - name: "Flask/Django"
+        level: 82
+      - name: "Godot"
+        level: 70
+
+  - category: "SYSTEMS"
+    icon: "memory"
+    color: "tertiary"
+    entries:
+      - name: "Networking/Multiplayer"
+        level: 90
+      - name: "Physics Simulation"
+        level: 85
+      - name: "AI/Pathfinding"
+        level: 87
+      - name: "Rendering Pipeline"
+        level: 82
+      - name: "DevOps/CI/CD"
+        level: 75
+
+# About page — core modules
+core_modules:
+  - title: "GAME_DEV"
+    icon: "videogame_asset"
+    color: "primary"
+    description: "HARD-CODED REALITIES. C++/UNREAL/SHADERS. OPTIMIZED FOR THE VOID."
+    tags: ["C++", "UNREAL"]
+  - title: "FULLSTACK"
+    icon: "terminal"
+    color: "secondary"
+    description: "INFRASTRUCTURE AS VIOLENCE. RUST/REACT/GO. SCALE OR DIE."
+    tags: ["RUST", "POSTGRES"]
+  - title: "HCI_RESEARCH"
+    icon: "neurology"
+    color: "tertiary"
+    description: "DISSOLVING THE BARRIER. NEURAL LINKS. HUMAN_CORE_UPGRADE."
+    tags: ["VR/AR", "NEURAL"]
+
+# System logs (shown on About page)
+system_logs:
+  - date: "2024.11.21"
+    message: "CORE_RESTORED_VERSION_2.0.77"
+    type: "info"
+  - date: "2024.10.15"
+    message: "LATENCY_OPTIMIZATION_PASS"
+    type: "info"
+  - date: "ERROR"
+    message: "UNAUTHORIZED_ENTITY_DETECTED"
+    type: "error"
+  - date: "2024.08.12"
+    message: "VOXEL_PHYSICS_DEPLOYED"
+    type: "info"
+
+# SMTP email settings (override via environment variables)
+email:
+  smtp_server: "smtp.gmail.com"
+  smtp_port: 587
+  smtp_user: ""       # or set env SMTP_USER
+  smtp_password: ""   # or set env SMTP_PASSWORD
+  recipient: ""       # or set env MAIL_RECIPIENT
+  subject_prefix: "[NIGHT_CITY_CONTACT]"
+
+# Featured project (shown as hero on Projects page)
+featured_project:
+  title: "NEURAL\nCORE\nOVERRIDE"
+  slug: "synergy"
+  category: "HCI_RESEARCH"
+  description: "HIGH-FIDELITY HCI RESEARCH: DIRECT-NEURAL INTERFACE FOR HEAVY MACHINERY TELEOPERATION. OPTIMIZED FOR SUB-5MS LATENCY."
+  image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBKbjho91J43UC7K1api5UCvVIQH7hgkmj_bUeCOTgvQ6FSN7zAzRHL5a3bhqzZDnirZVd2wvMmecrmKU8t2uEjInSwBrp9ec6aIaz0OJLoyMDocY7GYw_qD0mABHMM_poZua4-6Muu914WzfH7zhJZiYN6RDDNbjDsYJ9ZNXfjxZtpgasNVZgEa9M5ZfNFPcX2o1YBleFbPFl80fHxaBJs4rBLjHJ9gUCkWhbIcXzRNCGU4pCItjsnj134XS3kmPwOG0NHNzRRDyY"
+  stats:
+    - icon: "settings_input_component"
+      label: "SYS_ACTIVE"
+    - icon: "memory"
+      label: "STABILITY: 98.4%"
+
+# Project gallery cards (placeholder / hardcoded entries)
+project_cards:
+  - title: "VOID_RUNNER_88"
+    slug: "void-runner"
+    category: "GAME_DEV"
+    color: "#ff2d78"
+    description: "HIGH-OCTANE PROCEDURAL SYNTHWAVE RACER BUILT WITH CUSTOM ENGINE OPTIMIZATIONS FOR RETRO HARDWARE."
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC6IOwZEoWCDvveo_ijNDnIpj6j6XTXZzxYePG6nkWSpgtSSf6ji2s1SH0R_Y0DzwJcTUEM_jID_ebZiNB7bLE9OLQ64KsP8JDuzb5sPtGK6-r9G6eXYkdy3qBGmKLnBUxGUg5mB7O16XWa9CIQ38EzAzFiAZEl-HQShhPDIqk1AMNNqx-ojXjIHYc2MR0SMUjuxqm0iADYs14f6rAACYgTLdelPKxZx7MxrWk0EjCw0KAurz3CYFXuKv13G4whpKM86K0dA-987Z0"
+    btn1_icon: "play_circle"
+    btn1_label: "DEMO"
+    btn2_icon: "code"
+    btn2_label: "SOURCE"
+
+  - title: "KUBER_PULSE"
+    slug: "kuber-pulse"
+    category: "FULLSTACK"
+    color: "#00d4ff"
+    description: "REAL-TIME MONITORING DASHBOARD FOR DECENTRALIZED INFRASTRUCTURE CLUSTERS WITH AUTOMATED FAILOVER."
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBz9LK7rcH7p0v84y8AykUAKuYPP8635YulyyJRpTnnFqKjMNV5ZKLc3oRACUMrjYRRrmSD9WvVZoa6YbBJDPYNjpfTCioa8qVN2mqVRYkNaiNcVPMmjZ5_h-ZlkzNQtjrzqLLQuiKv8n3uqVsclEzBH3fIO3bHBCIWIjrOOwZYCMN1UZSlKrTBaAMCve-ETiOIxUwcnyovF9igiEXjukS_y3ajfo3KK7477DgXucFrhZvmoTkO18V9SlWhlSKdCK0NtBTtwxNpUh8"
+    btn1_icon: "visibility"
+    btn1_label: "DEMO"
+    btn2_icon: "terminal"
+    btn2_label: "SOURCE"
+
+  - title: "SYNAPTIC_GRID"
+    slug: "synaptic-grid"
+    category: "HCI_RESEARCH"
+    color: "#f5e642"
+    description: "GESTURE-BASED SPATIAL COMPUTING INTERFACE FOR MANAGING COMPLEX DATA-STRUCTURES IN 3D SPACE."
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBlF-vve4xd4HY43Er3ucTT4LW1bB1PqJR3qCJVRtpDaKiNQ066g6palPWSA-6N6xfT6XEEpCFN0zKj1hzfsONVYa6CYgnb2ZITWjOCDee8sf12UN5y3YkfpusGPzFE1h4CX_BLVQJdj_YUnWmPVuOas16YNNO6iPqDcZYnhvXdPNkl91spyp1uzYNpgo-HIFxO7FFH56rHj5JifDIem4C5xhy3Qe3a4KUQp7cJdvThihpdq1P-nxXLDZctjI8l5ERtLb42ewN46Bc"
+    btn1_icon: "deployed_code"
+    btn1_label: "VIEW"
+    btn2_icon: "description"
+    btn2_label: "PAPER"
+
+  - title: "MECHA_STRIKE"
+    slug: "mecha-strike"
+    category: "GAME_DEV"
+    color: "#ff2d78"
+    description: "TACTICAL SQUAD-BASED STRATEGY GAME FEATURING DESTRUCTIBLE VOXEL-BASED URBAN ENVIRONMENTS."
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBvLnbMqxhxri9rjUCJDUjZgxkT6M0Q22-zitzqaTRvUDgvXFBBeCF50RBPvQiHGqDExlXjQ8x2EczqlLZF00guSKScziLzbt2a9JkZut6eRHdwRqwFWDBpJtrsoW6cX8IAOY_pvUCQTRIREqKzlrY2VJPZrZc-6_AHOyw8bj0ITiaRaKId2O9xpCMaMjNvlsS73jc_Ex9S8eNivm3pJBH1PPvW4tszD0qQUq3jYHC_byPT1oQZRIugRnmpdM9IsRedUYsKYTlWw9o"
+    btn1_icon: "play_arrow"
+    btn1_label: "PLAY"
+    btn2_icon: "inventory_2"
+    btn2_label: "ASSETS"
+
+  - title: "CRYPTO_GATEWAY"
+    slug: "crypto-gateway"
+    category: "FULLSTACK"
+    color: "#00d4ff"
+    description: "SECURE PAYMENT PROCESSOR INTEGRATION WITH HARDWARE-LEVEL ENCRYPTION MODULES AND ZERO-TRUST."
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBhj07VTvDYhuADn-bjoP8EvsPXj2zyzemaFcX0oJR9XrqJF_zFagWKwJn2efj-T9SpAmbvOd10PQ5ohS4flVLhHigVDBvfEEMiTsTz0uMDbthnv9RLHm3bF8FXVvE7D9r4HWOdSK707AIr0GcmF56Q12n75hPXa7plscBfu2cYo6WxlXEEsDgAUzQ0-hmZHNvyoQtGFiXQfX7hBeOOqQPYDbw39224Mq97Fz6j93iL5oLfodr7Db3rTZXiOl8so9R1xg5Ag1RWjrY"
+    btn1_icon: "token"
+    btn1_label: "DEMO"
+    btn2_icon: "shield"
+    btn2_label: "AUDIT"
+
+# Filter categories for project page
+project_filters:
+  - label: "ALL"
+    value: "all"
+    color: "#f5e642"
+  - label: "GAME DEV"
+    value: "GAME_DEV"
+    color: "#ff2d78"
+  - label: "FULLSTACK"
+    value: "FULLSTACK"
+    color: "#00d4ff"
+  - label: "HCI RESEARCH"
+    value: "HCI_RESEARCH"
+    color: "#f5e642"
+
+# Marquee ticker text
+marquee_text: "SYSTEM_OVERLOAD // THERMAL_CRITICAL // NEURAL_LINK_99% // PK_ENCRYPTION_ACTIVE"
+
+# Footer links
+footer_links:
+  - label: "REBOOT_SYSTEM"
+    url: "#"
+  - label: "ENCRYPT_DATA"
+    url: "#"
+  - label: "CLEAR_CACHE"
+    url: "#"

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% set pg = cfg.pages.blog %}
+{% block title %}{{ cfg.site.title }} // {{ pg.page_title }}{% endblock %}
+
+{% block content %}
+<main class="pt-24 pb-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <header class="mb-16 border-l-4 border-[#f5e642] pl-6">
+    <h1 class="font-headline text-5xl md:text-7xl font-black uppercase glitch-text tracking-tighter text-[#f5e642] mb-4">{{ pg.page_title }}</h1>
+    <p class="font-label text-[#00d4ff] text-sm">&gt; {{ posts | length }} ENTRIES FOUND</p>
+  </header>
+  {% if posts %}
+  <div class="space-y-6">
+    {% for post in posts %}
+    <a href="/blog/{{ post.slug }}" class="group block bg-surface-container-low border-l-4 border-[#f5e642]/20 hover:border-[#f5e642] p-6 transition-all">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h2 class="font-headline text-2xl font-bold text-white group-hover:text-[#f5e642] transition-colors">{{ post.meta.get('title', post.slug | upper) }}</h2>
+          <p class="font-body text-on-surface-variant text-sm mt-1">{{ post.meta.get('summary', '') }}</p>
+        </div>
+        <span class="font-label text-[10px] text-[#f5e642]/40 whitespace-nowrap">{{ post.meta.get('date', '') }}</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="text-center py-32 border-2 border-dashed border-[#f5e642]/20">
+    <span class="material-symbols-outlined text-8xl text-[#f5e642]/20 mb-4">article</span>
+    <p class="font-label text-[#f5e642]/40 text-lg mb-2">{{ pg.empty_title }}</p>
+    <p class="font-body text-on-surface-variant text-sm">Add <code class="text-[#f5e642]">.md</code> files to <code class="text-[#00d4ff]">content/blog/</code></p>
+  </div>
+  {% endif %}
+</main>
+{% endblock %}

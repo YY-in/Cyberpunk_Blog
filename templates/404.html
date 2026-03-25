@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% set pg = cfg.pages.error_404 %}
+{% block title %}{{ cfg.site.title }} // 404{% endblock %}
+
+{% block content %}
+<main class="pt-24 pb-32 flex items-center justify-center min-h-screen">
+  <div class="text-center">
+    <h1 class="font-headline text-[12rem] font-black text-[#f5e642]/10 leading-none">404</h1>
+    <div class="mt-[-4rem] relative z-10">
+      <h2 class="font-headline text-4xl text-[#ff2d78] font-bold mb-4">{{ pg.title }}</h2>
+      <p class="font-label text-on-surface-variant mb-8">{{ pg.message }}</p>
+      <a href="/" class="bg-[#f5e642] text-black font-bold py-3 px-8 uppercase tracking-widest text-sm hover:bg-white transition-all">{{ pg.btn }}</a>
+    </div>
+  </div>
+</main>
+{% endblock %}

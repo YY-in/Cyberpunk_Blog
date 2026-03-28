@@ -239,8 +239,79 @@ tailwind.config = {
   #gate-glitch{top:56px;bottom:56px}
   #gate-scanbeam{top:50px}
 }
+/* ====== Floating Music Player ====== */
+.mp-btn{
+  width:28px;height:28px;display:flex;align-items:center;justify-content:center;
+  color:#00d4ff99;transition:all .15s;
+}
+.mp-btn:hover{color:#f5e642;transform:scale(1.15);}
+.mp-vbar{
+  width:3px;background:#00d4ff;opacity:.25;
+  animation:mp-idle 1.8s ease-in-out infinite;
+  border-radius:1px 1px 0 0;
+}
+.mp-vbar:nth-child(odd){animation-delay:-.4s}
+.mp-vbar:nth-child(3n){animation-delay:-.9s}
+.mp-vbar:nth-child(4n+1){animation-delay:-1.3s}
+@keyframes mp-idle{0%,100%{height:3px}50%{height:6px}}
+@keyframes mp-active{
+  0%{height:4px}20%{height:20px}40%{height:8px}60%{height:24px}80%{height:12px}100%{height:4px}
+}
+#mp-visualizer.active .mp-vbar{
+  opacity:.7;animation:mp-active .6s ease-in-out infinite;
+  background:linear-gradient(to top,#00d4ff,#f5e642);
+}
+#mp-visualizer.active .mp-vbar:nth-child(odd){animation-duration:.5s;animation-delay:-.15s}
+#mp-visualizer.active .mp-vbar:nth-child(3n){animation-duration:.7s;animation-delay:-.3s}
+#mp-visualizer.active .mp-vbar:nth-child(4n+1){animation-duration:.45s;animation-delay:-.05s}
+#mp-visualizer.active .mp-vbar:nth-child(5n+2){animation-duration:.65s;animation-delay:-.25s}
+
+/* Playlist items */
+.mp-pl-item{
+  display:flex;align-items:center;gap:8px;
+  padding:6px 12px;cursor:pointer;
+  font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.1em;
+  color:#00d4ff99;border-bottom:1px solid rgba(0,212,255,.05);
+  transition:all .15s;
+}
+.mp-pl-item:hover{background:rgba(0,212,255,.05);color:#00d4ff}
+.mp-pl-item.active{color:#f5e642;background:rgba(245,230,66,.05)}
+.mp-pl-item .mp-pl-idx{width:16px;text-align:right;opacity:.4;font-size:9px}
+.mp-pl-item .mp-pl-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mp-pl-item .mp-pl-art{opacity:.4;font-size:9px}
+
+/* Volume slider */
+.mp-range{
+  -webkit-appearance:none;appearance:none;height:3px;background:#00d4ff22;outline:none;
+  border-radius:0;cursor:pointer;
+}
+.mp-range::-webkit-slider-thumb{
+  -webkit-appearance:none;width:8px;height:8px;background:#00d4ff;border:none;cursor:pointer;
+}
+.mp-range::-moz-range-thumb{
+  width:8px;height:8px;background:#00d4ff;border:none;border-radius:0;cursor:pointer;
+}
+
+/* Mobile: move player to bottom-left, make narrower */
+@media(max-width:767px){
+  #music-player{right:8px!important;bottom:68px!important}
+  #mp-panel{width:280px!important}
+}
+
 {% block extra_css %}{% endblock %}
+/* Gate pre-close: prevent flash of content before JS runs */
+html.gate-preclose #gate-tl{left:0%!important;transition:none!important}
+html.gate-preclose #gate-br{right:0%!important;transition:none!important}
+html.gate-preclose #gate-scanlines{opacity:1!important;transition:none!important}
+html.gate-preclose #gate-hud{opacity:1!important;transition:none!important}
 </style>
+<script>
+/* Earliest possible check: if coming from gate transition, mark html so CSS
+   keeps panels closed BEFORE first paint — eliminates the yellow flash. */
+if(sessionStorage.getItem('gate-transition')==='1'){
+  document.documentElement.classList.add('gate-preclose');
+}
+</script>
 </head>
 <body class="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
 <canvas id="bg-canvas"></canvas>
@@ -252,20 +323,20 @@ tailwind.config = {
   <div class="gate-panel" id="gate-tl">
     <div class="gate-rivet"></div><div class="gate-rivet"></div><div class="gate-rivet"></div><div class="gate-rivet"></div>
     <div class="gate-glow"></div><div class="gate-stripe"></div>
-    <span class="gate-label">SECTOR-7G · RESTRICTED</span>
-    <span class="gate-code">ID:0x4F2A · LVL-3</span>
+    <span class="gate-label">{{ cfg.gate.panel_tl_label }}</span>
+    <span class="gate-code">{{ cfg.gate.panel_tl_code }}</span>
   </div>
   <div class="gate-panel" id="gate-br">
     <div class="gate-rivet"></div><div class="gate-rivet"></div><div class="gate-rivet"></div><div class="gate-rivet"></div>
     <div class="gate-glow"></div><div class="gate-stripe"></div>
-    <span class="gate-label">ACCESS // NODE-Ω</span>
-    <span class="gate-code">AUTH:REQUIRED · ENC</span>
+    <span class="gate-label">{{ cfg.gate.panel_br_label }}</span>
+    <span class="gate-code">{{ cfg.gate.panel_br_code }}</span>
   </div>
 </div>
 <div id="gate-scanlines"></div>
 <div id="gate-hud">
-  <div class="gate-hud-main" id="gate-hud-text">ACCESSING...</div>
-  <div class="gate-hud-sub">{{ cfg.site.title }} · {{ cfg.site.version }} · ENCRYPTED</div>
+  <div class="gate-hud-main" id="gate-hud-text">{{ cfg.gate.hud_default }}</div>
+  <div class="gate-hud-sub">{{ cfg.site.title }} · {{ cfg.site.version }} · {{ cfg.gate.hud_sub_suffix }}</div>
   <div class="gate-hud-bar"></div>
 </div>
 <div id="gate-scanbeam"></div>
@@ -321,6 +392,91 @@ tailwind.config = {
 </nav>
 
 {% block content %}{% endblock %}
+
+<!-- ====== FLOATING MUSIC PLAYER ====== -->
+{% set mp = cfg.music_player %}
+<div id="music-player" class="fixed z-[55] transition-all duration-300"
+     style="bottom:76px;right:16px;">
+  <!-- Minimized button -->
+  <button id="mp-toggle"
+    class="w-12 h-12 bg-[#131318] border-2 border-[#00d4ff]/40 text-[#00d4ff] flex items-center justify-center hover:border-[#f5e642] hover:text-[#f5e642] transition-colors shadow-[0_0_20px_rgba(0,212,255,0.15)] backdrop-blur-md"
+    style="clip-path:polygon(0 0,100% 0,100% 70%,70% 100%,0 100%);">
+    <span class="material-symbols-outlined text-xl" id="mp-toggle-icon">headphones</span>
+  </button>
+
+  <!-- Expanded player panel -->
+  <div id="mp-panel" class="hidden absolute bottom-0 right-0 w-[320px] bg-[#0d0d12]/95 backdrop-blur-xl border-2 border-[#00d4ff]/30 shadow-[0_0_30px_rgba(0,212,255,0.1),inset_0_0_30px_rgba(0,0,0,0.5)]">
+    <!-- Title bar -->
+    <div class="flex items-center justify-between px-3 py-2 bg-[#00d4ff]/10 border-b border-[#00d4ff]/20 cursor-default">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-[#00d4ff] text-sm">headphones</span>
+        <span class="font-label text-[10px] tracking-[0.2em] text-[#00d4ff]">{{ mp.title }}</span>
+        <span class="w-2 h-2 rounded-full bg-[#00d4ff] animate-pulse" id="mp-status-dot"></span>
+      </div>
+      <div class="flex items-center gap-1">
+        <button id="mp-minimize" class="text-[#00d4ff]/60 hover:text-[#f5e642] transition-colors p-1">
+          <span class="material-symbols-outlined text-sm">remove</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Visualizer bar -->
+    <div class="flex items-end justify-center gap-[2px] h-8 px-3 pt-2" id="mp-visualizer">
+      <span class="mp-vbar"></span><span class="mp-vbar"></span><span class="mp-vbar"></span>
+      <span class="mp-vbar"></span><span class="mp-vbar"></span><span class="mp-vbar"></span>
+      <span class="mp-vbar"></span><span class="mp-vbar"></span><span class="mp-vbar"></span>
+      <span class="mp-vbar"></span><span class="mp-vbar"></span><span class="mp-vbar"></span>
+      <span class="mp-vbar"></span><span class="mp-vbar"></span><span class="mp-vbar"></span>
+      <span class="mp-vbar"></span><span class="mp-vbar"></span><span class="mp-vbar"></span>
+      <span class="mp-vbar"></span><span class="mp-vbar"></span><span class="mp-vbar"></span>
+      <span class="mp-vbar"></span><span class="mp-vbar"></span><span class="mp-vbar"></span>
+    </div>
+
+    <!-- Track info -->
+    <div class="px-3 pt-2">
+      <div class="font-label text-sm text-[#f5e642] tracking-wider truncate" id="mp-track-title">—</div>
+      <div class="font-label text-[10px] text-[#00d4ff]/60 tracking-widest" id="mp-track-artist">—</div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="px-3 pt-3 pb-1">
+      <div class="relative h-[3px] bg-[#00d4ff]/10 cursor-pointer group" id="mp-progress-wrap">
+        <div class="absolute left-0 top-0 h-full bg-[#00d4ff] transition-none" id="mp-progress-fill" style="width:0%"></div>
+        <div class="absolute top-1/2 -translate-y-1/2 w-2 h-2 bg-[#f5e642] opacity-0 group-hover:opacity-100 transition-opacity" id="mp-progress-thumb" style="left:0%"></div>
+      </div>
+      <div class="flex justify-between font-label text-[9px] text-[#00d4ff]/40 mt-1">
+        <span id="mp-time-current">0:00</span>
+        <span id="mp-time-total">0:00</span>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="flex items-center justify-between px-3 pb-3">
+      <div class="flex items-center gap-1">
+        <button id="mp-prev" class="mp-btn"><span class="material-symbols-outlined text-lg">skip_previous</span></button>
+        <button id="mp-play" class="w-10 h-10 flex items-center justify-center bg-[#00d4ff]/10 border border-[#00d4ff]/30 text-[#00d4ff] hover:bg-[#f5e642] hover:text-black hover:border-[#f5e642] transition-all" style="clip-path:polygon(0 0,100% 0,100% 70%,70% 100%,0 100%);">
+          <span class="material-symbols-outlined text-xl" id="mp-play-icon">play_arrow</span>
+        </button>
+        <button id="mp-next" class="mp-btn"><span class="material-symbols-outlined text-lg">skip_next</span></button>
+      </div>
+      <!-- Volume -->
+      <div class="flex items-center gap-2">
+        <button id="mp-mute" class="mp-btn"><span class="material-symbols-outlined text-base" id="mp-vol-icon">volume_up</span></button>
+        <input id="mp-volume" type="range" min="0" max="100" value="60" class="mp-range w-16">
+      </div>
+    </div>
+
+    <!-- Playlist -->
+    <div class="border-t border-[#00d4ff]/10 max-h-[120px] overflow-y-auto" id="mp-playlist">
+    </div>
+
+    <!-- Bottom decoration -->
+    <div class="px-3 py-1 border-t border-[#00d4ff]/10 flex justify-between">
+      <span class="font-label text-[8px] text-[#00d4ff]/30 tracking-widest">FREQ: 44.1kHz // 16-BIT</span>
+      <span class="font-label text-[8px] text-[#00d4ff]/30 tracking-widest" id="mp-track-count">0/0</span>
+    </div>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer class="fixed bottom-8 w-full z-40 flex justify-between items-center px-4 py-2 border-t border-[#00d4ff]/20 bg-[#131318]/90 backdrop-blur-md">
@@ -484,15 +640,9 @@ tailwind.config = {
     });
   }
 
-  // HUD text mapping
-  const hudTexts = {
-    '/': 'LOADING MAINFRAME...',
-    '/about': 'DECRYPTING PROFILE...',
-    '/projects': 'SCANNING ARCHIVES...',
-    '/skills': 'ANALYZING IMPLANTS...',
-    '/contact': 'OPENING CHANNEL...',
-    '/blog': 'FETCHING DATA LOGS...'
-  };
+  // HUD text mapping (from config)
+  const hudTexts = {{ cfg.gate.hud_texts | tojson }};
+  const hudDefault = {{ cfg.gate.hud_default | tojson }};
 
   // Intercept nav clicks
   document.querySelectorAll('nav a, #mobile-nav a').forEach(function(link){
@@ -506,7 +656,7 @@ tailwind.config = {
       if (mobileNav) mobileNav.classList.add('hidden');
       // Set HUD text
       const key = Object.keys(hudTexts).find(k => href.startsWith(k) && k !== '/') || (href === '/' ? '/' : '');
-      gHudText.textContent = hudTexts[key] || 'ACCESSING...';
+      gHudText.textContent = hudTexts[key] || hudDefault;
       // Store flag so target page plays open animation
       sessionStorage.setItem('gate-transition', '1');
       closeDoor(function(){
@@ -518,17 +668,217 @@ tailwind.config = {
   // On page load: if coming from transition, start closed then open
   if (sessionStorage.getItem('gate-transition') === '1') {
     sessionStorage.removeItem('gate-transition');
-    // Start with doors closed
-    gTL.style.transition = 'none'; gTL.style.left = '0%';
-    gBR.style.transition = 'none'; gBR.style.right = '0%';
+    // Panels are already held closed by html.gate-preclose CSS
     gScanlines.classList.add('on');
     gHud.classList.add('on');
-    // Open after a brief moment
+    // Open after a brief moment — remove preclose class so transitions work
     setTimeout(function(){
-      gTL.style.transition = ''; gBR.style.transition = '';
+      document.documentElement.classList.remove('gate-preclose');
+      // Force reflow so the browser sees the "closed" state before transition
+      void gTL.offsetWidth;
       openDoor();
     }, 400);
   }
+})();
+</script>
+<!-- MUSIC PLAYER ENGINE -->
+<script>
+(function(){
+  const playlist = {{ cfg.music_player.playlist | tojson }};
+  const emptyMsg = {{ cfg.music_player.empty_message | tojson }};
+
+  // DOM refs
+  const toggle    = document.getElementById('mp-toggle');
+  const toggleIcon= document.getElementById('mp-toggle-icon');
+  const panel     = document.getElementById('mp-panel');
+  const minimize  = document.getElementById('mp-minimize');
+  const playBtn   = document.getElementById('mp-play');
+  const playIcon  = document.getElementById('mp-play-icon');
+  const prevBtn   = document.getElementById('mp-prev');
+  const nextBtn   = document.getElementById('mp-next');
+  const muteBtn   = document.getElementById('mp-mute');
+  const volIcon   = document.getElementById('mp-vol-icon');
+  const volSlider = document.getElementById('mp-volume');
+  const progWrap  = document.getElementById('mp-progress-wrap');
+  const progFill  = document.getElementById('mp-progress-fill');
+  const progThumb = document.getElementById('mp-progress-thumb');
+  const timeCur   = document.getElementById('mp-time-current');
+  const timeTotal = document.getElementById('mp-time-total');
+  const titleEl   = document.getElementById('mp-track-title');
+  const artistEl  = document.getElementById('mp-track-artist');
+  const countEl   = document.getElementById('mp-track-count');
+  const visualizer= document.getElementById('mp-visualizer');
+  const statusDot = document.getElementById('mp-status-dot');
+  const plContainer = document.getElementById('mp-playlist');
+
+  // State
+  let audio = new Audio();
+  let currentIdx = 0;
+  let isPlaying = false;
+  let isOpen = false;
+  let isMuted = false;
+  let prevVol = 60;
+
+  audio.volume = 0.6;
+  audio.preload = 'metadata';
+
+  // Build playlist UI
+  function buildPlaylist(){
+    plContainer.innerHTML = '';
+    if(!playlist.length){
+      plContainer.innerHTML = '<div class="px-3 py-4 font-label text-[10px] text-[#ff2d78]/60 tracking-widest text-center">'+emptyMsg+'</div>';
+      return;
+    }
+    playlist.forEach(function(t,i){
+      const row = document.createElement('div');
+      row.className = 'mp-pl-item' + (i === currentIdx ? ' active' : '');
+      row.innerHTML = '<span class="mp-pl-idx">'+(i+1)+'</span><span class="mp-pl-name">'+t.title+'</span><span class="mp-pl-art">'+t.artist+'</span>';
+      row.addEventListener('click', function(){ loadTrack(i); play(); });
+      plContainer.appendChild(row);
+    });
+    countEl.textContent = (currentIdx+1)+'/'+playlist.length;
+  }
+
+  function loadTrack(idx){
+    if(!playlist.length) return;
+    currentIdx = idx;
+    const t = playlist[idx];
+    audio.src = t.src;
+    titleEl.textContent = t.title;
+    artistEl.textContent = t.artist;
+    countEl.textContent = (idx+1)+'/'+playlist.length;
+    progFill.style.width = '0%';
+    progThumb.style.left = '0%';
+    timeCur.textContent = '0:00';
+    timeTotal.textContent = '0:00';
+    // Update playlist active
+    plContainer.querySelectorAll('.mp-pl-item').forEach(function(el,i){
+      el.classList.toggle('active', i === idx);
+    });
+  }
+
+  function play(){
+    if(!playlist.length) return;
+    audio.play().then(function(){
+      isPlaying = true;
+      playIcon.textContent = 'pause';
+      visualizer.classList.add('active');
+      statusDot.style.background = '#f5e642';
+      toggleIcon.textContent = 'music_note';
+    }).catch(function(){});
+  }
+
+  function pause(){
+    audio.pause();
+    isPlaying = false;
+    playIcon.textContent = 'play_arrow';
+    visualizer.classList.remove('active');
+    statusDot.style.background = '#00d4ff';
+    toggleIcon.textContent = 'headphones';
+  }
+
+  function fmt(s){
+    if(isNaN(s)) return '0:00';
+    var m = Math.floor(s/60), sec = Math.floor(s%60);
+    return m+':'+(sec<10?'0':'')+sec;
+  }
+
+  // Events: toggle panel
+  toggle.addEventListener('click', function(){
+    isOpen = !isOpen;
+    panel.classList.toggle('hidden', !isOpen);
+    toggle.classList.toggle('hidden', isOpen);
+  });
+  minimize.addEventListener('click', function(){
+    isOpen = false;
+    panel.classList.add('hidden');
+    toggle.classList.remove('hidden');
+  });
+
+  // Play/pause
+  playBtn.addEventListener('click', function(){
+    if(!playlist.length) return;
+    if(!audio.src || audio.src === window.location.href) loadTrack(0);
+    isPlaying ? pause() : play();
+  });
+
+  // Prev/next
+  prevBtn.addEventListener('click', function(){
+    if(!playlist.length) return;
+    loadTrack((currentIdx - 1 + playlist.length) % playlist.length);
+    play();
+  });
+  nextBtn.addEventListener('click', function(){
+    if(!playlist.length) return;
+    loadTrack((currentIdx + 1) % playlist.length);
+    play();
+  });
+
+  // Mute
+  muteBtn.addEventListener('click', function(){
+    isMuted = !isMuted;
+    if(isMuted){ prevVol = audio.volume; audio.volume = 0; volSlider.value = 0; volIcon.textContent = 'volume_off'; }
+    else{ audio.volume = prevVol; volSlider.value = Math.round(prevVol*100); volIcon.textContent = prevVol > .5 ? 'volume_up' : 'volume_down'; }
+  });
+  volSlider.addEventListener('input', function(){
+    var v = parseInt(this.value)/100;
+    audio.volume = v; isMuted = v === 0;
+    volIcon.textContent = v === 0 ? 'volume_off' : v > .5 ? 'volume_up' : 'volume_down';
+  });
+
+  // Progress bar click
+  progWrap.addEventListener('click', function(e){
+    if(!audio.duration) return;
+    var rect = progWrap.getBoundingClientRect();
+    var pct = (e.clientX - rect.left) / rect.width;
+    audio.currentTime = pct * audio.duration;
+  });
+
+  // Time update
+  audio.addEventListener('timeupdate', function(){
+    if(!audio.duration) return;
+    var pct = (audio.currentTime / audio.duration * 100).toFixed(1);
+    progFill.style.width = pct + '%';
+    progThumb.style.left = pct + '%';
+    timeCur.textContent = fmt(audio.currentTime);
+  });
+  audio.addEventListener('loadedmetadata', function(){
+    timeTotal.textContent = fmt(audio.duration);
+  });
+  audio.addEventListener('ended', function(){
+    // Auto-next
+    loadTrack((currentIdx + 1) % playlist.length);
+    play();
+  });
+  audio.addEventListener('error', function(){
+    statusDot.style.background = '#ff2d78';
+    titleEl.textContent = 'SIGNAL_LOST';
+    artistEl.textContent = 'FILE_NOT_FOUND';
+  });
+
+  // Persist state across pages via sessionStorage
+  var saved = sessionStorage.getItem('mp-state');
+  if(saved){
+    try{
+      var s = JSON.parse(saved);
+      currentIdx = s.idx || 0;
+      if(s.vol !== undefined){ audio.volume = s.vol; volSlider.value = Math.round(s.vol*100); }
+      if(s.open){ isOpen = true; panel.classList.remove('hidden'); toggle.classList.add('hidden'); }
+    }catch(e){}
+  }
+
+  // Save state before unload
+  window.addEventListener('beforeunload', function(){
+    sessionStorage.setItem('mp-state', JSON.stringify({
+      idx: currentIdx,
+      vol: audio.volume,
+      open: isOpen
+    }));
+  });
+
+  // Init
+  buildPlaylist();
+  if(playlist.length) loadTrack(currentIdx);
 })();
 </script>
 {% block extra_js %}{% endblock %}

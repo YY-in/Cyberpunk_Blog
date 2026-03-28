@@ -6,14 +6,29 @@
 site:
   description: "去中心化神经网络编排。接入夜之城主机的加密层。"
 
+gate:
+  panel_tl_label: "7G区 · 限制区域"
+  panel_tl_code: "ID:0x4F2A · 等级-3"
+  panel_br_label: "通行 // 节点-Ω"
+  panel_br_code: "需要授权 · 加密"
+  hud_default: "接入中..."
+  hud_sub_suffix: "已加密"
+  hud_texts:
+    "/": "加载主机..."
+    "/about": "解密档案..."
+    "/projects": "扫描存档..."
+    "/skills": "分析植入体..."
+    "/contact": "开启通讯..."
+    "/blog": "获取日志..."
+
 owner:
   name: "尹智豪"
-  bio: "去中心化神经网络编排。接入夜之城主机的加密层。"
+  bio: "诺丁汉大学人机交互硕士。游戏开发、AI工作流架构师、Unity专家。构建人类感知与数字系统的桥梁。"
   roles:
     - "游戏开发者"
-    - "全栈架构师"
+    - "Unity专家"
     - "人机交互研究员"
-    - "神经工程师"
+    - "AI工作流架构师"
 
 navigation:
   - label: "首页"
@@ -54,7 +69,7 @@ pages:
     modules_status: "状态: 过载"
     logs_title: "系统日志"
     logs_watermark: "日志"
-    quote: "\"机器没有灵魂，但它可以拥有完美逻辑的骨架。\""
+    quote: "\"AI不是取代开发者——而是放大开发者。搭建工作流，然后让工作流来造游戏。\""
     btn_cta: "启动协议"
 
   projects:
@@ -72,11 +87,11 @@ pages:
     buffer: "缓冲区状态: 正常"
 
   skills:
-    page_title: "技能树.exe"
+    page_title: "技能矩阵.exe"
     scan_message: "扫描神经植入体中... > 检测到3个技能分支"
     radar_title: "能力矩阵"
     radar_ref: "参考ID: RADAR_09X"
-    radar_labels: ["游戏开发", "前端", "后端", "人机交互", "UI/UX", "运维"]
+    radar_labels: ["游戏开发", "AI工作流", "后端", "人机交互", "VR/MR", "物联网"]
     sync_label: "同步率"
     sync_value: "98.4%"
     tools_title: "集成开发环境与工具"
@@ -88,13 +103,13 @@ pages:
     page_title: "建立连接.exe"
     port_scan: "[ 端口扫描: 80, 443, 8080 // 活跃 ]"
     typewriter_phrases:
-      - "开放: 研究合作"
-      - "寻求: 游戏开发协作"
-      - "模式: 全栈架构师"
-      - "协议: 主动倾听"
+      - "开放: 游戏开发协作"
+      - "寻求: AI工作流合作"
+      - "模式: Unity专家"
+      - "协议: 人机交互研究"
     hud:
       - { label: "状态", value: "在线", module: "模块_01" }
-      - { label: "位置", value: "东京.网格", module: "模块_02" }
+      - { label: "位置", value: "中国.节点", module: "模块_02" }
       - { label: "响应时间", value: "< 150毫秒", module: "模块_03" }
     nodes_title: "联系节点"
     availability_title: "当前可用状态"
@@ -106,7 +121,7 @@ pages:
       email_label: "回传频率"
       email_placeholder: "邮箱地址"
       subject_label: "传输主题"
-      subject_options: ["游戏开发合作", "系统架构咨询", "招聘邀约", "通用信号"]
+      subject_options: ["游戏开发合作", "AI工作流咨询", "招聘邀约", "通用信号"]
       message_label: "数据载荷"
       message_placeholder: "输入消息内容..."
     btn_submit: "发送传输"
@@ -135,33 +150,66 @@ core_modules:
   - title: "游戏开发"
     icon: "videogame_asset"
     color: "primary"
-    description: "硬编码现实。C++/虚幻引擎/着色器。为虚空优化。"
-    tags: ["C++", "虚幻引擎"]
-  - title: "全栈"
+    description: "Unity/C#。AI驱动工作流。从原型到上线，全周期游戏研发。"
+    tags: ["UNITY", "C#", "AI工作流"]
+  - title: "AI架构"
     icon: "terminal"
     color: "secondary"
-    description: "基础设施即暴力。Rust/React/Go。扩展或死亡。"
-    tags: ["RUST", "POSTGRES"]
+    description: "MCP管线。Skills定制。AI增效研发，周期缩短50%。"
+    tags: ["MCP", "CLAUDE", "自动化"]
   - title: "人机交互研究"
     icon: "neurology"
     color: "tertiary"
-    description: "消融屏障。神经链接。人类核心升级。"
-    tags: ["VR/AR", "神经"]
+    description: "VR/MR原型开发。用户研究。连接人类感知与数字系统。"
+    tags: ["VR/MR", "META_QUEST"]
 
 # 系统日志翻译
 system_logs:
-  - date: "2024.11.21"
-    message: "核心恢复至版本 2.0.77"
+  - date: "2026.01"
+    message: "炸弹盲射 // AI工作流部署"
     type: "info"
-  - date: "2024.10.15"
-    message: "延迟优化通过"
+  - date: "2025.12"
+    message: "诺丁汉大学HCI硕士 // 学位获取"
+    type: "info"
+  - date: "2025.05"
+    message: "Games Workshop // 用户研究启动"
     type: "info"
   - date: "错误"
-    message: "检测到未授权实体"
+    message: "神经过载 // 音乐节太多了"
     type: "error"
-  - date: "2024.08.12"
-    message: "体素物理引擎已部署"
+  - date: "2024.07"
+    message: "物联网工程学士 // 专业第一 GPA 4.1"
     type: "info"
+
+contact_nodes:
+  - type: "邮件协议"
+    icon: "alternate_email"
+    value: "bruneed237@gmail.com"
+    url: "mailto:bruneed237@gmail.com"
+  - type: "GitHub 仓库"
+    icon: "code"
+    value: "https://github.com/YY-in"
+    url: "https://github.com/YY-in"
+  - type: "领英网络"
+    icon: "diversity_3"
+    value: "IN/CYBER_DEV_01"
+    url: "https://linkedin.com/in/CYBER_DEV_01"
+  - type: "Itch.io 运营"
+    icon: "stadia_controller"
+    value: "neural_void.itch"
+    url: "https://neural_void.itch.io"
+  - type: "Instagram "
+    icon: "chat"
+    value: "@ianedino"
+    url: "https://twitter.com/cyber_protocol"
+  - type: "Discord 节点"
+    icon: "voice_chat"
+    value: "CyberDev#0001"
+    url: "#"
+
+music_player:
+  title: "音频流.exe"
+  empty_message: "未加载音轨"
 
 marquee_text: "系统过载 // 温度临界 // 神经链接_99% // 加密激活"
 

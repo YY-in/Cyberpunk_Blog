@@ -11,6 +11,57 @@
   80% { text-shadow: 3px 0 #ff2d78, -3px 0 #00d4ff; transform: translate(1px, -2px); }
   100% { text-shadow: -3px 0 #ff2d78, 3px 0 #00d4ff; transform: translate(0); }
 }
+
+/* Edge-only tri-color glitch on avatar */
+.glitch-edge {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: screen;
+  transition: opacity 0.5s;
+}
+.glitch-edge.ge-pink {
+  filter: grayscale(1) brightness(0.55) contrast(15) sepia(1) hue-rotate(300deg) saturate(8);
+  animation: gedge-r 2.5s infinite;
+}
+.glitch-edge.ge-cyan {
+  filter: grayscale(1) brightness(0.55) contrast(15) sepia(1) hue-rotate(150deg) saturate(8);
+  animation: gedge-b 2.5s infinite;
+}
+.glitch-edge.ge-yellow {
+  filter: grayscale(1) brightness(0.55) contrast(15) sepia(1) hue-rotate(20deg) saturate(8);
+  opacity: 0.8;
+  animation: gedge-g 2.5s infinite;
+}
+.group:hover .glitch-edge { opacity: 0; }
+
+/* Mobile: disable heavy glitch overlays — mix-blend-mode + extreme filters
+   render incorrectly on many mobile browsers, causing pink/purple tint */
+@media (max-width: 767px) {
+  .glitch-edge { display: none; }
+}
+
+/* All three shift toward bottom-right, pink most, cyan mid, yellow least */
+@keyframes gedge-r {
+  0%, 100% { transform: translate(5px, 4px) scale(1.1); }
+  25% { transform: translate(10px, 8px) scale(1.1); }
+  50% { transform: translate(7px, 6px) scale(1.1); }
+  75% { transform: translate(12px, 9px) scale(1.1); }
+}
+@keyframes gedge-b {
+  0%, 100% { transform: translate(3px, 2px) scale(1.1); }
+  25% { transform: translate(6px, 5px) scale(1.1); }
+  50% { transform: translate(4px, 3px) scale(1.1); }
+  75% { transform: translate(7px, 6px) scale(1.1); }
+}
+@keyframes gedge-g {
+  0%, 100% { transform: translate(1px, 1px) scale(1.1); }
+  25% { transform: translate(3px, 2px) scale(1.1); }
+  50% { transform: translate(2px, 1px) scale(1.1); }
+  75% { transform: translate(4px, 3px) scale(1.1); }
+}
 {% endblock %}
 
 {% block content %}
@@ -35,10 +86,14 @@
           </a>
         </div>
       </div>
-      <div class="lg:col-span-5 relative min-h-[500px] overflow-hidden group">
-        <div class="absolute inset-0 bg-[#ff2d78]/20 mix-blend-color group-hover:bg-transparent transition-all duration-500"></div>
+      <div class="lg:col-span-5 relative min-h-[500px] overflow-hidden group bg-neutral-900">
+        <div class="absolute inset-0 mix-blend-overlay opacity-40 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] z-[3]"></div>
         <img class="w-full h-full object-cover grayscale brightness-50 contrast-125 group-hover:grayscale-0 group-hover:brightness-90 transition-all duration-1000 scale-110 group-hover:scale-100"
              src="{{ cfg.owner.avatar }}" alt="Profile"/>
+        <img class="glitch-edge ge-pink scale-110" src="{{ cfg.owner.avatar }}" aria-hidden="true"/>
+        <img class="glitch-edge ge-cyan scale-110" src="{{ cfg.owner.avatar }}" aria-hidden="true"/>
+        <img class="glitch-edge ge-yellow scale-110" src="{{ cfg.owner.avatar }}" aria-hidden="true"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-[3]"></div>
         <div class="absolute inset-0 pointer-events-none border-[20px] border-black/50"></div>
         <div class="absolute top-0 right-0 bg-[#f5e642] text-black font-label px-4 py-2 text-sm font-bold">NODE_077_ALPHA</div>
         <div class="absolute bottom-8 left-8 text-[#00d4ff] font-label text-xs tracking-[0.5em] bg-black/90 p-2 border border-[#00d4ff]/50">BIOMETRIC_ID: 994-A7</div>
@@ -57,15 +112,15 @@
         {% set colors = {"primary": "#f5e642", "secondary": "#00d4ff", "tertiary": "#ff2d78"} %}
         {% set c = colors.get(mod.color, "#f5e642") %}
         <div class="group bg-[{{ c }}] p-1 clip-monolith hover:scale-[1.02] transition-transform">
-          <div class="bg-black p-8 h-full clip-monolith group-hover:bg-[{{ c }}]/5 transition-colors">
-            <div class="text-[{{ c }}] mb-8 group-hover:text-[#ff2d78] transition-colors">
+          <div class="bg-black p-8 h-full clip-monolith group-hover:bg-[{{ c }}] transition-colors duration-300">
+            <div class="text-[{{ c }}] mb-8 group-hover:text-black transition-colors duration-300">
               <span class="material-symbols-outlined text-6xl" style="font-variation-settings: 'FILL' 1;">{{ mod.icon }}</span>
             </div>
-            <h3 class="text-3xl font-headline font-bold mb-4 text-[{{ c }}] italic">{{ mod.title }}</h3>
-            <p class="font-body text-zinc-400 mb-10 leading-tight">{{ mod.description }}</p>
+            <h3 class="text-3xl font-headline font-bold mb-4 text-[{{ c }}] group-hover:text-black transition-colors duration-300 italic">{{ mod.title }}</h3>
+            <p class="font-body text-zinc-400 mb-10 leading-tight group-hover:text-black/70 transition-colors duration-300">{{ mod.description }}</p>
             <div class="font-label text-[10px] flex flex-wrap gap-2 uppercase tracking-widest">
               {% for tag in mod.tags %}
-              <span class="px-3 py-1 bg-[{{ c }}]/10 border border-[{{ c }}]/30 text-[{{ c }}]">{{ tag }}</span>
+              <span class="px-3 py-1 bg-[{{ c }}]/10 border border-[{{ c }}]/30 text-[{{ c }}] group-hover:text-black group-hover:border-black/20 group-hover:bg-black/10 transition-colors duration-300">{{ tag }}</span>
               {% endfor %}
             </div>
           </div>

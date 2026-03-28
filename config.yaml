@@ -8,17 +8,33 @@ site:
   version: "v2.0.77_STABLE"
   lang: "en"
 
+# Gate transition animation
+gate:
+  panel_tl_label: "SECTOR-7G · RESTRICTED"
+  panel_tl_code: "ID:0x4F2A · LVL-3"
+  panel_br_label: "ACCESS // NODE-Ω"
+  panel_br_code: "AUTH:REQUIRED · ENC"
+  hud_default: "ACCESSING..."
+  hud_sub_suffix: "ENCRYPTED"
+  hud_texts:
+    "/": "LOADING MAINFRAME..."
+    "/about": "DECRYPTING PROFILE..."
+    "/projects": "SCANNING ARCHIVES..."
+    "/skills": "ANALYZING IMPLANTS..."
+    "/contact": "OPENING CHANNEL..."
+    "/blog": "FETCHING DATA LOGS..."
+
 # Owner / profile info
 owner:
-  name: "Zhihao Ian"
-  alias: "PHANTOM_LINK"
-  bio: "Decentralized neural network orchestration. Accessing the encrypted strata of the Night City mainframe."
+  name: "Zhihao Yin"
+  alias: "YIN_PROTOCOL"
+  bio: "MSc Human-Computer Interaction @ Nottingham. Game dev, AI workflow architect, Unity specialist. Building the bridge between human perception and digital systems."
   avatar: "/static/images/avatar.jpg"
   roles:
     - "GAME_DEVELOPER"
-    - "FULLSTACK_ARCHITECT"
+    - "UNITY_SPECIALIST"
     - "HCI_RESEARCHER"
-    - "NEURAL_ENGINEER"
+    - "AI_WORKFLOW_ARCHITECT"
   resume_url: "#"
 
 # ============================================================
@@ -46,7 +62,7 @@ pages:
     modules_status: "STATUS: OVERLOAD"
     logs_title: "SYSTEM_LOGS"
     logs_watermark: "LOGS"
-    quote: "\"The machine doesn't have a soul, but it can have a skeleton of perfect logic.\""
+    quote: "\"AI doesn't replace the developer — it amplifies the developer. Build the workflow, then let the workflow build the game.\""
     btn_cta: "INITIATE_PROTOCOL"
 
   projects:
@@ -68,7 +84,7 @@ pages:
     scan_message: "SCANNING NEURAL IMPLANTS... > 3 SKILL BRANCHES DETECTED"
     radar_title: "Proficiency Matrix"
     radar_ref: "REF_ID: RADAR_09X"
-    radar_labels: ["Game Dev", "Frontend", "Backend", "HCI", "UI/UX", "DevOps"]
+    radar_labels: ["Game Dev", "AI Workflow", "Backend", "HCI", "VR/MR", "IoT"]
     sync_label: "SYNCHRONIZATION"
     sync_value: "98.4%"
     columns:
@@ -76,46 +92,45 @@ pages:
         icon: "sports_esports"
         color: "#ff2d78"
         skills:
-          - { name: "Unity", level: 9, pct: 90 }
-          - { name: "C#", level: 9, pct: 90 }
-          - { name: "Shader Graph", level: 7, pct: 70 }
-          - { name: "Unreal", level: 6, pct: 60 }
-          - { name: "C++", level: 5, pct: 50 }
-          - { name: "Godot", level: 8, pct: 80 }
-          - { name: "VFX / Niagara", level: 7, pct: 70 }
-      - title: "FULLSTACK"
+          - { name: "Unity / C#", level: 9, pct: 90 }
+          - { name: "Game AI (FSM)", level: 8, pct: 80 }
+          - { name: "VR / MR (Quest 3)", level: 8, pct: 80 }
+          - { name: "Level Design", level: 7, pct: 70 }
+          - { name: "Shader Graph", level: 6, pct: 60 }
+          - { name: "Game Monetization", level: 7, pct: 70 }
+      - title: "AI & DEV"
         icon: "layers"
         color: "#00d4ff"
         skills:
-          - { name: "React / Next.js", level: 10, pct: 100 }
-          - { name: "Node.js", level: 9, pct: 90 }
+          - { name: "AI Workflow (MCP/Skills)", level: 9, pct: 90 }
           - { name: "Python", level: 8, pct: 80 }
-          - { name: "PostgreSQL", level: 8, pct: 80 }
-          - { name: "GraphQL", level: 7, pct: 70 }
-          - { name: "Docker / K8s", level: 6, pct: 60 }
+          - { name: "Web Frontend", level: 7, pct: 70 }
+          - { name: "IoT (ESP32/MQTT)", level: 8, pct: 80 }
+          - { name: "Backend (Java/API)", level: 7, pct: 70 }
+          - { name: "Docker / Cloud", level: 6, pct: 60 }
       - title: "HCI / UX"
         icon: "visibility"
         color: "#b43fff"
         skills:
           - { name: "User Research", level: 9, pct: 90 }
-          - { name: "Figma", level: 10, pct: 100 }
-          - { name: "Eye Tracking", level: 8, pct: 80 }
-          - { name: "Data Viz", level: 9, pct: 90 }
-          - { name: "Ergonomics", level: 7, pct: 70 }
+          - { name: "SPSS / NVivo", level: 8, pct: 80 }
+          - { name: "Data Visualization", level: 8, pct: 80 }
+          - { name: "Mixed Reality", level: 8, pct: 80 }
+          - { name: "Interaction Design", level: 7, pct: 70 }
     tools_title: "Integrated Development Environments & Tools"
     tools:
       - { icon: "terminal", label: "VS_CODE" }
+      - { icon: "sports_esports", label: "UNITY" }
       - { icon: "code", label: "GIT" }
-      - { icon: "database", label: "REDIS" }
-      - { icon: "cloud_done", label: "AWS" }
-      - { icon: "token", label: "FIGMA" }
-      - { icon: "hub", label: "JIRA" }
-      - { icon: "architecture", label: "POSTMAN" }
-      - { icon: "developer_board", label: "LINUX" }
+      - { icon: "api", label: "CLAUDE_AI" }
+      - { icon: "view_in_ar", label: "META_QUEST" }
       - { icon: "rebase_edit", label: "GITHUB" }
-      - { icon: "api", label: "OPENAI" }
+      - { icon: "developer_board", label: "ESP32" }
+      - { icon: "hub", label: "MQTT" }
+      - { icon: "analytics", label: "SPSS" }
+      - { icon: "psychology", label: "NVIVO" }
+      - { icon: "cloud_done", label: "ALIBABA_CLOUD" }
       - { icon: "memory", label: "ARDUINO" }
-      - { icon: "settings_ethernet", label: "WIRESHARK" }
     separator_text: "ACCESSING CLASSIFIED DATA"
     separator_sub: "> PERSONAL SUBROUTINES DETECTED > LOADING OFF-DUTY PROTOCOLS..."
     offd_title: "OFF-DUTY_PROTOCOLS"
@@ -163,13 +178,13 @@ pages:
     page_title: "ESTABLISH_CONNECTION.exe"
     port_scan: "[ PORT_SCAN: 80, 443, 8080 // ACTIVE ]"
     typewriter_phrases:
-      - "OPEN TO: RESEARCH PARTNERSHIPS"
-      - "SEEKING: GAME DEV COLLABORATION"
-      - "MODE: FULLSTACK_ARCHITECT"
-      - "PROTOCOL: ACTIVE_LISTENING"
+      - "OPEN TO: GAME DEV COLLABORATION"
+      - "SEEKING: AI WORKFLOW PARTNERSHIPS"
+      - "MODE: UNITY_SPECIALIST"
+      - "PROTOCOL: HCI_RESEARCH"
     hud:
       - { label: "STATUS", value: "ONLINE", module: "MODULE_01" }
-      - { label: "LOCATION", value: "NEO_TOKYO.grid", module: "MODULE_02" }
+      - { label: "LOCATION", value: "CHINA.grid", module: "MODULE_02" }
       - { label: "RESPONSE_TIME", value: "< 150MS", module: "MODULE_03" }
     nodes_title: "Contact Nodes"
     availability_title: "Current Availability"
@@ -181,7 +196,7 @@ pages:
       email_label: "Return_Frequency"
       email_placeholder: "EMAIL_ADDRESS"
       subject_label: "Transmission_Subject"
-      subject_options: ["G_DEV_COLLABORATION", "SYS_ARCHITECTURE_QUERY", "RECRUITMENT_OFFER", "GENERAL_SIGNAL"]
+      subject_options: ["GAME_DEV_COLLABORATION", "AI_WORKFLOW_QUERY", "RECRUITMENT_OFFER", "GENERAL_SIGNAL"]
       message_label: "Data_Payload"
       message_placeholder: "ENTER MESSAGE CONTENT..."
     btn_submit: "SEND_TRANSMISSION"
@@ -227,12 +242,12 @@ navigation:
 contact_nodes:
   - type: "Email Protocol"
     icon: "alternate_email"
-    value: "root@cyberport.sys"
-    url: "mailto:root@cyberport.sys"
+    value: "bruneed237@gmail.com"
+    url: "mailto:bruneed237@gmail.com"
   - type: "GitHub Repo"
     icon: "code"
-    value: "GH/NEURAL_ARCHIVE"
-    url: "https://github.com/NEURAL_ARCHIVE"
+    value: "https://github.com/YY-in"
+    url: "https://github.com/YY-in"
   - type: "LinkedIn Mesh"
     icon: "diversity_3"
     value: "IN/CYBER_DEV_01"
@@ -241,9 +256,9 @@ contact_nodes:
     icon: "stadia_controller"
     value: "neural_void.itch"
     url: "https://neural_void.itch.io"
-  - type: "Twitter / X"
+  - type: "Instagram"
     icon: "chat"
-    value: "@cyber_protocol"
+    value: "@ianedino"
     url: "https://twitter.com/cyber_protocol"
   - type: "Discord Node"
     icon: "voice_chat"
@@ -256,47 +271,45 @@ skills:
     icon: "code"
     color: "primary"
     entries:
-      - name: "C++"
-        level: 95
-      - name: "Python"
+      - name: "C#"
         level: 90
-      - name: "Rust"
-        level: 85
-      - name: "TypeScript"
+      - name: "Python"
         level: 80
-      - name: "Go"
-        level: 75
-      - name: "HLSL/GLSL"
-        level: 88
+      - name: "Java"
+        level: 70
+      - name: "JavaScript"
+        level: 70
+      - name: "C/C++"
+        level: 60
 
   - category: "ENGINES_&_FRAMEWORKS"
     icon: "videogame_asset"
     color: "secondary"
     entries:
-      - name: "Unreal Engine 5"
-        level: 92
       - name: "Unity"
-        level: 88
-      - name: "React"
-        level: 78
-      - name: "Flask/Django"
-        level: 82
-      - name: "Godot"
+        level: 90
+      - name: "Meta Quest SDK"
+        level: 80
+      - name: "Flask"
         level: 70
+      - name: "ESP32 / Arduino"
+        level: 80
+      - name: "MQTT / IoT Stack"
+        level: 75
 
-  - category: "SYSTEMS"
+  - category: "RESEARCH_&_AI"
     icon: "memory"
     color: "tertiary"
     entries:
-      - name: "Networking/Multiplayer"
+      - name: "AI Workflow (MCP/Skills)"
         level: 90
-      - name: "Physics Simulation"
+      - name: "User Research"
         level: 85
-      - name: "AI/Pathfinding"
-        level: 87
-      - name: "Rendering Pipeline"
-        level: 82
-      - name: "DevOps/CI/CD"
+      - name: "SPSS / NVivo"
+        level: 80
+      - name: "VR/MR Prototyping"
+        level: 80
+      - name: "Data Visualization"
         level: 75
 
 # About page — core modules
@@ -304,32 +317,35 @@ core_modules:
   - title: "GAME_DEV"
     icon: "videogame_asset"
     color: "primary"
-    description: "HARD-CODED REALITIES. C++/UNREAL/SHADERS. OPTIMIZED FOR THE VOID."
-    tags: ["C++", "UNREAL"]
-  - title: "FULLSTACK"
+    description: "UNITY/C#. AI-DRIVEN WORKFLOW. FROM PROTOTYPE TO LAUNCH. FULL-CYCLE GAME PRODUCTION."
+    tags: ["UNITY", "C#", "AI_WORKFLOW"]
+  - title: "AI_ARCHITECT"
     icon: "terminal"
     color: "secondary"
-    description: "INFRASTRUCTURE AS VIOLENCE. RUST/REACT/GO. SCALE OR DIE."
-    tags: ["RUST", "POSTGRES"]
+    description: "MCP PIPELINES. SKILLS CUSTOMIZATION. AI-AUGMENTED DEV CUTTING CYCLE TIME BY 50%."
+    tags: ["MCP", "CLAUDE", "AUTOMATION"]
   - title: "HCI_RESEARCH"
     icon: "neurology"
     color: "tertiary"
-    description: "DISSOLVING THE BARRIER. NEURAL LINKS. HUMAN_CORE_UPGRADE."
-    tags: ["VR/AR", "NEURAL"]
+    description: "VR/MR PROTOTYPING. USER RESEARCH. BRIDGING HUMAN PERCEPTION AND DIGITAL SYSTEMS."
+    tags: ["VR/MR", "META_QUEST"]
 
 # System logs (shown on About page)
 system_logs:
-  - date: "2024.11.21"
-    message: "CORE_RESTORED_VERSION_2.0.77"
+  - date: "2026.01"
+    message: "BOMB_BLIND_SHOT // AI_WORKFLOW_DEPLOYED"
     type: "info"
-  - date: "2024.10.15"
-    message: "LATENCY_OPTIMIZATION_PASS"
+  - date: "2025.12"
+    message: "MSC_HCI_NOTTINGHAM // DEGREE_ACQUIRED"
+    type: "info"
+  - date: "2025.05"
+    message: "GAMES_WORKSHOP // USER_RESEARCH_INIT"
     type: "info"
   - date: "ERROR"
-    message: "UNAUTHORIZED_ENTITY_DETECTED"
+    message: "NEURAL_OVERLOAD // TOO_MANY_MUSIC_FESTIVALS"
     type: "error"
-  - date: "2024.08.12"
-    message: "VOXEL_PHYSICS_DEPLOYED"
+  - date: "2024.07"
+    message: "BSC_IOT_ENGINEERING // RANK_1_GPA_4.1"
     type: "info"
 
 # SMTP email settings (override via environment variables)
@@ -341,76 +357,6 @@ email:
   recipient: ""       # or set env MAIL_RECIPIENT
   subject_prefix: "[NIGHT_CITY_CONTACT]"
 
-# Featured project (shown as hero on Projects page)
-featured_project:
-  title: "NEURAL\nCORE\nOVERRIDE"
-  slug: "synergy"
-  category: "HCI_RESEARCH"
-  description: "HIGH-FIDELITY HCI RESEARCH: DIRECT-NEURAL INTERFACE FOR HEAVY MACHINERY TELEOPERATION. OPTIMIZED FOR SUB-5MS LATENCY."
-  image: "/static/images/featured.jpg"
-  stats:
-    - icon: "settings_input_component"
-      label: "SYS_ACTIVE"
-    - icon: "memory"
-      label: "STABILITY: 98.4%"
-
-# Project gallery cards (placeholder / hardcoded entries)
-project_cards:
-  - title: "VOID_RUNNER_88"
-    slug: "void-runner"
-    category: "GAME_DEV"
-    color: "#ff2d78"
-    description: "HIGH-OCTANE PROCEDURAL SYNTHWAVE RACER BUILT WITH CUSTOM ENGINE OPTIMIZATIONS FOR RETRO HARDWARE."
-    image: "/static/images/card-void-runner.jpg"
-    btn1_icon: "play_circle"
-    btn1_label: "DEMO"
-    btn2_icon: "code"
-    btn2_label: "SOURCE"
-
-  - title: "KUBER_PULSE"
-    slug: "kuber-pulse"
-    category: "FULLSTACK"
-    color: "#00d4ff"
-    description: "REAL-TIME MONITORING DASHBOARD FOR DECENTRALIZED INFRASTRUCTURE CLUSTERS WITH AUTOMATED FAILOVER."
-    image: "/static/images/card-kuber-pulse.jpg"
-    btn1_icon: "visibility"
-    btn1_label: "DEMO"
-    btn2_icon: "terminal"
-    btn2_label: "SOURCE"
-
-  - title: "SYNAPTIC_GRID"
-    slug: "synaptic-grid"
-    category: "HCI_RESEARCH"
-    color: "#f5e642"
-    description: "GESTURE-BASED SPATIAL COMPUTING INTERFACE FOR MANAGING COMPLEX DATA-STRUCTURES IN 3D SPACE."
-    image: "/static/images/card-synaptic-grid.jpg"
-    btn1_icon: "deployed_code"
-    btn1_label: "VIEW"
-    btn2_icon: "description"
-    btn2_label: "PAPER"
-
-  - title: "MECHA_STRIKE"
-    slug: "mecha-strike"
-    category: "GAME_DEV"
-    color: "#ff2d78"
-    description: "TACTICAL SQUAD-BASED STRATEGY GAME FEATURING DESTRUCTIBLE VOXEL-BASED URBAN ENVIRONMENTS."
-    image: "/static/images/card-mecha-strike.jpg"
-    btn1_icon: "play_arrow"
-    btn1_label: "PLAY"
-    btn2_icon: "inventory_2"
-    btn2_label: "ASSETS"
-
-  - title: "CRYPTO_GATEWAY"
-    slug: "crypto-gateway"
-    category: "FULLSTACK"
-    color: "#00d4ff"
-    description: "SECURE PAYMENT PROCESSOR INTEGRATION WITH HARDWARE-LEVEL ENCRYPTION MODULES AND ZERO-TRUST."
-    image: "/static/images/card-crypto-gateway.jpg"
-    btn1_icon: "token"
-    btn1_label: "DEMO"
-    btn2_icon: "shield"
-    btn2_label: "AUDIT"
-
 # Filter categories for project page
 project_filters:
   - label: "ALL"
@@ -419,12 +365,27 @@ project_filters:
   - label: "GAME DEV"
     value: "GAME_DEV"
     color: "#ff2d78"
-  - label: "FULLSTACK"
-    value: "FULLSTACK"
+  - label: "AI & DEV"
+    value: "AI_DEV"
     color: "#00d4ff"
   - label: "HCI RESEARCH"
     value: "HCI_RESEARCH"
     color: "#f5e642"
+
+# Floating music player
+music_player:
+  title: "AUDIO_STREAM.exe"
+  empty_message: "NO_TRACKS_LOADED"
+  playlist:
+    - title: "Neon Drift"
+      artist: "SynthWave_01"
+      src: "/static/music/neon-drift.mp3"
+    - title: "Chrome Hearts"
+      artist: "CyberPulse"
+      src: "/static/music/chrome-hearts.mp3"
+    - title: "Digital Rain"
+      artist: "NightCode"
+      src: "/static/music/digital-rain.mp3"
 
 # Marquee ticker text
 marquee_text: "SYSTEM_OVERLOAD // THERMAL_CRITICAL // NEURAL_LINK_99% // PK_ENCRYPTION_ACTIVE"

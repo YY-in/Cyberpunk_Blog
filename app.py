@@ -117,10 +117,22 @@ def set_lang_cookie(response):
 MD_EXTENSIONS = ["extra", "codehilite", "meta", "toc", "tables", "fenced_code"]
 
 
-def load_markdown(folder: str, slug: str):
-    """Load a .md file from content/<folder>/<slug>.md and return (meta, html)."""
-    md_path = BASE_DIR / "content" / folder / f"{slug}.md"
-    if not md_path.exists():
+def _resolve_md_path(folder: str, slug: str, lang: str = None):
+    """Return the best .md path for given slug + language.
+    Tries <slug>.<lang>.md first, falls back to <slug>.md."""
+    content_dir = BASE_DIR / "content" / folder
+    if lang and lang != DEFAULT_LANG:
+        localized = content_dir / f"{slug}.{lang}.md"
+        if localized.exists():
+            return localized
+    default = content_dir / f"{slug}.md"
+    return default if default.exists() else None
+
+
+def load_markdown(folder: str, slug: str, lang: str = None):
+    """Load a .md file with language awareness and return (meta, html)."""
+    md_path = _resolve_md_path(folder, slug, lang)
+    if md_path is None:
         return None, None
     text = md_path.read_text(encoding="utf-8")
     md = markdown.Markdown(extensions=MD_EXTENSIONS)
@@ -129,17 +141,38 @@ def load_markdown(folder: str, slug: str):
     return meta, html
 
 
-def list_markdown(folder: str):
-    """List all .md files in content/<folder>/ and return list of (slug, meta, html)."""
+def list_markdown(folder: str, lang: str = None):
+    """List all .md files in content/<folder>/ with language awareness.
+    Sorts by 'order' metadata field if present, otherwise by modification time."""
     content_dir = BASE_DIR / "content" / folder
     if not content_dir.exists():
         return []
+    # Collect base slugs (exclude lang-suffixed files from slug list)
+    slugs_seen = set()
+    base_files = []
+    for p in content_dir.glob("*.md"):
+        stem = p.stem
+        # Skip language variants when collecting slugs (e.g. bomb-blind-shot.zh)
+        parts = stem.rsplit(".", 1)
+        if len(parts) == 2 and parts[1] in SUPPORTED_LANGS:
+            base_slug = parts[0]
+        else:
+            base_slug = stem
+        if base_slug not in slugs_seen:
+            slugs_seen.add(base_slug)
+            base_files.append(base_slug)
+
     results = []
-    for p in sorted(content_dir.glob("*.md"), key=lambda x: x.stat().st_mtime, reverse=True):
-        md = markdown.Markdown(extensions=MD_EXTENSIONS)
-        html = md.convert(p.read_text(encoding="utf-8"))
-        meta = {k: v[0] if len(v) == 1 else v for k, v in md.Meta.items()} if hasattr(md, "Meta") else {}
-        results.append({"slug": p.stem, "meta": meta, "html": html})
+    for slug in base_files:
+        md_path = _resolve_md_path(folder, slug, lang)
+        if md_path is None:
+            continue
+        md_obj = markdown.Markdown(extensions=MD_EXTENSIONS)
+        html = md_obj.convert(md_path.read_text(encoding="utf-8"))
+        meta = {k: v[0] if len(v) == 1 else v for k, v in md_obj.Meta.items()} if hasattr(md_obj, "Meta") else {}
+        results.append({"slug": slug, "meta": meta, "html": html})
+    # Sort by order field if present (lower = first)
+    results.sort(key=lambda x: int(x["meta"].get("order", 999)))
     return results
 
 
@@ -159,13 +192,15 @@ def about():
 
 @app.route("/projects")
 def projects():
-    items = list_markdown("projects")
+    lang = get_current_lang()
+    items = list_markdown("projects", lang)
     return render_template("projects.html", active="PROJECTS", projects=items)
 
 
 @app.route("/projects/<slug>")
 def project_detail(slug):
-    meta, html = load_markdown("projects", slug)
+    lang = get_current_lang()
+    meta, html = load_markdown("projects", slug, lang)
     if html is None:
         abort(404)
     return render_template("project_detail.html", active="PROJECTS", meta=meta, content=html, slug=slug)
@@ -178,13 +213,15 @@ def skills():
 
 @app.route("/blog")
 def blog():
-    posts = list_markdown("blog")
+    lang = get_current_lang()
+    posts = list_markdown("blog", lang)
     return render_template("blog.html", active="BLOG", posts=posts)
 
 
 @app.route("/blog/<slug>")
 def blog_post(slug):
-    meta, html = load_markdown("blog", slug)
+    lang = get_current_lang()
+    meta, html = load_markdown("blog", slug, lang)
     if html is None:
         abort(404)
     return render_template("blog_post.html", active="BLOG", meta=meta, content=html)

@@ -28,7 +28,7 @@ gate:
 owner:
   name: "Zhihao Yin"
   alias: "YIN_PROTOCOL"
-  bio: "MSc Human-Computer Interaction @ Nottingham. Game dev, AI workflow architect, Unity specialist. Building the bridge between human perception and digital systems."
+  bio: "IoT Engineering → HCI @ Nottingham → Game Dev. AI changed the game — now I build full-cycle projects with AI-augmented workflows. Hardware taught me systems, HCI taught me people, games are where both collide."
   avatar: "/static/images/avatar.jpg"
   roles:
     - "GAME_DEVELOPER"
@@ -36,6 +36,17 @@ owner:
     - "HCI_RESEARCHER"
     - "AI_WORKFLOW_ARCHITECT"
   resume_url: "#"
+  dossier:
+    title: "OPERATIVE_DOSSIER"
+    subtitle: "NCPD FILE #077-YIN // THREAT_LEVEL: V // DO_NOT_FLATLINE"
+    origin_label: "CHROME_GENESIS"
+    origin: "BSc IoT Engineering, #1 in class, GPA 4.1. Four years of embedded systems, MQTT brokers, ESP32 firmware, and sensor arrays — the foundation layer where chrome meets meat."
+    evolution_label: "NEURAL_REWRITE"
+    evolution: "MSc Human-Computer Interaction, University of Nottingham (2025). Collaborated with Games Workshop on player behavior research — UX surveys, tabletop design feedback, bridging analog and digital play. Understanding the player is the first line of code."
+    current_label: "ACTIVE_CONTRACT"
+    current: "Full-stack game developer running AI-augmented pipelines. Every project ships with AI in the loop — Midjourney for art, Claude for code architecture, Suno for audio. Not using AI as a crutch — using it as an exoskeleton."
+    career_targets_label: "OPEN_CONTRACTS"
+    career_targets: ["GAME_STUDIOS", "TECH_CORPS", "STARTUPS", "FREELANCE_OPS", "RESEARCH_LABS"]
 
 # ============================================================
 # PAGE TITLES & HEADINGS — all UI text in one place
@@ -48,6 +59,20 @@ pages:
     btn_primary: "INITIATE_PROTOCOL"
     btn_secondary: "DOWNLOAD_CV"
     badge_error: "CRITICAL_ERROR"
+    boot_lines:
+      - { color: "#f5e642", text: "> BOOTING_SERVICES... [OK]" }
+      - { color: "", text: "> MOUNTING_ENCRYPTED_DRIVE... [OK]" }
+      - { color: "", text: "> ESTABLISHING_HANDSHAKE_P2P... [OK]" }
+      - { color: "#ff2d78", text: "> WARNING: PACKET_LOSS_DETECTED (2.4%)" }
+      - { color: "", text: "> BYPASSING_FIREWALL_A... [SUCCESS]" }
+      - { color: "", text: "> ACCESS_GRANTED_USER_ID: RUNNER_01" }
+    avatar_id: "ID: 8829-AX-09"
+    hud_cpu: "CPU_LOAD"
+    hud_net: "NET_UP"
+    hud_net_val: "1.2 GB/S"
+    hud_temp: "TEMP"
+    hud_temp_val: "72°C"
+    hud_live: "LIVE_FEED: SYSTEM_LOGS_ACTIVE"
     terminal_logs:
       - { color: "green", text: "Initializing telemetry data..." }
       - { color: "white/60", text: "ping response from edge_server_04: 12ms" }
@@ -57,19 +82,22 @@ pages:
       - { color: "green", text: "Subsystem heartbeat: OK" }
 
   about:
-    breadcrumb: "ROOT@SYSTEM_LOGS: ACTIVE_BREACH"
-    modules_title: "CORE_MODULES"
-    modules_status: "STATUS: OVERLOAD"
-    logs_title: "SYSTEM_LOGS"
+    breadcrumb: "ROOT@NIGHT_CITY_DB: DECRYPTING_DOSSIER"
+    modules_title: "CYBERWARE_MODULES"
+    modules_status: "STATUS: OVERCLOCKED"
+    logs_title: "MISSION_LOGS"
     logs_watermark: "LOGS"
-    quote: "\"AI doesn't replace the developer — it amplifies the developer. Build the workflow, then let the workflow build the game.\""
+    quote: "\"Started wiring sensors in the IoT pits. Rewired my stack to read human signals. Now I build worlds where both collide. The implants change — the hunger to push the edge never flatlines.\""
     btn_cta: "INITIATE_PROTOCOL"
 
   projects:
+    page_title: "PROJECT_ARCHIVE"
     featured_badge: "URGENT // FEATURED_ENTRY"
     featured_subtitle: "SYSTEM_OVERRIDE_ACTIVE"
     featured_btn: "INITIALIZE_DEMO"
     query_status: "QUERY_STATUS:"
+    query_ready: "READY"
+    query_suffix: "_ENTRIES_FOUND"
     encrypted_title: "ENCRYPTED_ENTRY"
     encrypted_desc: "SUBJECT UNDER NDA. SYSTEM AUTHENTICATION REQUIRED FOR ACCESS TO DOCUMENTATION AND SCHEMATICS."
     encrypted_progress: 33
@@ -78,6 +106,27 @@ pages:
     log_id: "[LOG_ID: 9942-X]"
     uptime: "SYSTEM_UPTIME: 4209:12:04"
     buffer: "BUFFER_STATUS: NOMINAL"
+
+  project_detail:
+    node_id: "NODE_ID: 77-ALPHA-4"
+    category_prefix: "PROJECT://"
+    date_prefix: "DATE:"
+    status_prefix: "STATUS:"
+    engine_prefix: "ENGINE:"
+    video_fallback: "Your browser does not support HTML5 video."
+    video_label: "REC_STREAM: LIVE_FEED_001 // SECURE_LINE"
+    specs_title: "TECHNICAL_SPECS"
+    tech_prefix: "TECH_"
+    details_title: "MISSION_DETAILS"
+    logs_suffix: "_LOGS"
+    terminal_logs:
+      - { color: "secondary", text: "[14:22:09] Initializing project data stream..." }
+      - { color: "on-surface", text: "[14:22:11] HANDSHAKE_SUCCESSFUL (LATENCY: 4.8ms)" }
+      - { color: "on-surface", text: "[14:23:45] Allocating memory blocks 0x44F — 0x99A" }
+      - { color: "primary-container", text: "[14:25:12] WARNING: Signal degradation in sector 7" }
+      - { color: "[#c70057]", text: "[14:25:13] RE-ROUTING VIA SECONDARY BUFFER..." }
+      - { color: "on-surface", text: "[14:25:15] SIGNAL_STABILIZED" }
+      - { color: "secondary", text: "[14:29:00] RENDER_CORE_ACTIVE" }
 
   skills:
     page_title: "SKILL_TREE.exe"
@@ -131,48 +180,60 @@ pages:
       - { icon: "psychology", label: "NVIVO" }
       - { icon: "cloud_done", label: "ALIBABA_CLOUD" }
       - { icon: "memory", label: "ARDUINO" }
+      - { icon: "brush", label: "MIDJOURNEY" }
+      - { icon: "dashboard_customize", label: "STITCH" }
+      - { icon: "music_note", label: "SUNO" }
+      - { icon: "smart_display", label: "NANO_BANANA" }
+    lvl_prefix: "Lvl"
+    file_prefix: "FILE:"
+    locked_label: "LOCKED"
+    accessing_prefix: "> ACCESSING FILE:"
+    sys_info: "MEMORY_ADDR: 0x4F92A1|BUFFER_SIZE: 1024KB|STREAM: ACTIVE|SIGNAL_STRENGTH:"
+    sys_bar: "SYS.ADMIN // UNKNOWN_USER // DIR: ROOT/SKILLS"
+    sys_buttons: ["REBOOT_SYSTEM", "ENCRYPT_DATA", "CLEAR_CACHE"]
+    shell_logs: ["[INITIALIZING_SHELL]", "[RUNNING_SCAN_V4.2.0]", "[NODE_ENV: PRODUCTION]", "[PACKETS_CAPTURED: 829]", "[LATENCY: 14ms]"]
     separator_text: "ACCESSING CLASSIFIED DATA"
     separator_sub: "> PERSONAL SUBROUTINES DETECTED > LOADING OFF-DUTY PROTOCOLS..."
     offd_title: "OFF-DUTY_PROTOCOLS"
     protocols:
       - id: "body"
-        sidebar_label: "BODY"
+        sidebar_label: "CHROME"
         sidebar_icon: "fitness_center"
         sidebar_color: "#f5e642"
         file_id: "PHYS-001"
         code: "PHYS-001"
-        status: "STATUS: ACTIVE // PRIORITY: HIGH"
+        status: "STATUS: OVERCLOCKED // PRIORITY: CRITICAL"
         access_label: "BODY_AUGMENTATION"
-        icons: ["fitness_center", "directions_run", "nutrition"]
-        quote: "\"The body is just another system to optimize. Debugging mortality, one rep at a time.\""
+        icons: ["hiking", "pool", "downhill_skiing", "directions_bike", "fitness_center", "sports_tennis"]
+        quote: "\"Hiking ridgelines, SUP on flat water, surfing whitecaps, skiing powder, cycling long distance, climbing walls, smashing shuttlecocks. The meat is just another system to overclock.\""
         image: "/static/images/protocol-body.jpg"
-        stats: ["CORE_TEMP: 36.8°C", "HEART_RATE: 140 BPM"]
+        stats: ["CHROME_MODULES: 7", "TERRAIN_COMPAT: ALL_SECTORS"]
       - id: "synth"
         sidebar_label: "SYNTH"
         sidebar_icon: "local_bar"
         sidebar_color: "#00d4ff"
         file_id: "CHEM-002"
         code: "CHEM-002"
-        status: "STATUS: ACTIVE // PRIORITY: MEDIUM"
+        status: "STATUS: BREWING // PRIORITY: MEDIUM"
         access_label: "SYNTH_COMPOUNDS"
-        icons: ["local_bar", "science", "emoji_food_beverage"]
-        quote: "\"Chemistry is just cooking with better equipment. Molecular gastronomy meets neural enhancement.\""
+        icons: ["local_bar", "sports_bar", "emoji_food_beverage"]
+        quote: "\"Craft beer connoisseur. Imperial stout for the soul, IPA for the edge, gose for the glitch, fruit smoothie sour for when the gig goes sideways. Quick cocktails mixed on demand. Brewing is just chemistry with better taste tests.\""
         image: ""
         placeholder_icon: "science"
-        stats: ["COMPOUND_PH: 7.2", "REACTION_TIME: 2.4s"]
+        stats: ["COMPOUND_VARIANTS: 4+", "MIX_SPEED: RAPID"]
       - id: "audio"
         sidebar_label: "AUDIO"
-        sidebar_icon: "electric_guitar"
+        sidebar_icon: "music_note"
         sidebar_color: "#ff2d78"
         file_id: "AUDIO-003"
         code: "AUDIO-003"
-        status: "STATUS: ACTIVE // PRIORITY: LOW"
-        access_label: "AUDIO_PROCESSING"
-        icons: ["electric_guitar", "headphones", "graphic_eq"]
-        quote: "\"Sound is data you can feel. Every frequency is a signal waiting to be decoded.\""
+        status: "STATUS: LIVE_FEED // PRIORITY: LOW"
+        access_label: "AUDIO_CYBERWARE"
+        icons: ["music_note", "headphones", "celebration"]
+        quote: "\"Music festival regular — if there's a stage and a mosh pit, I'm in it. Plays guitar badly enough to enjoy it. Every frequency is a signal your chrome can feel.\""
         image: ""
         placeholder_icon: "graphic_eq"
-        stats: ["FREQ_RANGE: 20Hz-20kHz", "BIT_DEPTH: 24-bit"]
+        stats: ["FESTIVALS_LOGGED: ∞", "GUITAR_FIRMWARE: v0.3_BETA"]
 
   contact:
     page_title: "ESTABLISH_CONNECTION.exe"
@@ -206,13 +267,23 @@ pages:
     success_btn: "[ ACKNOWLEDGE ]"
     error_title: "TRANSMISSION_FAILED"
     error_btn: "[ RETRY ]"
+    status_prefix: "STATUS:"
+    copy_toast: "DATA_COPIED_TO_CLIPBOARD"
+    transmitting: "TRANSMITTING_PAYLOAD..."
+    error_default: "An error occurred."
+    error_unknown: "Unknown error"
+    error_network: "Network error"
     dossier_title: "WANT THE FULL DOSSIER?"
     dossier_desc: "Access detailed experience logs, certification keys, and full biometric career history in a standardized PDF format."
     dossier_btn: "[ ↓ DOWNLOAD_DOSSIER ]"
+    dossier_footer: "ENCRYPTED_FILE_SYSTEM // CLASS_04_CLEARANCE"
 
   blog:
     page_title: "DATA_LOGS"
+    entries_suffix: "ENTRIES FOUND"
     empty_title: "NO_BLOG_ENTRIES"
+    empty_hint: "Add .md files to content/blog/"
+    untitled: "UNTITLED"
     back_label: "< BACK_TO_LOGS"
 
   error_404:
@@ -317,35 +388,47 @@ core_modules:
   - title: "GAME_DEV"
     icon: "videogame_asset"
     color: "primary"
-    description: "UNITY/C#. AI-DRIVEN WORKFLOW. FROM PROTOTYPE TO LAUNCH. FULL-CYCLE GAME PRODUCTION."
-    tags: ["UNITY", "C#", "AI_WORKFLOW"]
+    description: "FULL-CYCLE PRODUCTION IN UNITY/C#. FROM GDD TO GOLD MASTER. AI DAEMONS HANDLE THE PIPELINE — MIDJOURNEY FOR ART, CLAUDE FOR CODE ARCHITECTURE, SUNO FOR AUDIO. THE OPERATOR HANDLES THE VISION."
+    tags: ["UNITY", "C#", "AI_PIPELINE", "MIDJOURNEY", "SUNO"]
   - title: "AI_ARCHITECT"
     icon: "terminal"
     color: "secondary"
-    description: "MCP PIPELINES. SKILLS CUSTOMIZATION. AI-AUGMENTED DEV CUTTING CYCLE TIME BY 50%."
-    tags: ["MCP", "CLAUDE", "AUTOMATION"]
+    description: "CUSTOM TOOLCHAIN: UNITY MCP SERVER FOR EDITOR CONTROL. CLAUDE CODE SKILLS FOR REPEATABLE WORKFLOWS. MULTI-DAEMON ORCHESTRATION — STITCH (UI), NANO BANANA (VIDEO), MIDJOURNEY (IMAGE), SUNO (AUDIO). LOCAL MODEL DEPLOYMENT FOR OFF-GRID OPS."
+    tags: ["MCP", "CLAUDE_SKILLS", "STITCH", "LOCAL_AI", "MULTI-MODAL"]
   - title: "HCI_RESEARCH"
     icon: "neurology"
     color: "tertiary"
-    description: "VR/MR PROTOTYPING. USER RESEARCH. BRIDGING HUMAN PERCEPTION AND DIGITAL SYSTEMS."
-    tags: ["VR/MR", "META_QUEST"]
+    description: "FIELD OPS WITH GAMES WORKSHOP — PLAYER BEHAVIOR ANALYSIS, UX SURVEYS, TABLETOP DESIGN FEEDBACK. VR/MR PROTOTYPING ON META QUEST 3. BRIDGING MEATSPACE PERCEPTION AND DIGITAL SYSTEMS."
+    tags: ["VR/MR", "META_QUEST", "GAMES_WORKSHOP", "UXR"]
 
 # System logs (shown on About page)
 system_logs:
+  - date: "2026.03"
+    message: "DAEMON_ARRAY_SYNC // STITCH+MIDJOURNEY+SUNO_JACKED_IN"
+    type: "info"
   - date: "2026.01"
-    message: "BOMB_BLIND_SHOT // AI_WORKFLOW_DEPLOYED"
+    message: "BOMB_BLIND_SHOT // FIRST_AI-AUGMENTED_GIG_SHIPPED"
     type: "info"
   - date: "2025.12"
-    message: "MSC_HCI_NOTTINGHAM // DEGREE_ACQUIRED"
+    message: "MSC_HCI_NOTTINGHAM // NEURAL_INTERFACE_CERT_ACQUIRED"
+    type: "info"
+  - date: "2025.09"
+    message: "UNITY_MCP_DAEMON // CUSTOM_TOOLCHAIN_ONLINE"
     type: "info"
   - date: "2025.05"
-    message: "GAMES_WORKSHOP // USER_RESEARCH_INIT"
+    message: "GAMES_WORKSHOP // PLAYER_PROFILING_OPS_INIT"
     type: "info"
-  - date: "ERROR"
-    message: "NEURAL_OVERLOAD // TOO_MANY_MUSIC_FESTIVALS"
+  - date: "2024.09"
+    message: "CAREER_VECTOR_SHIFT // IOT→HCI→GAME_DEV"
+    type: "warning"
+  - date: "FAULT"
+    message: "SYNAPTIC_OVERLOAD // TOO_MANY_BRAINDANCE_FESTIVALS"
     type: "error"
   - date: "2024.07"
-    message: "BSC_IOT_ENGINEERING // RANK_1_GPA_4.1"
+    message: "BSC_IOT_ENGINEERING // TOP_OPERATIVE_GPA_4.1"
+    type: "info"
+  - date: "2020.09"
+    message: "FIRST_CHROME_INSTALLED // ESP32_IMPLANT_FLASHED"
     type: "info"
 
 # SMTP email settings (override via environment variables)
@@ -377,15 +460,9 @@ music_player:
   title: "AUDIO_STREAM.exe"
   empty_message: "NO_TRACKS_LOADED"
   playlist:
-    - title: "Neon Drift"
-      artist: "SynthWave_01"
-      src: "/static/music/neon-drift.mp3"
-    - title: "Chrome Hearts"
-      artist: "CyberPulse"
-      src: "/static/music/chrome-hearts.mp3"
-    - title: "Digital Rain"
-      artist: "NightCode"
-      src: "/static/music/digital-rain.mp3"
+    - title: "I Really Want to Stay at Your House"
+      artist: "Rosa Walton"
+      src: "/static/music/i-really-want-to-stay-at-your-house.mp3"
 
 # Marquee ticker text
 marquee_text: "SYSTEM_OVERLOAD // THERMAL_CRITICAL // NEURAL_LINK_99% // PK_ENCRYPTION_ACTIVE"

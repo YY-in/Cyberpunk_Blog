@@ -3,10 +3,10 @@
 {% block title %}{{ cfg.site.title }} // {{ meta.get('title', 'POST') }}{% endblock %}
 
 {% block content %}
-<main class="pt-24 pb-32 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+<main class="pt-14 md:pt-24 pb-32 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
   <header class="mb-12 border-l-4 border-[#f5e642] pl-6">
     <a href="/blog" class="font-label text-[#00d4ff] text-xs hover:text-[#f5e642] transition-colors mb-4 inline-block">{{ pg.back_label }}</a>
-    <h1 class="font-headline text-4xl md:text-6xl font-black uppercase glitch-text tracking-tighter text-[#f5e642] mb-4">{{ meta.get('title', 'UNTITLED') }}</h1>
+    <h1 class="font-headline text-4xl md:text-6xl font-black uppercase glitch-text tracking-tighter text-[#f5e642] mb-4">{{ meta.get('title', pg.untitled) }}</h1>
     {% if meta.get('date') %}<p class="font-label text-[10px] text-[#f5e642]/40">{{ meta.date }}</p>{% endif %}
   </header>
   <article class="bg-surface-container-low p-8 md:p-12 border-t-4 border-primary-container">

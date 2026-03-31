@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /c/Users/admin/Desktop/stitch_about_rpg_stats/stitch_about_rpg_stats -maxdepth 3 -type d ! -path */.venv/* ! -path */.git/* ! -path */__pycache__/*)",
+      "Bash(pip show:*)",
+      "Bash(tasklist)",
+      "Bash(findstr -i python)"
+    ]
+  }
+}

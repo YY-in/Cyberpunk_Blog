@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block content %}
-<main class="pt-24 pb-20 px-4 md:px-12 max-w-7xl mx-auto">
+<main class="pt-14 md:pt-24 pb-20 px-4 md:px-12 max-w-7xl mx-auto">
   <section class="mb-12 relative">
     <div class="absolute -left-4 top-0 w-1 h-full bg-[#f5e642]"></div>
     <h1 class="text-5xl md:text-7xl font-black font-headline tracking-tighter text-[#f5e642] mb-2 uppercase italic">{{ pg.page_title }}</h1>
@@ -55,7 +55,7 @@
           <li class="space-y-1 group">
             <div class="flex justify-between items-center">
               <span class="transition-colors" style="--hover-color: {{ col.color }};">{{ skill.name }}</span>
-              <span style="color: {{ col.color }};">[Lvl {{ skill.level }}]</span>
+              <span style="color: {{ col.color }};">[{{ pg.lvl_prefix }} {{ skill.level }}]</span>
             </div>
             <div class="h-3 w-full bg-surface-container-highest relative overflow-hidden">
               <div class="h-full animate-system-fill segmented-bar-bg text-[#131318]" style="width: {{ skill.pct }}%; background-color: {{ col.color }};"></div>
@@ -75,14 +75,14 @@
         <h3 class="text-sm tracking-[0.4em] text-on-surface-variant uppercase whitespace-nowrap">{{ pg.tools_title }}</h3>
         <div class="h-px flex-1 bg-secondary-container/20"></div>
       </div>
-      <div class="hidden md:block text-right text-[8px] leading-tight text-secondary-container/60 tracking-widest pl-8">MEMORY_ADDR: 0x4F92A1<br/>BUFFER_SIZE: 1024KB<br/>STREAM: ACTIVE<br/>SIGNAL_STRENGTH: <span class="text-secondary-container">&#9646;&#9646;&#9646;&#9646;&#9647;</span></div>
+      <div class="hidden md:block text-right text-[8px] leading-tight text-secondary-container/60 tracking-widest pl-8">{% for part in pg.sys_info.split('|') %}{{ part }}{% if loop.last %} <span class="text-secondary-container">&#9646;&#9646;&#9646;&#9646;&#9647;</span>{% else %}<br/>{% endif %}{% endfor %}</div>
     </div>
     <div class="flex justify-between items-center py-2 px-4 bg-surface-container-low/50 border-b border-secondary-container/20 text-[9px] tracking-widest mb-4">
-      <div class="text-secondary-container/60 uppercase">SYS.ADMIN // UNKNOWN_USER // DIR: ROOT/SKILLS</div>
-      <div class="flex gap-6"><button class="hover:text-[#f5e642] transition-colors">REBOOT_SYSTEM</button><button class="hover:text-[#f5e642] transition-colors">ENCRYPT_DATA</button><button class="hover:text-[#f5e642] transition-colors">CLEAR_CACHE</button></div>
+      <div class="text-secondary-container/60 uppercase">{{ pg.sys_bar }}</div>
+      <div class="flex gap-6">{% for btn in pg.sys_buttons %}<button class="hover:text-[#f5e642] transition-colors">{{ btn }}</button>{% endfor %}</div>
       <div class="text-secondary-container font-bold">{{ cfg.site.version }}</div>
     </div>
-    <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-12">
+    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12">
       {% for tool in pg.tools %}
       <div class="{% if not loop.last %}border-r border-secondary-container/10{% endif %} flex flex-col items-center justify-center py-6 group cursor-help hover:bg-[#f5e642]/5 transition-all">
         <span class="material-symbols-outlined text-secondary-container/40 group-hover:text-secondary-container transition-colors">{{ tool.icon }}</span>
@@ -111,18 +111,18 @@
           <div class="flex-1 font-label text-sm tracking-widest flex items-center gap-2" style="color: {{ proto.sidebar_color }};">
             [<span class="material-symbols-outlined text-sm">{{ proto.sidebar_icon }}</span> {{ proto.sidebar_label }}]
           </div>
-          <div class="font-label text-[10px] text-on-surface-variant opacity-40">FILE: {{ proto.file_id }}</div>
+          <div class="font-label text-[10px] text-on-surface-variant opacity-40">{{ pg.file_prefix }} {{ proto.file_id }}</div>
         </div>
         {% endfor %}
         <div class="flex items-center bg-surface-container-lowest p-4 relative border-l-4 border-error/30 opacity-60 grayscale">
           <div class="flex-1 font-label text-sm tracking-widest text-error flex items-center gap-2">[<span class="material-symbols-outlined text-sm">add</span> ???]</div>
-          <div class="font-label text-[10px] text-error">LOCKED</div>
+          <div class="font-label text-[10px] text-error">{{ pg.locked_label }}</div>
         </div>
       </div>
 
       <div class="lg:col-span-8 cyber-modal-outline bg-surface-container-low p-8 relative">
         <div class="flex justify-between items-start mb-8">
-          <div class="font-label text-[10px] text-[#f5e642] tracking-widest" id="protocol-access-label">&gt; ACCESSING FILE: {{ pg.protocols[0].access_label }}</div>
+          <div class="font-label text-[10px] text-[#f5e642] tracking-widest" id="protocol-access-label">{{ pg.accessing_prefix }} {{ pg.protocols[0].access_label }}</div>
           <span class="material-symbols-outlined text-[#f5e642] cursor-pointer hover:rotate-90 transition-transform">close</span>
         </div>
         {% for proto in pg.protocols %}
@@ -131,10 +131,10 @@
             <div>
               <h3 class="font-headline text-5xl font-black mb-1 tracking-tighter italic" style="color: {{ proto.sidebar_color }};">{{ proto.code }}</h3>
               <div class="font-label text-[10px] text-on-surface-variant tracking-widest mb-8 opacity-60 uppercase">{{ proto.status }}</div>
-              <div class="flex gap-4 mb-10">
+              <div class="flex flex-wrap gap-3 mb-10">
                 {% for icon in proto.icons %}
-                <div class="w-12 h-12 border border-on-surface-variant/30 flex items-center justify-center bg-background">
-                  <span class="material-symbols-outlined" style="color: {{ proto.sidebar_color }};">{{ icon }}</span>
+                <div class="w-10 h-10 border border-on-surface-variant/30 flex items-center justify-center bg-background">
+                  <span class="material-symbols-outlined text-xl" style="color: {{ proto.sidebar_color }};">{{ icon }}</span>
                 </div>
                 {% endfor %}
               </div>
@@ -146,11 +146,11 @@
               </div>
             </div>
             <div class="relative">
-              <div class="aspect-square bg-[#131318] overflow-hidden border border-on-surface-variant/20 relative group {% if not proto.image %}flex items-center justify-center{% endif %}">
+              <div class="aspect-[4/3] md:aspect-square bg-[#131318] overflow-hidden border border-on-surface-variant/20 relative group {% if not proto.image %}flex items-center justify-center{% endif %}">
                 {% if proto.image %}
                 <img alt="{{ proto.sidebar_label }}" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 transition-all duration-700" src="{{ proto.image }}"/>
                 {% else %}
-                <span class="material-symbols-outlined text-[120px]" style="color: {{ proto.sidebar_color }}20;">{{ proto.get('placeholder_icon', 'help') }}</span>
+                <span class="material-symbols-outlined text-[80px] md:text-[120px]" style="color: {{ proto.sidebar_color }}20;">{{ proto.get('placeholder_icon', 'help') }}</span>
                 {% endif %}
                 <div class="absolute inset-0 scanline-overlay opacity-10"></div>
               </div>
@@ -166,8 +166,8 @@
   </section>
 </main>
 
-<div class="fixed top-24 left-6 hidden xl:block pointer-events-none opacity-20 font-label text-[10px] text-[#f5e642] z-30">[INITIALIZING_SHELL]<br/>[RUNNING_SCAN_V4.2.0]<br/>[NODE_ENV: PRODUCTION]<br/>[PACKETS_CAPTURED: 829]<br/>[LATENCY: 14ms]</div>
-<div class="fixed bottom-12 right-6 hidden xl:block pointer-events-none opacity-20 font-label text-[10px] text-secondary-container text-right z-30">MEMORY_ADDR: 0x4F92A1<br/>BUFFER_SIZE: 1024KB<br/>STREAM: ACTIVE<br/>SIGNAL_STRENGTH: &#9646;&#9646;&#9646;&#9646;&#9647;</div>
+<div class="fixed top-24 left-6 hidden xl:block pointer-events-none opacity-20 font-label text-[10px] text-[#f5e642] z-30">{% for line in pg.shell_logs %}{{ line }}{% if not loop.last %}<br/>{% endif %}{% endfor %}</div>
+<div class="fixed bottom-12 right-6 hidden xl:block pointer-events-none opacity-20 font-label text-[10px] text-secondary-container text-right z-30">{% for part in pg.sys_info.split('|') %}{{ part }}{% if loop.last %} &#9646;&#9646;&#9646;&#9646;&#9647;{% else %}<br/>{% endif %}{% endfor %}</div>
 {% endblock %}
 
 {% block extra_js %}
@@ -180,7 +180,7 @@ function showProtocol(name) {
   const proto = data.find(p => p.id === name);
   if (proto) {
     const lbl = document.getElementById('protocol-access-label');
-    lbl.textContent = '> ACCESSING FILE: ' + proto.access_label;
+    lbl.textContent = {{ pg.accessing_prefix | tojson }} + ' ' + proto.access_label;
     lbl.style.color = proto.sidebar_color;
   }
 }

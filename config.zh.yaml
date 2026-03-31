@@ -23,12 +23,23 @@ gate:
 
 owner:
   name: "尹智豪"
-  bio: "诺丁汉大学人机交互硕士。游戏开发、AI工作流架构师、Unity专家。构建人类感知与数字系统的桥梁。"
+  bio: "物联网工程 → 诺丁汉HCI硕士 → 游戏开发。AI改变了规则——现在我用AI增强工作流驱动全周期项目。硬件教会我系统思维，HCI教会我理解人，游戏是两者碰撞的地方。"
   roles:
     - "游戏开发者"
     - "Unity专家"
     - "人机交互研究员"
     - "AI工作流架构师"
+  dossier:
+    title: "特工档案"
+    subtitle: "NCPD 档案 #077-YIN // 威胁等级: V // 禁止终结"
+    origin_label: "义体起源"
+    origin: "物联网工程学士，专业第一，GPA 4.1。四年嵌入式系统、MQTT协议、ESP32固件、传感器阵列——义体接入血肉之处。"
+    evolution_label: "神经重写"
+    evolution: "诺丁汉大学人机交互硕士（2025）。与Games Workshop合作研究玩家行为——UX调研、桌游设计反馈、连接模拟与数字游戏体验。理解玩家是第一行代码。"
+    current_label: "当前合约"
+    current: "全栈游戏开发者，运行AI增强管线。每个项目都有AI参与——Midjourney负责美术、Claude负责代码架构、Suno负责音频。AI不是拐杖，是外骨骼。"
+    career_targets_label: "开放合约"
+    career_targets: ["游戏工作室", "科技公司", "创业团队", "自由职业", "研究机构"]
 
 navigation:
   - label: "首页"
@@ -55,6 +66,20 @@ pages:
     btn_primary: "启动协议"
     btn_secondary: "下载简历"
     badge_error: "严重错误"
+    boot_lines:
+      - { color: "#f5e642", text: "> 启动服务... [完成]" }
+      - { color: "", text: "> 挂载加密驱动器... [完成]" }
+      - { color: "", text: "> 建立P2P握手连接... [完成]" }
+      - { color: "#ff2d78", text: "> 警告: 检测到丢包 (2.4%)" }
+      - { color: "", text: "> 绕过防火墙A... [成功]" }
+      - { color: "", text: "> 已授权_用户ID: RUNNER_01" }
+    avatar_id: "ID: 8829-AX-09"
+    hud_cpu: "处理器负载"
+    hud_net: "网络上行"
+    hud_net_val: "1.2 GB/S"
+    hud_temp: "温度"
+    hud_temp_val: "72°C"
+    hud_live: "实时馈送: 系统日志_活跃"
     terminal_logs:
       - { color: "green", text: "初始化遥测数据..." }
       - { color: "white/60", text: "边缘服务器04 ping 响应: 12ms" }
@@ -64,19 +89,22 @@ pages:
       - { color: "green", text: "子系统心跳: 正常" }
 
   about:
-    breadcrumb: "ROOT@系统日志: 活跃入侵"
+    breadcrumb: "ROOT@夜之城数据库: 解密档案中"
     modules_title: "核心模块"
-    modules_status: "状态: 过载"
-    logs_title: "系统日志"
+    modules_status: "状态: 超频"
+    logs_title: "任务日志"
     logs_watermark: "日志"
-    quote: "\"AI不是取代开发者——而是放大开发者。搭建工作流，然后让工作流来造游戏。\""
+    quote: "\"从物联网的坑里开始焊传感器，重写技术栈去读取人类信号，现在我构建两者碰撞的世界。植入体在换——对极限的渴望从未终结。\""
     btn_cta: "启动协议"
 
   projects:
+    page_title: "项目档案"
     featured_badge: "紧急 // 推荐项目"
     featured_subtitle: "系统覆盖激活"
     featured_btn: "初始化演示"
     query_status: "查询状态:"
+    query_ready: "就绪"
+    query_suffix: "_条目已找到"
     encrypted_title: "加密条目"
     encrypted_desc: "该项目受保密协议约束。需要系统身份验证才能访问文档和设计图。"
     encrypted_progress: 33
@@ -94,10 +122,87 @@ pages:
     radar_labels: ["游戏开发", "AI工作流", "后端", "人机交互", "VR/MR", "物联网"]
     sync_label: "同步率"
     sync_value: "98.4%"
+    lvl_prefix: "等级"
+    file_prefix: "文件:"
+    locked_label: "已锁定"
+    accessing_prefix: "> 正在访问文件:"
+    sys_info: "内存地址: 0x4F92A1|缓冲区: 1024KB|数据流: 活跃|信号强度:"
+    sys_bar: "系统管理员 // 未知用户 // 路径: ROOT/SKILLS"
+    sys_buttons: ["重启系统", "加密数据", "清除缓存"]
+    shell_logs: ["[初始化终端]", "[运行扫描_V4.2.0]", "[运行环境: 生产]", "[捕获数据包: 829]", "[延迟: 14ms]"]
+    columns:
+      - title: "游戏开发"
+        icon: "sports_esports"
+        color: "#ff2d78"
+        skills:
+          - { name: "Unity / C#", level: 9, pct: 90 }
+          - { name: "游戏AI (FSM)", level: 8, pct: 80 }
+          - { name: "VR / MR (Quest 3)", level: 8, pct: 80 }
+          - { name: "关卡设计", level: 7, pct: 70 }
+          - { name: "Shader Graph", level: 6, pct: 60 }
+          - { name: "游戏商业化", level: 7, pct: 70 }
+      - title: "AI与开发"
+        icon: "layers"
+        color: "#00d4ff"
+        skills:
+          - { name: "AI工作流 (MCP/Skills)", level: 9, pct: 90 }
+          - { name: "Python", level: 8, pct: 80 }
+          - { name: "Web前端", level: 7, pct: 70 }
+          - { name: "物联网 (ESP32/MQTT)", level: 8, pct: 80 }
+          - { name: "后端 (Java/API)", level: 7, pct: 70 }
+          - { name: "Docker / 云服务", level: 6, pct: 60 }
+      - title: "人机交互 / UX"
+        icon: "visibility"
+        color: "#b43fff"
+        skills:
+          - { name: "用户研究", level: 9, pct: 90 }
+          - { name: "SPSS / NVivo", level: 8, pct: 80 }
+          - { name: "数据可视化", level: 8, pct: 80 }
+          - { name: "混合现实", level: 8, pct: 80 }
+          - { name: "交互设计", level: 7, pct: 70 }
     tools_title: "集成开发环境与工具"
     separator_text: "正在访问机密数据"
     separator_sub: "> 检测到个人子程序 > 加载业余协议..."
     offd_title: "业余协议"
+    protocols:
+      - id: "body"
+        sidebar_label: "义体"
+        sidebar_icon: "fitness_center"
+        sidebar_color: "#f5e642"
+        file_id: "PHYS-001"
+        code: "PHYS-001"
+        status: "状态: 超频 // 优先级: 关键"
+        access_label: "身体改造"
+        icons: ["hiking", "pool", "downhill_skiing", "directions_bike", "fitness_center", "sports_tennis"]
+        quote: "\"徒步山脊、桨板划水、冲浪白浪、粉雪滑行、骑行远征、攀岩越壁、羽毛球对杀。肉身不过是另一个可以超频的系统。\""
+        image: "/static/images/protocol-body.jpg"
+        stats: ["义体模块: 7", "地形兼容: 全扇区"]
+      - id: "synth"
+        sidebar_label: "合成"
+        sidebar_icon: "local_bar"
+        sidebar_color: "#00d4ff"
+        file_id: "CHEM-002"
+        code: "CHEM-002"
+        status: "状态: 酿造中 // 优先级: 中"
+        access_label: "合成化合物"
+        icons: ["local_bar", "sports_bar", "emoji_food_beverage"]
+        quote: "\"精酿啤酒鉴赏家。帝国世涛养魂，IPA提神，古斯解构，水果沙冰酸啤出其不意。随手调鸡尾酒。酿造不过是味道更好的化学实验。\""
+        image: ""
+        placeholder_icon: "science"
+        stats: ["啤酒风格: 4+", "调酒速度: 极速"]
+      - id: "audio"
+        sidebar_label: "音频"
+        sidebar_icon: "music_note"
+        sidebar_color: "#ff2d78"
+        file_id: "AUDIO-003"
+        code: "AUDIO-003"
+        status: "状态: 实时馈送 // 优先级: 低"
+        access_label: "音频义体"
+        icons: ["music_note", "headphones", "celebration"]
+        quote: "\"音乐节常客——有舞台有人群的地方就有我。吉他弹得足够烂，所以足够享受。每个频率都是义体能感受到的信号。\""
+        image: ""
+        placeholder_icon: "graphic_eq"
+        stats: ["音乐节记录: ∞", "吉他固件: v0.3_测试版"]
 
   contact:
     page_title: "建立连接.exe"
@@ -131,14 +236,45 @@ pages:
     success_btn: "[ 确认 ]"
     error_title: "传输失败"
     error_btn: "[ 重试 ]"
+    status_prefix: "状态:"
+    copy_toast: "数据已复制到剪贴板"
+    transmitting: "正在传输载荷..."
+    error_default: "发生错误。"
+    error_unknown: "未知错误"
+    error_network: "网络错误"
     dossier_title: "需要完整档案？"
     dossier_desc: "获取详细的经验日志、认证密钥和完整的生物特征职业历史（标准PDF格式）。"
     dossier_btn: "[ ↓ 下载档案 ]"
+    dossier_footer: "加密文件系统 // 四级权限"
 
   blog:
     page_title: "数据日志"
+    entries_suffix: "条目已找到"
     empty_title: "暂无博客"
+    empty_hint: "将 .md 文件添加到 content/blog/"
+    untitled: "无标题"
     back_label: "< 返回日志"
+
+  project_detail:
+    node_id: "节点ID: 77-ALPHA-4"
+    category_prefix: "项目://"
+    date_prefix: "日期:"
+    status_prefix: "状态:"
+    engine_prefix: "引擎:"
+    video_fallback: "您的浏览器不支持HTML5视频。"
+    video_label: "录制流: 实时馈送_001 // 安全线路"
+    specs_title: "技术参数"
+    tech_prefix: "技术_"
+    details_title: "任务详情"
+    logs_suffix: "_日志"
+    terminal_logs:
+      - { color: "secondary", text: "[14:22:09] 初始化项目数据流..." }
+      - { color: "on-surface", text: "[14:22:11] 握手成功 (延迟: 4.8ms)" }
+      - { color: "on-surface", text: "[14:23:45] 分配内存块 0x44F — 0x99A" }
+      - { color: "primary-container", text: "[14:25:12] 警告: 第7扇区信号衰减" }
+      - { color: "[#c70057]", text: "[14:25:13] 正在通过备用缓冲区重新路由..." }
+      - { color: "on-surface", text: "[14:25:15] 信号已稳定" }
+      - { color: "secondary", text: "[14:29:00] 渲染核心_活跃" }
 
   error_404:
     title: "信号丢失"
@@ -150,35 +286,47 @@ core_modules:
   - title: "游戏开发"
     icon: "videogame_asset"
     color: "primary"
-    description: "Unity/C#。AI驱动工作流。从原型到上线，全周期游戏研发。"
-    tags: ["UNITY", "C#", "AI工作流"]
+    description: "Unity/C#全周期研发。从GDD到最终版本。AI守护进程驱动管线——Midjourney负责美术、Claude负责代码架构、Suno负责音频。操作员把控愿景。"
+    tags: ["UNITY", "C#", "AI管线", "MIDJOURNEY", "SUNO"]
   - title: "AI架构"
     icon: "terminal"
     color: "secondary"
-    description: "MCP管线。Skills定制。AI增效研发，周期缩短50%。"
-    tags: ["MCP", "CLAUDE", "自动化"]
+    description: "自研工具链：Unity MCP Server控制编辑器、Claude Code Skills实现可复用工作流。多守护进程协同——Stitch(UI)、Nano Banana(视频)、Midjourney(图像)、Suno(音频)。本地模型部署支持离线作战。"
+    tags: ["MCP", "CLAUDE技能", "STITCH", "本地AI", "多模态"]
   - title: "人机交互研究"
     icon: "neurology"
     color: "tertiary"
-    description: "VR/MR原型开发。用户研究。连接人类感知与数字系统。"
-    tags: ["VR/MR", "META_QUEST"]
+    description: "与Games Workshop合作外勤——玩家行为分析、UX调研、桌游设计反馈。Meta Quest 3上的VR/MR原型开发。连接肉身空间与数字系统。"
+    tags: ["VR/MR", "META_QUEST", "GAMES_WORKSHOP", "用户研究"]
 
 # 系统日志翻译
 system_logs:
+  - date: "2026.03"
+    message: "守护进程阵列同步 // STITCH+MIDJOURNEY+SUNO已接入"
+    type: "info"
   - date: "2026.01"
-    message: "炸弹盲射 // AI工作流部署"
+    message: "炸弹盲射 // 首个AI增强项目交付"
     type: "info"
   - date: "2025.12"
-    message: "诺丁汉大学HCI硕士 // 学位获取"
+    message: "诺丁汉大学HCI硕士 // 神经接口认证获取"
+    type: "info"
+  - date: "2025.09"
+    message: "Unity MCP守护进程 // 自研工具链上线"
     type: "info"
   - date: "2025.05"
-    message: "Games Workshop // 用户研究启动"
+    message: "Games Workshop // 玩家分析外勤启动"
     type: "info"
-  - date: "错误"
-    message: "神经过载 // 音乐节太多了"
+  - date: "2024.09"
+    message: "职业路径偏转 // 物联网→人机交互→游戏开发"
+    type: "warning"
+  - date: "故障"
+    message: "突触过载 // 音乐节太多了"
     type: "error"
   - date: "2024.07"
-    message: "物联网工程学士 // 专业第一 GPA 4.1"
+    message: "物联网工程学士 // 顶级特工_GPA 4.1"
+    type: "info"
+  - date: "2020.09"
+    message: "首次义体安装 // ESP32植入体固件刷写"
     type: "info"
 
 contact_nodes:

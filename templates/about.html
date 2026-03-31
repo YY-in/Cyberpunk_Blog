@@ -65,7 +65,7 @@
 {% endblock %}
 
 {% block content %}
-<main class="relative pt-24 min-h-screen">
+<main class="relative pt-14 md:pt-24 min-h-screen">
   <section class="relative z-10 px-6 py-12 md:py-24 max-w-[1400px] mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-0 border-4 border-[#f5e642]/20 bg-black/50 overflow-hidden">
       <div class="lg:col-span-7 p-8 md:p-16 border-r-4 border-[#f5e642]/20 flex flex-col justify-center">
@@ -73,20 +73,20 @@
           <span class="w-12 h-[3px] bg-[#00d4ff] animate-pulse"></span>
           {{ pg.breadcrumb }}
         </div>
-        <h1 class="text-7xl md:text-[10rem] font-black font-headline tracking-tighter glitch-text text-[#f5e642] mb-6 flicker-animation leading-[0.85] italic">
+        <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-[10rem] font-black font-headline tracking-tighter glitch-text text-[#f5e642] mb-6 flicker-animation leading-tight md:leading-[0.85] italic">
           {{ cfg.owner.name | replace(' ', '<br/>') | safe }}
         </h1>
-        <div class="font-label text-2xl md:text-4xl text-[#00d4ff] typewriter-cursor flex items-center gap-4 bg-[#f5e642]/10 w-fit px-4 py-2 border-l-8 border-[#f5e642]">
+        <div class="font-label text-base sm:text-xl md:text-2xl lg:text-4xl text-[#00d4ff] typewriter-cursor flex items-center gap-2 md:gap-4 bg-[#f5e642]/10 w-fit px-3 py-1.5 md:px-4 md:py-2 border-l-4 md:border-l-8 border-[#f5e642]">
           <span class="opacity-50">$</span>
           <span id="typewriter-text">{{ cfg.owner.roles[0] }}</span>
         </div>
         <div class="mt-16 flex flex-wrap gap-8">
-          <a href="/projects" class="bg-[#f5e642] text-black px-10 py-5 font-label font-black tracking-widest text-lg flex items-center gap-4 hover:bg-[#ff2d78] hover:text-white transition-all [clip-path:polygon(0_0,100%_0,100%_70%,85%_100%,0_100%)] shadow-[10px_10px_0px_theme(colors.on-tertiary-container)] active:translate-x-1 active:translate-y-1 active:shadow-none">
+          <a href="/projects" class="bg-[#f5e642] text-black px-6 py-3 md:px-10 md:py-5 font-label font-black tracking-widest text-sm md:text-lg flex items-center gap-3 md:gap-4 hover:bg-[#ff2d78] hover:text-white transition-all [clip-path:polygon(0_0,100%_0,100%_70%,85%_100%,0_100%)] shadow-[4px_4px_0px_theme(colors.on-tertiary-container)] md:shadow-[10px_10px_0px_theme(colors.on-tertiary-container)] active:translate-x-1 active:translate-y-1 active:shadow-none">
             {{ pg.btn_cta }} <span class="material-symbols-outlined">bolt</span>
           </a>
         </div>
       </div>
-      <div class="lg:col-span-5 relative min-h-[500px] overflow-hidden group bg-neutral-900">
+      <div class="lg:col-span-5 relative min-h-64 md:min-h-80 lg:min-h-[500px] overflow-hidden group bg-neutral-900">
         <div class="absolute inset-0 mix-blend-overlay opacity-40 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] z-[3]"></div>
         <img class="w-full h-full object-cover grayscale brightness-50 contrast-125 group-hover:grayscale-0 group-hover:brightness-90 transition-all duration-1000 scale-110 group-hover:scale-100"
              src="{{ cfg.owner.avatar }}" alt="Profile"/>
@@ -101,10 +101,48 @@
     </div>
   </section>
 
+  <!-- PROFILE DOSSIER -->
+  <section class="relative z-10 px-6 py-24 border-t-4 border-[#00d4ff]/20">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-16 flex items-center gap-6">
+        <span class="material-symbols-outlined text-[#00d4ff] text-4xl" style="font-variation-settings: 'FILL' 1;">folder_special</span>
+        <div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-headline font-black text-[#00d4ff] italic tracking-tighter">{{ cfg.owner.dossier.title }}</h2>
+          <div class="font-label text-xs text-[#00d4ff]/60 tracking-widest mt-2">{{ cfg.owner.dossier.subtitle }}</div>
+        </div>
+      </div>
+      <div class="mb-16 bg-[#131318] p-8 md:p-12 border-l-8 border-[#f5e642] shadow-[10px_10px_0px_rgba(245,230,66,0.1)]">
+        <p class="font-body text-lg md:text-xl text-zinc-300 leading-relaxed">{{ cfg.owner.bio }}</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {% set dossier_items = [
+          (cfg.owner.dossier.origin_label, cfg.owner.dossier.origin, "#f5e642", "memory"),
+          (cfg.owner.dossier.evolution_label, cfg.owner.dossier.evolution, "#00d4ff", "neurology"),
+          (cfg.owner.dossier.current_label, cfg.owner.dossier.current, "#ff2d78", "bolt")
+        ] %}
+        {% for label, text, color, icon in dossier_items %}
+        <div class="border-t-4 pt-6" style="border-top-color: {{ color }};">
+          <div class="flex items-center gap-2 mb-4 font-label text-xs tracking-widest" style="color: {{ color }};">
+            <span class="material-symbols-outlined text-sm">{{ icon }}</span>
+            {{ label }}
+          </div>
+          <p class="font-body text-zinc-400 leading-relaxed text-sm">{{ text }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="mt-12 flex flex-wrap gap-3 font-label text-[10px] tracking-widest">
+        <span class="text-[#f5e642]/60 mr-2">{{ cfg.owner.dossier.career_targets_label }}:</span>
+        {% for target in cfg.owner.dossier.career_targets %}
+        <span class="px-3 py-1 border border-[#f5e642]/30 text-[#f5e642] bg-[#f5e642]/5">{{ target }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
   <section class="relative z-10 px-6 py-24 bg-black">
     <div class="max-w-7xl mx-auto">
       <div class="mb-20 flex items-center justify-between border-b-8 border-[#f5e642]/10 pb-8">
-        <h2 class="text-6xl md:text-8xl font-headline font-black text-white italic tracking-tighter">{{ pg.modules_title }}</h2>
+        <h2 class="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-headline font-black text-white italic tracking-tighter">{{ pg.modules_title }}</h2>
         <div class="hidden md:block font-label text-[#ff2d78] text-xl animate-pulse">{{ pg.modules_status }}</div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -139,14 +177,14 @@
         <div class="bg-[#131318] p-8 font-label text-sm text-[#00d4ff] border-l-8 border-[#00d4ff] shadow-[10px_10px_0px_rgba(0,212,255,0.1)]">
           {% for log in cfg.system_logs %}
           <div class="flex gap-4 {% if not loop.last %}mb-4 border-b border-[#00d4ff]/10 pb-2{% endif %}">
-            <span class="{% if log.type == 'error' %}text-[#ff2d78]{% else %}text-[#f5e642]{% endif %}">[{{ log.date }}]</span>
+            <span class="{% if log.type == 'error' %}text-[#ff2d78]{% elif log.type == 'warning' %}text-[#ff8c00]{% else %}text-[#f5e642]{% endif %}">[{{ log.date }}]</span>
             {{ log.message }}
           </div>
           {% endfor %}
         </div>
       </div>
       <div class="relative flex items-center">
-        <div class="absolute -top-10 -right-4 text-[150px] font-headline font-black text-[#f5e642]/5 pointer-events-none select-none italic">{{ pg.logs_watermark }}</div>
+        <div class="absolute -top-10 -right-4 text-6xl md:text-[150px] font-headline font-black text-[#f5e642]/5 pointer-events-none select-none italic hidden md:block">{{ pg.logs_watermark }}</div>
         <div class="relative z-10 border-t-8 border-[#ff2d78] pt-10">
           <p class="font-body text-2xl md:text-3xl font-light italic text-white leading-snug">{{ pg.quote }}</p>
           <div class="mt-8 flex gap-3">

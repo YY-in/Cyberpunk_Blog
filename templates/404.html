@@ -2,12 +2,14 @@
 {% set pg = cfg.pages.error_404 %}
 {% block title %}{{ cfg.site.title }} // 404{% endblock %}
 
-{% block extra_css %}
+{% block extra_css_block %}
+<style id="page-extra-css">
 /* P5R light mode: 404 */
 html.light h1.text-\[\#f5e642\]\/10 { color: rgba(217,35,35,0.1) !important; }
 html.light h2.text-\[\#ff2d78\] { color: #d92323 !important; }
 html.light a.bg-\[\#f5e642\] { background-color: #d92323 !important; color: #fff !important; }
 html.light a.bg-\[\#f5e642\]:hover { background-color: #0d0d0d !important; color: #fff !important; }
+</style>
 {% endblock %}
 
 {% block content %}

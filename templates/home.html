@@ -2,7 +2,8 @@
 {% set pg = cfg.pages.home %}
 {% block title %}{{ cfg.site.title }} // {{ pg.hero_line1 }}_{{ pg.hero_line2 }}{% endblock %}
 
-{% block extra_css %}
+{% block extra_css_block %}
+<style id="page-extra-css">
 /* ====== P5R Light Mode — Home Page Deep Fix ====== */
 
 /* --- Hero section left panel --- */
@@ -39,13 +40,21 @@ html.light main .text-on-surface-variant.font-body.text-lg {
   box-shadow: 4px 4px 0 #0d0d0d !important;
 }
 
-/* Boot log — boost opacity */
+/* Boot log — newspaper cutout system labels */
 html.light #boot-log-container {
-  opacity: 0.85 !important;
+  opacity: 0.9 !important;
 }
-html.light .boot-line { color: var(--p5-on-surface, #0d0d0d) !important; }
-html.light .boot-line[class*="text-[#f5e642]"] { color: var(--p5-red, #d92323) !important; }
-html.light .boot-line[class*="text-[#ff2d78]"] { color: var(--p5-red-dark, #732424) !important; }
+html.light .boot-line {
+  color: #333 !important;
+  font-family: 'Special Elite', monospace !important;
+  font-size: 11px !important;
+  letter-spacing: 2px !important;
+}
+html.light .boot-line[class*="text-[#f5e642]"] { color: #cc0000 !important; }
+html.light .boot-line[class*="text-[#ff2d78]"] {
+  color: #cc0000 !important;
+  font-family: 'Permanent Marker', cursive !important;
+}
 
 /* Primary CTA button */
 html.light a.bg-\[\#f5e642\].text-black {
@@ -279,12 +288,38 @@ html.light a.border.border-\[\#f5e642\]\/40.text-\[\#f5e642\]:hover {
   transition: none !important;
 }
 
-/* P5R hero title — Bebas Neue, no stroke */
-html.light h1.font-headline.text-white,
+/* P5R hero title — Newspaper Cutout letter chips */
 html.light h1.font-headline.glitch-hover-text {
-  font-family: 'Bebas Neue', sans-serif !important;
   -webkit-text-stroke: 0 !important;
-  letter-spacing: 0.05em !important;
+  transform: none !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0 !important;
+  background: none !important;
+}
+/* Hide original spans when cutout is active */
+html.light h1.font-headline.cutout-active > span,
+html.light h1.font-headline.cutout-active > br {
+  display: none !important;
+}
+/* Cutout wrapper — block layout so <br> works for line breaks */
+html.light .cutout-wrap {
+  display: block;
+}
+/* Individual letter chip */
+html.light .cutout-letter {
+  display: inline-block; font-weight: 900; padding: 3px 6px;
+  margin: 2px; line-height: 1; cursor: default;
+}
+/* Space between words */
+html.light .cutout-space {
+  width: 16px; display: inline-block;
+}
+/* Sinister headline below cutout */
+html.light .cutout-headline {
+  font-family: 'Special Elite', monospace;
+  font-size: 11px; letter-spacing: 4px; color: #666;
+  text-transform: uppercase; margin-top: 12px;
+  display: block;
 }
 
 /* P5R gold accent on kernel status */
@@ -292,15 +327,28 @@ html.light .font-label.text-xs.text-\[\#f5e642\] {
   color: #e8c840 !important;
 }
 
-/* P5R bio panel — red bg with white text, skewed */
+/* P5R bio panel — Calling Card paper texture */
 html.light main .text-on-surface-variant.font-body.text-lg {
-  background: #e61919 !important;
-  color: #fff !important;
-  padding: 1rem 1.5rem !important;
-  border-left: 5px solid #0d0d0d !important;
-  box-shadow: 4px 4px 0 #0d0d0d !important;
-  transform: skewX(-3deg) !important;
-  font-family: 'Barlow Condensed', sans-serif !important;
+  background: #f5f0e8 !important;
+  color: #333 !important;
+  padding: 1.25rem 1.5rem !important;
+  border-left: 5px solid #cc0000 !important;
+  border: 1px solid #ccc !important;
+  border-left: 5px solid #cc0000 !important;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.2) !important;
+  transform: rotate(-0.5deg) !important;
+  font-family: 'Special Elite', monospace !important;
+  font-size: 0.95rem !important;
+  line-height: 1.8 !important;
+  position: relative !important;
+}
+html.light main .text-on-surface-variant.font-body.text-lg::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: repeating-linear-gradient(0deg, transparent, transparent 22px, #ddd8cc 22px, #ddd8cc 23px) !important;
+  opacity: 0.35 !important;
+  pointer-events: none !important;
 }
 
 /* P5R bottom HUD — gold labels */
@@ -308,6 +356,7 @@ html.light section.bg-surface-container-low .font-label.text-\[10px\].text-\[\#f
   color: #e8c840 !important;
   font-weight: 700 !important;
 }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -402,5 +451,103 @@ html.light section.bg-surface-container-low .font-label.text-\[10px\].text-\[\#f
 {% block extra_js %}
 <script>
 if(window.BootAnimation) BootAnimation.init('#boot-log-container');
+
+/* P5R Newspaper Cutout hero title — deterministic (seeded by char index) */
+(function(){
+  var fonts = [
+    "'Bebas Neue', sans-serif",
+    "'Special Elite', monospace",
+    "'Anton', sans-serif",
+    "'Permanent Marker', cursive"
+  ];
+  var bgs = ['#F5F0E8', '#E8001A', '#222', '#FFFFFF'];
+  var sizes = [28, 32, 36, 40, 44, 48, 52];
+  var rotations = [-3, -2, -1.5, -0.5, 0.5, 1, 2, 3];
+
+  function pickSeeded(arr, seed, exclude) {
+    var filtered = arr.filter(function(v){ return v !== exclude; });
+    return filtered[seed % filtered.length];
+  }
+  function textColor(bg) {
+    return (bg === '#E8001A' || bg === '#222') ? '#fff' : '#111';
+  }
+
+  function buildCutout() {
+    var h1 = document.querySelector('h1.font-headline.glitch-hover-text');
+    if (!h1) return;
+
+    /* Remove previous cutout if exists */
+    var old = h1.querySelector('.cutout-wrap');
+    if (old) old.remove();
+    h1.classList.remove('cutout-active');
+
+    /* Only in light mode */
+    if (!document.documentElement.classList.contains('light')) return;
+
+    /* Get P5R text */
+    var spans = h1.querySelectorAll('[data-p5r]');
+    var line1 = '', line2 = '';
+    if (spans.length >= 1) line1 = (spans[0].getAttribute('data-p5r') || spans[0].textContent).trim();
+    if (spans.length >= 2) line2 = (spans[1].getAttribute('data-p5r') || spans[1].textContent).trim();
+    var words = (line1 + ' ' + line2).trim().toUpperCase().split(/\s+/);
+    if (!words.length) return;
+
+    var wrap = document.createElement('div');
+    wrap.className = 'cutout-wrap';
+    var lastFont = '', lastBg = '';
+    var globalIdx = 0;
+
+    for (var w = 0; w < words.length; w++) {
+      if (w > 0) {
+        wrap.appendChild(document.createElement('br'));
+        lastFont = ''; lastBg = '';
+      }
+      var word = words[w];
+      for (var j = 0; j < word.length; j++) {
+        var ch = word[j];
+        var seed = (globalIdx * 7 + ch.charCodeAt(0) * 13);
+        var font = pickSeeded(fonts, seed, lastFont);
+        var bg = pickSeeded(bgs, seed + 3, lastBg);
+        var size = sizes[(seed + 5) % sizes.length];
+        var rot = rotations[(seed + 2) % rotations.length];
+
+        var el = document.createElement('span');
+        el.className = 'cutout-letter';
+        el.textContent = ch;
+        el.style.fontFamily = font;
+        el.style.fontSize = size + 'px';
+        el.style.background = bg;
+        el.style.color = textColor(bg);
+        el.style.transform = 'rotate(' + rot + 'deg)';
+        wrap.appendChild(el);
+        lastFont = font;
+        lastBg = bg;
+        globalIdx++;
+      }
+    }
+
+    var headline = document.createElement('span');
+    headline.className = 'cutout-headline';
+    headline.textContent = 'PHANTOM THIEVES STRIKE AGAIN \u2014 CITY IN PANIC';
+    wrap.appendChild(headline);
+
+    h1.classList.add('cutout-active');
+    h1.appendChild(wrap);
+  }
+
+  /* Run after P5R text swap */
+  setTimeout(buildCutout, 100);
+
+  /* Re-run on theme toggle */
+  var obs = new MutationObserver(function(muts) {
+    for (var i = 0; i < muts.length; i++) {
+      if (muts[i].attributeName === 'class') { setTimeout(buildCutout, 50); return; }
+    }
+  });
+  obs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+  /* Expose for SPA re-init */
+  window.P5RCutout = { build: buildCutout };
+})();
 </script>
 {% endblock %}

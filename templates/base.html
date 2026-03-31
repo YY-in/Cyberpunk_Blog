@@ -5,7 +5,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>{% block title %}{{ cfg.site.title }}{% endblock %}</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Anton&family=Special+Elite&family=Permanent+Marker&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script>
@@ -323,6 +323,71 @@ html.light .font-headline { font-family: 'Bebas Neue', 'Orbitron', sans-serif !i
 html.light .font-body { font-family: 'Barlow Condensed', sans-serif !important; }
 html.light .font-label { font-family: 'Share Tech Mono', monospace !important; }
 html.light h1, html.light h2, html.light h3 { font-family: 'Bebas Neue', 'Orbitron', sans-serif !important; }
+
+/* ── P5R Punk Typography System ── */
+
+/* Ransom Note: mixed font/size/rotation word blocks for hero titles */
+html.light .p5r-ransom { display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: 6px; }
+html.light .p5r-ransom .r-block {
+  display: inline-block; font-weight: 900; line-height: 1; padding: 2px 8px;
+}
+html.light .p5r-ransom .r-red {
+  font-family: 'Bebas Neue', sans-serif; background: #e61919; color: #fff;
+  transform: rotate(-2deg);
+}
+html.light .p5r-ransom .r-paper {
+  font-family: 'Special Elite', monospace; background: #f5f0e8; color: #111;
+  transform: rotate(2deg); border: 2px solid #111;
+}
+html.light .p5r-ransom .r-ink {
+  font-family: 'Permanent Marker', cursive; color: #e61919;
+  transform: rotate(-1.5deg); text-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+}
+html.light .p5r-ransom .r-dark {
+  font-family: 'Anton', sans-serif; background: #111; color: #e61919;
+  transform: rotate(-1deg); border: 1px solid #e61919; letter-spacing: 2px;
+}
+
+/* Calling Card: paper-textured section headers */
+html.light .p5r-calling {
+  background: #f5f0e8; color: #111; padding: 20px 24px;
+  border: 1px solid #ccc; position: relative;
+  transform: rotate(-0.5deg); box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+  display: inline-block;
+}
+html.light .p5r-calling::after {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 22px, #ddd8cc 22px, #ddd8cc 23px);
+  opacity: 0.4; pointer-events: none;
+}
+html.light .p5r-calling-title {
+  font-family: 'Anton', sans-serif !important; color: #cc0000 !important;
+  transform: rotate(-1.5deg); display: inline-block; line-height: 1;
+  text-shadow: 2px 2px 0 rgba(136,0,0,0.25); position: relative; z-index: 1;
+}
+html.light .p5r-calling-body {
+  font-family: 'Special Elite', monospace !important; color: #333 !important;
+  margin-top: 10px; line-height: 1.8; position: relative; z-index: 1;
+}
+html.light .p5r-calling-sig {
+  font-family: 'Permanent Marker', cursive !important; color: #cc0000 !important;
+  margin-top: 12px; transform: rotate(-2deg); display: inline-block;
+  position: relative; z-index: 1;
+}
+
+/* Newspaper Cutout: individual letters with varied styles for accent text */
+html.light .p5r-news { display: inline-flex; align-items: flex-start; flex-wrap: wrap; gap: 0; }
+html.light .p5r-news .cut {
+  display: inline-block; font-weight: 900; padding: 2px 5px;
+  font-family: 'Special Elite', monospace; margin: 2px;
+}
+
+/* System label in punk style */
+html.light .p5r-sys-label {
+  font-family: 'Special Elite', monospace !important;
+  font-size: 11px !important; letter-spacing: 4px !important;
+  color: #444 !important; text-transform: uppercase !important;
+}
 
 /* -- Body & Background -- */
 html.light { background-color: var(--p5r-bg) !important; }
@@ -745,13 +810,13 @@ html.light .group:hover .group-hover\:text-black\/70 { color: rgba(255,255,255,0
 html.light .project-card { box-shadow: 3px 3px 0 rgba(230,25,25,0.15) !important; }
 html.light .project-card:hover { box-shadow: 5px 5px 0 var(--p5r-red) !important; transition: none !important; }
 
-{% block extra_css %}{% endblock %}
 /* Gate pre-close: prevent flash of content before JS runs */
 html.gate-preclose #gate-tl{left:0%!important;transition:none!important}
 html.gate-preclose #gate-br{right:0%!important;transition:none!important}
 html.gate-preclose #gate-scanlines{opacity:1!important;transition:none!important}
 html.gate-preclose #gate-hud{opacity:1!important;transition:none!important}
 </style>
+{% block extra_css_block %}{% endblock %}
 <script>
 /* Earliest possible check: if coming from gate transition, mark html so CSS
    keeps panels closed BEFORE first paint — eliminates the yellow flash. */
@@ -1283,18 +1348,16 @@ if(sessionStorage.getItem('gate-transition')==='1'){
             }
           });
 
-          // Inject extra_css from new page
-          var oldPageStyle = document.getElementById('spa-page-style');
+          // Inject page-specific extra_css from new page
+          var oldPageStyle = document.getElementById('page-extra-css');
           if (oldPageStyle) oldPageStyle.remove();
-          var newStyles = doc.querySelectorAll('head style');
-          newStyles.forEach(function(s){
-            if (s.textContent.indexOf('material-symbols') === -1) {
-              var ns = document.createElement('style');
-              ns.id = 'spa-page-style';
-              ns.textContent = s.textContent;
-              document.head.appendChild(ns);
-            }
-          });
+          var newPageStyle = doc.getElementById('page-extra-css');
+          if (newPageStyle) {
+            var ns = document.createElement('style');
+            ns.id = 'page-extra-css';
+            ns.textContent = newPageStyle.textContent;
+            document.head.appendChild(ns);
+          }
 
           // Update URL without reload
           history.pushState(null, '', fetchUrl);

@@ -2,7 +2,8 @@
 {% set pg = cfg.pages.projects %}
 {% block title %}{{ cfg.site.title }} // {{ pg.page_title }}{% endblock %}
 
-{% block extra_css %}
+{% block extra_css_block %}
+<style id="page-extra-css">
 .clip-br { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%); }
 .clip-tr { clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 0 100%); }
 .clip-cyber-card { clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%); }
@@ -13,54 +14,281 @@
 .glitch-hover:hover { animation: glitch 0.2s infinite; text-shadow: 2px 0 #ff2d78, -2px 0 #00d4ff; }
 .concrete-texture { background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); opacity: 0.05; }
 
-/* P5R light mode: override dynamic project card colors */
-html.light .project-card[style] { border-left-color: var(--p5-red, #d92323) !important; }
-html.light .project-card .font-headline a { color: var(--p5-red, #d92323) !important; }
-html.light .project-card .font-headline a:hover { color: var(--p5-red-dark, #732424) !important; }
-html.light .project-card .border-l-2[style] { border-left-color: rgba(217,35,35,0.2) !important; }
-html.light .project-card span[style*="background-color"] { background-color: rgba(217,35,35,0.06) !important; border-color: rgba(217,35,35,0.2) !important; color: var(--p5-red, #d92323) !important; }
-html.light .project-card a[style*="background-color"] { background-color: rgba(217,35,35,0.08) !important; color: var(--p5-red, #d92323) !important; border-color: var(--p5-red, #d92323) !important; }
-html.light .project-card div[style*="background-color"][class*="absolute"] { background-color: var(--p5-red, #d92323) !important; color: #fff !important; }
-html.light .filter-btn { color: var(--p5-on-surface, #0d0d0d) !important; border-color: rgba(217,35,35,0.3) !important; }
-html.light .filter-btn.bg-\[\#f5e642\] { background-color: var(--p5-red, #d92323) !important; color: #fff !important; }
+/* ===== P5R Light Mode — Project Cards ===== */
 
-/* P5R project cards — hard border, offset shadow */
+/* Glitch overlay for card images */
+html.light .project-card .h-44,
+html.light .project-card .h-56 {
+  position: relative;
+}
+html.light .project-card .h-44::after,
+html.light .project-card .h-56::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, rgba(230,25,25,0.2) 0%, rgba(255,255,255,0.05) 50%, rgba(230,25,25,0.2) 100%);
+  mix-blend-mode: multiply;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Card base: skewed, white, bold left border, block shadow */
 html.light .project-card {
-  border: 2px solid #e61919 !important;
-  outline: 2px solid rgba(230,25,25,0.15) !important;
-  outline-offset: 3px !important;
-  background: #faf7f3 !important;
+  transform: skewX(-12deg) !important;
+  background: #fff !important;
+  border-left: 8px solid #e61919 !important;
+  border-right: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  outline: none !important;
+  box-shadow: 8px 8px 0px 0px rgba(0,0,0,0.1) !important;
+  clip-path: none !important;
+  transition: none !important;
+  padding: 8px !important;
+  overflow: visible !important;
+}
+/* Unskew all inner content */
+html.light .project-card > * {
+  transform: skewX(12deg) !important;
+}
+
+/* Hover: red glow behind card via pseudo-element; remove shadow */
+html.light .project-card {
+  position: relative;
+}
+html.light .project-card::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  background: #e61919;
+  transform: skewX(0deg);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.15s;
+}
+html.light .project-card:hover::before {
+  opacity: 1;
 }
 html.light .project-card:hover {
-  background: #fff !important;
-  box-shadow: 5px 5px 0 #e61919 !important;
+  box-shadow: none !important;
+}
+
+/* Uniform image height */
+html.light .project-card .h-44,
+html.light .project-card .h-56 {
+  height: 220px !important;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%) !important;
+  overflow: hidden !important;
+}
+html.light .project-card img {
+  filter: grayscale(1) contrast(1.25) brightness(0.9) !important;
   transition: none !important;
 }
-/* Featured card — red with skew */
+html.light .project-card:hover img {
+  filter: none !important;
+}
+
+/* Category badge on image: yellow/tertiary style */
+html.light .project-card .absolute.top-0.right-0 {
+  background: #e8c840 !important;
+  color: #000 !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  box-shadow: 2px 2px 0px 0px rgba(0,0,0,1) !important;
+}
+
+/* Card body padding */
+html.light .project-card .p-8 {
+  padding: 16px 8px 8px !important;
+}
+
+/* Title: Bebas Neue, large, black; hover → white for contrast against red */
+html.light .project-card .font-headline {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 3rem !important;
+  line-height: 1 !important;
+  color: #000 !important;
+  text-transform: uppercase !important;
+  letter-spacing: -0.02em !important;
+  transform: none !important;
+}
+html.light .project-card .font-headline a {
+  color: #000 !important;
+}
+html.light .project-card:hover .font-headline a {
+  color: #000 !important;
+}
+
+/* Description: italic, neutral gray, fixed 2-line height */
+html.light .project-card .border-l-2 {
+  border-left-color: transparent !important;
+  padding-left: 0 !important;
+  color: #525252 !important;
+  font-style: italic !important;
+  min-height: 2.5em !important;
+}
+
+/* Tags: hide in P5R light mode */
+html.light .project-card .mb-6.flex.flex-wrap.gap-2 {
+  display: none !important;
+}
+
+/* Buttons area: hide the flex row, show only first as absolute VIEW_FILE */
+html.light .project-card .flex.gap-4.font-label {
+  position: static !important;
+}
+html.light .project-card .flex.gap-4.font-label a {
+  position: absolute !important;
+  bottom: -16px !important;
+  right: 16px !important;
+  transform: skewX(-12deg) !important;
+  background: #000 !important;
+  color: #fff !important;
+  border: none !important;
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 1.5rem !important;
+  padding: 4px 24px !important;
+  z-index: 20 !important;
+  box-shadow: 4px 4px 0px 0px rgba(230,25,25,0.3) !important;
+  flex: none !important;
+  width: auto !important;
+  display: inline-flex !important;
+  gap: 0 !important;
+}
+html.light .project-card .flex.gap-4.font-label a .material-symbols-outlined {
+  display: none !important;
+}
+/* Override button text to unified "View" */
+html.light .project-card .flex.gap-4.font-label a {
+  font-size: 0 !important;
+}
+html.light .project-card .flex.gap-4.font-label a::after {
+  content: 'View';
+  font-size: 1.5rem;
+  font-family: 'Bebas Neue', sans-serif;
+}
+html.light .project-card:hover .flex.gap-4.font-label a {
+  background: #000 !important;
+  color: #fff !important;
+  box-shadow: 4px 4px 0px 0px rgba(230,25,25,0.3) !important;
+}
+/* Hide second button (SOURCE) */
+html.light .project-card .flex.gap-4.font-label button {
+  display: none !important;
+}
+
+/* Grid layout — all cards same height across all rows */
+html.light #project-grid {
+  gap: 56px 40px !important;
+  grid-auto-rows: 1fr !important;
+}
+/* Card flex column so content fills height, button stays at bottom */
+html.light .project-card {
+  display: flex !important;
+  flex-direction: column !important;
+}
+html.light .project-card .p-8 {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+html.light .project-card .flex.gap-4.font-label {
+  margin-top: auto !important;
+}
+
+/* Encrypted placeholder card */
+html.light .project-card[data-category="all"] {
+  background: #f5f5f0 !important;
+  border-left-color: rgba(0,0,0,0.1) !important;
+}
+
+/* ===== Featured card — red with skew ===== */
 html.light .bg-\[\#f5e642\].clip-cyber-card {
   background: #e61919 !important;
   border-color: #e61919 !important;
-  transform: skewX(-2deg) !important;
+  transform: skewX(-12deg) !important;
+  clip-path: none !important;
+  border-right: 12px solid #e8c840 !important;
+  box-shadow: 12px 12px 0px 0px rgba(0,0,0,1) !important;
+}
+html.light .bg-\[\#f5e642\].clip-cyber-card > * {
+  transform: skewX(12deg) !important;
 }
 html.light .bg-\[\#f5e642\].clip-cyber-card .text-\[\#131318\] {
   color: #fff !important;
 }
-/* Filter buttons — P5R skewed */
+
+/* ===== Filter buttons — P5R skewed, bold ===== */
+/* Base (non-selected) state: muted look */
 html.light .filter-btn {
   transform: skewX(-12deg) !important;
-  font-family: 'Bebas Neue', sans-serif !important;
-  letter-spacing: 0.1em !important;
+  font-family: 'Epilogue', sans-serif !important;
+  font-weight: 900 !important;
+  font-size: 1.25rem !important;
+  padding: 12px 32px !important;
   transition: none !important;
+  color: #0d0d0d !important;
+  background: #e4e3de !important;
+  border: 2px solid rgba(0,0,0,0.12) !important;
 }
-html.light .filter-btn:hover {
+html.light .filter-btn > * {
+  display: inline-block;
+  transform: skewX(12deg);
+}
+/* Selected/active state: red bg, white text, block shadow */
+html.light .filter-btn.filter-active {
   background: #e61919 !important;
   color: #fff !important;
+  border-color: #e61919 !important;
+  box-shadow: 4px 4px 0px 0px rgba(0,0,0,1) !important;
 }
+html.light .filter-btn:hover:not(.filter-active) {
+  background: #000 !important;
+  color: #fff !important;
+  border-color: #000 !important;
+}
+
+/* Filter bar border */
+html.light section.border-b-4 {
+  border-bottom-color: rgba(0,0,0,0.1) !important;
+}
+
 /* Scanner line in featured → red */
 html.light .scanner-line {
   background: linear-gradient(90deg, transparent, #e61919, transparent) !important;
   box-shadow: 0 0 15px #e61919 !important;
 }
+
+/* Query status bar */
+html.light .border-l-4.border-\[\#00d4ff\] {
+  background: transparent !important;
+  color: #e61919 !important;
+  border-left-color: #e61919 !important;
+}
+
+/* Footer bar */
+html.light .border-t-4.border-\[\#f5e642\]\/30 {
+  border-top-color: rgba(0,0,0,0.1) !important;
+}
+html.light .border-l-4.border-\[\#ff2d78\] {
+  background: transparent !important;
+  border-left-color: #e61919 !important;
+  color: #e61919 !important;
+}
+
+/* Hide dark-mode texture patterns */
+html.light .pixel-bg { background-image: none !important; }
+html.light .scanline-overlay { opacity: 0 !important; }
+html.light .concrete-texture { opacity: 0.03 !important; }
+
+/* Grid overflow for absolute VIEW_FILE buttons and stagger */
+html.light #project-grid {
+  overflow: visible !important;
+  padding-bottom: 32px !important;
+}
+</style>
 {% endblock %}
 
 {% block content %}
@@ -118,7 +346,7 @@ html.light .scanner-line {
     <div class="flex flex-wrap gap-4 font-label" id="filter-bar">
       {% for f in cfg.project_filters %}
       {% if f.value == 'all' %}
-      <button class="filter-btn px-6 py-2 bg-[#f5e642] text-black font-black text-sm clip-tr glitch-hover" data-filter="all">{{ f.label }}</button>
+      <button class="filter-btn filter-active px-6 py-2 bg-[#f5e642] text-black font-black text-sm clip-tr glitch-hover" data-filter="all">{{ f.label }}</button>
       {% else %}
       <button class="filter-btn px-6 py-2 bg-surface-container-high text-[{{ f.color }}] font-black text-sm border-2 border-[{{ f.color }}]/30 hover:bg-[{{ f.color }}]/10 active:bg-[{{ f.color }}] active:text-black active:scale-95 transition-all uppercase" data-filter="{{ f.value }}">{{ f.label }}</button>
       {% endif %}
@@ -204,7 +432,11 @@ html.light .scanner-line {
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const filter = btn.dataset.filter;
-    document.querySelectorAll('.filter-btn').forEach(b => { if (b !== btn) b.classList.add('bg-surface-container-high'); });
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.remove('filter-active');
+      if (b !== btn) b.classList.add('bg-surface-container-high');
+    });
+    btn.classList.add('filter-active');
     btn.classList.remove('bg-surface-container-high');
     const cards = document.querySelectorAll('.project-card'); let count = 0;
     cards.forEach(card => { const cat = card.dataset.category; if (filter === 'all' || cat === filter || cat === 'all') { card.style.display = ''; count++; } else { card.style.display = 'none'; } });

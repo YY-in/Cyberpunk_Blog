@@ -2,7 +2,8 @@
 {% set pg = cfg.pages.contact %}
 {% block title %}{{ cfg.site.title }} // CONTACT{% endblock %}
 
-{% block extra_css %}
+{% block extra_css_block %}
+<style id="page-extra-css">
 .copy-toast { opacity: 0; transform: translateY(10px); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 .copy-toast.show { opacity: 1; transform: translateY(0); }
 .loading-shimmer { background: linear-gradient(90deg, transparent, rgba(245,230,66,0.2), transparent); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
@@ -10,6 +11,43 @@
 /* P5R light mode: Contact page */
 html.light .loading-shimmer { background: linear-gradient(90deg, transparent, rgba(217,35,35,0.15), transparent) !important; background-size: 200% 100%; }
 html.light header.mb-12.border-l-4.border-primary-container { border-left-color: #d92323 !important; }
+
+/* P5R punk typography — page title */
+html.light h1.font-headline.uppercase {
+  font-family: 'Anton', sans-serif !important;
+  background: #e61919 !important;
+  color: #fff !important;
+  padding: 4px 16px !important;
+  display: inline-block !important;
+  transform: rotate(-1.5deg) skewX(-4deg) !important;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.3) !important;
+}
+/* Port scan — typewriter */
+html.light .font-label.text-secondary.animate-pulse {
+  font-family: 'Special Elite', monospace !important;
+  letter-spacing: 3px !important;
+  animation: none !important;
+}
+/* Form title — Calling Card headline */
+html.light h2.font-headline {
+  font-family: 'Anton', sans-serif !important;
+  color: #cc0000 !important;
+  transform: rotate(-1deg) !important;
+  display: inline-block !important;
+  text-shadow: 2px 2px 0 rgba(136,0,0,0.2) !important;
+}
+/* Dossier section title */
+html.light section.bg-gradient-to-r h2 {
+  font-family: 'Permanent Marker', cursive !important;
+  transform: rotate(-1deg) !important;
+  display: inline-block !important;
+}
+/* Encryption label — newspaper style */
+html.light .font-label.animate-pulse[class*="text-\[10px\]"] {
+  font-family: 'Special Elite', monospace !important;
+  letter-spacing: 3px !important;
+  animation: none !important;
+}
 html.light .clip-path-diag { border-right-color: rgba(217,35,35,0.4) !important; }
 html.light .bg-emerald-500\/5 { background-color: rgba(52,211,153,0.05) !important; }
 html.light .border-emerald-500\/20 { border-color: rgba(52,211,153,0.2) !important; }
@@ -66,6 +104,7 @@ html.light section.bg-gradient-to-r a:hover {
   color: #e61919 !important;
   transition: none !important;
 }
+</style>
 {% endblock %}
 
 {% block content %}

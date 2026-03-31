@@ -2,13 +2,31 @@
 {% set pg = cfg.pages.blog %}
 {% block title %}{{ cfg.site.title }} // {{ pg.page_title }}{% endblock %}
 
-{% block extra_css %}
+{% block extra_css_block %}
+<style id="page-extra-css">
 /* P5R light mode: Blog page */
 html.light header.mb-16.border-l-4 { border-left-color: #d92323 !important; }
+/* P5R punk title — ransom note */
+html.light h1.font-headline.text-\[\#f5e642\] {
+  font-family: 'Anton', sans-serif !important;
+  background: #e61919 !important;
+  color: #fff !important;
+  padding: 4px 16px !important;
+  display: inline-block !important;
+  transform: rotate(-1.5deg) skewX(-4deg) !important;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.3) !important;
+}
+/* Entries count — typewriter */
+html.light .font-label.text-xs.text-\[\#00d4ff\] {
+  font-family: 'Special Elite', monospace !important;
+  letter-spacing: 3px !important;
+  color: #444 !important;
+}
 html.light .blog-summary { color: #3a2a2e !important; }
 html.light a.group.block.bg-surface-container-low { background-color: #faf7f3 !important; }
 html.light a.group.block:hover { background-color: #eae5df !important; }
 html.light .border-dashed.border-\[\#f5e642\]\/20 { border-color: rgba(217,35,35,0.2) !important; }
+</style>
 {% endblock %}
 
 {% block content %}

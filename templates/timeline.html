@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block title %}{{ cfg.site.title }} // PROJECT_TIMELINE{% endblock %}
 
-{% block extra_css %}
+{% block extra_css_block %}
+<style id="page-extra-css">
 .timeline-line {
   position: absolute;
   left: 50%;
@@ -90,6 +91,30 @@ html.light .timeline-connector { background: #d92323 !important; }
 html.light .timeline-card .bg-surface-container-low { background-color: #faf7f3 !important; }
 html.light .timeline-card:hover .bg-surface-container-low { background-color: #eae5df !important; }
 html.light .timeline-node:last-child .timeline-dot { background: #d92323 !important; box-shadow: 0 0 8px rgba(217,35,35,0.5) !important; }
+
+/* P5R punk typography — page title */
+html.light h1.font-headline.uppercase.italic {
+  font-family: 'Anton', sans-serif !important;
+  background: #e61919 !important;
+  color: #fff !important;
+  padding: 4px 16px !important;
+  display: inline-block !important;
+  transform: rotate(-1.5deg) skewX(-4deg) !important;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.3) !important;
+  font-style: normal !important;
+}
+/* Subtitle — typewriter cutout */
+html.light h1 + p.font-label {
+  font-family: 'Special Elite', monospace !important;
+  letter-spacing: 3px !important;
+  color: #444 !important;
+}
+/* END_OF_LOG marker */
+html.light .font-label.uppercase[class*="tracking-\[0.3em\]"] {
+  font-family: 'Permanent Marker', cursive !important;
+  color: #cc0000 !important;
+}
+</style>
 {% endblock %}
 
 {% block content %}

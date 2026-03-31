@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block title %}{{ cfg.site.title }} // BREACH_PROTOCOL{% endblock %}
 
-{% block extra_css %}
+{% block extra_css_block %}
+<style id="page-extra-css">
 /* P5R light mode: Hacker Game */
 html.light .bg-\[\#00d4ff\]\/5 { background-color: rgba(217,35,35,0.03) !important; }
 html.light .bg-\[\#ff2d78\]\/5 { background-color: rgba(217,35,35,0.03) !important; }
@@ -9,6 +10,7 @@ html.light .border-\[\#00d4ff\]\/20 { border-color: rgba(217,35,35,0.2) !importa
 html.light .border-\[\#f5e642\]\/10 { border-color: rgba(217,35,35,0.1) !important; }
 html.light #breach-idle .text-\[\#f5e642\]\/30 { color: rgba(217,35,35,0.3) !important; }
 html.light #breach-idle .text-\[\#f5e642\]\/40 { color: rgba(217,35,35,0.4) !important; }
+</style>
 {% endblock %}
 
 {% block content %}

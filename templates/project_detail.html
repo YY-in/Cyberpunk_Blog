@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block title %}{{ cfg.site.title }} // {{ meta.get('title', slug | upper) }}{% endblock %}
 
-{% block extra_css %}
+{% block extra_css_block %}
+<style id="page-extra-css">
 @keyframes scan {
   from { top: -10%; }
   to { top: 110%; }
@@ -16,6 +17,7 @@ html.light .clip-notch-tr .text-secondary-container { color: var(--p5-red, #d923
 html.light .border-\[\#c70057\]\/30 { border-color: rgba(217,35,35,0.3) !important; }
 html.light .text-\[\#c70057\] { color: var(--p5-red, #d92323) !important; }
 html.light .bg-\[\#c70057\] { background-color: var(--p5-red, #d92323) !important; }
+</style>
 {% endblock %}
 
 {% set pdpg = cfg.pages.project_detail %}

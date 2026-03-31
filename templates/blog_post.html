@@ -2,10 +2,12 @@
 {% set pg = cfg.pages.blog %}
 {% block title %}{{ cfg.site.title }} // {{ meta.get('title', 'POST') }}{% endblock %}
 
-{% block extra_css %}
+{% block extra_css_block %}
+<style id="page-extra-css">
 /* P5R light mode: Blog post */
 html.light header.mb-12.border-l-4 { border-left-color: #d92323 !important; }
 html.light article.bg-surface-container-low { background-color: #faf7f3 !important; border-top-color: #d92323 !important; }
+</style>
 {% endblock %}
 
 {% block content %}

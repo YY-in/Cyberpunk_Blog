@@ -2,7 +2,8 @@
 {% set pg = cfg.pages.about %}
 {% block title %}{{ cfg.site.title }} // ABOUT{% endblock %}
 
-{% block extra_css %}
+{% block extra_css_block %}
+<style id="page-extra-css">
 @keyframes glitch-anim {
   0% { text-shadow: 3px 0 #ff2d78, -3px 0 #00d4ff; transform: translate(0); }
   20% { text-shadow: -3px 0 #ff2d78, 3px 0 #00d4ff; transform: translate(-2px, 1px); }
@@ -233,11 +234,49 @@ html.light @keyframes glitch-anim {
   100% { text-shadow: -3px 0 #d92323, 3px 0 #732424; transform: translate(0); }
 }
 
-/* P5R about — Bebas Neue titles, skewed elements */
+/* P5R about — Ransom Note hero name */
 html.light h1.glitch-text.text-\[\#f5e642\] {
-  font-family: 'Bebas Neue', sans-serif !important;
-  color: #e61919 !important;
+  font-family: 'Anton', sans-serif !important;
+  color: #0d0d0d !important;
   text-shadow: none !important;
+  background: #e61919 !important;
+  color: #fff !important;
+  padding: 4px 16px !important;
+  display: inline-block !important;
+  transform: rotate(-1.5deg) skewX(-4deg) !important;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.3) !important;
+}
+/* Breadcrumb — typewriter cutout */
+html.light .font-label.text-\[\#00d4ff\] {
+  font-family: 'Special Elite', monospace !important;
+  color: #333 !important;
+  letter-spacing: 3px !important;
+}
+/* Section H2 titles — Calling Card style */
+html.light h2.text-\[\#00d4ff\],
+html.light h2.text-white.italic,
+html.light h2.text-\[\#f5e642\].italic {
+  font-family: 'Anton', sans-serif !important;
+  transform: rotate(-1deg) !important;
+  display: inline-block !important;
+  text-shadow: 2px 2px 0 rgba(136,0,0,0.2) !important;
+}
+/* Dossier subtitle — newspaper cutout */
+html.light .text-\[\#00d4ff\]\/60 {
+  font-family: 'Special Elite', monospace !important;
+  letter-spacing: 3px !important;
+}
+/* Logs watermark — Permanent Marker graffiti */
+html.light .font-headline.font-black.italic[class*="text-\[\#f5e642\]\/5"],
+html.light div[class*="text-\[\#f5e642\]\/5"].font-headline {
+  font-family: 'Permanent Marker', cursive !important;
+  opacity: 0.06 !important;
+}
+/* Quote — handwritten feel */
+html.light p.text-white.italic {
+  font-family: 'Special Elite', monospace !important;
+  color: #333 !important;
+  line-height: 1.8 !important;
 }
 html.light .flicker-animation { animation: none !important; }
 /* CTA button: skewed red */
@@ -273,6 +312,7 @@ html.light .h-2.w-8.bg-\[\#00d4ff\] { background: #e8c840 !important; }
 html.light .h-2.w-4.bg-\[\#ff2d78\] { background: #0d0d0d !important; }
 /* Watermark text */
 html.light .text-\[\#f5e642\]\/5 { color: rgba(230,25,25,0.04) !important; }
+</style>
 {% endblock %}
 
 {% block content %}

@@ -2,14 +2,22 @@
 {% set pg = cfg.pages.error_404 %}
 {% block title %}{{ cfg.site.title }} // 404{% endblock %}
 
+{% block extra_css %}
+/* P5R light mode: 404 */
+html.light h1.text-\[\#f5e642\]\/10 { color: rgba(217,35,35,0.1) !important; }
+html.light h2.text-\[\#ff2d78\] { color: #d92323 !important; }
+html.light a.bg-\[\#f5e642\] { background-color: #d92323 !important; color: #fff !important; }
+html.light a.bg-\[\#f5e642\]:hover { background-color: #0d0d0d !important; color: #fff !important; }
+{% endblock %}
+
 {% block content %}
 <main class="pt-14 md:pt-24 pb-32 flex items-center justify-center min-h-screen">
   <div class="text-center">
     <h1 class="font-headline text-7xl sm:text-8xl md:text-[12rem] font-black text-[#f5e642]/10 leading-none">404</h1>
     <div class="mt-[-4rem] relative z-10">
-      <h2 class="font-headline text-4xl text-[#ff2d78] font-bold mb-4">{{ pg.title }}</h2>
-      <p class="font-label text-on-surface-variant mb-8">{{ pg.message }}</p>
-      <a href="/" class="bg-[#f5e642] text-black font-bold py-3 px-8 uppercase tracking-widest text-sm hover:bg-white transition-all">{{ pg.btn }}</a>
+      <h2 class="font-headline text-4xl text-[#ff2d78] font-bold mb-4"><span data-p5r="{{ p5r.pages.error_404.title }}">{{ pg.title }}</span></h2>
+      <p class="font-label text-on-surface-variant mb-8"><span data-p5r="{{ p5r.pages.error_404.message }}">{{ pg.message }}</span></p>
+      <a href="/" class="bg-[#f5e642] text-black font-bold py-3 px-8 uppercase tracking-widest text-sm hover:bg-white transition-all"><span data-p5r="{{ p5r.pages.error_404.btn }}">{{ pg.btn }}</span></a>
     </div>
   </div>
 </main>

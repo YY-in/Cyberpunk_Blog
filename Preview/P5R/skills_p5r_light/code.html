@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>THE_PHANTOM | SKILLS_OVERRIDE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,900;1,900&amp;family=Public+Sans:wght@400;700;900&amp;family=Space+Grotesk:wght@300;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface": "#0d0d0d",
+              "secondary": "#454744",
+              "surface-container-high": "#e3e3de",
+              "tertiary": "#e8c840",
+              "inverse-surface": "#313030",
+              "inverse-on-surface": "#f5f5f0",
+              "background": "#f5f5f0",
+              "on-error": "#ffffff",
+              "on-secondary-fixed": "#1a1c19",
+              "tertiary-container": "#e8c840",
+              "on-surface-variant": "#5e3f3b",
+              "secondary-fixed-dim": "#c6c7c2",
+              "on-primary-container": "#ffffff",
+              "surface-variant": "#d8d8d3",
+              "surface": "#f5f5f0",
+              "secondary-fixed": "#e3e3de",
+              "on-error-container": "#410002",
+              "error-container": "#ffdad6",
+              "surface-tint": "#e61919",
+              "inverse-primary": "#ffb4aa",
+              "outline": "#857371",
+              "on-primary": "#ffffff",
+              "primary-container": "#e61919",
+              "on-secondary-container": "#1a1c19",
+              "surface-dim": "#deded9",
+              "on-background": "#0d0d0d",
+              "on-primary-fixed": "#410001",
+              "on-tertiary-fixed": "#221b00",
+              "tertiary-fixed-dim": "#e4c53d",
+              "on-secondary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-container": "#221b00",
+              "primary-fixed": "#ffdad5",
+              "secondary-container": "#d8d8d3",
+              "surface-container-highest": "#d8d8d3",
+              "outline-variant": "#d8c2bf",
+              "surface-container": "#ecece7",
+              "on-secondary-fixed-variant": "#454744",
+              "tertiary-fixed": "#ffe16c",
+              "on-tertiary-fixed-variant": "#544600",
+              "primary-fixed-dim": "#ffb4aa",
+              "error": "#ba1a1a",
+              "primary": "#e61919",
+              "surface-container-low": "#f0f0eb",
+              "surface-bright": "#fdfdf7",
+              "on-primary-fixed-variant": "#930006"
+            },
+            fontFamily: {
+              "headline": ["Epilogue"],
+              "body": ["Public Sans"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .skew-x-neg-12 { transform: skewX(-12deg); }
+        .skew-x-pos-12 { transform: skewX(12deg); }
+        .clip-hexagon {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+        .paper-grain {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        .instant-flip:hover {
+            background-color: #0d0d0d !important;
+            color: #f5f5f0 !important;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-white overflow-x-hidden">
+<div class="paper-grain"></div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-6 py-4 bg-transparent h-20">
+<div class="flex items-center gap-8">
+<div class="text-4xl font-black text-white bg-red-600 px-4 py-1 -skew-x-12 font-headline italic tracking-tighter">
+                THE_PHANTOM
+            </div>
+<nav class="hidden md:flex gap-4">
+<a class="bg-neutral-900 text-white px-6 py-2 -skew-x-12 border-r-4 border-red-800 font-headline uppercase italic tracking-tighter hover:bg-black transition-none" href="#">INFILTRATE</a>
+<a class="bg-red-600 text-white px-6 py-2 -skew-x-12 border-r-4 border-yellow-400 font-headline uppercase italic tracking-tighter hover:bg-black transition-none" href="#">RECORDS</a>
+<a class="bg-neutral-900 text-white px-6 py-2 -skew-x-12 border-r-4 border-red-800 font-headline uppercase italic tracking-tighter hover:bg-black transition-none" href="#">LOGS</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-red-600 text-3xl cursor-pointer">notifications</span>
+<span class="material-symbols-outlined text-red-600 text-3xl cursor-pointer">settings</span>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 md:px-12 max-w-7xl mx-auto">
+<!-- Hero Header -->
+<section class="relative mb-20">
+<div class="absolute -top-10 -left-10 text-[10rem] font-black opacity-5 font-headline -skew-x-12 select-none pointer-events-none text-black">
+                STATUS
+            </div>
+<h1 class="text-7xl md:text-9xl font-black font-headline -skew-x-12 italic tracking-tighter leading-none mb-4">
+                PROFICIENCY <span class="text-primary-container">MATRIX</span>
+</h1>
+<div class="h-2 w-64 bg-primary-container -skew-x-12"></div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Left Side: Radar Chart -->
+<div class="lg:col-span-5 relative group">
+<div class="absolute -inset-4 bg-primary-container/10 -skew-x-12 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative bg-surface-container-low p-8 border-l-[12px] border-primary-container -skew-x-6">
+<div class="flex justify-between items-center mb-8 -skew-x-neg-6">
+<h2 class="font-headline text-3xl italic font-black uppercase tracking-tighter">CORE_ATTRIBUTES</h2>
+<span class="font-label text-on-surface bg-tertiary/20 px-2">LVL_99</span>
+</div>
+<!-- Hexagonal Radar Chart Mockup -->
+<div class="relative w-full aspect-square flex items-center justify-center -skew-x-neg-6">
+<!-- Hexagon Grid Lines -->
+<div class="absolute w-full h-full border-[1px] border-black/10 clip-hexagon scale-100"></div>
+<div class="absolute w-full h-full border-[1px] border-black/10 clip-hexagon scale-75"></div>
+<div class="absolute w-full h-full border-[1px] border-black/10 clip-hexagon scale-50"></div>
+<div class="absolute w-full h-full border-[1px] border-black/10 clip-hexagon scale-25"></div>
+<!-- Data Fill (Gold) -->
+<div class="absolute w-full h-full bg-tertiary/60 clip-hexagon scale-[0.85] border-2 border-tertiary shadow-[0_0_40px_rgba(232,200,64,0.2)]"></div>
+<!-- Axis Labels -->
+<div class="absolute top-0 font-label text-sm font-bold text-on-surface">LOGIC</div>
+<div class="absolute bottom-0 font-label text-sm font-bold text-on-surface">STAMINA</div>
+<div class="absolute top-1/4 left-0 font-label text-sm font-bold text-on-surface">CREATIVITY</div>
+<div class="absolute top-1/4 right-0 font-label text-sm font-bold text-on-surface">EMPATHY</div>
+<div class="absolute bottom-1/4 left-0 font-label text-sm font-bold text-on-surface">DEXTERITY</div>
+<div class="absolute bottom-1/4 right-0 font-label text-sm font-bold text-on-surface">CHARISMA</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Skill Columns -->
+<div class="lg:col-span-7 flex flex-col gap-8">
+<!-- Skill Block 1 -->
+<div class="relative bg-surface-container-high border-r-8 border-primary-container p-6 -skew-x-12 transform hover:translate-x-4 transition-transform cursor-pointer">
+<div class="absolute -top-4 -left-4 bg-tertiary text-black font-label font-bold px-4 py-1 -skew-x-12">MAX_RANK</div>
+<div class="flex justify-between items-end mb-4 -skew-x-neg-12">
+<h3 class="font-headline text-4xl font-black italic tracking-tighter">GAME DEV</h3>
+<span class="font-label text-xl">100%</span>
+</div>
+<div class="space-y-3 -skew-x-neg-12">
+<div class="flex items-center gap-4">
+<span class="w-24 font-label text-xs uppercase opacity-60">Engineering</span>
+<div class="flex-1 h-3 bg-surface-variant flex gap-1">
+<div class="h-full w-full bg-primary-container"></div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="w-24 font-label text-xs uppercase opacity-60">Physics</span>
+<div class="flex-1 h-3 bg-surface-variant flex gap-1">
+<div class="h-full w-[85%] bg-primary-container"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Skill Block 2 -->
+<div class="relative bg-surface-container-high border-r-8 border-primary-container p-6 -skew-x-12 transform hover:translate-x-4 transition-transform cursor-pointer">
+<div class="flex justify-between items-end mb-4 -skew-x-neg-12">
+<h3 class="font-headline text-4xl font-black italic tracking-tighter">FULLSTACK</h3>
+<span class="font-label text-xl">92%</span>
+</div>
+<div class="space-y-3 -skew-x-neg-12">
+<div class="flex items-center gap-4">
+<span class="w-24 font-label text-xs uppercase opacity-60">Architecture</span>
+<div class="flex-1 h-3 bg-surface-variant flex gap-1">
+<div class="h-full w-[95%] bg-on-surface"></div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="w-24 font-label text-xs uppercase opacity-60">Deployment</span>
+<div class="flex-1 h-3 bg-surface-variant flex gap-1">
+<div class="h-full w-[80%] bg-on-surface"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Skill Block 3 -->
+<div class="relative bg-surface-container-high border-r-8 border-primary-container p-6 -skew-x-12 transform hover:translate-x-4 transition-transform cursor-pointer">
+<div class="flex justify-between items-end mb-4 -skew-x-neg-12">
+<h3 class="font-headline text-4xl font-black italic tracking-tighter">HCI</h3>
+<span class="font-label text-xl">88%</span>
+</div>
+<div class="space-y-3 -skew-x-neg-12">
+<div class="flex items-center gap-4">
+<span class="w-24 font-label text-xs uppercase opacity-60">Cognitive</span>
+<div class="flex-1 h-3 bg-surface-variant flex gap-1">
+<div class="h-full w-[88%] bg-tertiary"></div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="w-24 font-label text-xs uppercase opacity-60">Ergonomics</span>
+<div class="flex-1 h-3 bg-surface-variant flex gap-1">
+<div class="h-full w-[75%] bg-tertiary"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Hobby Dossier Section -->
+<section class="mt-32">
+<div class="flex items-center gap-6 mb-12">
+<h2 class="font-headline text-5xl font-black italic -skew-x-12 tracking-tighter">CONFIDENTIAL_DOSSIER</h2>
+<div class="flex-1 h-[2px] bg-outline-variant/50"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Dossier Card 1 -->
+<div class="bg-surface-container p-6 relative group overflow-hidden border-b-4 border-primary-container">
+<div class="absolute -right-8 -top-8 w-32 h-32 bg-primary-container/10 -rotate-12 group-hover:bg-primary-container/20 transition-colors"></div>
+<div class="flex justify-between items-start mb-6">
+<img alt="Profile" class="w-16 h-16 bg-white grayscale transition-all border-2 border-black" data-alt="Stylized character portrait icon in Persona 5 art style with sharp shadows and high contrast monochrome theme" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB42AC4uPOWpiMrky6fuwyEkuGC97pOsf3lVTcgpXzZRC3IVpiUXThqxBfFURJC51v8LwMJuc_STxyLpWkQY_UJvBO2moAOXWXuXLGBt7iNFNu7XXKNT2wUoeSolgwqDdgdF8oEwl_EZs7FpNUNvubr86ndSH6Ddkj4ypKyfGgFkYjU5sxJ5rj0Z_DIDlZMzERCI14QTDkFqTpCkRnLHeJd2KdGr-6zNu4JSfobFEd_AEA14M-JQKSyI2AfYixjSLfB3kDeY9HkZv8"/>
+<div class="text-right">
+<div class="bg-tertiary text-black font-label text-[10px] font-bold px-2 py-0.5 mb-1 -skew-x-12 inline-block">ARCANA: THE_FOOL</div>
+<div class="font-headline text-xl italic font-black">VOLTAIRE</div>
+</div>
+</div>
+<div class="space-y-2 mb-6">
+<div class="h-[1px] bg-outline-variant/80 w-full"></div>
+<p class="font-label text-xs leading-relaxed opacity-80">SUBJECT DEMONSTRATES EXTREME PROFICIENCY IN URBAN EXPLORATION. FREQUENTLY SEEN IN FORGOTTEN SECTORS.</p>
+<div class="h-[1px] bg-outline-variant/80 w-full"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-[10px] font-label font-bold tracking-[0.2em] opacity-40">CLASSIFIED_FILE_#092</span>
+<span class="material-symbols-outlined text-primary-container text-xl">folder_open</span>
+</div>
+</div>
+<!-- Dossier Card 2 -->
+<div class="bg-surface-container p-6 relative group overflow-hidden border-b-4 border-primary-container">
+<div class="absolute -right-8 -top-8 w-32 h-32 bg-primary-container/10 -rotate-12 group-hover:bg-primary-container/20 transition-colors"></div>
+<div class="flex justify-between items-start mb-6">
+<img alt="Profile" class="w-16 h-16 bg-white grayscale transition-all border-2 border-black" data-alt="Anime style avatar with sharp hair and expressive features in high-contrast red and black background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa-1HRT3FgteG9oc8EzPwtNDE0aZevekB5jda07K6kjYjVvz2b5rAwhWL6REuUavlUG93Yvl7uG8QVDzWIfu2vCI6t2ub5uJEAZ5l8LO56aFkzOC-XxLSJ7yK9jTjOXtqklGCDFbqmxOohP30t8nNHPoVk5Qypbazf_5NPE9a5ahqhj_eNQTe4QLhL1kTlcHOcHGQebFVVD2DzeONJvsT86DrQML4dUmxoIfAJK-S16cc_pmV7VCiknsjU5DAqVuZ8MGDC9c8Q8yE"/>
+<div class="text-right">
+<div class="bg-tertiary text-black font-label text-[10px] font-bold px-2 py-0.5 mb-1 -skew-x-12 inline-block">ARCANA: DEATH</div>
+<div class="font-headline text-xl italic font-black">CYPHER</div>
+</div>
+</div>
+<div class="space-y-2 mb-6">
+<div class="h-[1px] bg-outline-variant/80 w-full"></div>
+<p class="font-label text-xs leading-relaxed opacity-80">CRYPTOGRAPHY SPECIALIST. OBSESSED WITH ANALOG SYNTHESIZERS AND NOISE ART. MINIMAL SOCIAL INTERACTION.</p>
+<div class="h-[1px] bg-outline-variant/80 w-full"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-[10px] font-label font-bold tracking-[0.2em] opacity-40">CLASSIFIED_FILE_#114</span>
+<span class="material-symbols-outlined text-primary-container text-xl">folder_open</span>
+</div>
+</div>
+<!-- Dossier Card 3 -->
+<div class="bg-surface-container p-6 relative group overflow-hidden border-b-4 border-primary-container">
+<div class="absolute -right-8 -top-8 w-32 h-32 bg-primary-container/10 -rotate-12 group-hover:bg-primary-container/20 transition-colors"></div>
+<div class="flex justify-between items-start mb-6">
+<img alt="Profile" class="w-16 h-16 bg-white grayscale transition-all border-2 border-black" data-alt="Stylized female character portrait in a dossier format with dramatic shadow lighting and high contrast red accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa7XpUMlZLApbzAzN57ohYH8EgK5TeRaExQy8WAkA-JCXS4DVS4eVgQv4fHdzaqVPnzpMJvz6kUW7JxpEr9UKWdz89slKI25RUBsUfYkgL8jQtQ8e3d9821s8mFctidD6h5elGLtyx3nXcQdulQyJwP8QUilabKX1d7Oy7JlRkYoB9VU40TAPZFcUNvlR8k3l6uJ-4BExxRzqG3Y67B9y4rZNnPhATkqDWz6Et8FpO9abKRTeraQ2MZSB5CV6xkd6GT23F6q9IEFQ"/>
+<div class="text-right">
+<div class="bg-tertiary text-black font-label text-[10px] font-bold px-2 py-0.5 mb-1 -skew-x-12 inline-block">ARCANA: JUDGMENT</div>
+<div class="font-headline text-xl italic font-black">MORGAN</div>
+</div>
+</div>
+<div class="space-y-2 mb-6">
+<div class="h-[1px] bg-outline-variant/80 w-full"></div>
+<p class="font-label text-xs leading-relaxed opacity-80">HIGH-STAKES GO PLAYER. UTILIZES UNCONVENTIONAL TACTICS TO DISRUPT OPPONENTS. VISUALLY REACTIVE.</p>
+<div class="h-[1px] bg-outline-variant/80 w-full"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-[10px] font-label font-bold tracking-[0.2em] opacity-40">CLASSIFIED_FILE_#205</span>
+<span class="material-symbols-outlined text-primary-container text-xl">folder_open</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="relative w-full py-12 px-10 flex flex-col items-start gap-8 overflow-hidden bg-white border-t-8 border-red-600">
+<div class="text-8xl font-black opacity-10 absolute -bottom-4 -left-4 -skew-x-12 pointer-events-none font-headline text-on-surface">THE_PHANTOM</div>
+<div class="flex flex-col md:flex-row justify-between w-full z-10 gap-8">
+<div class="space-y-4">
+<div class="font-headline text-2xl italic font-black text-red-600 -skew-x-12">SYSTEM_OVERRIDE_2024</div>
+<div class="flex gap-6">
+<a class="font-label text-on-surface/40 font-bold uppercase tracking-widest -skew-x-12 hover:text-red-500 transition-none" href="#">STRIKE</a>
+<a class="font-label text-tertiary font-bold uppercase tracking-widest -skew-x-12 hover:text-red-500 transition-none" href="#">VANISH</a>
+<a class="font-label text-on-surface/40 font-bold uppercase tracking-widest -skew-x-12 hover:text-red-500 transition-none" href="#">SILENCE</a>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-red-600">share</span>
+<span class="material-symbols-outlined text-red-600">terminal</span>
+<span class="material-symbols-outlined text-red-600">shield</span>
+</div>
+<div class="font-label text-[10px] text-on-surface/20 tracking-[0.5em] uppercase">ACCESS_DENIED_UNLESS_AUTHORIZED</div>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<div class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container flex justify-around items-center py-4 z-50 border-t-4 border-primary-container">
+<button class="flex flex-col items-center gap-1 text-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[10px] font-label font-bold uppercase">Profile</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface/40">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-[10px] font-label font-bold uppercase">Explore</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface/40">
+<span class="material-symbols-outlined">database</span>
+<span class="text-[10px] font-label font-bold uppercase">Archive</span>
+</button>
+</div>
+</body></html>

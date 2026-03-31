@@ -6,6 +6,16 @@
   from { top: -10%; }
   to { top: 110%; }
 }
+
+/* P5R light mode: override dynamic detail page colors */
+html.light .clip-hero[style] { border-left-color: var(--p5-red, #d92323) !important; }
+html.light .clip-hero .glitch-text { color: var(--p5-on-surface, #0d0d0d) !important; }
+html.light .clip-hero .bg-\[\#c70057\] { background-color: var(--p5-red, #d92323) !important; }
+html.light .clip-notch-tr.border-secondary-container { border-left-color: var(--p5-red, #d92323) !important; }
+html.light .clip-notch-tr .text-secondary-container { color: var(--p5-red, #d92323) !important; }
+html.light .border-\[\#c70057\]\/30 { border-color: rgba(217,35,35,0.3) !important; }
+html.light .text-\[\#c70057\] { color: var(--p5-red, #d92323) !important; }
+html.light .bg-\[\#c70057\] { background-color: var(--p5-red, #d92323) !important; }
 {% endblock %}
 
 {% set pdpg = cfg.pages.project_detail %}

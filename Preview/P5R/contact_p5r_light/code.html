@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,900;1,900&amp;family=Public+Sans:wght@400;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface": "#0d0d0d",
+              "secondary": "#2f312e",
+              "surface-container-high": "#e8e8e3",
+              "tertiary": "#e8c840",
+              "inverse-surface": "#131313",
+              "inverse-on-surface": "#f5f5f0",
+              "background": "#f5f5f0",
+              "on-error": "#ffffff",
+              "on-secondary-fixed": "#1a1c19",
+              "tertiary-container": "#e8c840",
+              "on-surface-variant": "#454744",
+              "secondary-fixed-dim": "#c6c7c2",
+              "on-primary-container": "#ffffff",
+              "surface-variant": "#d9d9d4",
+              "surface": "#f5f5f0",
+              "secondary-fixed": "#e3e3de",
+              "on-error-container": "#ffdad6",
+              "error-container": "#93000a",
+              "surface-tint": "#e61919",
+              "inverse-primary": "#ffb4aa",
+              "outline": "#797775",
+              "on-primary": "#ffffff",
+              "primary-container": "#e61919",
+              "on-secondary-container": "#1a1c19",
+              "surface-dim": "#d9d9d4",
+              "on-background": "#0d0d0d",
+              "on-primary-fixed": "#410001",
+              "on-tertiary-fixed": "#221b00",
+              "tertiary-fixed-dim": "#e4c53d",
+              "on-secondary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-container": "#221b00",
+              "primary-fixed": "#ffdad5",
+              "secondary-container": "#e3e3de",
+              "surface-container-highest": "#d9d9d4",
+              "outline-variant": "#c9c7c5",
+              "surface-container": "#ededeb",
+              "on-secondary-fixed-variant": "#454744",
+              "tertiary-fixed": "#ffe16c",
+              "on-tertiary-fixed-variant": "#544600",
+              "primary-fixed-dim": "#ffb4aa",
+              "error": "#ba1a1a",
+              "primary": "#e61919",
+              "surface-container-low": "#f5f5f0",
+              "surface-bright": "#fcfcf7",
+              "on-primary-fixed-variant": "#930006"
+            },
+            fontFamily: {
+              "headline": ["Epilogue"],
+              "body": ["Public Sans"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .skew-p5 { transform: skewX(-12deg); }
+      .skew-p5-reverse { transform: skewX(12deg); }
+      .grain-overlay {
+        pointer-events: none;
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        opacity: 0.05;
+      }
+      .instant-flip:hover {
+        background-color: #0d0d0d !important;
+        color: #f5f5f0 !important;
+        transition: none !important;
+      }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-tertiary selection:text-surface overflow-x-hidden">
+<div class="grain-overlay"></div>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-6 py-4 bg-transparent">
+<div class="flex items-center gap-4">
+<div class="text-4xl font-black text-white bg-primary-container px-4 py-1 -skew-x-12 font-headline italic tracking-tighter shadow-[4px_4px_0px_#0d0d0d]">
+                THE_PHANTOM
+            </div>
+</div>
+<nav class="hidden md:flex items-center gap-2">
+<a class="bg-neutral-900 text-white px-6 py-2 -skew-x-12 border-r-4 border-red-800 font-headline uppercase tracking-tighter italic hover:bg-red-600 transition-none" href="#">INFILTRATE</a>
+<a class="bg-neutral-900 text-white px-6 py-2 -skew-x-12 border-r-4 border-red-800 font-headline uppercase tracking-tighter italic hover:bg-red-600 transition-none" href="#">LOGS</a>
+<a class="bg-primary-container text-white px-6 py-2 -skew-x-12 border-r-4 border-tertiary font-headline uppercase tracking-tighter italic hover:bg-neutral-900 transition-none" href="#">RECORDS</a>
+</nav>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-primary-container cursor-pointer text-3xl">notifications</span>
+<span class="material-symbols-outlined text-primary-container cursor-pointer text-3xl">settings</span>
+</div>
+</header>
+<main class="min-h-screen relative pt-24 overflow-hidden">
+<!-- Background Decorative Elements -->
+<div class="fixed left-8 top-0 bottom-0 w-2 bg-primary-container z-0 opacity-80"></div>
+<div class="fixed -right-20 top-1/2 -translate-y-1/2 rotate-90 pointer-events-none z-0">
+<span class="text-[12rem] font-headline font-black text-on-surface/5 uppercase italic tracking-tighter -skew-x-12 select-none">CONTACT</span>
+</div>
+<div class="container mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 py-12">
+<!-- Left Side: Compose Transmission -->
+<div class="lg:col-span-7 flex flex-col items-start">
+<div class="relative w-full max-w-2xl bg-primary-container p-12 -skew-x-12 shadow-[40px_40px_0px_rgba(13,13,13,0.1)] border-r-[12px] border-neutral-900">
+<div class="skew-x-12">
+<h1 class="font-headline text-6xl font-black text-white italic uppercase tracking-tighter mb-8 leading-none">
+                            COMPOSE<br/><span class="text-tertiary">TRANSMISSION</span>
+</h1>
+<form class="space-y-10">
+<div class="relative">
+<label class="block font-label text-white/70 uppercase tracking-widest text-xs mb-2">IDENTIFICATION_ID</label>
+<input class="w-full bg-transparent border-0 border-b-4 border-neutral-900/40 text-white font-headline text-2xl placeholder:text-white/30 focus:ring-0 focus:border-tertiary focus:-skew-x-3 transition-all duration-75 uppercase" placeholder="SUBJECT_NAME" type="text"/>
+</div>
+<div class="relative">
+<label class="block font-label text-white/70 uppercase tracking-widest text-xs mb-2">FREQUENCY_LINK</label>
+<input class="w-full bg-transparent border-0 border-b-4 border-neutral-900/40 text-white font-headline text-2xl placeholder:text-white/30 focus:ring-0 focus:border-tertiary focus:-skew-x-3 transition-all duration-75 uppercase" placeholder="SECURE_CHANNEL@PHANTOM.NET" type="email"/>
+</div>
+<div class="relative">
+<label class="block font-label text-white/70 uppercase tracking-widest text-xs mb-2">INTEL_CONTENT</label>
+<textarea class="w-full bg-transparent border-0 border-b-4 border-neutral-900/40 text-white font-headline text-2xl placeholder:text-white/30 focus:ring-0 focus:border-tertiary focus:-skew-x-3 transition-all duration-75 uppercase resize-none" placeholder="STATE YOUR PURPOSE..." rows="4"></textarea>
+</div>
+<div class="pt-4">
+<button class="group relative bg-neutral-900 text-white px-12 py-5 font-headline text-3xl font-black uppercase italic tracking-tighter hover:bg-white hover:text-neutral-900 transition-none active:scale-95 shadow-[8px_8px_0px_#e8c840]" type="submit">
+                                    SEND CALL
+                                    <div class="absolute inset-0 bg-white opacity-0 group-hover:animate-pulse pointer-events-none"></div>
+</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<!-- Right Side: Confidential Intel Dossiers -->
+<div class="lg:col-span-5 space-y-8">
+<div class="bg-neutral-900 p-4 -skew-x-12 border-l-8 border-tertiary w-fit">
+<h2 class="skew-x-12 font-headline text-2xl font-black italic text-white uppercase tracking-tight">CONFIDENTIAL_INTEL</h2>
+</div>
+<div class="space-y-6">
+<!-- Dossier Item 1 -->
+<div class="group relative bg-surface-container p-6 border-r-8 border-primary-container -skew-x-12 hover:bg-neutral-900 hover:text-white transition-none cursor-pointer border border-neutral-200">
+<div class="skew-x-12 flex justify-between items-center">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div>
+<p class="font-label text-primary-container group-hover:text-tertiary text-xs tracking-widest uppercase">ENCRYPTED_SIGNAL</p>
+<h3 class="font-headline text-2xl font-black uppercase italic leading-none">THE_HIEROPHANT</h3>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary-container group-hover:text-white group-hover:translate-x-2 transition-transform">arrow_forward_ios</span>
+</div>
+</div>
+<!-- Dossier Item 2 -->
+<div class="group relative bg-surface-container p-6 border-r-8 border-primary-container -skew-x-12 hover:bg-neutral-900 hover:text-white transition-none cursor-pointer border border-neutral-200">
+<div class="skew-x-12 flex justify-between items-center">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div>
+<p class="font-label text-primary-container group-hover:text-tertiary text-xs tracking-widest uppercase">SECURE_DMS</p>
+<h3 class="font-headline text-2xl font-black uppercase italic leading-none">SHADOW_CHEST</h3>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary-container group-hover:text-white group-hover:translate-x-2 transition-transform">arrow_forward_ios</span>
+</div>
+</div>
+<!-- Dossier Item 3 -->
+<div class="group relative bg-surface-container p-6 border-r-8 border-primary-container -skew-x-12 hover:bg-neutral-900 hover:text-white transition-none cursor-pointer border border-neutral-200">
+<div class="skew-x-12 flex justify-between items-center">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div>
+<p class="font-label text-primary-container group-hover:text-tertiary text-xs tracking-widest uppercase">PUBLIC_BROADCAST</p>
+<h3 class="font-headline text-2xl font-black uppercase italic leading-none">VELVET_ROOM</h3>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary-container group-hover:text-white group-hover:translate-x-2 transition-transform">arrow_forward_ios</span>
+</div>
+</div>
+</div>
+<!-- Visual Asset Overlap -->
+<div class="relative h-64 mt-12 overflow-hidden border-8 border-primary-container -skew-x-12 shadow-[12px_12px_0px_#0d0d0d]">
+<img alt="Cyberpunk console" class="absolute inset-0 w-full h-full object-cover grayscale contrast-125 skew-x-12 scale-150" data-alt="dramatic high-contrast black and white shot of retro computer hardware with glowing red indicators and intense shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtM_owbLmOCzXC8LTk_o-b66gC-fzir78e1HQVrDUb3sUJg6w2hz0mS9kzHcKPmLUO2vQnaNeNKi1Fs-RQPj1fsx8brFWGGfqawN_eaIuZevCOwJ97wLLRM_M8gqD6oEwtogPil2InmFoN7d7efl0vdnhijLwBm8A9WSSMK81qfiNW1_CzENulxmRWJgFMlNW6QTypgGvXSLgnxQc1BBMFDs2y95fIm9bLBPDaqGZliLhPR_64tIgVzyD8g13__qAyCujHQL7T0oM"/>
+<div class="absolute inset-0 bg-primary-container/10 mix-blend-multiply"></div>
+</div>
+</div>
+</div>
+</main>
+<footer class="relative w-full py-12 px-10 flex flex-col items-start gap-8 overflow-hidden bg-neutral-900 border-t-8 border-primary-container">
+<div class="text-8xl font-black opacity-10 absolute -bottom-4 -left-4 -skew-x-12 pointer-events-none text-primary-container font-headline uppercase italic">
+            THE_PHANTOM
+        </div>
+<div class="z-10 flex flex-wrap gap-12 items-end justify-between w-full">
+<div class="space-y-2">
+<p class="font-label font-bold uppercase tracking-widest text-primary-container">SYSTEM_OVERRIDE_2024</p>
+<div class="flex gap-6">
+<a class="font-label font-bold uppercase tracking-widest text-white/50 -skew-x-12 hover:text-primary-container transition-none" href="#">STRIKE</a>
+<a class="font-label font-bold uppercase tracking-widest text-white/50 -skew-x-12 hover:text-primary-container transition-none" href="#">VANISH</a>
+<a class="font-label font-bold uppercase tracking-widest text-tertiary -skew-x-12 hover:text-primary-container transition-none" href="#">SILENCE</a>
+</div>
+</div>
+<div class="bg-primary-container px-6 py-2 -skew-x-12">
+<span class="text-white font-headline text-xl italic font-black uppercase tracking-tighter">ALL_LOGS_PURGED</span>
+</div>
+</div>
+</footer>
+</body></html>

@@ -37,13 +37,10 @@
 }
 .group:hover .glitch-edge { opacity: 0; }
 
-/* Mobile: disable heavy glitch overlays — mix-blend-mode + extreme filters
-   render incorrectly on many mobile browsers, causing pink/purple tint */
 @media (max-width: 767px) {
   .glitch-edge { display: none; }
 }
 
-/* All three shift toward bottom-right, pink most, cyan mid, yellow least */
 @keyframes gedge-r {
   0%, 100% { transform: translate(5px, 4px) scale(1.1); }
   25% { transform: translate(10px, 8px) scale(1.1); }
@@ -62,6 +59,220 @@
   50% { transform: translate(2px, 1px) scale(1.1); }
   75% { transform: translate(4px, 3px) scale(1.1); }
 }
+
+/* P5R light mode: About page overrides */
+
+html.light .glitch-edge { display: none !important; }
+html.light .lg\:col-span-5.group img.grayscale,
+html.light .lg\:col-span-5.group img[src*="avatar"] {
+  filter: none !important;
+  -webkit-filter: none !important;
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+html.light .lg\:col-span-5.group:hover img {
+  filter: contrast(1.1) saturate(1.1) !important;
+  transform: scale(1.03) !important;
+}
+html.light .lg\:col-span-5 .mix-blend-overlay {
+  display: none !important;
+}
+html.light .lg\:col-span-5.group.bg-neutral-900 {
+  background: var(--p5-surface-low, #faf7f3) !important;
+}
+html.light .lg\:col-span-5 .border-\[20px\].border-black\/50 {
+  border-color: rgba(217,35,35,0.08) !important;
+  border-width: 8px !important;
+}
+html.light .lg\:col-span-5 .bg-gradient-to-t.from-background {
+  background: linear-gradient(to top, var(--p5-bg, #f8f5f0) 2%, transparent 35%) !important;
+}
+html.light .lg\:col-span-5 .bg-\[\#f5e642\].text-black {
+  background: #d92323 !important;
+  color: #fff !important;
+  font-weight: 800 !important;
+}
+html.light .lg\:col-span-5 .text-\[\#00d4ff\].bg-black\/90 {
+  background: rgba(255,255,255,0.9) !important;
+  color: #d92323 !important;
+  border-color: rgba(217,35,35,0.3) !important;
+}
+
+html.light .typewriter-cursor { color: var(--p5-red, #d92323) !important; }
+html.light .typewriter-cursor span { color: var(--p5-red, #d92323) !important; }
+
+html.light .lg\:col-span-5.group.bg-neutral-900 img {
+  object-fit: cover !important;
+  object-position: center top !important;
+}
+
+@media (max-width: 767px) {
+  html.light .lg\:col-span-5.group.bg-neutral-900 {
+    min-height: auto !important;
+    height: 20rem !important;
+    max-height: 20rem !important;
+  }
+  html.light .lg\:col-span-5 .border-\[20px\].border-black\/50 {
+    border-width: 4px !important;
+  }
+  html.light .lg\:col-span-5 .bg-\[\#f5e642\].text-black {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.65rem !important;
+  }
+  html.light .lg\:col-span-5 .text-\[\#00d4ff\].bg-black\/90 {
+    font-size: 0.6rem !important;
+    letter-spacing: 0.2em !important;
+    padding: 0.25rem !important;
+    left: 0.5rem !important;
+    bottom: 0.5rem !important;
+  }
+  html.light .grid.border-4 {
+    border-width: 2px !important;
+  }
+  html.light .lg\:col-span-7.border-r-4 {
+    border-right: none !important;
+    border-bottom: 2px solid rgba(217,35,35,0.15) !important;
+  }
+  html.light .lg\:col-span-5.group:hover img {
+    filter: none !important;
+    transform: scale(1) !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  html.light .lg\:col-span-5.group.bg-neutral-900 {
+    min-height: auto !important;
+    height: 24rem !important;
+    max-height: 24rem !important;
+  }
+  html.light .lg\:col-span-5 .border-\[20px\].border-black\/50 {
+    border-width: 6px !important;
+  }
+  html.light .lg\:col-span-7.border-r-4 {
+    border-right: none !important;
+    border-bottom: 3px solid rgba(217,35,35,0.15) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  html.light .lg\:col-span-5.group.bg-neutral-900 {
+    min-height: auto !important;
+    height: 100% !important;
+    max-height: 600px !important;
+  }
+  html.light .lg\:col-span-7.border-r-4 {
+    border-right: 4px solid rgba(217,35,35,0.15) !important;
+  }
+}
+
+/* P5R light mode: About page — additional sections */
+html.light .grid.border-4.border-\[\#f5e642\]\/20 {
+  border-color: rgba(217,35,35,0.15) !important;
+  background-color: rgba(248,245,240,0.5) !important;
+}
+html.light .lg\:col-span-7.border-r-4.border-\[\#f5e642\]\/20 {
+  border-right-color: rgba(217,35,35,0.15) !important;
+}
+html.light .font-label.text-\[\#00d4ff\] { color: #d92323 !important; }
+html.light .w-12.h-\[3px\].bg-\[\#00d4ff\] { background-color: #d92323 !important; }
+html.light h1.glitch-text.text-\[\#f5e642\] { color: #d92323 !important; text-shadow: 2px 0 #732424, -2px 0 #0d0d0d !important; }
+html.light .flicker-animation { animation: none !important; }
+html.light .text-\[\#00d4ff\].typewriter-cursor {
+  color: #d92323 !important;
+  background-color: rgba(217,35,35,0.08) !important;
+  border-left-color: #d92323 !important;
+}
+html.light .bg-\[\#f5e642\]\/10 { background-color: rgba(217,35,35,0.08) !important; }
+html.light .border-l-4.border-\[\#f5e642\], html.light .border-l-8.border-\[\#f5e642\] { border-left-color: #d92323 !important; }
+html.light a.bg-\[\#f5e642\].text-black { background-color: #d92323 !important; color: #fff !important; }
+html.light a.bg-\[\#f5e642\].text-black:hover { background-color: #732424 !important; color: #fff !important; }
+
+/* Dossier section */
+html.light section.border-t-4.border-\[\#00d4ff\]\/20 { border-top-color: rgba(217,35,35,0.2) !important; }
+html.light .material-symbols-outlined.text-\[\#00d4ff\] { color: #d92323 !important; }
+html.light h2.text-\[\#00d4ff\] { color: #d92323 !important; }
+html.light .text-\[\#00d4ff\]\/60 { color: rgba(217,35,35,0.5) !important; }
+html.light .bg-\[\#131318\].border-l-8 { background-color: #faf7f3 !important; }
+
+/* Career targets */
+html.light .text-\[\#f5e642\]\/60 { color: rgba(217,35,35,0.5) !important; }
+html.light .border-\[\#f5e642\]\/30.text-\[\#f5e642\] { border-color: rgba(217,35,35,0.3) !important; color: #d92323 !important; }
+html.light .bg-\[\#f5e642\]\/5 { background-color: rgba(217,35,35,0.04) !important; }
+
+/* Core modules section */
+html.light section.bg-black { background-color: #f8f5f0 !important; }
+html.light .border-b-8.border-\[\#f5e642\]\/10 { border-bottom-color: rgba(217,35,35,0.1) !important; }
+html.light h2.text-white.italic { color: #0d0d0d !important; }
+
+/* System logs section */
+html.light section.border-t-8.border-\[\#ff2d78\]\/20 { border-top-color: rgba(217,35,35,0.2) !important; }
+html.light h2.text-\[\#f5e642\].italic { color: #d92323 !important; }
+html.light .text-\[\#ff2d78\] { color: #732424 !important; }
+html.light .bg-\[\#131318\].border-l-8.border-\[\#00d4ff\] {
+  background-color: #faf7f3 !important;
+  border-left-color: #d92323 !important;
+}
+html.light .text-\[\#ff8c00\] { color: #e8c840 !important; }
+html.light .border-\[\#00d4ff\]\/10 { border-color: rgba(217,35,35,0.08) !important; }
+
+/* Quote & decorative bars */
+html.light .border-t-8.border-\[\#ff2d78\] { border-top-color: #d92323 !important; }
+html.light p.text-white.italic { color: #0d0d0d !important; }
+html.light .h-2.w-32.bg-\[\#f5e642\] { background-color: #d92323 !important; }
+html.light .h-2.w-8.bg-\[\#00d4ff\] { background-color: #0d0d0d !important; }
+html.light .h-2.w-4.bg-\[\#ff2d78\] { background-color: #732424 !important; }
+html.light .text-\[\#f5e642\]\/5 { color: rgba(217,35,35,0.05) !important; }
+
+/* Glitch animation in light mode */
+html.light @keyframes glitch-anim {
+  0% { text-shadow: 3px 0 #d92323, -3px 0 #732424; transform: translate(0); }
+  20% { text-shadow: -3px 0 #d92323, 3px 0 #732424; transform: translate(-2px, 1px); }
+  40% { text-shadow: 2px 0 #d92323, -2px 0 #732424; transform: translate(2px, -1px); }
+  60% { text-shadow: -2px 0 #d92323, 2px 0 #732424; transform: translate(-1px, 2px); }
+  80% { text-shadow: 3px 0 #d92323, -3px 0 #732424; transform: translate(1px, -2px); }
+  100% { text-shadow: -3px 0 #d92323, 3px 0 #732424; transform: translate(0); }
+}
+
+/* P5R about — Bebas Neue titles, skewed elements */
+html.light h1.glitch-text.text-\[\#f5e642\] {
+  font-family: 'Bebas Neue', sans-serif !important;
+  color: #e61919 !important;
+  text-shadow: none !important;
+}
+html.light .flicker-animation { animation: none !important; }
+/* CTA button: skewed red */
+html.light a.bg-\[\#f5e642\].text-black {
+  background: #e61919 !important;
+  color: #fff !important;
+  transform: skewX(-12deg) !important;
+  clip-path: none !important;
+}
+html.light a.bg-\[\#f5e642\].text-black:hover {
+  background: #8b0000 !important;
+  transition: none !important;
+}
+/* Dossier sections — red left border */
+html.light .bg-\[\#131318\].border-l-8 {
+  background: #faf7f3 !important;
+  border-left-color: #e61919 !important;
+  box-shadow: 4px 4px 0 rgba(230,25,25,0.15) !important;
+}
+/* Core modules section — light bg instead of black */
+html.light section.bg-black {
+  background: var(--p5r-bg-alt, #ece7e1) !important;
+}
+/* Module cards hover — instant flip */
+html.light .group.clip-monolith:hover {
+  transition: none !important;
+}
+/* Quote section */
+html.light p.text-white.italic { color: #0d0d0d !important; }
+/* Decorative bars — red/gold/black */
+html.light .h-2.w-32.bg-\[\#f5e642\] { background: #e61919 !important; }
+html.light .h-2.w-8.bg-\[\#00d4ff\] { background: #e8c840 !important; }
+html.light .h-2.w-4.bg-\[\#ff2d78\] { background: #0d0d0d !important; }
+/* Watermark text */
+html.light .text-\[\#f5e642\]\/5 { color: rgba(230,25,25,0.04) !important; }
 {% endblock %}
 
 {% block content %}
@@ -71,7 +282,7 @@
       <div class="lg:col-span-7 p-8 md:p-16 border-r-4 border-[#f5e642]/20 flex flex-col justify-center">
         <div class="font-label text-[#00d4ff] mb-6 flex items-center gap-3">
           <span class="w-12 h-[3px] bg-[#00d4ff] animate-pulse"></span>
-          {{ pg.breadcrumb }}
+          <span data-p5r="{{ p5r.pages.about.breadcrumb }}">{{ pg.breadcrumb }}</span>
         </div>
         <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-[10rem] font-black font-headline tracking-tighter glitch-text text-[#f5e642] mb-6 flicker-animation leading-tight md:leading-[0.85] italic">
           {{ cfg.owner.name | replace(' ', '<br/>') | safe }}
@@ -82,7 +293,7 @@
         </div>
         <div class="mt-16 flex flex-wrap gap-8">
           <a href="/projects" class="bg-[#f5e642] text-black px-6 py-3 md:px-10 md:py-5 font-label font-black tracking-widest text-sm md:text-lg flex items-center gap-3 md:gap-4 hover:bg-[#ff2d78] hover:text-white transition-all [clip-path:polygon(0_0,100%_0,100%_70%,85%_100%,0_100%)] shadow-[4px_4px_0px_theme(colors.on-tertiary-container)] md:shadow-[10px_10px_0px_theme(colors.on-tertiary-container)] active:translate-x-1 active:translate-y-1 active:shadow-none">
-            {{ pg.btn_cta }} <span class="material-symbols-outlined">bolt</span>
+            <span data-p5r="{{ p5r.pages.about.btn_cta }}">{{ pg.btn_cta }}</span> <span class="material-symbols-outlined">bolt</span>
           </a>
         </div>
       </div>
@@ -95,8 +306,8 @@
         <img class="glitch-edge ge-yellow scale-110" src="{{ cfg.owner.avatar }}" aria-hidden="true"/>
         <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-[3]"></div>
         <div class="absolute inset-0 pointer-events-none border-[20px] border-black/50"></div>
-        <div class="absolute top-0 right-0 bg-[#f5e642] text-black font-label px-4 py-2 text-sm font-bold">NODE_077_ALPHA</div>
-        <div class="absolute bottom-8 left-8 text-[#00d4ff] font-label text-xs tracking-[0.5em] bg-black/90 p-2 border border-[#00d4ff]/50">BIOMETRIC_ID: 994-A7</div>
+        <div class="absolute top-0 right-0 bg-[#f5e642] text-black font-label px-4 py-2 text-sm font-bold"><span data-p5r="{{ p5r.pages.about.node_badge }}">NODE_077_ALPHA</span></div>
+        <div class="absolute bottom-8 left-8 text-[#00d4ff] font-label text-xs tracking-[0.5em] bg-black/90 p-2 border border-[#00d4ff]/50"><span data-p5r="{{ p5r.pages.about.biometric_id }}">BIOMETRIC_ID: 994-A7</span></div>
       </div>
     </div>
   </section>
@@ -107,14 +318,15 @@
       <div class="mb-16 flex items-center gap-6">
         <span class="material-symbols-outlined text-[#00d4ff] text-4xl" style="font-variation-settings: 'FILL' 1;">folder_special</span>
         <div>
-          <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-headline font-black text-[#00d4ff] italic tracking-tighter">{{ cfg.owner.dossier.title }}</h2>
-          <div class="font-label text-xs text-[#00d4ff]/60 tracking-widest mt-2">{{ cfg.owner.dossier.subtitle }}</div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-headline font-black text-[#00d4ff] italic tracking-tighter"><span data-p5r="{{ p5r.pages.about.dossier_title }}">{{ cfg.owner.dossier.title }}</span></h2>
+          <div class="font-label text-xs text-[#00d4ff]/60 tracking-widest mt-2"><span data-p5r="{{ p5r.pages.about.dossier_subtitle }}">{{ cfg.owner.dossier.subtitle }}</span></div>
         </div>
       </div>
       <div class="mb-16 bg-[#131318] p-8 md:p-12 border-l-8 border-[#f5e642] shadow-[10px_10px_0px_rgba(245,230,66,0.1)]">
         <p class="font-body text-lg md:text-xl text-zinc-300 leading-relaxed">{{ cfg.owner.bio }}</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {% set p5r_dossier_labels = p5r.pages.about.dossier_labels %}
         {% set dossier_items = [
           (cfg.owner.dossier.origin_label, cfg.owner.dossier.origin, "#f5e642", "memory"),
           (cfg.owner.dossier.evolution_label, cfg.owner.dossier.evolution, "#00d4ff", "neurology"),
@@ -124,14 +336,14 @@
         <div class="border-t-4 pt-6" style="border-top-color: {{ color }};">
           <div class="flex items-center gap-2 mb-4 font-label text-xs tracking-widest" style="color: {{ color }};">
             <span class="material-symbols-outlined text-sm">{{ icon }}</span>
-            {{ label }}
+            <span data-p5r="{{ p5r_dossier_labels[loop.index0] }}">{{ label }}</span>
           </div>
           <p class="font-body text-zinc-400 leading-relaxed text-sm">{{ text }}</p>
         </div>
         {% endfor %}
       </div>
       <div class="mt-12 flex flex-wrap gap-3 font-label text-[10px] tracking-widest">
-        <span class="text-[#f5e642]/60 mr-2">{{ cfg.owner.dossier.career_targets_label }}:</span>
+        <span class="text-[#f5e642]/60 mr-2"><span data-p5r="{{ p5r.pages.about.career_targets_label }}">{{ cfg.owner.dossier.career_targets_label }}</span>:</span>
         {% for target in cfg.owner.dossier.career_targets %}
         <span class="px-3 py-1 border border-[#f5e642]/30 text-[#f5e642] bg-[#f5e642]/5">{{ target }}</span>
         {% endfor %}
@@ -142,8 +354,8 @@
   <section class="relative z-10 px-6 py-24 bg-black">
     <div class="max-w-7xl mx-auto">
       <div class="mb-20 flex items-center justify-between border-b-8 border-[#f5e642]/10 pb-8">
-        <h2 class="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-headline font-black text-white italic tracking-tighter">{{ pg.modules_title }}</h2>
-        <div class="hidden md:block font-label text-[#ff2d78] text-xl animate-pulse">{{ pg.modules_status }}</div>
+        <h2 class="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-headline font-black text-white italic tracking-tighter"><span data-p5r="{{ p5r.pages.about.modules_title }}">{{ pg.modules_title }}</span></h2>
+        <div class="hidden md:block font-label text-[#ff2d78] text-xl animate-pulse"><span data-p5r="{{ p5r.pages.about.modules_status }}">{{ pg.modules_status }}</span></div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
         {% for mod in cfg.core_modules %}
@@ -172,7 +384,7 @@
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
       <div class="space-y-6">
         <h2 class="text-4xl font-headline font-black tracking-tight text-[#f5e642] flex items-center gap-4 italic">
-          <span class="text-[#ff2d78]">#</span> {{ pg.logs_title }}
+          <span class="text-[#ff2d78]">#</span> <span data-p5r="{{ p5r.pages.about.logs_title }}">{{ pg.logs_title }}</span>
         </h2>
         <div class="bg-[#131318] p-8 font-label text-sm text-[#00d4ff] border-l-8 border-[#00d4ff] shadow-[10px_10px_0px_rgba(0,212,255,0.1)]">
           {% for log in cfg.system_logs %}
@@ -184,9 +396,9 @@
         </div>
       </div>
       <div class="relative flex items-center">
-        <div class="absolute -top-10 -right-4 text-6xl md:text-[150px] font-headline font-black text-[#f5e642]/5 pointer-events-none select-none italic hidden md:block">{{ pg.logs_watermark }}</div>
+        <div class="absolute -top-10 -right-4 text-6xl md:text-[150px] font-headline font-black text-[#f5e642]/5 pointer-events-none select-none italic hidden md:block"><span data-p5r="{{ p5r.pages.about.logs_watermark }}">{{ pg.logs_watermark }}</span></div>
         <div class="relative z-10 border-t-8 border-[#ff2d78] pt-10">
-          <p class="font-body text-2xl md:text-3xl font-light italic text-white leading-snug">{{ pg.quote }}</p>
+          <p class="font-body text-2xl md:text-3xl font-light italic text-white leading-snug"><span data-p5r="{{ p5r.pages.about.quote }}">{{ pg.quote }}</span></p>
           <div class="mt-8 flex gap-3">
             <div class="h-2 w-32 bg-[#f5e642]"></div>
             <div class="h-2 w-8 bg-[#00d4ff]"></div>

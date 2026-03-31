@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% block title %}{{ cfg.site.title }} // PROJECT_TIMELINE{% endblock %}
+
+{% block extra_css %}
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #f5e642;
+  transform: translateX(-50%);
+}
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #f5e642;
+  position: absolute;
+  left: 50%;
+  top: 24px;
+  transform: translateX(-50%);
+  z-index: 2;
+  box-shadow: 0 0 8px #f5e64280;
+}
+.timeline-connector {
+  position: absolute;
+  top: 29px;
+  height: 2px;
+  width: 40px;
+  background: #f5e642;
+  z-index: 1;
+}
+.timeline-node:nth-child(odd) .timeline-connector {
+  right: 50%;
+  margin-right: 6px;
+}
+.timeline-node:nth-child(even) .timeline-connector {
+  left: 50%;
+  margin-left: 6px;
+}
+.timeline-node:nth-child(odd) .timeline-card {
+  margin-right: calc(50% + 46px);
+}
+.timeline-node:nth-child(even) .timeline-card {
+  margin-left: calc(50% + 46px);
+}
+.timeline-node:nth-child(odd) .timeline-date {
+  position: absolute;
+  left: calc(50% + 52px);
+  top: 20px;
+}
+.timeline-node:nth-child(even) .timeline-date {
+  position: absolute;
+  right: calc(50% + 52px);
+  top: 20px;
+  text-align: right;
+}
+@media (max-width: 768px) {
+  .timeline-line { left: 20px; }
+  .timeline-dot { left: 20px; }
+  .timeline-connector {
+    left: 26px !important;
+    right: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 24px;
+  }
+  .timeline-node:nth-child(odd) .timeline-card,
+  .timeline-node:nth-child(even) .timeline-card {
+    margin-left: 60px;
+    margin-right: 0;
+  }
+  .timeline-node:nth-child(odd) .timeline-date,
+  .timeline-node:nth-child(even) .timeline-date {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    text-align: left;
+    margin-left: 60px;
+    margin-bottom: 4px;
+  }
+}
+
+/* P5R light mode: Timeline */
+html.light .timeline-line { background: #d92323 !important; }
+html.light .timeline-dot { background: #d92323 !important; box-shadow: 0 0 8px rgba(217,35,35,0.5) !important; }
+html.light .timeline-connector { background: #d92323 !important; }
+html.light .timeline-card .bg-surface-container-low { background-color: #faf7f3 !important; }
+html.light .timeline-card:hover .bg-surface-container-low { background-color: #eae5df !important; }
+html.light .timeline-node:last-child .timeline-dot { background: #d92323 !important; box-shadow: 0 0 8px rgba(217,35,35,0.5) !important; }
+{% endblock %}
+
+{% block content %}
+<main class="pt-14 md:pt-24 pb-20 px-6 md:px-12 max-w-6xl mx-auto relative">
+
+  {# Header #}
+  <section class="relative z-10 mb-16 text-center">
+    <h1 class="font-headline text-4xl md:text-6xl font-black uppercase italic tracking-tighter text-[#f5e642] mb-4">
+      PROJECT_TIMELINE
+    </h1>
+    <p class="font-label text-xs text-on-surface-variant uppercase tracking-[0.3em]">
+      CHRONOLOGICAL // {{ projects | length }} ENTRIES LOADED
+    </p>
+  </section>
+
+  {# Timeline #}
+  <section class="relative z-10">
+    <div class="timeline-line"></div>
+
+    {% for p in projects %}
+    {% set m = p.meta %}
+    {% set card_color = m.get('color', '#00d4ff') %}
+    <div class="timeline-node relative mb-16">
+      <div class="timeline-dot"></div>
+      <div class="timeline-connector"></div>
+
+      {# Date label #}
+      <div class="timeline-date font-label text-[10px] font-bold uppercase tracking-widest text-[#f5e642]/70 whitespace-nowrap">
+        {{ m.get('date', 'UNDATED') }}
+      </div>
+
+      {# Project card #}
+      <a href="/projects/{{ p.slug }}" class="timeline-card block no-underline group">
+        <div class="bg-surface-container-low border-l-4 p-5 md:p-6 transition-all duration-300 hover:bg-surface-container hover:translate-x-1 hover:shadow-lg hover:shadow-[{{ card_color }}]/5" style="border-left-color: {{ card_color }};">
+          <div class="flex items-start justify-between gap-3 mb-2">
+            <h3 class="font-headline text-lg md:text-xl font-black tracking-tighter text-[#f5e642] uppercase italic group-hover:text-[#00d4ff] transition-colors leading-tight">
+              {{ m.get('title', p.slug | upper) }}
+            </h3>
+            <span class="material-symbols-outlined text-sm text-white/20 group-hover:text-[#f5e642] transition-colors shrink-0 mt-1">arrow_forward</span>
+          </div>
+          <p class="text-on-surface-variant text-sm font-body font-bold leading-tight mb-3 line-clamp-2">
+            {{ m.get('summary', '') }}
+          </p>
+          <span class="inline-block font-label text-[9px] px-2 py-0.5 border uppercase tracking-wider" style="background-color: {{ card_color }}10; border-color: {{ card_color }}30; color: {{ card_color }};">
+            {{ m.get('category', 'PROJECT') }}
+          </span>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+
+    {# Terminal node #}
+    <div class="relative">
+      <div class="timeline-dot" style="background: #ff2d78; box-shadow: 0 0 8px #ff2d7880; top: 0;"></div>
+      <div class="text-center mt-6">
+        <span class="font-label text-[10px] text-[#ff2d78] font-bold uppercase tracking-[0.3em]">END_OF_LOG</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+{% endblock %}

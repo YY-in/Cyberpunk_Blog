@@ -58,6 +58,27 @@ for _lang in SUPPORTED_LANGS:
     if _lang != DEFAULT_LANG:
         LANG_CONFIGS[_lang] = load_lang_config(_lang)
 
+# Load P5R theme text config (with language support)
+def load_p5r_config():
+    path = BASE_DIR / "config.p5r.yaml"
+    if path.exists():
+        with open(path, "r", encoding="utf-8") as f:
+            return yaml.safe_load(f) or {}
+    return {}
+
+def load_p5r_lang_config(lang: str):
+    path = BASE_DIR / f"config.p5r.{lang}.yaml"
+    if path.exists():
+        with open(path, "r", encoding="utf-8") as f:
+            return yaml.safe_load(f) or {}
+    return {}
+
+P5R_CONFIG = load_p5r_config()
+P5R_LANG_CONFIGS: dict[str, dict] = {}
+for _lang in SUPPORTED_LANGS:
+    if _lang != DEFAULT_LANG:
+        P5R_LANG_CONFIGS[_lang] = load_p5r_lang_config(_lang)
+
 
 def get_current_lang() -> str:
     """Determine language from ?lang= param, cookie, or default."""
@@ -97,8 +118,20 @@ def inject_config():
                 active_url = prefix
                 break
 
-    return {"cfg": cfg, "current_lang": lang, "supported_langs": SUPPORTED_LANGS,
-            "active_url": active_url}
+    global P5R_CONFIG, P5R_LANG_CONFIGS
+    if app.debug:
+        P5R_CONFIG = load_p5r_config()
+        for _lang in SUPPORTED_LANGS:
+            if _lang != DEFAULT_LANG:
+                P5R_LANG_CONFIGS[_lang] = load_p5r_lang_config(_lang)
+
+    if lang != DEFAULT_LANG and lang in P5R_LANG_CONFIGS:
+        p5r = deep_merge(P5R_CONFIG, P5R_LANG_CONFIGS[lang])
+    else:
+        p5r = P5R_CONFIG
+
+    return {"cfg": cfg, "p5r": p5r, "current_lang": lang,
+            "supported_langs": SUPPORTED_LANGS, "active_url": active_url}
 
 
 @app.after_request
@@ -232,6 +265,49 @@ def contact():
     return render_template("contact.html", active="CONTACT")
 
 
+@app.route("/hack")
+def hacker_game():
+    return render_template("hacker_game.html", active="")
+
+
+@app.route("/timeline")
+def timeline():
+    lang = get_current_lang()
+    items = list_markdown("projects", lang)
+    return render_template("timeline.html", active="PROJECTS", projects=items)
+
+
+@app.route("/feed.xml")
+def rss_feed():
+    lang = get_current_lang()
+    posts = list_markdown("blog", lang)
+    response = make_response(render_template("feed.xml", posts=posts))
+    response.headers["Content-Type"] = "application/rss+xml; charset=utf-8"
+    return response
+
+
+@app.route("/sitemap.xml")
+def sitemap():
+    urls = [
+        {"loc": request.url_root, "priority": "1.0"},
+        {"loc": request.url_root + "about", "priority": "0.8"},
+        {"loc": request.url_root + "projects", "priority": "0.9"},
+        {"loc": request.url_root + "skills", "priority": "0.7"},
+        {"loc": request.url_root + "contact", "priority": "0.7"},
+        {"loc": request.url_root + "blog", "priority": "0.8"},
+        {"loc": request.url_root + "timeline", "priority": "0.6"},
+        {"loc": request.url_root + "hack", "priority": "0.5"},
+    ]
+    lang = get_current_lang()
+    for p in list_markdown("projects", lang):
+        urls.append({"loc": request.url_root + "projects/" + p["slug"], "priority": "0.7"})
+    for p in list_markdown("blog", lang):
+        urls.append({"loc": request.url_root + "blog/" + p["slug"], "priority": "0.6"})
+    response = make_response(render_template("sitemap.xml", urls=urls))
+    response.headers["Content-Type"] = "application/xml; charset=utf-8"
+    return response
+
+
 # ---------------------------------------------------------------------------
 # Contact form → SMTP
 # ---------------------------------------------------------------------------
@@ -295,4 +371,6 @@ def page_not_found(e):
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000,
             extra_files=[str(BASE_DIR / "config.yaml"),
-                         str(BASE_DIR / "config.zh.yaml")])
+                         str(BASE_DIR / "config.zh.yaml"),
+                         str(BASE_DIR / "config.p5r.yaml"),
+                         str(BASE_DIR / "config.p5r.zh.yaml")])

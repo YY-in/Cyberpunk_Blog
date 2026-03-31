@@ -1,0 +1,191 @@
+# ============================================================
+# P5R 主题文本 — 女神异闻录5 皇家版 "心之怪盗团" 世界观
+# 亮色模式下替换赛博朋克2077 UI文本的中文版
+# ============================================================
+
+site:
+  title: "怪盗导航//P5R"
+  version: "v5.皇家版"
+
+gate:
+  panel_tl_label: "殿堂-7G · 限制区域"
+  panel_tl_code: "ID:JOKER · 等级99"
+  panel_br_label: "通行 // 天鹅绒-Ω"
+  panel_br_code: "认证:伊格尔 · 羁绊"
+  hud_default: "潜入中..."
+  hud_sub: "怪盗导航//P5R · v5.皇家版 · 异世界"
+  hud_texts:
+    "/": "进入秘密基地..."
+    "/about": "读取协助者档案..."
+    "/projects": "侦察殿堂中..."
+    "/skills": "扫描人格面具..."
+    "/contact": "编写预告信..."
+    "/blog": "打开怪盗日志..."
+
+marquee_text: "异世界_突破 // 认知_临界 // 人格面具_连接_99% // 预告信_已送达"
+
+footer:
+  admin: "领航员.摩尔加纳 // 心之怪盗团"
+
+footer_links:
+  - label: "改写认知"
+    url: "#"
+  - label: "夺取秘宝"
+    url: "#"
+  - label: "清除殿堂"
+    url: "#"
+
+navigation:
+  HOME: "秘密基地"
+  ABOUT: "协助者"
+  PROJECTS: "殿堂"
+  SKILLS: "人格面具"
+  CONTACT: "预告信"
+
+navigation_by_url:
+  "/": "秘密基地"
+  "/about": "协助者"
+  "/projects": "殿堂"
+  "/skills": "人格面具"
+  "/contact": "预告信"
+
+owner:
+  alias: "JOKER"
+  dossier:
+    title: "协助者档案"
+    subtitle: "天鹅绒 档案 #001-JOKER // 秘仪: 愚者 // 万能牌"
+    origin_label: "面具觉醒"
+    evolution_label: "秘仪进化"
+    current_label: "执行窃心"
+    career_targets_label: "目标殿堂"
+
+pages:
+  home:
+    kernel_status: "异世界_就绪 // 构建 05.皇家版"
+    hero_line1: "夺取"
+    hero_line2: "你的心"
+    btn_primary: "开始窃心"
+    btn_secondary: "预告信"
+    badge_error: "扭曲"
+    avatar_id: "代号: JOKER"
+    alias: "JOKER"
+    hud_cpu: "SP量表"
+    hud_net: "认知"
+    hud_net_val: "扭曲中"
+    hud_temp: "HP消耗"
+    hud_temp_val: "12%"
+    hud_live: "领航_数据流: 印象空间_扫描中"
+    boot_lines:
+      - "> 召唤人格面具... [完成]"
+      - "> 进入异世界... [完成]"
+      - "> 建立怪盗链接... [完成]"
+      - "> 警告: 检测到暗影 (强敌)"
+      - "> 认知障壁突破... [成功]"
+      - "> 授权通过_代号: JOKER"
+
+  about:
+    breadcrumb: "领航员@天鹅绒房间: 读取协助者档案"
+    btn_cta: "发送预告信"
+    node_badge: "协助者_等级10"
+    biometric_id: "秘仪: 愚者"
+    dossier_title: "协助者档案"
+    dossier_subtitle: "天鹅绒 档案 #001-JOKER // 秘仪: 愚者 // 万能牌"
+    dossier_labels:
+      - "面具觉醒"
+      - "秘仪进化"
+      - "执行窃心"
+    career_targets_label: "目标殿堂"
+    modules_title: "面具技能"
+    modules_status: "状态: 全员突击"
+    logs_title: "殿堂日志"
+    logs_watermark: "窃心"
+    quote: "\"在反叛中觉醒了异世界的力量。跨越秘仪缔结羁绊。如今我窃取扭曲的心灵，改变这个世界——一座殿堂接着一座殿堂。万能牌永不停歇。\""
+
+  projects:
+    page_title: "殿堂档案"
+    featured_badge: "紧急 // 秘宝目标"
+    featured_subtitle: "殿堂潜入进行中"
+    featured_btn: "夺取秘宝"
+    query_status: "领航_状态:"
+    query_ready: "路线发现"
+    query_suffix: "_殿堂已发现"
+    encrypted_title: "封印殿堂"
+    encrypted_desc: "殿堂主人的认知仍然稳定。秘宝路线尚未确保。继续潜入。"
+    encrypted_label: "认知崩解中"
+    log_id: "[窃心_ID: 9942-X]"
+    uptime: "潜入时长: 4209:12:04"
+    buffer: "秘宝状态: 已确保"
+
+  project_detail:
+    node_id: "殿堂_ID: P5-皇家版-4"
+    category_prefix: "窃心://"
+    date_prefix: "期限:"
+    status_prefix: "认知:"
+    engine_prefix: "面具:"
+    video_fallback: "您的浏览器不支持HTML5视频。"
+    video_label: "录像_流: 殿堂_画面_001 // 怪盗线路"
+    specs_title: "暗影情报"
+    tech_prefix: "技能_"
+    details_title: "潜入报告"
+    logs_suffix: "_窃心日志"
+    terminal_logs:
+      - { color: "secondary", text: "[14:22:09] 启动殿堂潜入扫描..." }
+      - { color: "on-surface", text: "[14:22:11] 怪盗链接_已建立 (羁绊: 最大)" }
+      - { color: "on-surface", text: "[14:23:45] 绘制认知扭曲区域地图" }
+      - { color: "primary-container", text: "[14:25:12] 警告: 秘宝室检测到暗影" }
+      - { color: "[#c70057]", text: "[14:25:13] 执行全员突击..." }
+      - { color: "on-surface", text: "[14:25:15] 暗影已消灭" }
+      - { color: "secondary", text: "[14:29:00] 秘宝路线_已确认" }
+
+  skills:
+    page_title: "面具全书.exe"
+    scan_message: "扫描秘仪羁绊中... > 检测到3个面具分支"
+    radar_title: "秘仪亲和度矩阵"
+    sync_label: "协助者_羁绊"
+    tools_title: "已装备技能卡 & 道具"
+    separator_text: "读取天鹅绒房间数据"
+    separator_sub: "> 检测到个人协助者 > 加载社群链接..."
+    offd_title: "社群链接_协议"
+
+  contact:
+    page_title: "预告信.exe"
+    port_scan: "[ 殿堂扫描: 秘宝, 暗影, 路线 // 激活 ]"
+    typewriter_phrases:
+      - "开放: 怪盗窃心合作"
+      - "寻求: 协助者羁绊伙伴"
+      - "模式: 万能牌_专家"
+      - "协议: 秘仪_研究"
+    nodes_title: "怪盗频道"
+    availability_title: "接受新的窃心委托"
+    availability_sub: "准备潜入殿堂"
+    form_title: "编写预告信"
+    btn_submit: "发送预告信"
+    encryption_label: "认知: 扭曲 // 状态: 殿堂就绪"
+    success_title: "预告信_已送达"
+    success_message: "预告信已经送出。目标的心灵将被窃取。"
+    success_btn: "[ 确认 ]"
+    error_title: "投递失败"
+    error_btn: "[ 重试 ]"
+    status_prefix: "领航:"
+    copy_toast: "情报_已复制到剪贴板"
+    transmitting: "发送预告信中..."
+    dossier_title: "需要完整的协助者档案？"
+    dossier_desc: "获取完整的协助者档案——秘仪进度、社群链接历史和人格面具合体记录。"
+    dossier_btn: "[ ↓ 下载协助者数据 ]"
+    dossier_footer: "天鹅绒房间_存档 // 万能牌_权限"
+
+  blog:
+    page_title: "怪盗日志"
+    entries_suffix: "条目已记录"
+    empty_title: "暂无日志条目"
+    empty_hint: "怪盗日志为空。"
+    back_label: "< 返回日志"
+
+  error_404:
+    title: "殿堂崩塌"
+    message: "目标殿堂已被摧毁，秘宝不复存在。"
+    btn: "返回秘密基地"
+
+music_player:
+  title: "怪盗电台.exe"
+  empty_message: "未加载曲目"

@@ -2,6 +2,314 @@
 {% set pg = cfg.pages.home %}
 {% block title %}{{ cfg.site.title }} // {{ pg.hero_line1 }}_{{ pg.hero_line2 }}{% endblock %}
 
+{% block extra_css %}
+/* ====== P5R Light Mode — Home Page Deep Fix ====== */
+
+/* --- Hero section left panel --- */
+html.light .lg\:col-span-5.border-r {
+  background: rgba(255,255,255,0.92) !important;
+  border-right-color: rgba(217,35,35,0.15) !important;
+}
+
+/* H1 hero title */
+html.light h1.font-headline.text-white,
+html.light h1.font-headline.glitch-hover-text {
+  color: var(--p5-black, #0d0d0d) !important;
+  -webkit-text-stroke: 0.5px var(--p5-black, #0d0d0d) !important;
+}
+html.light h1.font-headline .text-\[\#f5e642\] {
+  color: var(--p5-red, #d92323) !important;
+  -webkit-text-stroke: 0.5px var(--p5-red, #d92323) !important;
+}
+
+/* Kernel status label + pulse dot */
+html.light .font-label.text-\[\#f5e642\] {
+  color: var(--p5-red, #d92323) !important;
+}
+html.light .w-3.h-3.bg-\[\#f5e642\] {
+  background-color: var(--p5-red, #d92323) !important;
+}
+
+/* Bio paragraph — white text on red panel (high specificity to beat base.html overrides) */
+html.light main .text-on-surface-variant.font-body.text-lg {
+  color: #ffffff !important;
+  background: #d92323 !important;
+  padding: 1rem 1.5rem !important;
+  border-left: 4px solid #0d0d0d !important;
+  box-shadow: 4px 4px 0 #0d0d0d !important;
+}
+
+/* Boot log — boost opacity */
+html.light #boot-log-container {
+  opacity: 0.85 !important;
+}
+html.light .boot-line { color: var(--p5-on-surface, #0d0d0d) !important; }
+html.light .boot-line[class*="text-[#f5e642]"] { color: var(--p5-red, #d92323) !important; }
+html.light .boot-line[class*="text-[#ff2d78]"] { color: var(--p5-red-dark, #732424) !important; }
+
+/* Primary CTA button */
+html.light a.bg-\[\#f5e642\].text-black {
+  background-color: var(--p5-red, #d92323) !important;
+  color: #fff !important;
+}
+html.light a.bg-\[\#f5e642\].text-black:hover {
+  background-color: var(--p5-red-dark, #732424) !important;
+  color: #fff !important;
+}
+
+/* Secondary CTA button */
+html.light a.border.border-\[\#f5e642\]\/40.text-\[\#f5e642\] {
+  border-color: var(--p5-red, #d92323) !important;
+  color: var(--p5-red, #d92323) !important;
+}
+html.light a.border.border-\[\#f5e642\]\/40.text-\[\#f5e642\]:hover {
+  background-color: rgba(217,35,35,0.08) !important;
+}
+
+/* --- Image section — clean, vivid, responsive --- */
+html.light .lg\:col-span-7.bg-neutral-900,
+html.light [class*="lg:col-span-7"].bg-neutral-900 {
+  background: var(--p5-surface-low, #faf7f3) !important;
+}
+html.light .lg\:col-span-7 img,
+html.light [class*="lg:col-span-7"] img {
+  filter: none !important;
+  opacity: 1 !important;
+  -webkit-filter: none !important;
+}
+html.light .lg\:col-span-7 .mix-blend-overlay,
+html.light [class*="lg:col-span-7"] .mix-blend-overlay {
+  display: none !important;
+}
+html.light .lg\:col-span-7 .bg-gradient-to-t,
+html.light [class*="lg:col-span-7"] .bg-gradient-to-t {
+  background: linear-gradient(to top, var(--p5-bg, #f8f5f0) 2%, transparent 40%) !important;
+}
+
+/* Error badge */
+html.light .bg-\[\#ff2d78\].text-white {
+  background-color: var(--p5-red, #d92323) !important;
+  color: #fff !important;
+}
+/* Alias — disable blend */
+html.light .mix-blend-difference {
+  mix-blend-mode: normal !important;
+  color: var(--p5-red, #d92323) !important;
+}
+/* Avatar ID label */
+html.light .text-white.font-label.text-xs {
+  color: var(--p5-on-surface, #0d0d0d) !important;
+}
+/* Yellow bar under avatar */
+html.light .w-32.h-1.bg-\[\#f5e642\] {
+  background-color: var(--p5-red, #d92323) !important;
+}
+/* Background gradients */
+html.light .bg-gradient-to-t.from-background {
+  background: linear-gradient(to top, var(--p5-bg, #f8f5f0), transparent) !important;
+}
+html.light .bg-gradient-to-r.from-background {
+  background: linear-gradient(to right, var(--p5-bg, #f8f5f0), transparent) !important;
+}
+
+/* --- Bottom HUD section --- */
+html.light section.bg-surface-container-low {
+  background-color: var(--p5-surface-low, #faf7f3) !important;
+  border-top-color: rgba(217,35,35,0.2) !important;
+}
+html.light .font-label.text-\[10px\].text-\[\#f5e642\] {
+  color: var(--p5-red, #d92323) !important;
+  font-weight: 700;
+}
+html.light .font-label.text-\[10px\].text-secondary {
+  color: var(--p5-red-dark, #732424) !important;
+}
+html.light .font-label.text-\[10px\].text-\[\#ff2d78\] {
+  color: var(--p5-red-dark, #732424) !important;
+}
+html.light .font-label.text-\[10px\].text-on-surface {
+  color: var(--p5-on-surface, #0d0d0d) !important;
+}
+html.light .w-3.h-2.bg-\[\#f5e642\] {
+  background-color: var(--p5-red, #d92323) !important;
+}
+html.light .w-3.h-2.bg-\[\#f5e642\]\/30 {
+  background-color: rgba(217,35,35,0.25) !important;
+}
+html.light .text-on-surface-variant.font-label.text-\[10px\] {
+  color: var(--p5-on-surface-variant, #3a2a2e) !important;
+}
+
+/* --- Terminal log section --- */
+html.light .bg-black\/80.font-label {
+  background-color: var(--p5-surface-container, #e8e3dd) !important;
+  border-top-color: rgba(217,35,35,0.08) !important;
+  color: var(--p5-on-surface, #0d0d0d) !important;
+}
+html.light .text-green { color: #1a7a2e !important; }
+html.light [class*="text-white/60"],
+html.light .text-white\/60 { color: rgba(13,13,13,0.6) !important; }
+html.light [class*="text-secondary"] { color: var(--p5-red-dark, #732424) !important; }
+
+/* Blur glow — red */
+html.light .bg-\[\#f5e642\]\/5.blur-\[120px\] {
+  background-color: rgba(217,35,35,0.04) !important;
+}
+
+/* ====== RESPONSIVE — match dark theme breakpoints ====== */
+
+/* Mobile (< 768px) */
+@media (max-width: 767px) {
+  html.light h1.font-headline.text-white,
+  html.light h1.font-headline.glitch-hover-text {
+    font-size: 2.25rem !important;
+    -webkit-text-stroke: 0 !important;
+  }
+  html.light h1.font-headline .text-\[\#f5e642\] {
+    -webkit-text-stroke: 0 !important;
+  }
+  html.light main .text-on-surface-variant.font-body.text-lg {
+    padding: 0.75rem 1rem !important;
+    font-size: 0.9375rem !important;
+    box-shadow: 3px 3px 0 #0d0d0d !important;
+  }
+  html.light a.bg-\[\#f5e642\].text-black,
+  html.light a.border.border-\[\#f5e642\]\/40.text-\[\#f5e642\] {
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem 1.5rem !important;
+  }
+  html.light .lg\:col-span-7.bg-neutral-900,
+  html.light [class*="lg:col-span-7"].bg-neutral-900 {
+    height: 16rem;
+    min-height: 16rem;
+  }
+  html.light .lg\:col-span-7 img,
+  html.light [class*="lg:col-span-7"] img {
+    object-fit: cover !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  html.light .bg-gradient-to-r.from-background.lg\:hidden,
+  html.light [class*="lg:hidden"].bg-gradient-to-r {
+    background: linear-gradient(to right, var(--p5-bg, #f8f5f0) 10%, transparent 60%) !important;
+  }
+  html.light .absolute.top-10.right-10 {
+    top: 0.5rem !important;
+    right: 0.5rem !important;
+  }
+  html.light .absolute.bottom-10.left-10 {
+    bottom: 0.5rem !important;
+    left: 0.5rem !important;
+  }
+  html.light .mix-blend-difference {
+    font-size: 1.25rem !important;
+  }
+  html.light section.bg-surface-container-low .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  html.light .bg-black\/80.font-label {
+    height: 6rem;
+    font-size: 10px;
+  }
+  html.light #boot-log-container {
+    font-size: 9px !important;
+  }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  html.light h1.font-headline.text-white,
+  html.light h1.font-headline.glitch-hover-text {
+    font-size: 4.5rem !important;
+  }
+  html.light main .text-on-surface-variant.font-body.text-lg {
+    padding: 0.875rem 1.25rem !important;
+  }
+  html.light .lg\:col-span-7.bg-neutral-900,
+  html.light [class*="lg:col-span-7"].bg-neutral-900 {
+    height: 20rem;
+  }
+}
+
+/* Desktop (≥ 1024px) */
+@media (min-width: 1024px) {
+  html.light .lg\:col-span-5.border-r {
+    border-right: 1px solid rgba(217,35,35,0.12) !important;
+  }
+  html.light .lg\:col-span-7.bg-neutral-900,
+  html.light [class*="lg:col-span-7"].bg-neutral-900 {
+    height: auto;
+    min-height: 100%;
+  }
+  html.light main .text-on-surface-variant.font-body.text-lg {
+    box-shadow: 6px 6px 0 #0d0d0d !important;
+    transform: skewX(-1deg);
+  }
+}
+
+/* Mesh grid pattern — red dots */
+html.light .mesh-grid {
+  background-image: radial-gradient(rgba(217,35,35,0.06) 1px, transparent 1px) !important;
+}
+
+/* P5R CTA buttons — skewed red blocks, instant hover flip */
+html.light a.bg-\[\#f5e642\].text-black {
+  background: #e61919 !important;
+  color: #fff !important;
+  transform: skewX(-12deg) !important;
+  clip-path: none !important;
+  box-shadow: 3px 3px 0 #0d0d0d !important;
+}
+html.light a.bg-\[\#f5e642\].text-black:hover {
+  background: #0d0d0d !important;
+  color: #fff !important;
+  transition: none !important;
+}
+html.light a.border.border-\[\#f5e642\]\/40.text-\[\#f5e642\] {
+  border: 2px solid #e61919 !important;
+  color: #e61919 !important;
+  transform: skewX(-12deg) !important;
+  clip-path: none !important;
+}
+html.light a.border.border-\[\#f5e642\]\/40.text-\[\#f5e642\]:hover {
+  background: #e61919 !important;
+  color: #fff !important;
+  transition: none !important;
+}
+
+/* P5R hero title — Bebas Neue, no stroke */
+html.light h1.font-headline.text-white,
+html.light h1.font-headline.glitch-hover-text {
+  font-family: 'Bebas Neue', sans-serif !important;
+  -webkit-text-stroke: 0 !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* P5R gold accent on kernel status */
+html.light .font-label.text-xs.text-\[\#f5e642\] {
+  color: #e8c840 !important;
+}
+
+/* P5R bio panel — red bg with white text, skewed */
+html.light main .text-on-surface-variant.font-body.text-lg {
+  background: #e61919 !important;
+  color: #fff !important;
+  padding: 1rem 1.5rem !important;
+  border-left: 5px solid #0d0d0d !important;
+  box-shadow: 4px 4px 0 #0d0d0d !important;
+  transform: skewX(-3deg) !important;
+  font-family: 'Barlow Condensed', sans-serif !important;
+}
+
+/* P5R bottom HUD — gold labels */
+html.light section.bg-surface-container-low .font-label.text-\[10px\].text-\[\#f5e642\] {
+  color: #e8c840 !important;
+  font-weight: 700 !important;
+}
+{% endblock %}
+
 {% block content %}
 <main class="relative pt-14 md:pt-24 min-h-screen flex flex-col overflow-hidden">
   <div class="absolute inset-0 mesh-grid opacity-30 z-0"></div>
@@ -12,28 +320,29 @@
       <div class="mb-8">
         <div class="flex items-center gap-2 mb-4">
           <span class="w-3 h-3 bg-[#f5e642] animate-pulse"></span>
-          <span class="font-label text-xs tracking-[0.3em] text-[#f5e642]">{{ pg.kernel_status }}</span>
+          <span class="font-label text-xs tracking-[0.3em] text-[#f5e642]" data-p5r="{{ p5r.pages.home.kernel_status }}">{{ pg.kernel_status }}</span>
         </div>
-        <h1 class="font-headline text-4xl sm:text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-4">
-          {{ pg.hero_line1 }}<br/><span class="text-[#f5e642]">{{ pg.hero_line2 }}</span>
+        <h1 class="font-headline text-4xl sm:text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-4 glitch-hover-text" data-text="{{ pg.hero_line1 }} {{ pg.hero_line2 }}">
+          <span data-p5r="{{ p5r.pages.home.hero_line1 }}">{{ pg.hero_line1 }}</span><br/><span class="text-[#f5e642]"><span data-p5r="{{ p5r.pages.home.hero_line2 }}">{{ pg.hero_line2 }}</span></span>
         </h1>
         <p class="text-on-surface-variant font-body text-lg max-w-md leading-relaxed border-l-2 border-[#f5e642] pl-6 py-2">
           {{ cfg.owner.bio }}
         </p>
       </div>
-      <div class="font-label text-[10px] space-y-1 mb-10 opacity-60">
+      <div class="font-label text-[10px] space-y-1 mb-10 opacity-60" id="boot-log-container">
+        {% set p5r_boot = p5r.pages.home.boot_lines %}
         {% for line in pg.boot_lines %}
-        <div class="{% if line.color %}text-[{{ line.color }}]{% else %}text-on-surface{% endif %}">{{ line.text }}</div>
+        <div class="boot-line {% if line.color %}text-[{{ line.color }}]{% else %}text-on-surface{% endif %}" style="--delay: {{ loop.index0 * 0.4 }}s"><span data-p5r="{{ p5r_boot[loop.index0] if loop.index0 < p5r_boot|length else line.text }}">{{ line.text }}</span></div>
         {% endfor %}
       </div>
       <div class="flex flex-wrap gap-4">
         <a href="/projects" class="bg-[#f5e642] text-black font-bold py-3 px-6 md:py-4 md:px-8 uppercase tracking-widest text-xs sm:text-sm diagonal-cut-tr hover:bg-white transition-all active:scale-95 flex items-center gap-3">
-          {{ pg.btn_primary }}
+          <span data-p5r="{{ p5r.pages.home.btn_primary }}">{{ pg.btn_primary }}</span>
           <span class="material-symbols-outlined text-sm">bolt</span>
         </a>
         {% if cfg.owner.resume_url %}
         <a href="{{ cfg.owner.resume_url }}" class="border border-[#f5e642]/40 text-[#f5e642] font-bold py-3 px-6 md:py-4 md:px-8 uppercase tracking-widest text-xs sm:text-sm diagonal-cut-tr hover:bg-[#f5e642]/10 transition-all flex items-center gap-3">
-          {{ pg.btn_secondary }}
+          <span data-p5r="{{ p5r.pages.home.btn_secondary }}">{{ pg.btn_secondary }}</span>
           <span class="material-symbols-outlined text-sm">file_download</span>
         </a>
         {% endif %}
@@ -47,12 +356,12 @@
         <img alt="High-tech glitched portrait" class="w-full h-full object-cover grayscale brightness-50 contrast-125" src="{{ cfg.owner.avatar }}"/>
         <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-20"></div>
         <div class="absolute top-10 right-10 z-30 flex flex-col items-end">
-          <div class="bg-[#ff2d78] text-white font-label text-[10px] px-2 py-1 mb-2">{{ pg.badge_error }}</div>
-          <div class="text-[#f5e642] font-headline text-3xl font-black italic tracking-tighter mix-blend-difference">{{ cfg.owner.alias }}</div>
+          <div class="bg-[#ff2d78] text-white font-label text-[10px] px-2 py-1 mb-2"><span data-p5r="{{ p5r.pages.home.badge_error }}">{{ pg.badge_error }}</span></div>
+          <div class="text-[#f5e642] font-headline text-3xl font-black italic tracking-tighter mix-blend-difference"><span data-p5r="{{ p5r.pages.home.alias }}">{{ cfg.owner.alias }}</span></div>
         </div>
         <div class="absolute bottom-10 left-10 z-30">
           <div class="w-32 h-1 bg-[#f5e642] mb-2"></div>
-          <div class="text-white font-label text-xs tracking-widest">{{ pg.avatar_id }}</div>
+          <div class="text-white font-label text-xs tracking-widest"><span data-p5r="{{ p5r.pages.home.avatar_id }}">{{ pg.avatar_id }}</span></div>
         </div>
       </div>
     </div>
@@ -62,23 +371,23 @@
     <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-6 w-full md:w-auto overflow-x-auto no-scrollbar">
         <div class="flex items-center gap-2 whitespace-nowrap">
-          <span class="font-label text-[10px] text-[#f5e642]">{{ pg.hud_cpu }}</span>
+          <span class="font-label text-[10px] text-[#f5e642]"><span data-p5r="{{ p5r.pages.home.hud_cpu }}">{{ pg.hud_cpu }}</span></span>
           <div class="flex gap-0.5">
             <div class="w-3 h-2 bg-[#f5e642]"></div><div class="w-3 h-2 bg-[#f5e642]"></div><div class="w-3 h-2 bg-[#f5e642]"></div>
             <div class="w-3 h-2 bg-[#f5e642]/30"></div><div class="w-3 h-2 bg-[#f5e642]/30"></div>
           </div>
         </div>
         <div class="flex items-center gap-2 whitespace-nowrap">
-          <span class="font-label text-[10px] text-secondary">{{ pg.hud_net }}</span>
-          <span class="font-label text-[10px] text-on-surface">{{ pg.hud_net_val }}</span>
+          <span class="font-label text-[10px] text-secondary"><span data-p5r="{{ p5r.pages.home.hud_net }}">{{ pg.hud_net }}</span></span>
+          <span class="font-label text-[10px] text-on-surface"><span data-p5r="{{ p5r.pages.home.hud_net_val }}">{{ pg.hud_net_val }}</span></span>
         </div>
         <div class="flex items-center gap-2 whitespace-nowrap">
-          <span class="font-label text-[10px] text-[#ff2d78]">{{ pg.hud_temp }}</span>
-          <span class="font-label text-[10px] text-on-surface">{{ pg.hud_temp_val }}</span>
+          <span class="font-label text-[10px] text-[#ff2d78]"><span data-p5r="{{ p5r.pages.home.hud_temp }}">{{ pg.hud_temp }}</span></span>
+          <span class="font-label text-[10px] text-on-surface"><span data-p5r="{{ p5r.pages.home.hud_temp_val }}">{{ pg.hud_temp_val }}</span></span>
         </div>
       </div>
       <div class="flex items-center gap-4 text-on-surface-variant font-label text-[10px] italic">
-        <span class="animate-pulse">●</span> {{ pg.hud_live }}
+        <span class="animate-pulse">●</span> <span data-p5r="{{ p5r.pages.home.hud_live }}">{{ pg.hud_live }}</span>
       </div>
     </div>
     <div class="bg-black/80 p-4 font-label text-[11px] h-32 overflow-y-auto border-t border-white/5 custom-scrollbar">
@@ -88,4 +397,10 @@
     </div>
   </section>
 </main>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+if(window.BootAnimation) BootAnimation.init('#boot-log-container');
+</script>
 {% endblock %}

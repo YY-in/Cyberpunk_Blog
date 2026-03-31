@@ -1,0 +1,504 @@
+/* ============================================================
+   effects.css — Cyberpunk Visual Effects
+   Colors: primary #f5e642, secondary #00d4ff, tertiary #ff2d78, bg #131318
+   ============================================================ */
+
+/* ------------------------------------------------------------------
+   1. CRT Scanline Global Overlay + Flicker
+   ------------------------------------------------------------------ */
+
+.crt-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Animated horizontal scanlines */
+.crt-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.12) 2px,
+    rgba(0, 0, 0, 0.12) 4px
+  );
+  opacity: 0.03;
+  animation: crt-scroll 8s linear infinite;
+}
+
+/* Subtle RGB color fringing */
+.crt-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255, 0, 0, 0.015) 0%, transparent 3%),
+    linear-gradient(-90deg, rgba(0, 100, 255, 0.015) 0%, transparent 3%);
+  opacity: 1;
+}
+
+@keyframes crt-scroll {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 100vh; }
+}
+
+/* Subtle random flicker for the whole page */
+.crt-flicker {
+  animation: crt-flicker-anim 4s infinite;
+}
+
+@keyframes crt-flicker-anim {
+  0%   { opacity: 1; }
+  3%   { opacity: 0.98; }
+  6%   { opacity: 1; }
+  42%  { opacity: 1; }
+  44%  { opacity: 0.97; }
+  46%  { opacity: 1; }
+  78%  { opacity: 1; }
+  80%  { opacity: 0.96; }
+  82%  { opacity: 0.99; }
+  83%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+
+/* ------------------------------------------------------------------
+   2. Glitch Text Hover Effect
+   ------------------------------------------------------------------ */
+
+.glitch-hover-text {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Ghost pseudo-elements (tertiary color, 40% opacity, 2px offset) */
+.glitch-hover-text::before,
+.glitch-hover-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  color: #ff2d78;
+  transition: opacity 0.05s;
+}
+
+.glitch-hover-text::before {
+  transform: translate(2px, -2px);
+}
+
+.glitch-hover-text::after {
+  transform: translate(-2px, 2px);
+}
+
+.glitch-hover-text:hover::before,
+.glitch-hover-text:hover::after {
+  opacity: 0.4;
+}
+
+/* Chromatic aberration + micro-shifts on hover */
+.glitch-hover-text:hover {
+  animation: glitch-shift 0.2s steps(4) infinite;
+  text-shadow:
+    2px 0 rgba(255, 45, 120, 0.6),
+    -2px 0 rgba(0, 212, 255, 0.6);
+}
+
+@keyframes glitch-shift {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-1px, 1px); }
+  50%  { transform: translate(1px, -1px); }
+  75%  { transform: translate(-1px, -1px); }
+  100% { transform: translate(1px, 0); }
+}
+
+
+/* ------------------------------------------------------------------
+   3. Page Transition Loading Bar
+   ------------------------------------------------------------------ */
+
+#page-loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  z-index: 9999;
+  background: linear-gradient(90deg, #f5e642, #00d4ff, #ff2d78);
+  transition: none;
+  pointer-events: none;
+  opacity: 1;
+}
+
+#page-loading-bar.loading-bar-active {
+  animation: loading-grow 500ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes loading-grow {
+  from { width: 0%; }
+  to   { width: 90%; }
+}
+
+#page-loading-bar.loading-bar-complete {
+  width: 100% !important;
+  animation: none;
+  transition: width 150ms ease-out, opacity 300ms ease-out 200ms;
+  opacity: 0;
+}
+
+
+/* ------------------------------------------------------------------
+   4. Dark Vignette / Noise Texture
+   ------------------------------------------------------------------ */
+
+/* Static noise overlay — canvas-based tile injected via JS */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9997;
+  pointer-events: none;
+  opacity: 0.04;
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Radial vignette — transparent center, dark edges */
+.vignette-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9996;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 50%,
+    rgba(19, 19, 24, 0.45) 80%,
+    rgba(19, 19, 24, 0.85) 100%
+  );
+}
+
+
+/* ------------------------------------------------------------------
+   5. Boot Log Typewriter Animation
+   ------------------------------------------------------------------ */
+
+.boot-line {
+  opacity: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  font-family: "Courier New", monospace;
+  border-right: 2px solid #f5e642;
+  width: 0;
+  animation:
+    boot-reveal 0.01ms forwards var(--delay, 0ms),
+    boot-typing 0.6s steps(40) forwards var(--delay, 0ms),
+    boot-cursor-blink 0.5s step-end infinite var(--delay, 0ms);
+}
+
+@keyframes boot-reveal {
+  to { opacity: 1; }
+}
+
+@keyframes boot-typing {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes boot-cursor-blink {
+  0%, 100% { border-color: #f5e642; }
+  50%      { border-color: transparent; }
+}
+
+/* When the line is "done", remove cursor */
+.boot-line.done {
+  border-right-color: transparent;
+  width: 100%;
+  opacity: 1;
+  animation: none;
+}
+
+
+/* ==============================================================
+   P5R (Persona 5 Royal) Light-Mode Visual Overrides
+   Active ONLY under html.light — dark mode is untouched.
+   ============================================================== */
+
+/* --- P5R Halftone Overlay (replaces CRT scanlines) --- */
+html.light .crt-overlay {
+  background: radial-gradient(circle, #d92323 0.6px, transparent 0.6px) !important;
+  background-size: 10px 10px !important;
+  opacity: 0.03 !important;
+}
+
+html.light .crt-overlay::before,
+html.light .crt-overlay::after {
+  display: none !important;  /* No scanlines / RGB fringing in P5R mode */
+}
+
+html.light .crt-flicker {
+  animation: none !important;  /* No CRT flicker in P5R mode */
+}
+
+/* --- P5R Diagonal Stripes (replaces random noise) --- */
+html.light .noise-overlay {
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 6px,
+    rgba(217,35,35,0.02) 6px,
+    rgba(217,35,35,0.02) 12px
+  ) !important;
+  opacity: 1 !important; /* opacity built into the gradient */
+}
+
+/* --- P5R Glitch Text (bold outline + skew, no chromatic ghost) --- */
+html.light .glitch-hover-text:hover {
+  text-shadow: 2px 2px 0 #d92323, -1px -1px 0 #0d0d0d !important;
+  transform: skewX(-3deg) scale(1.02) !important;
+  transition: all 0.15s ease !important;
+  animation: none !important;  /* disable glitch-shift keyframes */
+}
+
+html.light .glitch-hover-text::before,
+html.light .glitch-hover-text::after {
+  display: none !important;  /* No chromatic ghost in P5R mode */
+}
+
+/* --- P5R Loading Bar (red gradient) --- */
+html.light #page-loading-bar {
+  background: linear-gradient(90deg, #d92323, #ff1a44, #d92323) !important;
+}
+
+/* --- P5R Boot Line (red cursor) --- */
+html.light .boot-line::after {
+  color: #d92323 !important;
+}
+
+html.light .boot-line {
+  border-right-color: #d92323 !important;
+}
+
+html.light .boot-line.done {
+  border-right-color: transparent !important;
+}
+
+/* --- P5R Vignette (softer, warm tint) --- */
+html.light .vignette-overlay {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 60%,
+    rgba(217, 35, 35, 0.04) 85%,
+    rgba(217, 35, 35, 0.08) 100%
+  ) !important;
+}
+
+
+/* ====== P5R LIGHT MODE ANIMATIONS ====== */
+
+/* P5R timing function — fast start, hard stop "snap" */
+
+/* 1. Page entry — aggressive skewed slide from left */
+html.light #page-content > main {
+  animation: p5r-page-enter 0.3s cubic-bezier(0.2, 0, 0, 1) both;
+}
+@keyframes p5r-page-enter {
+  from {
+    opacity: 0;
+    transform: translateX(-50px) skewX(-6deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) skewX(0);
+  }
+}
+
+/* 2. Staggered card reveal — skewed slide with P5R snap */
+html.light .project-card,
+html.light .cut-corner-br,
+html.light .blog-entry {
+  animation: p5r-card-enter 0.25s cubic-bezier(0.2, 0, 0, 1) both;
+}
+html.light .project-card:nth-child(1),
+html.light .cut-corner-br:nth-child(1) { animation-delay: 0.04s; }
+html.light .project-card:nth-child(2),
+html.light .cut-corner-br:nth-child(2) { animation-delay: 0.08s; }
+html.light .project-card:nth-child(3),
+html.light .cut-corner-br:nth-child(3) { animation-delay: 0.12s; }
+html.light .project-card:nth-child(4) { animation-delay: 0.16s; }
+html.light .project-card:nth-child(5) { animation-delay: 0.20s; }
+html.light .project-card:nth-child(6) { animation-delay: 0.24s; }
+
+@keyframes p5r-card-enter {
+  from {
+    opacity: 0;
+    transform: translateX(-40px) skewX(-12deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) skewX(0);
+  }
+}
+
+/* 3. Section headers — bold slash-in with skew */
+html.light h1.font-headline,
+html.light h2.font-headline {
+  animation: p5r-headline-slash 0.35s cubic-bezier(0.2, 0, 0, 1) both;
+  position: relative;
+}
+@keyframes p5r-headline-slash {
+  from {
+    opacity: 0;
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    transform: skewX(-12deg);
+  }
+  to {
+    opacity: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: skewX(0deg);
+  }
+}
+
+/* 4. Section divider — skewed red bar */
+html.light section + section::before {
+  content: '';
+  display: block;
+  height: 5px;
+  background: #e61919;
+  margin: 2rem 0;
+  transform: skewX(-12deg);
+  animation: p5r-divider-grow 0.4s cubic-bezier(0.2, 0, 0, 1) both;
+}
+@keyframes p5r-divider-grow {
+  from { transform: skewX(-12deg) scaleX(0); }
+  to { transform: skewX(-12deg) scaleX(1); }
+}
+
+/* 5. Hover effects — P5R INSTANT FLIP (no transition!) */
+html.light a:hover,
+html.light button:hover {
+  transition: none !important;
+}
+
+html.light .project-card:hover h3,
+html.light .group:hover h3 {
+  transform: skewX(-6deg) !important;
+  transition: none !important;
+}
+
+/* 6. Idle breathing on featured — P5R subtle pulse */
+html.light .animate-pulse {
+  animation: p5r-breathe 2.5s ease-in-out infinite !important;
+}
+@keyframes p5r-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.01); opacity: 1; }
+}
+
+/* 7. Star sparkle on click — P5R gold star ★ */
+html.light button:active::after,
+html.light a:active::after {
+  content: '★';
+  position: absolute;
+  color: #e8c840;
+  font-size: 18px;
+  top: -10px;
+  right: -10px;
+  animation: p5r-star-pop 0.3s cubic-bezier(0.2, 0, 0, 1) forwards;
+  pointer-events: none;
+}
+@keyframes p5r-star-pop {
+  0% { transform: scale(0) rotate(0deg); opacity: 1; }
+  60% { transform: scale(1.8) rotate(120deg); opacity: 1; }
+  100% { transform: scale(1) rotate(180deg); opacity: 0; }
+}
+
+/* 8. Nav link hover — P5R instant sweep (no gradual transition) */
+html.light header nav a {
+  position: relative;
+  overflow: hidden;
+}
+html.light header nav a::before {
+  display: none !important; /* Remove gradual sweep — P5R uses instant flip */
+}
+
+/* 9. Red accent line on card hover */
+html.light .project-card {
+  position: relative;
+}
+html.light .project-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 0;
+  background: #e61919;
+}
+html.light .project-card:hover::after {
+  height: 100%;
+  transition: none !important;
+}
+
+/* 10. Scroll-triggered fade — P5R skewed slide */
+html.light .p5r-fade-in {
+  opacity: 0;
+  transform: translateY(20px) skewX(-3deg);
+  transition: opacity 0.3s cubic-bezier(0.2, 0, 0, 1), transform 0.3s cubic-bezier(0.2, 0, 0, 1);
+}
+html.light .p5r-fade-in.visible {
+  opacity: 1;
+  transform: translateY(0) skewX(0);
+}
+
+/* 11. Skills progress bars — P5R red fill */
+html.light .animate-system-fill {
+  animation: p5r-bar-fill 0.8s cubic-bezier(0.2, 0, 0, 1) forwards !important;
+  background-color: #e61919 !important;
+}
+
+/* 12. Contact HUD cards — slide from left with skew */
+html.light section > .grid > div:nth-child(1) {
+  animation: p5r-slide-left 0.25s 0.05s cubic-bezier(0.2, 0, 0, 1) both;
+}
+html.light section > .grid > div:nth-child(2) {
+  animation: p5r-slide-left 0.25s 0.1s cubic-bezier(0.2, 0, 0, 1) both;
+}
+html.light section > .grid > div:nth-child(3) {
+  animation: p5r-slide-left 0.25s 0.15s cubic-bezier(0.2, 0, 0, 1) both;
+}
+@keyframes p5r-slide-left {
+  from { opacity: 0; transform: translateX(-40px) skewX(-12deg); }
+  to { opacity: 1; transform: translateX(0) skewX(0); }
+}
+
+/* 13. P5R SHOWTIME section label — skewed red bar with text */
+html.light .p5r-showtime-label {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) skewX(-12deg);
+  background: #e61919;
+  color: #fff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  padding: 12px 48px;
+  letter-spacing: 0.15em;
+  z-index: 9999;
+  pointer-events: none;
+  animation: p5r-showtime-label 0.6s cubic-bezier(0.2, 0, 0, 1) forwards;
+}
+@keyframes p5r-showtime-label {
+  0% { opacity: 0; transform: translate(-50%, -50%) skewX(-12deg) scale(0.5); }
+  40% { opacity: 1; transform: translate(-50%, -50%) skewX(-12deg) scale(1.05); }
+  60% { opacity: 1; transform: translate(-50%, -50%) skewX(-12deg) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) skewX(-12deg) scale(1); }
+}

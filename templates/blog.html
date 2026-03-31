@@ -2,20 +2,29 @@
 {% set pg = cfg.pages.blog %}
 {% block title %}{{ cfg.site.title }} // {{ pg.page_title }}{% endblock %}
 
+{% block extra_css %}
+/* P5R light mode: Blog page */
+html.light header.mb-16.border-l-4 { border-left-color: #d92323 !important; }
+html.light .blog-summary { color: #3a2a2e !important; }
+html.light a.group.block.bg-surface-container-low { background-color: #faf7f3 !important; }
+html.light a.group.block:hover { background-color: #eae5df !important; }
+html.light .border-dashed.border-\[\#f5e642\]\/20 { border-color: rgba(217,35,35,0.2) !important; }
+{% endblock %}
+
 {% block content %}
 <main class="pt-14 md:pt-24 pb-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
   <header class="mb-16 border-l-4 border-[#f5e642] pl-6">
-    <h1 class="font-headline text-5xl md:text-7xl font-black uppercase glitch-text tracking-tighter text-[#f5e642] mb-4">{{ pg.page_title }}</h1>
-    <p class="font-label text-[#00d4ff] text-sm">&gt; {{ posts | length }} {{ pg.entries_suffix }}</p>
+    <h1 class="font-headline text-5xl md:text-7xl font-black uppercase glitch-text tracking-tighter text-[#f5e642] mb-4"><span data-p5r="{{ p5r.pages.blog.page_title }}">{{ pg.page_title }}</span></h1>
+    <p class="font-label text-[#00d4ff] text-sm">&gt; {{ posts | length }} <span data-p5r="{{ p5r.pages.blog.entries_suffix }}">{{ pg.entries_suffix }}</span></p>
   </header>
   {% if posts %}
   <div class="space-y-6">
     {% for post in posts %}
-    <a href="/blog/{{ post.slug }}" class="group block bg-surface-container-low border-l-4 border-[#f5e642]/20 hover:border-[#f5e642] p-6 transition-all">
+    <a href="/blog/{{ post.slug }}" class="group block bg-surface-container-low border-l-4 border-[#f5e642]/20 hover:border-[#f5e642] p-6 transition-all" data-tags="{{ post.meta.get('tags', '') }}">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h2 class="font-headline text-2xl font-bold text-white group-hover:text-[#f5e642] transition-colors">{{ post.meta.get('title', post.slug | upper) }}</h2>
-          <p class="font-body text-on-surface-variant text-sm mt-1">{{ post.meta.get('summary', '') }}</p>
+          <h2 class="font-headline text-2xl font-bold text-white group-hover:text-[#f5e642] transition-colors glitch-hover-text">{{ post.meta.get('title', post.slug | upper) }}</h2>
+          <p class="font-body text-on-surface-variant text-sm mt-1 blog-summary">{{ post.meta.get('summary', '') }}</p>
         </div>
         <span class="font-label text-[10px] text-[#f5e642]/40 whitespace-nowrap">{{ post.meta.get('date', '') }}</span>
       </div>

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html class="dark" lang="{{ cfg.site.lang }}">
+<html class="dark" lang="{{ cfg.site.lang }}" id="html-root">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>{% block title %}{{ cfg.site.title }}{% endblock %}</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script>
@@ -301,6 +302,449 @@ a, button { -webkit-tap-highlight-color: transparent; touch-action: manipulation
   #mp-toggle{width:40px!important;height:40px!important}
 }
 
+/* ====== P5R PHANTOM REBELLION — Global Light Mode ====== */
+
+/* -- CSS Variables -- */
+html.light {
+  --p5r-red: #e61919;
+  --p5r-red-dark: #8b0000;
+  --p5r-gold: #e8c840;
+  --p5r-bg: #f5f0eb;
+  --p5r-bg-alt: #ece7e1;
+  --p5r-black: #0d0d0d;
+  --p5r-grey: #2a2a2a;
+  --p5r-grey-light: #444;
+}
+
+/* -- P5R Fonts -- */
+html.light { font-family: 'Barlow Condensed', 'Space Grotesk', sans-serif !important; }
+html.light body { font-family: 'Barlow Condensed', 'Space Grotesk', sans-serif !important; }
+html.light .font-headline { font-family: 'Bebas Neue', 'Orbitron', sans-serif !important; letter-spacing: 0.06em !important; }
+html.light .font-body { font-family: 'Barlow Condensed', sans-serif !important; }
+html.light .font-label { font-family: 'Share Tech Mono', monospace !important; }
+html.light h1, html.light h2, html.light h3 { font-family: 'Bebas Neue', 'Orbitron', sans-serif !important; }
+
+/* -- Body & Background -- */
+html.light { background-color: var(--p5r-bg) !important; }
+html.light body { background-color: var(--p5r-bg) !important; color: var(--p5r-black) !important; }
+
+/* Paper noise texture */
+html.light body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+}
+
+/* -- Surface / BG tokens -- */
+html.light .bg-background { background-color: var(--p5r-bg) !important; }
+html.light .text-on-background { color: var(--p5r-black) !important; }
+html.light .text-on-surface { color: var(--p5r-black) !important; }
+html.light .text-on-surface-variant { color: var(--p5r-grey-light) !important; }
+html.light .bg-surface-container-low { background-color: var(--p5r-bg-alt) !important; }
+html.light .bg-surface-container-lowest { background-color: #faf7f3 !important; }
+html.light .bg-surface-container-lowest\/80 { background-color: rgba(250,247,243,0.8) !important; }
+html.light .bg-surface-container { background-color: #e0dbd5 !important; }
+html.light .bg-surface-container-high { background-color: #d6d1cb !important; }
+html.light .bg-surface-container-highest { background-color: #ccc7c1 !important; }
+html.light .bg-surface-bright { background-color: #ccc7c1 !important; }
+html.light .bg-black { background-color: var(--p5r-bg) !important; }
+html.light .bg-black\/50 { background-color: rgba(245,240,235,0.5) !important; }
+html.light .bg-black\/80 { background-color: rgba(245,240,235,0.85) !important; }
+html.light .bg-black\/90 { background-color: rgba(245,240,235,0.92) !important; }
+html.light .bg-neutral-900 { background-color: var(--p5r-bg-alt) !important; }
+html.light .bg-neutral-800 { background-color: #e0dbd5 !important; }
+
+/* -- Text Colors -- */
+html.light .text-white { color: var(--p5r-black) !important; }
+html.light .text-white\/50 { color: rgba(13,13,13,0.5) !important; }
+html.light .text-white\/60 { color: rgba(13,13,13,0.6) !important; }
+html.light .text-zinc-300 { color: var(--p5r-grey) !important; }
+html.light .text-zinc-400 { color: var(--p5r-grey-light) !important; }
+html.light .text-on-surface\/80 { color: rgba(13,13,13,0.8) !important; }
+
+/* -- Primary yellow → P5R red -- */
+html.light .text-\[\#f5e642\] { color: var(--p5r-red) !important; }
+html.light .bg-\[\#f5e642\] { background-color: var(--p5r-red) !important; }
+html.light .border-\[\#f5e642\] { border-color: var(--p5r-red) !important; }
+html.light .text-\[\#f5e642\]\/40 { color: rgba(230,25,25,0.4) !important; }
+html.light .text-\[\#f5e642\]\/50 { color: rgba(230,25,25,0.5) !important; }
+html.light .text-\[\#f5e642\]\/60 { color: rgba(230,25,25,0.5) !important; }
+html.light .text-\[\#f5e642\]\/5 { color: rgba(230,25,25,0.05) !important; }
+html.light .border-\[\#f5e642\]\/10 { border-color: rgba(230,25,25,0.1) !important; }
+html.light .border-\[\#f5e642\]\/20 { border-color: rgba(230,25,25,0.2) !important; }
+html.light .border-\[\#f5e642\]\/30 { border-color: rgba(230,25,25,0.3) !important; }
+html.light .border-\[\#f5e642\]\/40 { border-color: rgba(230,25,25,0.4) !important; }
+html.light .bg-\[\#f5e642\]\/5 { background-color: rgba(230,25,25,0.04) !important; }
+html.light .bg-\[\#f5e642\]\/10 { background-color: rgba(230,25,25,0.08) !important; }
+html.light .hover\:bg-\[\#f5e642\]\/10:hover { background-color: rgba(230,25,25,0.08) !important; }
+html.light .hover\:text-\[\#f5e642\]:hover { color: var(--p5r-red) !important; }
+html.light .hover\:border-\[\#f5e642\]:hover { border-color: var(--p5r-red) !important; }
+
+/* -- Cyan → P5R black -- */
+html.light .text-\[\#00d4ff\] { color: var(--p5r-black) !important; }
+html.light .bg-\[\#00d4ff\] { background-color: var(--p5r-black) !important; }
+html.light .border-\[\#00d4ff\] { border-color: var(--p5r-black) !important; }
+html.light .text-\[\#00d4ff\]\/60 { color: rgba(13,13,13,0.6) !important; }
+html.light .border-\[\#00d4ff\]\/20 { border-color: rgba(13,13,13,0.2) !important; }
+html.light .border-\[\#00d4ff\]\/30 { border-color: rgba(13,13,13,0.3) !important; }
+html.light .border-\[\#00d4ff\]\/40 { border-color: rgba(13,13,13,0.4) !important; }
+html.light .bg-\[\#00d4ff\]\/5 { background-color: rgba(13,13,13,0.03) !important; }
+html.light .bg-\[\#00d4ff\]\/10 { background-color: rgba(13,13,13,0.06) !important; }
+html.light .hover\:text-\[\#00d4ff\]:hover { color: var(--p5r-red-dark) !important; }
+html.light .shadow-\[0_0_10px_\#00d4ff\] { box-shadow: none !important; }
+
+/* -- Pink → P5R dark red -- */
+html.light .text-\[\#ff2d78\] { color: var(--p5r-red-dark) !important; }
+html.light .bg-\[\#ff2d78\] { background-color: var(--p5r-red) !important; }
+html.light .border-\[\#ff2d78\] { border-color: var(--p5r-red-dark) !important; }
+html.light .border-\[\#ff2d78\]\/20 { border-color: rgba(139,0,0,0.2) !important; }
+
+/* -- Semantic tokens -- */
+html.light .text-secondary { color: var(--p5r-black) !important; }
+html.light .text-secondary\/80 { color: rgba(13,13,13,0.8) !important; }
+html.light .text-secondary-container { color: var(--p5r-red) !important; }
+html.light .bg-secondary-container { background-color: var(--p5r-red) !important; }
+html.light .border-secondary-container { border-color: var(--p5r-red) !important; }
+html.light .border-secondary-container\/20 { border-color: rgba(230,25,25,0.2) !important; }
+html.light .border-secondary-container\/50 { border-color: rgba(230,25,25,0.5) !important; }
+html.light .text-secondary\/50 { color: rgba(13,13,13,0.5) !important; }
+html.light .text-secondary\/30 { color: rgba(13,13,13,0.3) !important; }
+html.light .text-secondary\/10 { color: rgba(13,13,13,0.1) !important; }
+html.light .border-secondary\/20 { border-color: rgba(13,13,13,0.2) !important; }
+html.light .border-secondary\/40 { border-color: rgba(13,13,13,0.4) !important; }
+html.light .border-secondary\/50 { border-color: rgba(13,13,13,0.5) !important; }
+html.light .bg-secondary\/5 { background-color: rgba(13,13,13,0.03) !important; }
+html.light .hover\:border-secondary:hover { border-color: var(--p5r-black) !important; }
+html.light .hover\:text-secondary:hover { color: var(--p5r-black) !important; }
+html.light .text-secondary-container\/60 { color: rgba(230,25,25,0.6) !important; }
+html.light .bg-secondary-container\/20 { background-color: rgba(230,25,25,0.15) !important; }
+html.light .shadow-\[0_0_20px_rgba\(0\,212\,255\,0\.15\)\] { box-shadow: 0 0 20px rgba(230,25,25,0.15) !important; }
+
+html.light .text-primary-container { color: var(--p5r-red) !important; }
+html.light .bg-primary-container { background-color: var(--p5r-red) !important; }
+html.light .border-primary-container { border-color: var(--p5r-red) !important; }
+html.light .text-primary-container\/40 { color: rgba(230,25,25,0.4) !important; }
+html.light .text-primary-container\/70 { color: rgba(230,25,25,0.7) !important; }
+html.light .border-primary-container\/50 { border-color: rgba(230,25,25,0.5) !important; }
+html.light .bg-primary-container\/5 { background-color: rgba(230,25,25,0.04) !important; }
+html.light .text-on-primary { color: #fff !important; }
+html.light .text-on-primary-container { color: #fff !important; }
+html.light .selection\:bg-primary-container::selection { background-color: rgba(230,25,25,0.3) !important; }
+html.light .selection\:text-on-primary-container::selection { color: #fff !important; }
+
+html.light .text-tertiary-container { color: var(--p5r-red-dark) !important; }
+html.light .text-error { color: var(--p5r-red) !important; }
+html.light .bg-error\/5 { background-color: rgba(230,25,25,0.04) !important; }
+html.light .text-error\/60 { color: rgba(230,25,25,0.6) !important; }
+html.light .border-error\/30 { border-color: rgba(230,25,25,0.3) !important; }
+
+/* -- Borders -- */
+html.light .border-white\/5 { border-color: rgba(13,13,13,0.05) !important; }
+html.light .border-white\/10 { border-color: rgba(13,13,13,0.1) !important; }
+html.light .border-white\/20 { border-color: rgba(13,13,13,0.2) !important; }
+html.light .border-on-surface-variant\/20 { border-color: rgba(68,68,68,0.2) !important; }
+html.light .border-on-surface-variant\/30 { border-color: rgba(68,68,68,0.3) !important; }
+
+/* -- Shadows → P5R offset blocks -- */
+html.light .shadow-\[0_0_15px_rgba\(245\,230\,66\,0\.15\)\] { box-shadow: 4px 4px 0 var(--p5r-red) !important; }
+html.light .shadow-\[0_0_20px_rgba\(245\,230\,66\,0\.3\)\] { box-shadow: 4px 4px 0 var(--p5r-red) !important; }
+html.light .shadow-\[0_0_30px_rgba\(245\,230\,66\,0\.6\)\] { box-shadow: 6px 6px 0 var(--p5r-red) !important; }
+html.light .drop-shadow-\[0_0_10px_rgba\(245\,230\,66\,0\.5\)\] { filter: none !important; }
+html.light .shadow-\[4px_4px_0px_\#ff2d78\] { box-shadow: 4px 4px 0px var(--p5r-black) !important; }
+html.light .shadow-\[4px_4px_0px_theme\(colors\.on-tertiary-container\)\] { box-shadow: 4px 4px 0px var(--p5r-black) !important; }
+html.light .shadow-\[10px_10px_0px_theme\(colors\.on-tertiary-container\)\] { box-shadow: 6px 6px 0px var(--p5r-black) !important; }
+html.light .shadow-\[10px_10px_0px_rgba\(245\,230\,66\,0\.1\)\] { box-shadow: 4px 4px 0 rgba(230,25,25,0.15) !important; }
+html.light .shadow-\[10px_10px_0px_rgba\(0\,212\,255\,0\.1\)\] { box-shadow: 4px 4px 0 rgba(230,25,25,0.15) !important; }
+html.light .shadow-\[20px_20px_0px_rgba\(255\,45\,120\,0\.2\)\] { box-shadow: 6px 6px 0 rgba(230,25,25,0.2) !important; }
+html.light .shadow-\[8px_8px_0px_rgba\(255\,45\,120\,0\.2\)\] { box-shadow: 4px 4px 0 rgba(230,25,25,0.2) !important; }
+
+/* ====== P5R HEADER ====== */
+html.light header.fixed {
+  background-color: var(--p5r-bg) !important;
+  border-bottom: 3px solid var(--p5r-red) !important;
+  box-shadow: none !important;
+}
+/* Site title: red skewed block */
+html.light header a[href="/"].font-headline {
+  background: var(--p5r-red) !important;
+  color: #fff !important;
+  padding: 4px 20px 4px 16px !important;
+  transform: skewX(-12deg) !important;
+  display: inline-block !important;
+}
+/* Nav items: black skewed blocks */
+html.light header nav a {
+  background: var(--p5r-black) !important;
+  color: #fff !important;
+  transform: skewX(-12deg) !important;
+  padding: 4px 16px !important;
+  margin: 0 2px !important;
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 0.1em !important;
+  transition: none !important;
+  box-shadow: none !important;
+}
+/* Nav active: red block */
+html.light header nav a.bg-\[\#f5e642\],
+html.light header a.text-\[\#131318\].bg-\[\#f5e642\] {
+  background: var(--p5r-red) !important;
+  color: #fff !important;
+  transform: skewX(-12deg) !important;
+  box-shadow: 3px 3px 0 var(--p5r-black) !important;
+}
+/* Nav hover: INSTANT FLIP — white bg, red text */
+html.light header nav a:hover {
+  background: #fff !important;
+  color: var(--p5r-red) !important;
+  transform: skewX(-12deg) !important;
+}
+html.light header nav a:active {
+  background: var(--p5r-red) !important;
+  color: #fff !important;
+}
+/* Theme toggle + icons */
+html.light header .text-\[\#f5e642\] { color: var(--p5r-red) !important; }
+html.light #theme-toggle { color: var(--p5r-red) !important; }
+html.light #theme-toggle-mobile span { color: var(--p5r-red) !important; }
+
+/* Lang switch: skewed red active */
+html.light .bg-\[\#f5e642\].text-\[\#131318\] {
+  background-color: var(--p5r-red) !important;
+  color: #fff !important;
+  transform: skewX(-12deg) !important;
+}
+html.light .text-\[\#f5e642\]\/50.border-\[\#f5e642\]\/20 {
+  color: var(--p5r-red) !important;
+  border-color: var(--p5r-red) !important;
+  transform: skewX(-12deg) !important;
+}
+html.light .text-\[\#f5e642\]\/50.border-\[\#f5e642\]\/20:hover {
+  background: var(--p5r-red) !important;
+  color: #fff !important;
+  transition: none !important;
+}
+
+/* ====== P5R MOBILE NAV ====== */
+html.light #mobile-nav {
+  background-color: rgba(245,240,235,0.97) !important;
+  border-bottom: 3px solid var(--p5r-red) !important;
+}
+html.light #mobile-nav a {
+  color: var(--p5r-black) !important;
+  border-bottom: 1px solid rgba(230,25,25,0.1) !important;
+  border-left: 4px solid transparent !important;
+  font-family: 'Bebas Neue', sans-serif !important;
+  letter-spacing: 0.1em !important;
+  transition: none !important;
+}
+html.light #mobile-nav a:hover,
+html.light #mobile-nav a:active {
+  background-color: var(--p5r-red) !important;
+  color: #fff !important;
+  border-left-color: var(--p5r-black) !important;
+}
+html.light #mobile-nav a.bg-\[\#f5e642\]\/20 {
+  background-color: rgba(230,25,25,0.08) !important;
+  border-left-color: var(--p5r-red) !important;
+  color: var(--p5r-red) !important;
+}
+
+/* ====== P5R FOOTER — Dark with watermark ====== */
+html.light footer.fixed {
+  background-color: var(--p5r-black) !important;
+  border-top: 3px solid var(--p5r-red) !important;
+  color: rgba(255,255,255,0.6) !important;
+}
+html.light footer .text-\[\#00d4ff\]\/60 { color: rgba(255,255,255,0.5) !important; }
+html.light footer .text-\[\#00d4ff\] { color: var(--p5r-gold) !important; }
+html.light footer a { color: rgba(255,255,255,0.5) !important; transition: none !important; }
+html.light footer a:hover { color: var(--p5r-red) !important; }
+
+/* ====== P5R MARQUEE — Dark band with red text ====== */
+html.light .fixed.bottom-0.bg-black\/90 {
+  background-color: var(--p5r-black) !important;
+  border-top: 2px solid var(--p5r-red) !important;
+}
+html.light .fixed.bottom-0 .text-\[\#f5e642\] {
+  color: var(--p5r-red) !important;
+}
+
+/* ====== P5R GATE — Red SHOWTIME sweep ====== */
+html.light .gate-panel { background: var(--p5r-red) !important; }
+html.light .gate-panel::before {
+  background: repeating-linear-gradient(0deg,transparent,transparent 20px,rgba(0,0,0,0.08) 20px,rgba(0,0,0,0.08) 21px) !important;
+}
+html.light .gate-glow {
+  background: var(--p5r-black) !important;
+  box-shadow: 0 0 12px 4px rgba(230,25,25,0.8), 0 0 30px 10px rgba(230,25,25,0.4) !important;
+}
+html.light .gate-hud-main {
+  color: var(--p5r-red) !important;
+  background: #fff !important;
+  font-family: 'Bebas Neue', sans-serif !important;
+  letter-spacing: 0.15em !important;
+  transform: skewX(-12deg) !important;
+}
+html.light .gate-hud-sub { color: rgba(230,25,25,0.7) !important; }
+html.light .gate-hud-bar { background: rgba(230,25,25,0.2) !important; }
+html.light .gate-hud-bar::after { background: linear-gradient(90deg, transparent, var(--p5r-red), transparent) !important; }
+html.light #gate-scanbeam {
+  background: linear-gradient(90deg, transparent, rgba(230,25,25,0.9), transparent) !important;
+  box-shadow: 0 0 16px 6px rgba(230,25,25,0.6) !important;
+}
+html.light .gate-rivet { background: var(--p5r-red-dark) !important; }
+html.light .gate-label, html.light .gate-code { color: rgba(255,255,255,0.6) !important; }
+
+/* ====== P5R MUSIC PLAYER ====== */
+html.light #mp-toggle {
+  background: var(--p5r-bg) !important;
+  border: 2px solid var(--p5r-red) !important;
+  color: var(--p5r-red) !important;
+  box-shadow: 3px 3px 0 var(--p5r-black) !important;
+}
+html.light #mp-toggle:hover {
+  background: var(--p5r-red) !important;
+  color: #fff !important;
+  transition: none !important;
+}
+html.light #mp-panel {
+  background: var(--p5r-bg) !important;
+  border: 2px solid var(--p5r-red) !important;
+  box-shadow: 4px 4px 0 var(--p5r-black) !important;
+}
+html.light #mp-panel .bg-\[\#00d4ff\]\/10 { background-color: rgba(230,25,25,0.06) !important; }
+html.light #mp-panel .border-\[\#00d4ff\]\/20 { border-color: rgba(230,25,25,0.15) !important; }
+html.light #mp-panel .text-\[\#00d4ff\] { color: var(--p5r-red) !important; }
+html.light #mp-panel .text-\[\#f5e642\] { color: var(--p5r-red) !important; }
+html.light #mp-panel .text-\[\#00d4ff\]\/60 { color: rgba(13,13,13,0.5) !important; }
+html.light #mp-panel .text-\[\#00d4ff\]\/40 { color: rgba(13,13,13,0.35) !important; }
+html.light #mp-panel .text-\[\#00d4ff\]\/30 { color: rgba(13,13,13,0.25) !important; }
+html.light #mp-panel .bg-\[\#00d4ff\] { background-color: var(--p5r-red) !important; }
+html.light #mp-panel .bg-\[\#f5e642\] { background-color: var(--p5r-red) !important; }
+html.light .mp-btn { color: rgba(230,25,25,0.6) !important; }
+html.light .mp-btn:hover { color: var(--p5r-red) !important; transition: none !important; }
+html.light .mp-vbar { background: var(--p5r-red) !important; }
+html.light #mp-visualizer.active .mp-vbar { background: linear-gradient(to top, var(--p5r-red), var(--p5r-gold)) !important; }
+html.light .mp-range { background: rgba(230,25,25,0.15) !important; }
+html.light .mp-range::-webkit-slider-thumb { background: var(--p5r-red) !important; }
+html.light .mp-range::-moz-range-thumb { background: var(--p5r-red) !important; }
+html.light .mp-pl-item { color: rgba(13,13,13,0.6) !important; border-bottom-color: rgba(230,25,25,0.05) !important; transition: none !important; }
+html.light .mp-pl-item:hover { background: var(--p5r-red) !important; color: #fff !important; }
+html.light .mp-pl-item.active { color: var(--p5r-red) !important; background: rgba(230,25,25,0.06) !important; }
+html.light #mp-panel .border-\[\#00d4ff\]\/10 { border-color: rgba(230,25,25,0.08) !important; }
+html.light #mp-play {
+  background-color: var(--p5r-red) !important;
+  border: 2px solid var(--p5r-black) !important;
+  color: #fff !important;
+}
+html.light #mp-play:hover {
+  background-color: var(--p5r-black) !important;
+  color: #fff !important;
+  transition: none !important;
+}
+
+/* ====== OVERLAYS ====== */
+html.light .scanline-overlay { opacity: 0 !important; }
+html.light .crt-overlay { opacity: 0 !important; }
+html.light .crt-flicker { animation: none !important; }
+html.light .flicker-animation { animation: none !important; }
+html.light #bg-canvas { opacity: 0.03 !important; }
+html.light .vignette-overlay { background: none !important; }
+
+/* ====== GLITCH → P5R skew text ====== */
+html.light .glitch-text { text-shadow: 2px 0 var(--p5r-red), -1px 0 var(--p5r-red-dark) !important; }
+html.light .glitch-border { box-shadow: -3px 0 0 var(--p5r-red), 3px 0 0 var(--p5r-red-dark) !important; }
+
+/* ====== SCROLLBAR ====== */
+html.light .custom-scrollbar::-webkit-scrollbar-track { background: rgba(230,25,25,0.05) !important; }
+html.light .custom-scrollbar::-webkit-scrollbar-thumb { background: var(--p5r-red) !important; }
+
+/* ====== MARKDOWN CONTENT ====== */
+html.light .md-content h1 { color: var(--p5r-red) !important; font-family: 'Bebas Neue', sans-serif !important; }
+html.light .md-content h2 { color: var(--p5r-black) !important; font-family: 'Bebas Neue', sans-serif !important; }
+html.light .md-content h3 { color: var(--p5r-grey) !important; font-family: 'Bebas Neue', sans-serif !important; }
+html.light .md-content p { color: var(--p5r-grey) !important; }
+html.light .md-content ul, html.light .md-content ol { color: var(--p5r-grey) !important; }
+html.light .md-content code { background: rgba(230,25,25,0.06) !important; color: var(--p5r-red) !important; }
+html.light .md-content pre { background: var(--p5r-bg-alt) !important; border-left: 4px solid var(--p5r-red) !important; }
+html.light .md-content a { color: var(--p5r-red) !important; }
+html.light .md-content a:hover { color: var(--p5r-red-dark) !important; }
+html.light .md-content blockquote { border-left: 4px solid var(--p5r-red) !important; color: var(--p5r-red-dark) !important; }
+html.light .md-content th { background: var(--p5r-black) !important; color: var(--p5r-gold) !important; }
+html.light .md-content td { border-bottom-color: rgba(230,25,25,0.1) !important; color: var(--p5r-grey) !important; }
+
+/* ====== IMAGE FILTERS ====== */
+html.light .grayscale { filter: none !important; }
+html.light .brightness-50 { filter: none !important; }
+html.light .contrast-125 { filter: none !important; }
+html.light .grayscale.brightness-50.contrast-125 { filter: none !important; opacity: 1 !important; }
+html.light .mix-blend-overlay { display: none !important; }
+
+/* ====== MISC ====== */
+html.light .hover\:bg-white:hover { background-color: var(--p5r-black) !important; color: #fff !important; }
+html.light .bg-\[\#1a1a20\] { background-color: #faf7f3 !important; }
+html.light .bg-\[\#2a292f\] { background-color: var(--p5r-bg-alt) !important; }
+html.light .bg-\[\#131318\] { background-color: var(--p5r-bg) !important; }
+html.light .pixel-bg { background-image: radial-gradient(rgba(230,25,25,0.04) 1px, transparent 1px) !important; }
+html.light .mesh-grid { background-image: radial-gradient(rgba(230,25,25,0.05) 1px, transparent 1px) !important; }
+html.light .loading-shimmer { background: linear-gradient(90deg, transparent, rgba(230,25,25,0.12), transparent) !important; }
+
+/* Bracket-input (forms) */
+html.light .bracket-input {
+  border-bottom: 3px solid var(--p5r-red) !important;
+  background: transparent !important;
+  color: var(--p5r-black) !important;
+  clip-path: none !important;
+}
+html.light .bracket-input:focus {
+  background: rgba(230,25,25,0.04) !important;
+  border-bottom-color: var(--p5r-gold) !important;
+  box-shadow: none !important;
+}
+html.light select.bracket-input { background-color: var(--p5r-bg-alt) !important; }
+
+/* Emerald status — keep green */
+html.light .bg-emerald-400 { background-color: #34d399 !important; }
+html.light .text-emerald-400 { color: #34d399 !important; }
+
+/* Gradient → solid */
+html.light .bg-gradient-to-r.from-purple-900\/40 { background: rgba(230,25,25,0.05) !important; }
+
+/* Border overrides */
+html.light .border-t-4.border-\[\#00d4ff\]\/20 { border-top-color: rgba(230,25,25,0.15) !important; }
+html.light .border-t-8.border-\[\#ff2d78\]\/20 { border-top-color: rgba(230,25,25,0.15) !important; }
+html.light .border-b-8.border-\[\#f5e642\]\/10 { border-bottom-color: rgba(230,25,25,0.1) !important; }
+html.light .border-l-8.border-\[\#f5e642\] { border-left-color: var(--p5r-red) !important; }
+html.light .border-l-8.border-\[\#00d4ff\] { border-left-color: var(--p5r-red) !important; }
+html.light .border-t-8.border-\[\#ff2d78\] { border-top-color: var(--p5r-red) !important; }
+html.light .border-l-4.border-primary-container { border-left-color: var(--p5r-red) !important; }
+html.light .border-l-4.border-\[\#f5e642\] { border-left-color: var(--p5r-red) !important; }
+html.light .border-l-4.border-\[\#f5e642\]\/20 { border-left-color: rgba(230,25,25,0.2) !important; }
+html.light .border-t-4.border-\[\#f5e642\]\/20 { border-top-color: rgba(230,25,25,0.2) !important; }
+html.light .border-b-4.border-\[\#f5e642\]\/30 { border-bottom-color: rgba(230,25,25,0.3) !important; }
+html.light .border-t-4.border-primary-container { border-top-color: var(--p5r-red) !important; }
+html.light .border-t-2.border-primary-container { border-top-color: var(--p5r-red) !important; }
+html.light .border-l-2.border-\[\#f5e642\] { border-left-color: var(--p5r-red) !important; }
+
+/* About module cards */
+html.light .bg-\[\#f5e642\].p-1 { background-color: var(--p5r-red) !important; }
+html.light .bg-\[\#00d4ff\].p-1 { background-color: var(--p5r-black) !important; }
+html.light .bg-\[\#ff2d78\].p-1 { background-color: var(--p5r-red-dark) !important; }
+html.light .group .bg-black.clip-monolith { background-color: var(--p5r-bg) !important; }
+html.light .group:hover .bg-black.clip-monolith { background-color: var(--p5r-red) !important; }
+html.light .group:hover .group-hover\:text-black { color: #fff !important; }
+html.light .group:hover .group-hover\:text-black\/70 { color: rgba(255,255,255,0.7) !important; }
+
+/* Card backgrounds */
+html.light .project-card { box-shadow: 3px 3px 0 rgba(230,25,25,0.15) !important; }
+html.light .project-card:hover { box-shadow: 5px 5px 0 var(--p5r-red) !important; transition: none !important; }
+
 {% block extra_css %}{% endblock %}
 /* Gate pre-close: prevent flash of content before JS runs */
 html.gate-preclose #gate-tl{left:0%!important;transition:none!important}
@@ -326,20 +770,20 @@ if(sessionStorage.getItem('gate-transition')==='1'){
   <div class="gate-panel" id="gate-tl">
     <div class="gate-rivet"></div><div class="gate-rivet"></div><div class="gate-rivet"></div><div class="gate-rivet"></div>
     <div class="gate-glow"></div><div class="gate-stripe"></div>
-    <span class="gate-label">{{ cfg.gate.panel_tl_label }}</span>
-    <span class="gate-code">{{ cfg.gate.panel_tl_code }}</span>
+    <span class="gate-label"><span data-p5r="{{ p5r.gate.panel_tl_label }}">{{ cfg.gate.panel_tl_label }}</span></span>
+    <span class="gate-code"><span data-p5r="{{ p5r.gate.panel_tl_code }}">{{ cfg.gate.panel_tl_code }}</span></span>
   </div>
   <div class="gate-panel" id="gate-br">
     <div class="gate-rivet"></div><div class="gate-rivet"></div><div class="gate-rivet"></div><div class="gate-rivet"></div>
     <div class="gate-glow"></div><div class="gate-stripe"></div>
-    <span class="gate-label">{{ cfg.gate.panel_br_label }}</span>
-    <span class="gate-code">{{ cfg.gate.panel_br_code }}</span>
+    <span class="gate-label"><span data-p5r="{{ p5r.gate.panel_br_label }}">{{ cfg.gate.panel_br_label }}</span></span>
+    <span class="gate-code"><span data-p5r="{{ p5r.gate.panel_br_code }}">{{ cfg.gate.panel_br_code }}</span></span>
   </div>
 </div>
 <div id="gate-scanlines"></div>
 <div id="gate-hud">
-  <div class="gate-hud-main" id="gate-hud-text">{{ cfg.gate.hud_default }}</div>
-  <div class="gate-hud-sub">{{ cfg.site.title }} · {{ cfg.site.version }} · {{ cfg.gate.hud_sub_suffix }}</div>
+  <div class="gate-hud-main" id="gate-hud-text"><span data-p5r="{{ p5r.gate.hud_default }}">{{ cfg.gate.hud_default }}</span></div>
+  <div class="gate-hud-sub"><span data-p5r="{{ p5r.gate.hud_sub }}">{{ cfg.site.title }} · {{ cfg.site.version }} · {{ cfg.gate.hud_sub_suffix }}</span></div>
   <div class="gate-hud-bar"></div>
 </div>
 <div id="gate-scanbeam"></div>
@@ -348,20 +792,20 @@ if(sessionStorage.getItem('gate-transition')==='1'){
 <!-- BOTTOM MARQUEE TICKER -->
 <div class="fixed bottom-0 left-0 w-full overflow-hidden bg-black/90 backdrop-blur-md h-6 md:h-8 border-t border-[#f5e642]/30 flex items-center z-[60] pointer-events-none">
 <div class="whitespace-nowrap flex gap-8 md:gap-12 font-label text-[10px] md:text-xs text-[#f5e642] uppercase tracking-[0.2em] md:tracking-[0.3em] animate-[marquee_20s_linear_infinite]">
-  <span>{{ cfg.marquee_text }} // {{ cfg.marquee_text }} //</span>
-  <span>{{ cfg.marquee_text }} // {{ cfg.marquee_text }} //</span>
+  <span><span data-p5r="{{ p5r.marquee_text }} // {{ p5r.marquee_text }} //">{{ cfg.marquee_text }} // {{ cfg.marquee_text }} //</span></span>
+  <span><span data-p5r="{{ p5r.marquee_text }} // {{ p5r.marquee_text }} //">{{ cfg.marquee_text }} // {{ cfg.marquee_text }} //</span></span>
 </div>
 </div>
 
 <!-- NAVIGATION -->
 <header class="fixed top-0 w-full z-50 flex justify-between items-center px-3 py-2 md:px-6 md:py-4 bg-[#131318] border-b-2 md:border-b-4 border-[#f5e642] shadow-[0_0_15px_rgba(245,230,66,0.15)]">
-  <a href="/" class="text-[#f5e642] font-black italic tracking-tighter text-base md:text-2xl font-headline whitespace-nowrap">{{ cfg.site.title }}</a>
+  <a href="/" class="text-[#f5e642] font-black italic tracking-tighter text-base md:text-2xl font-headline whitespace-nowrap"><span data-p5r="{{ p5r.site.title }}">{{ cfg.site.title }}</span></a>
   <nav class="hidden md:flex items-center gap-1 font-body uppercase tracking-[0.1em] text-sm font-bold">
     {% for item in cfg.navigation %}
     {% if item.url == active_url %}
-    <a class="text-[#131318] bg-[#f5e642] px-4 py-1 skew-x-[-12deg] font-black shadow-[4px_4px_0px_#ff2d78]" href="{{ item.url }}">{{ item.label }}</a>
+    <a class="text-[#131318] bg-[#f5e642] px-4 py-1 skew-x-[-12deg] font-black shadow-[4px_4px_0px_#ff2d78]" href="{{ item.url }}"><span data-p5r="{{ p5r.navigation_by_url[item.url] }}">{{ item.label }}</span></a>
     {% else %}
-    <a class="text-[#f5e642] hover:text-[#00d4ff] px-4 py-1 transition-all duration-100 hover:skew-x-[-6deg] hover:bg-[#f5e642]/10 active:bg-[#f5e642] active:text-[#131318] active:skew-x-[-12deg] active:shadow-[4px_4px_0px_#ff2d78]" href="{{ item.url }}">{{ item.label }}</a>
+    <a class="text-[#f5e642] hover:text-[#00d4ff] px-4 py-1 transition-all duration-100 hover:skew-x-[-6deg] hover:bg-[#f5e642]/10 active:bg-[#f5e642] active:text-[#131318] active:skew-x-[-12deg] active:shadow-[4px_4px_0px_#ff2d78]" href="{{ item.url }}"><span data-p5r="{{ p5r.navigation_by_url[item.url] }}">{{ item.label }}</span></a>
     {% endif %}
     {% endfor %}
   </nav>
@@ -378,9 +822,14 @@ if(sessionStorage.getItem('gate-transition')==='1'){
       {% endfor %}
     </div>
     <div class="hidden md:flex items-center gap-4 text-[#f5e642]">
+      <button id="theme-toggle" class="cursor-pointer hover:scale-110 transition-transform" title="Toggle Theme" onclick="window.toggleTheme()">
+        <span class="material-symbols-outlined" id="theme-toggle-icon">light_mode</span>
+      </button>
       <span class="material-symbols-outlined cursor-pointer hover:scale-110 transition-transform">terminal</span>
-      <span class="material-symbols-outlined cursor-pointer hover:scale-110 transition-transform">settings_input_component</span>
     </div>
+    <button class="md:hidden" id="theme-toggle-mobile" onclick="window.toggleTheme()" title="Toggle Theme">
+      <span class="material-symbols-outlined text-[#f5e642]" id="theme-toggle-icon-mobile">light_mode</span>
+    </button>
     <button class="md:hidden text-[#f5e642]" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')">
       <span class="material-symbols-outlined">menu</span>
     </button>
@@ -390,7 +839,7 @@ if(sessionStorage.getItem('gate-transition')==='1'){
 <!-- Mobile nav -->
 <nav id="mobile-nav" class="hidden fixed top-[44px] md:top-[72px] left-0 w-full bg-[#131318]/95 backdrop-blur-md z-40 border-b-2 border-[#f5e642]/30 md:hidden">
   {% for item in cfg.navigation %}
-  <a class="block px-6 py-3 text-[#f5e642] font-body uppercase tracking-widest text-sm border-b border-[#f5e642]/10 hover:bg-[#f5e642]/10 active:bg-[#f5e642] active:text-[#131318] active:translate-x-2 transition-all duration-100 {% if item.url == active_url %}bg-[#f5e642]/20 font-black border-l-4 border-l-[#f5e642]{% endif %}" href="{{ item.url }}">{{ item.label }}</a>
+  <a class="block px-6 py-3 text-[#f5e642] font-body uppercase tracking-widest text-sm border-b border-[#f5e642]/10 hover:bg-[#f5e642]/10 active:bg-[#f5e642] active:text-[#131318] active:translate-x-2 transition-all duration-100 {% if item.url == active_url %}bg-[#f5e642]/20 font-black border-l-4 border-l-[#f5e642]{% endif %}" href="{{ item.url }}"><span data-p5r="{{ p5r.navigation_by_url[item.url] }}">{{ item.label }}</span></a>
   {% endfor %}
 </nav>
 
@@ -415,7 +864,7 @@ if(sessionStorage.getItem('gate-transition')==='1'){
     <div class="flex items-center justify-between px-3 py-2 bg-[#00d4ff]/10 border-b border-[#00d4ff]/20 cursor-default">
       <div class="flex items-center gap-2">
         <span class="material-symbols-outlined text-[#00d4ff] text-sm">headphones</span>
-        <span class="font-label text-[10px] tracking-[0.2em] text-[#00d4ff]">{{ mp.title }}</span>
+        <span class="font-label text-[10px] tracking-[0.2em] text-[#00d4ff]"><span data-p5r="{{ p5r.music_player.title }}">{{ mp.title }}</span></span>
         <span class="w-2 h-2 rounded-full bg-[#00d4ff] animate-pulse" id="mp-status-dot"></span>
       </div>
       <div class="flex items-center gap-1">
@@ -486,7 +935,7 @@ if(sessionStorage.getItem('gate-transition')==='1'){
 <!-- FOOTER -->
 <footer class="fixed bottom-8 w-full z-40 flex justify-between items-center px-4 py-2 border-t border-[#00d4ff]/20 bg-[#131318]/90 backdrop-blur-md">
   <div class="flex gap-6 font-label text-[10px] tracking-widest uppercase">
-    <span class="text-[#00d4ff]/60">SYS.ADMIN // {{ cfg.owner.alias }}</span>
+    <span class="text-[#00d4ff]/60"><span data-p5r="{{ p5r.footer.admin }}">SYS.ADMIN // {{ cfg.owner.alias }}</span></span>
   </div>
   <div class="flex gap-4">
     {% for link in cfg.footer_links %}
@@ -510,10 +959,12 @@ if(sessionStorage.getItem('gate-transition')==='1'){
     drops = new Array(Math.floor(canvas.width / fontSize)).fill(1);
   }
   function draw() {
-    ctx.fillStyle = "rgba(10, 10, 15, 0.05)";
+      var isLtBg = document.documentElement.classList.contains('light');
+      ctx.fillStyle = isLtBg ? "rgba(248, 245, 240, 0.05)" : "rgba(10, 10, 15, 0.05)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     for (let i = 0; i < drops.length; i++) {
-      ctx.fillStyle = Math.random() > 0.5 ? "#f5e642" : "#00d2fd";
+      var isLt = document.documentElement.classList.contains('light');
+      ctx.fillStyle = Math.random() > 0.5 ? (isLt ? "#d92323" : "#f5e642") : (isLt ? "#732424" : "#00d2fd");
       ctx.font = fontSize + "px 'Share Tech Mono'";
       ctx.fillText(symbols[Math.floor(Math.random() * symbols.length)], i * fontSize, drops[i] * fontSize);
       if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
@@ -523,6 +974,44 @@ if(sessionStorage.getItem('gate-transition')==='1'){
   window.addEventListener('resize', init);
   init();
   setInterval(draw, 50);
+})();
+</script>
+<script>
+/* ====== Theme Switch Engine ====== */
+(function(){
+  function applyTheme(theme) {
+    var html = document.documentElement;
+    if (theme === 'light') {
+      html.classList.remove('dark');
+      html.classList.add('light');
+    } else {
+      html.classList.remove('light');
+      html.classList.add('dark');
+    }
+    // Update toggle icon
+    var icon = document.getElementById('theme-toggle-icon');
+    if (icon) icon.textContent = theme === 'light' ? 'dark_mode' : 'light_mode';
+    var iconMobile = document.getElementById('theme-toggle-icon-mobile');
+    if (iconMobile) iconMobile.textContent = theme === 'light' ? 'dark_mode' : 'light_mode';
+    // Persist
+    localStorage.setItem('theme', theme);
+    document.cookie = 'theme=' + theme + ';path=/;max-age=' + (365*24*3600) + ';SameSite=Lax';
+  }
+
+  window.toggleTheme = function() {
+    var current = document.documentElement.classList.contains('light') ? 'light' : 'dark';
+    applyTheme(current === 'light' ? 'dark' : 'light');
+  };
+
+  // On load: check localStorage/cookie for saved theme
+  var saved = localStorage.getItem('theme');
+  if (!saved) {
+    var match = document.cookie.match(/(?:^|;\s*)theme=(\w+)/);
+    if (match) saved = match[1];
+  }
+  if (saved === 'light' || saved === 'dark') {
+    applyTheme(saved);
+  }
 })();
 </script>
 <!-- GATE TRANSITION ENGINE -->
@@ -645,9 +1134,16 @@ if(sessionStorage.getItem('gate-transition')==='1'){
     });
   }
 
-  // HUD text mapping (from config)
-  const hudTexts = {{ cfg.gate.hud_texts | tojson }};
-  const hudDefault = {{ cfg.gate.hud_default | tojson }};
+  // HUD text mapping (from config) — dark + P5R light
+  const hudTextsDark = {{ cfg.gate.hud_texts | tojson }};
+  const hudDefaultDark = {{ cfg.gate.hud_default | tojson }};
+  const hudTextsLight = {{ p5r.gate.hud_texts | tojson if p5r.gate is defined and p5r.gate.hud_texts is defined else '{}' }};
+  const hudDefaultLight = {{ p5r.gate.hud_default | tojson if p5r.gate is defined and p5r.gate.hud_default is defined else '""' }};
+
+  function getHudTexts() {
+    var isLt = document.documentElement.classList.contains('light');
+    return { texts: isLt ? hudTextsLight : hudTextsDark, def: isLt ? hudDefaultLight : hudDefaultDark };
+  }
 
   // SPA navigation: fetch new page, swap content, keep music playing
   // opts.fullSwap = true for lang switch (replaces header/nav/footer too)
@@ -664,10 +1160,11 @@ if(sessionStorage.getItem('gate-transition')==='1'){
       if (langParam) fetchUrl += (href.indexOf('?') === -1 ? '?' : '&') + 'lang=' + langParam;
     }
 
-    // Set HUD text
+    // Set HUD text (theme-aware)
     var navPath = href.split('?')[0];
-    const key = Object.keys(hudTexts).find(k => navPath.startsWith(k) && k !== '/') || (navPath === '/' ? '/' : '');
-    gHudText.textContent = hudTexts[key] || hudDefault;
+    var hud = getHudTexts();
+    const key = Object.keys(hud.texts).find(k => navPath.startsWith(k) && k !== '/') || (navPath === '/' ? '/' : '');
+    gHudText.textContent = hud.texts[key] || hud.def;
 
     closeDoor(function(){
       setTimeout(function(){
@@ -951,7 +1448,7 @@ if(sessionStorage.getItem('gate-transition')==='1'){
       isPlaying = true;
       playIcon.textContent = 'pause';
       visualizer.classList.add('active');
-      statusDot.style.background = '#f5e642';
+      statusDot.style.background = document.documentElement.classList.contains('light') ? '#d92323' : '#f5e642';
       toggleIcon.textContent = 'music_note';
     }).catch(function(){});
   }
@@ -961,7 +1458,7 @@ if(sessionStorage.getItem('gate-transition')==='1'){
     isPlaying = false;
     playIcon.textContent = 'play_arrow';
     visualizer.classList.remove('active');
-    statusDot.style.background = '#00d4ff';
+    statusDot.style.background = document.documentElement.classList.contains('light') ? '#0d0d0d' : '#00d4ff';
     toggleIcon.textContent = 'headphones';
   }
 
@@ -1039,7 +1536,7 @@ if(sessionStorage.getItem('gate-transition')==='1'){
     play();
   });
   audio.addEventListener('error', function(){
-    statusDot.style.background = '#ff2d78';
+    statusDot.style.background = document.documentElement.classList.contains('light') ? '#732424' : '#ff2d78';
     titleEl.textContent = 'SIGNAL_LOST';
     artistEl.textContent = 'FILE_NOT_FOUND';
   });
@@ -1073,6 +1570,12 @@ if(sessionStorage.getItem('gate-transition')==='1'){
   if(playlist.length) loadTrack(currentIdx);
 })();
 </script>
+<script src="{{ url_for('static', filename='js/effects.js') }}"></script>
+<script src="{{ url_for('static', filename='js/p5r-text.js') }}"></script>
+<script src="{{ url_for('static', filename='js/rpg-system.js') }}"></script>
+<script src="{{ url_for('static', filename='js/radar-chart.js') }}"></script>
+<script src="{{ url_for('static', filename='js/visitor-stats.js') }}"></script>
+<script src="{{ url_for('static', filename='js/blog-search.js') }}"></script>
 {% block extra_js %}{% endblock %}
 </body>
 </html>

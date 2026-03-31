@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}{{ cfg.site.title }} // BREACH_PROTOCOL{% endblock %}
+
+{% block extra_css %}
+/* P5R light mode: Hacker Game */
+html.light .bg-\[\#00d4ff\]\/5 { background-color: rgba(217,35,35,0.03) !important; }
+html.light .bg-\[\#ff2d78\]\/5 { background-color: rgba(217,35,35,0.03) !important; }
+html.light .border-\[\#00d4ff\]\/20 { border-color: rgba(217,35,35,0.2) !important; }
+html.light .border-\[\#f5e642\]\/10 { border-color: rgba(217,35,35,0.1) !important; }
+html.light #breach-idle .text-\[\#f5e642\]\/30 { color: rgba(217,35,35,0.3) !important; }
+html.light #breach-idle .text-\[\#f5e642\]\/40 { color: rgba(217,35,35,0.4) !important; }
+{% endblock %}
+
+{% block content %}
+<main class="relative pt-14 md:pt-24 min-h-screen flex flex-col overflow-hidden">
+  <div class="absolute inset-0 mesh-grid opacity-30 z-0"></div>
+  <div class="absolute top-20 left-[-10%] w-[40%] h-[60%] bg-[#00d4ff]/5 blur-[120px] rounded-full z-0"></div>
+  <div class="absolute bottom-10 right-[-5%] w-[30%] h-[40%] bg-[#ff2d78]/5 blur-[100px] rounded-full z-0"></div>
+
+  <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-8 md:py-12">
+
+    {# ── Header ── #}
+    <div class="mb-8 md:mb-12">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="w-3 h-3 bg-[#ff2d78] animate-pulse"></span>
+        <span class="font-label text-xs tracking-[0.3em] text-[#ff2d78]">WARNING: UNAUTHORIZED ACCESS</span>
+      </div>
+      <h1 class="font-headline text-3xl sm:text-5xl md:text-7xl font-black text-[#f5e642] tracking-tighter glitch-text leading-none mb-3">
+        BREACH_PROTOCOL<span class="text-[#00d4ff]">.exe</span>
+      </h1>
+      <p class="font-label text-sm sm:text-base tracking-[0.2em] text-[#00d4ff] opacity-80">
+        CRACK THE ICE TO ACCESS CLASSIFIED DATA
+      </p>
+      <div class="w-32 h-1 bg-[#f5e642] mt-4"></div>
+    </div>
+
+    {# ── Game + Instructions Layout ── #}
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
+
+      {# ── Instructions Panel ── #}
+      <div class="lg:col-span-4 order-2 lg:order-1">
+        <div class="bg-surface-container-low border border-[#00d4ff]/20 p-4 sm:p-6 clip-card">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="material-symbols-outlined text-[#00d4ff] text-lg">info</span>
+            <h2 class="font-headline text-sm font-bold text-[#00d4ff] tracking-wider uppercase">Protocol Guide</h2>
+          </div>
+          <div class="space-y-3 font-body text-sm text-on-surface-variant leading-relaxed">
+            <div class="flex gap-3">
+              <span class="font-label text-[#f5e642] text-xs mt-0.5 shrink-0">[01]</span>
+              <p>Select hex codes from the <span class="text-[#f5e642] font-semibold">6x6 matrix</span>. First pick must be from the highlighted row.</p>
+            </div>
+            <div class="flex gap-3">
+              <span class="font-label text-[#f5e642] text-xs mt-0.5 shrink-0">[02]</span>
+              <p>Selection alternates between <span class="text-[#00d4ff] font-semibold">rows</span> and <span class="text-[#00d4ff] font-semibold">columns</span>. After picking from a row, your next pick must be from the same column, and vice versa.</p>
+            </div>
+            <div class="flex gap-3">
+              <span class="font-label text-[#f5e642] text-xs mt-0.5 shrink-0">[03]</span>
+              <p>Fill the <span class="text-[#ff2d78] font-semibold">4-slot buffer</span> to match the target sequences shown on screen.</p>
+            </div>
+            <div class="flex gap-3">
+              <span class="font-label text-[#f5e642] text-xs mt-0.5 shrink-0">[04]</span>
+              <p>Complete at least <span class="text-[#f5e642] font-semibold">1 target</span> before the timer runs out to breach the ICE.</p>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-[#f5e642]/10">
+            <div class="font-label text-[10px] text-on-surface-variant/60 space-y-1">
+              <div>BUFFER_SIZE: 4 SLOTS</div>
+              <div>TIME_LIMIT: 30 SEC</div>
+              <div>ICE_LEVEL: MODERATE</div>
+              <div class="text-[#ff2d78]">DETECTION_RISK: HIGH</div>
+            </div>
+          </div>
+        </div>
+
+        {# ── Start Button ── #}
+        <button id="breach-start-btn"
+                class="mt-6 w-full bg-[#f5e642] text-black font-bold py-4 px-8 uppercase tracking-widest text-sm diagonal-cut-tr hover:bg-white transition-all active:scale-95 flex items-center justify-center gap-3">
+          <span class="material-symbols-outlined text-lg">terminal</span>
+          START BREACH
+        </button>
+      </div>
+
+      {# ── Game Container ── #}
+      <div class="lg:col-span-8 order-1 lg:order-2">
+        <div id="breach-game" class="bg-surface-container-lowest/80 backdrop-blur-sm border border-[#f5e642]/10 min-h-[480px] sm:min-h-[520px] clip-card">
+          {# Game board rendered by hacker-game.js #}
+          <div class="flex flex-col items-center justify-center h-full min-h-[480px] sm:min-h-[520px] p-8 text-center" id="breach-idle">
+            <span class="material-symbols-outlined text-6xl text-[#f5e642]/30 mb-4">lock</span>
+            <p class="font-headline text-xl text-[#f5e642]/40 tracking-wider uppercase">Awaiting Breach Initiation</p>
+            <p class="font-label text-xs text-on-surface-variant/40 mt-2 tracking-widest">CLICK START TO BEGIN</p>
+          </div>
+        </div>
+
+        {# ── Results Area ── #}
+        <div id="breach-results" class="mt-6 hidden">
+          <div class="bg-surface-container border border-[#00d4ff]/20 p-6 clip-card">
+            <div id="breach-results-content">
+              {# Filled dynamically by JS #}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="{{ url_for('static', filename='js/hacker-game.js') }}"></script>
+{% endblock %}

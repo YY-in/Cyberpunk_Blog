@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>{{ cfg.site.title }}</title>
+  <link>{{ request.url_root }}</link>
+  <description>{{ cfg.site.description }}</description>
+  <atom:link href="{{ request.url }}" rel="self" type="application/rss+xml"/>
+  {% for post in posts %}
+  <item>
+    <title>{{ post.meta.get('title', post.slug) }}</title>
+    <link>{{ request.url_root }}blog/{{ post.slug }}</link>
+    <guid>{{ request.url_root }}blog/{{ post.slug }}</guid>
+    <description>{{ post.meta.get('summary', '') }}</description>
+    {% if post.meta.get('date') %}<pubDate>{{ post.meta.date }}</pubDate>{% endif %}
+  </item>
+  {% endfor %}
+</channel>
+</rss>

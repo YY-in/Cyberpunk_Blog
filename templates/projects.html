@@ -12,6 +12,55 @@
 @keyframes glitch { 0%{transform:translate(0)} 20%{transform:translate(-2px,2px)} 40%{transform:translate(-2px,-2px)} 60%{transform:translate(2px,2px)} 80%{transform:translate(2px,-2px)} 100%{transform:translate(0)} }
 .glitch-hover:hover { animation: glitch 0.2s infinite; text-shadow: 2px 0 #ff2d78, -2px 0 #00d4ff; }
 .concrete-texture { background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); opacity: 0.05; }
+
+/* P5R light mode: override dynamic project card colors */
+html.light .project-card[style] { border-left-color: var(--p5-red, #d92323) !important; }
+html.light .project-card .font-headline a { color: var(--p5-red, #d92323) !important; }
+html.light .project-card .font-headline a:hover { color: var(--p5-red-dark, #732424) !important; }
+html.light .project-card .border-l-2[style] { border-left-color: rgba(217,35,35,0.2) !important; }
+html.light .project-card span[style*="background-color"] { background-color: rgba(217,35,35,0.06) !important; border-color: rgba(217,35,35,0.2) !important; color: var(--p5-red, #d92323) !important; }
+html.light .project-card a[style*="background-color"] { background-color: rgba(217,35,35,0.08) !important; color: var(--p5-red, #d92323) !important; border-color: var(--p5-red, #d92323) !important; }
+html.light .project-card div[style*="background-color"][class*="absolute"] { background-color: var(--p5-red, #d92323) !important; color: #fff !important; }
+html.light .filter-btn { color: var(--p5-on-surface, #0d0d0d) !important; border-color: rgba(217,35,35,0.3) !important; }
+html.light .filter-btn.bg-\[\#f5e642\] { background-color: var(--p5-red, #d92323) !important; color: #fff !important; }
+
+/* P5R project cards — hard border, offset shadow */
+html.light .project-card {
+  border: 2px solid #e61919 !important;
+  outline: 2px solid rgba(230,25,25,0.15) !important;
+  outline-offset: 3px !important;
+  background: #faf7f3 !important;
+}
+html.light .project-card:hover {
+  background: #fff !important;
+  box-shadow: 5px 5px 0 #e61919 !important;
+  transition: none !important;
+}
+/* Featured card — red with skew */
+html.light .bg-\[\#f5e642\].clip-cyber-card {
+  background: #e61919 !important;
+  border-color: #e61919 !important;
+  transform: skewX(-2deg) !important;
+}
+html.light .bg-\[\#f5e642\].clip-cyber-card .text-\[\#131318\] {
+  color: #fff !important;
+}
+/* Filter buttons — P5R skewed */
+html.light .filter-btn {
+  transform: skewX(-12deg) !important;
+  font-family: 'Bebas Neue', sans-serif !important;
+  letter-spacing: 0.1em !important;
+  transition: none !important;
+}
+html.light .filter-btn:hover {
+  background: #e61919 !important;
+  color: #fff !important;
+}
+/* Scanner line in featured → red */
+html.light .scanner-line {
+  background: linear-gradient(90deg, transparent, #e61919, transparent) !important;
+  box-shadow: 0 0 15px #e61919 !important;
+}
 {% endblock %}
 
 {% block content %}
@@ -36,10 +85,10 @@
         <img class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" src="{{ fm.get('thumbnail', '') }}" alt="{{ fm.get('title', '') }}"/>
         <div class="absolute inset-0 bg-[#f5e642]/5 mix-blend-overlay"></div>
         <div class="scanner-line"></div>
-        <div class="absolute top-0 left-0 bg-black text-[#f5e642] px-6 py-2 font-label text-sm font-black uppercase tracking-widest clip-tr">{{ pg.featured_badge }}</div>
+        <div class="absolute top-0 left-0 bg-black text-[#f5e642] px-6 py-2 font-label text-sm font-black uppercase tracking-widest clip-tr"><span data-p5r="{{ p5r.pages.projects.featured_badge }}">{{ pg.featured_badge }}</span></div>
       </div>
       <div class="w-full md:w-1/2 p-4 sm:p-6 md:p-8 lg:p-16 flex flex-col justify-center bg-[#f5e642] text-[#131318]">
-        <div class="mb-2 font-label text-xs font-bold tracking-[0.3em] opacity-80 uppercase">{{ pg.featured_subtitle }}</div>
+        <div class="mb-2 font-label text-xs font-bold tracking-[0.3em] opacity-80 uppercase"><span data-p5r="{{ p5r.pages.projects.featured_subtitle }}">{{ pg.featured_subtitle }}</span></div>
         <h2 class="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 md:mb-6 leading-tight md:leading-[0.85] tracking-tighter uppercase italic">
           {% set title_text = fm.get('title', feat.slug | upper) %}
           {% for word in title_text.replace('_', ' ').split() %}
@@ -53,7 +102,7 @@
         </div>
         <div class="mt-10">
           <a href="/projects/{{ feat.slug }}" class="bg-[#131318] text-[#f5e642] font-headline text-xl px-10 py-4 clip-tr flex items-center gap-4 hover:bg-black hover:scale-105 active:scale-90 active:bg-[#f5e642] active:text-[#131318] transition-all glitch-hover inline-block no-underline">
-            {{ pg.featured_btn }} <span class="material-symbols-outlined">arrow_forward</span>
+            <span data-p5r="{{ p5r.pages.projects.featured_btn }}">{{ pg.featured_btn }}</span> <span class="material-symbols-outlined">arrow_forward</span>
           </a>
         </div>
       </div>
@@ -76,7 +125,7 @@
       {% endfor %}
     </div>
     <div class="text-xs font-label font-bold text-white/50 uppercase tracking-widest bg-black/50 px-4 py-2 border-l-4 border-[#00d4ff]">
-      {{ pg.query_status }} <span class="text-[#00d4ff]">{{ pg.query_ready }}</span> [<span id="entry-count">{{ card_count.n }}</span>{{ pg.query_suffix }}]
+      <span data-p5r="{{ p5r.pages.projects.query_status }}">{{ pg.query_status }}</span> <span class="text-[#00d4ff]"><span data-p5r="{{ p5r.pages.projects.query_ready }}">{{ pg.query_ready }}</span></span> [<span id="entry-count">{{ card_count.n }}</span><span data-p5r="{{ p5r.pages.projects.query_suffix }}">{{ pg.query_suffix }}</span>]
     </div>
   </section>
 
@@ -97,7 +146,7 @@
         <div class="absolute inset-0 scanline-overlay opacity-20 pointer-events-none"></div>
       </div>
       <div class="p-8">
-        <h3 class="font-headline text-2xl font-black mb-3 tracking-tighter text-[#f5e642] uppercase italic group-hover:translate-x-2 transition-transform">
+        <h3 class="font-headline text-2xl font-black mb-3 tracking-tighter text-[#f5e642] uppercase italic group-hover:translate-x-2 transition-transform glitch-hover-text">
           <a href="/projects/{{ p.slug }}" class="hover:text-[#00d4ff] transition-colors">{{ m.get('title', p.slug | upper) }}</a>
         </h3>
         <p class="text-on-surface-variant text-sm font-body font-bold mb-4 line-clamp-2 leading-tight border-l-2 pl-4" style="border-left-color: {{ card_color }}30;">{{ m.get('summary', '') }}</p>
@@ -131,12 +180,12 @@
         <span class="material-symbols-outlined text-white/20 text-6xl group-hover:text-[#f5e642]/40 transition-colors">lock</span>
       </div>
       <div class="p-8 opacity-60">
-        <h3 class="font-headline text-2xl font-black mb-3 tracking-tighter text-white uppercase italic">{{ pg.encrypted_title }}</h3>
-        <p class="text-on-surface-variant text-sm font-body font-bold mb-8 leading-tight">{{ pg.encrypted_desc }}</p>
+        <h3 class="font-headline text-2xl font-black mb-3 tracking-tighter text-white uppercase italic"><span data-p5r="{{ p5r.pages.projects.encrypted_title }}">{{ pg.encrypted_title }}</span></h3>
+        <p class="text-on-surface-variant text-sm font-body font-bold mb-8 leading-tight"><span data-p5r="{{ p5r.pages.projects.encrypted_desc }}">{{ pg.encrypted_desc }}</span></p>
         <div class="h-3 bg-black border border-white/10 overflow-hidden mb-2">
           <div class="h-full bg-[#f5e642] animate-pulse" style="width: {{ pg.encrypted_progress }}%"></div>
         </div>
-        <div class="text-[10px] font-label font-black uppercase text-[#f5e642]">{{ pg.encrypted_label }}: {{ pg.encrypted_progress }}%</div>
+        <div class="text-[10px] font-label font-black uppercase text-[#f5e642]"><span data-p5r="{{ p5r.pages.projects.encrypted_label }}">{{ pg.encrypted_label }}</span>: {{ pg.encrypted_progress }}%</div>
       </div>
     </div>
   </section>
@@ -144,7 +193,7 @@
   {# --- Footer --- #}
   <div class="relative z-10 mt-20 border-t-4 border-[#f5e642]/30 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
     <div class="font-label text-sm font-black text-[#ff2d78] flex items-center gap-6 bg-black/50 px-6 py-2 border-l-4 border-[#ff2d78]">
-      <span>{{ pg.log_id }}</span><span class="hidden md:inline">{{ pg.uptime }}</span><span class="text-[#00d4ff]">{{ pg.buffer }}</span>
+      <span><span data-p5r="{{ p5r.pages.projects.log_id }}">{{ pg.log_id }}</span></span><span class="hidden md:inline"><span data-p5r="{{ p5r.pages.projects.uptime }}">{{ pg.uptime }}</span></span><span class="text-[#00d4ff]"><span data-p5r="{{ p5r.pages.projects.buffer }}">{{ pg.buffer }}</span></span>
     </div>
   </div>
 </main>

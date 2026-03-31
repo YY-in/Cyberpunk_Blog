@@ -1,0 +1,193 @@
+# ============================================================
+# P5R THEME TEXT — Persona 5 Royal "Phantom Thieves" World
+# Used in light mode to replace Cyberpunk 2077 UI text
+# Referenced in templates via p5r.*
+# ============================================================
+
+site:
+  title: "PHANTOM_NAV//P5R"
+  version: "v5.ROYAL"
+
+gate:
+  panel_tl_label: "PALACE-7G · RESTRICTED"
+  panel_tl_code: "ID:JOKER · LVL-99"
+  panel_br_label: "ACCESS // VELVET-Ω"
+  panel_br_code: "AUTH:IGOR · BOND"
+  hud_default: "INFILTRATING..."
+  hud_sub: "PHANTOM_NAV//P5R · v5.ROYAL · METAVERSE"
+  hud_texts:
+    "/": "ENTERING HIDEOUT..."
+    "/about": "READING CONFIDANT FILE..."
+    "/projects": "SCOUTING PALACES..."
+    "/skills": "SCANNING PERSONAS..."
+    "/contact": "COMPOSING CALLING CARD..."
+    "/blog": "OPENING THIEVES JOURNAL..."
+
+marquee_text: "METAVERSE_BREACH // COGNITION_CRITICAL // PERSONA_LINK_99% // CALLING_CARD_SENT"
+
+footer:
+  admin: "NAVI.MORGANA // PHANTOM_THIEVES"
+
+footer_links:
+  - label: "REWRITE_COGNITION"
+    url: "#"
+  - label: "STEAL_TREASURE"
+    url: "#"
+  - label: "PURGE_PALACE"
+    url: "#"
+
+navigation:
+  HOME: "HIDEOUT"
+  ABOUT: "CONFIDANT"
+  PROJECTS: "PALACES"
+  SKILLS: "PERSONAS"
+  CONTACT: "CALLING_CARD"
+
+# URL-based nav lookup (works regardless of language)
+navigation_by_url:
+  "/": "HIDEOUT"
+  "/about": "CONFIDANT"
+  "/projects": "PALACES"
+  "/skills": "PERSONAS"
+  "/contact": "CALLING_CARD"
+
+owner:
+  alias: "JOKER"
+  dossier:
+    title: "CONFIDANT_DOSSIER"
+    subtitle: "VELVET FILE #001-JOKER // ARCANA: FOOL // WILD_CARD"
+    origin_label: "PERSONA_GENESIS"
+    evolution_label: "ARCANA_EVOLUTION"
+    current_label: "ACTIVE_HEIST"
+    career_targets_label: "TARGET_PALACES"
+
+pages:
+  home:
+    kernel_status: "METAVERSE_READY // BUILD 05.ROYAL"
+    hero_line1: "TAKE"
+    hero_line2: "YOUR HEART"
+    btn_primary: "BEGIN_HEIST"
+    btn_secondary: "CALLING_CARD"
+    badge_error: "DISTORTION"
+    avatar_id: "CODENAME: JOKER"
+    alias: "JOKER"
+    hud_cpu: "SP_GAUGE"
+    hud_net: "COGNITION"
+    hud_net_val: "DISTORTED"
+    hud_temp: "HP_DRAIN"
+    hud_temp_val: "12%"
+    hud_live: "NAVI_FEED: MEMENTOS_SCAN_ACTIVE"
+    boot_lines:
+      - "> SUMMONING_PERSONA... [OK]"
+      - "> ENTERING_METAVERSE... [OK]"
+      - "> ESTABLISHING_PHANTOM_LINK... [OK]"
+      - "> WARNING: SHADOW_DETECTED (STRONG)"
+      - "> COGNITIVE_BARRIER_BYPASS... [SUCCESS]"
+      - "> ACCESS_GRANTED_CODENAME: JOKER"
+
+  about:
+    breadcrumb: "NAVI@VELVET_ROOM: ACCESSING_CONFIDANT"
+    btn_cta: "SEND_CALLING_CARD"
+    node_badge: "CONFIDANT_RANK_10"
+    biometric_id: "ARCANA: THE_FOOL"
+    dossier_title: "CONFIDANT_DOSSIER"
+    dossier_subtitle: "VELVET FILE #001-JOKER // ARCANA: FOOL // WILD_CARD"
+    dossier_labels:
+      - "PERSONA_GENESIS"
+      - "ARCANA_EVOLUTION"
+      - "ACTIVE_HEIST"
+    career_targets_label: "TARGET_PALACES"
+    modules_title: "PERSONA_SKILLS"
+    modules_status: "STATUS: ALL-OUT ATTACK"
+    logs_title: "PALACE_LOGS"
+    logs_watermark: "HEIST"
+    quote: "\"Awakened to the Metaverse through rebellion. Forged bonds across Arcana. Now I steal distorted hearts and change the world — one Palace at a time. The Wild Card never stops evolving.\""
+
+  projects:
+    page_title: "PALACE_ARCHIVE"
+    featured_badge: "URGENT // TREASURE_TARGET"
+    featured_subtitle: "PALACE_INFILTRATION_ACTIVE"
+    featured_btn: "STEAL_TREASURE"
+    query_status: "NAVI_STATUS:"
+    query_ready: "ROUTE_FOUND"
+    query_suffix: "_PALACES_FOUND"
+    encrypted_title: "SEALED_PALACE"
+    encrypted_desc: "PALACE RULER'S COGNITION REMAINS STABLE. TREASURE ROUTE NOT YET SECURED. CONTINUE INFILTRATION."
+    encrypted_label: "COGNITION_BREAKING"
+    log_id: "[HEIST_ID: 9942-X]"
+    uptime: "INFILTRATION_TIME: 4209:12:04"
+    buffer: "TREASURE_STATUS: SECURED"
+
+  project_detail:
+    node_id: "PALACE_ID: P5-ROYAL-4"
+    category_prefix: "HEIST://"
+    date_prefix: "DEADLINE:"
+    status_prefix: "COGNITION:"
+    engine_prefix: "PERSONA:"
+    video_fallback: "Your browser does not support HTML5 video."
+    video_label: "REC_STREAM: PALACE_FEED_001 // PHANTOM_LINE"
+    specs_title: "SHADOW_INTEL"
+    tech_prefix: "SKILL_"
+    details_title: "INFILTRATION_REPORT"
+    logs_suffix: "_HEIST_LOG"
+    terminal_logs:
+      - { color: "secondary", text: "[14:22:09] Initiating palace infiltration scan..." }
+      - { color: "on-surface", text: "[14:22:11] PHANTOM_LINK_ESTABLISHED (BOND: MAX)" }
+      - { color: "on-surface", text: "[14:23:45] Mapping cognitive distortion sectors" }
+      - { color: "primary-container", text: "[14:25:12] WARNING: Shadow alert in treasure room" }
+      - { color: "[#c70057]", text: "[14:25:13] EXECUTING ALL-OUT ATTACK..." }
+      - { color: "on-surface", text: "[14:25:15] SHADOW_ELIMINATED" }
+      - { color: "secondary", text: "[14:29:00] TREASURE_ROUTE_CONFIRMED" }
+
+  skills:
+    page_title: "PERSONA_COMPENDIUM.exe"
+    scan_message: "SCANNING ARCANA BONDS... > 3 PERSONA BRANCHES DETECTED"
+    radar_title: "Arcana Affinity Matrix"
+    sync_label: "CONFIDANT_BOND"
+    tools_title: "Equipped Skill Cards & Items"
+    separator_text: "ACCESSING VELVET ROOM DATA"
+    separator_sub: "> PERSONAL CONFIDANTS DETECTED > LOADING SOCIAL LINKS..."
+    offd_title: "SOCIAL_LINK_PROTOCOLS"
+
+  contact:
+    page_title: "CALLING_CARD.exe"
+    port_scan: "[ PALACE_SCAN: TREASURE, SHADOW, ROUTE // ACTIVE ]"
+    typewriter_phrases:
+      - "OPEN TO: PHANTOM HEIST COLLABORATION"
+      - "SEEKING: CONFIDANT BOND PARTNERSHIPS"
+      - "MODE: WILD_CARD_SPECIALIST"
+      - "PROTOCOL: ARCANA_RESEARCH"
+    nodes_title: "Phantom Channels"
+    availability_title: "Accepting New Heists"
+    availability_sub: "Ready for Palace Infiltration"
+    form_title: "COMPOSE CALLING CARD"
+    btn_submit: "SEND_CALLING_CARD"
+    encryption_label: "COGNITION: DISTORTED // STATUS: PALACE_READY"
+    success_title: "CALLING_CARD_DELIVERED"
+    success_message: "The calling card has been sent. The target's heart will be stolen."
+    success_btn: "[ ACKNOWLEDGE ]"
+    error_title: "DELIVERY_FAILED"
+    error_btn: "[ RETRY ]"
+    status_prefix: "NAVI:"
+    copy_toast: "INTEL_COPIED_TO_CLIPBOARD"
+    transmitting: "SENDING_CALLING_CARD..."
+    dossier_title: "WANT THE FULL CONFIDANT FILE?"
+    dossier_desc: "Access the complete Confidant dossier — Arcana progression, Social Link history, and Persona fusion records."
+    dossier_btn: "[ ↓ DOWNLOAD_CONFIDANT_DATA ]"
+    dossier_footer: "VELVET_ROOM_ARCHIVES // WILD_CARD_CLEARANCE"
+
+  blog:
+    page_title: "THIEVES_JOURNAL"
+    entries_suffix: "ENTRIES LOGGED"
+    empty_title: "NO_JOURNAL_ENTRIES"
+    empty_hint: "The Thieves Journal is empty."
+    back_label: "< BACK_TO_JOURNAL"
+
+  error_404:
+    title: "PALACE_COLLAPSED"
+    message: "The target Palace has been destroyed. The Treasure no longer exists."
+    btn: "RETURN_TO_HIDEOUT"
+
+music_player:
+  title: "PHANTOM_RADIO.exe"
+  empty_message: "NO_TRACKS_LOADED"

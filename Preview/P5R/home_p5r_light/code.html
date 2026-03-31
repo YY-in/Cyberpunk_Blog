@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>THE_PHANTOM | SYSTEM_OVERRIDE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;900&amp;family=Public+Sans:wght@300;400;700&amp;family=Space+Grotesk:wght@500;700&amp;family=Bebas+Neue&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface": "#0d0d0d",
+                        "secondary": "#2f312e",
+                        "surface-container-high": "#e8e8e3",
+                        "tertiary": "#e8c840",
+                        "inverse-surface": "#131313",
+                        "inverse-on-surface": "#f5f5f0",
+                        "background": "#f5f5f0",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#1a1c19",
+                        "tertiary-container": "#e8c840",
+                        "on-surface-variant": "#313030",
+                        "secondary-fixed-dim": "#454744",
+                        "on-primary-container": "#ffffff",
+                        "surface-variant": "#d1d1cc",
+                        "surface": "#f5f5f0",
+                        "secondary-fixed": "#454744",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#e61919",
+                        "inverse-primary": "#ffb4aa",
+                        "outline": "#313030",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#e61919",
+                        "on-secondary-container": "#1a1c19",
+                        "surface-dim": "#e8e8e3",
+                        "on-background": "#0d0d0d",
+                        "on-primary-fixed": "#410001",
+                        "on-tertiary-fixed": "#221b00",
+                        "tertiary-fixed-dim": "#544600",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#221b00",
+                        "primary-fixed": "#ffdad5",
+                        "secondary-container": "#d1d1cc",
+                        "surface-container-highest": "#d1d1cc",
+                        "outline-variant": "#ae8782",
+                        "surface-container": "#e0e0db",
+                        "on-secondary-fixed-variant": "#2f312e",
+                        "tertiary-fixed": "#ffe16c",
+                        "on-tertiary-fixed-variant": "#544600",
+                        "primary-fixed-dim": "#ffb4aa",
+                        "error": "#93000a",
+                        "primary": "#e61919",
+                        "surface-container-low": "#edece7",
+                        "surface-bright": "#ffffff",
+                        "on-primary-fixed-variant": "#930006"
+                    },
+                    fontFamily: {
+                        "headline": ["Epilogue"],
+                        "body": ["Public Sans"],
+                        "label": ["Space Grotesk"],
+                        "bebas": ["Bebas Neue"]
+                    },
+                    borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .skew-neg-12 { transform: skewx(-12deg) }
+        .skew-pos-12 { transform: skewx(12deg) }
+        .noise-overlay {
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCwPTZ9OiOuuYrBhQlYTJiipNJknJ0oguPQS-yBFIY0xQCi19Qj461wtS-wmvmGnU-LGZxxYe6A90IGzfDIWuVIeDpOj1IRAvJHo4_WmCwGp6PY7iApTX_qVnODkITPBZvHwJYBBZpkHoxZAiBz7VjiJEt_rlUy6Jjjq3_qxWj3q7EbcmSbaiqzWRfCaDfgQ9PcIJKIZe6pVUnO9c_3KMnEVbDMQKO6lAUXwv4VqXbvpem4T1gf1AuhbA40n4TNp6Mimpbf5x1wuHE);
+            opacity: 0.08;
+            pointer-events: none
+        }
+        .text-glow-red { text-shadow: 0 0 20px rgba(230, 25, 25, 0.4) }
+        .clip-shard { clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%) }
+        .instant-flip:hover { transition: none !important }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary selection:text-white overflow-x-hidden">
+<!-- Global Noise and Aesthetic Overlays -->
+<div class="fixed inset-0 noise-overlay z-[100]"></div>
+<div class="fixed top-0 left-0 w-2 h-full bg-primary-container z-50"></div>
+<div class="fixed top-0 left-10 w-1 h-full bg-primary-container opacity-20 z-50"></div>
+<!-- Background Giant Text -->
+<div class="fixed -right-20 top-1/2 -translate-y-1/2 opacity-5 select-none z-0 pointer-events-none">
+<h2 class="text-[30vw] font-headline font-black italic -skew-x-12 leading-none text-on-surface">THIEF</h2>
+</div>
+<!-- Header Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 flex items-center justify-between px-6 py-4 style_shell_layout bg-transparent">
+<div class="flex items-center gap-4">
+<div class="text-4xl font-black text-white bg-primary-container px-4 py-1 -skew-x-12 style_brand_logo">
+<span class="inline-block skew-x-12">THE_PHANTOM</span>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-2">
+<a class="bg-primary-container text-white px-6 py-2 -skew-x-12 border-r-4 border-tertiary font-headline uppercase tracking-tighter italic transition-none hover:bg-black hover:text-white" href="#">
+<span class="inline-block skew-x-12">INFILTRATE</span>
+</a>
+<a class="bg-surface-container text-on-surface px-6 py-2 -skew-x-12 border-r-4 border-primary font-headline uppercase tracking-tighter italic transition-none hover:bg-black hover:text-white" href="#">
+<span class="inline-block skew-x-12">LOGS</span>
+</a>
+<a class="bg-surface-container text-on-surface px-6 py-2 -skew-x-12 border-r-4 border-primary font-headline uppercase tracking-tighter italic transition-none hover:bg-black hover:text-white" href="#">
+<span class="inline-block skew-x-12">RECORDS</span>
+</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-primary hover:text-black transition-none p-2">
+<span class="material-symbols-outlined text-3xl" data-icon="notifications">notifications</span>
+</button>
+<button class="text-primary hover:text-black transition-none p-2">
+<span class="material-symbols-outlined text-3xl" data-icon="settings">settings</span>
+</button>
+</div>
+</nav>
+<main class="relative min-h-screen flex flex-col justify-center px-10 md:px-24 py-32 z-10">
+<!-- Hero Section -->
+<section class="max-w-7xl w-full">
+<div class="relative inline-block mb-2">
+<div class="absolute -inset-2 bg-primary-container -skew-x-12 -z-10 shadow-[20px_0_40px_rgba(230,25,25,0.2)]"></div>
+<h1 class="text-7xl md:text-9xl font-headline font-black italic -skew-x-12 text-white leading-none tracking-tighter uppercase px-4 py-2">
+                    YOUR NAME
+                </h1>
+</div>
+<div class="mt-4 flex flex-col md:flex-row items-start md:items-center gap-6">
+<p class="font-bebas text-4xl md:text-6xl text-primary tracking-widest uppercase -skew-x-12 drop-shadow-sm">
+                    PHANTOM THIEF OF CODE
+                </p>
+<div class="h-1 w-32 bg-on-surface opacity-30 -skew-x-12"></div>
+</div>
+<!-- CTA Grid -->
+<div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
+<!-- Action Card 1 -->
+<button class="group relative flex items-center justify-between bg-white h-24 px-8 -skew-x-12 border-l-8 border-primary-container hover:bg-primary-container hover:text-white transition-none instant-flip shadow-lg">
+<div class="skew-x-12 flex flex-col items-start">
+<span class="font-label text-xs text-primary group-hover:text-white transition-none">EXECUTE_MISSION</span>
+<span class="font-headline text-3xl font-black italic uppercase">TAKE YOUR HEART</span>
+</div>
+<span class="material-symbols-outlined text-4xl skew-x-12" data-icon="bolt">bolt</span>
+</button>
+<!-- Action Card 2 -->
+<button class="group relative flex items-center justify-between bg-white h-24 px-8 -skew-x-12 border-l-8 border-tertiary hover:bg-tertiary hover:text-white transition-none instant-flip shadow-lg">
+<div class="skew-x-12 flex flex-col items-start">
+<span class="font-label text-xs text-tertiary group-hover:text-white transition-none font-bold">INITIATE_LINK</span>
+<span class="font-headline text-3xl font-black italic uppercase">CALL PROTOCOL</span>
+</div>
+<span class="material-symbols-outlined text-4xl skew-x-12" data-icon="phone_in_talk">phone_in_talk</span>
+</button>
+</div>
+</section>
+<!-- Dynamic Data Shards -->
+<div class="mt-24 grid grid-cols-1 lg:grid-cols-3 gap-12 w-full">
+<div class="relative bg-white p-8 -skew-x-12 border-t-4 border-primary-container shadow-md">
+<div class="skew-x-12">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="radar">radar</span>
+<h3 class="font-label uppercase tracking-tighter font-bold">CURRENT_STATUS</h3>
+</div>
+<p class="font-body text-on-surface-variant font-medium">Infiltrating secure networks. Harvesting high-value data blocks. Remaining undetected in the digital shadows.</p>
+</div>
+</div>
+<div class="relative bg-white p-8 -skew-x-12 border-t-4 border-tertiary shadow-md">
+<div class="skew-x-12">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-tertiary font-bold" data-icon="token" style="font-variation-settings: 'FILL' 1;">token</span>
+<h3 class="font-label uppercase tracking-tighter font-bold">LEVEL_EXP</h3>
+</div>
+<div class="flex items-end gap-2">
+<span class="text-5xl font-headline font-black italic text-tertiary">99</span>
+<span class="font-label text-sm mb-1 opacity-60 font-bold">S_RANK_OPERATIVE</span>
+</div>
+<div class="mt-4 w-full h-2 bg-surface-container">
+<div class="h-full bg-tertiary w-[85%]"></div>
+</div>
+</div>
+</div>
+<div class="relative overflow-hidden -skew-x-12 bg-black">
+<img class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-500" data-alt="Abstract cyber security background with red glowing matrix lines and silhouettes of mysterious figures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCncsVxJT6s7-7RUmXwCsR4ee72LxETkntHVoeQS-DR5Vs4gmGqBPIPk2tjFp8xwEpVX5vXXpe78WVXPvSokPY4Gq6MK5xVQSAzufcwAme7vV-MKc6N4544hEY9BLc35q3LiVMkoSrfxrOK7SffxzrCQmHkvnxb4T-GAIaxAuHTsWeho80-pHnVa-Frq0wSR-HytHb4lKPBV4W4U5chqtsPN_qhMr4qtm3gyanzEZF7WTlKYG1P1xyKK69-auye1cUdW8vp7OMKDbo"/>
+<div class="relative z-10 p-8 skew-x-12 h-full flex flex-col justify-end">
+<h3 class="font-headline text-2xl font-black italic text-white uppercase">MISSION_LOG_001</h3>
+<p class="font-label text-xs text-tertiary mt-1 font-bold">VIEW_INTEL_STREAM</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Shard (Signature Component) -->
+<div class="fixed bottom-12 right-0 z-40">
+<div class="bg-primary-container text-white px-12 py-4 -skew-x-12 translate-x-4 flex items-center gap-4 hover:translate-x-0 transition-transform duration-200 cursor-pointer shadow-[0_0_40px_rgba(230,25,25,0.3)]">
+<span class="material-symbols-outlined skew-x-12 text-3xl" data-icon="emergency_home" data-weight="fill">emergency_home</span>
+<div class="skew-x-12 flex flex-col">
+<span class="font-label text-[10px] leading-tight">SYSTEM_OVERRIDE</span>
+<span class="font-headline font-black italic leading-tight uppercase">THE_SAFEHOUSE</span>
+</div>
+</div>
+</div>
+<!-- Heavy Footer -->
+<footer class="relative w-full py-12 px-10 flex flex-col items-start gap-8 overflow-hidden bg-white border-t-8 border-primary-container style_shell_layout">
+<div class="text-8xl font-black opacity-5 absolute -bottom-4 -left-4 -skew-x-12 pointer-events-none style_brand_logo text-on-surface">
+            THE_PHANTOM
+        </div>
+<div class="flex flex-wrap gap-12 z-10">
+<div class="flex flex-col gap-4">
+<h4 class="font-label font-bold text-primary uppercase tracking-widest">NAV_COMMANDS</h4>
+<div class="flex flex-col gap-2">
+<a class="font-label text-on-surface-variant -skew-x-12 hover:text-primary transition-none uppercase font-bold" href="#">STRIKE</a>
+<a class="font-label text-on-surface-variant -skew-x-12 hover:text-primary transition-none uppercase font-bold" href="#">VANISH</a>
+<a class="font-label text-tertiary -skew-x-12 hover:text-primary transition-none uppercase font-bold" href="#">SILENCE</a>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label font-bold text-primary uppercase tracking-widest">NETWORK_STATUS</h4>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-green-600 animate-pulse"></div>
+<span class="font-label text-on-surface-variant uppercase tracking-tighter font-bold">ENCRYPTED_CONNECTION_STABLE</span>
+</div>
+</div>
+</div>
+<div class="mt-8 z-10 font-label font-bold text-on-surface-variant opacity-40 uppercase tracking-widest">
+            COPYRIGHT_SYSTEM_OVERRIDE_2024 // ALL_RECORDS_REDACTED
+        </div>
+</footer>
+</body></html>

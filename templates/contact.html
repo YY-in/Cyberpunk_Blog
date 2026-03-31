@@ -7,17 +7,76 @@
 .copy-toast.show { opacity: 1; transform: translateY(0); }
 .loading-shimmer { background: linear-gradient(90deg, transparent, rgba(245,230,66,0.2), transparent); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
 @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+/* P5R light mode: Contact page */
+html.light .loading-shimmer { background: linear-gradient(90deg, transparent, rgba(217,35,35,0.15), transparent) !important; background-size: 200% 100%; }
+html.light header.mb-12.border-l-4.border-primary-container { border-left-color: #d92323 !important; }
+html.light .clip-path-diag { border-right-color: rgba(217,35,35,0.4) !important; }
+html.light .bg-emerald-500\/5 { background-color: rgba(52,211,153,0.05) !important; }
+html.light .border-emerald-500\/20 { border-color: rgba(52,211,153,0.2) !important; }
+
+/* P5R contact — red form header, skewed submit button */
+html.light .bg-surface-container.border-t-2 {
+  background: var(--p5r-bg, #f5f0eb) !important;
+  border-top: 3px solid #e61919 !important;
+}
+html.light button[type="submit"] {
+  background: #e61919 !important;
+  color: #fff !important;
+  transform: skewX(-12deg) !important;
+  clip-path: none !important;
+  box-shadow: 4px 4px 0 #0d0d0d !important;
+  font-family: 'Bebas Neue', sans-serif !important;
+  letter-spacing: 0.1em !important;
+}
+html.light button[type="submit"]:hover {
+  background: #0d0d0d !important;
+  color: #fff !important;
+  transition: none !important;
+}
+/* Contact nodes — instant hover flip */
+html.light .group.cursor-pointer:hover {
+  background: #e61919 !important;
+  border-left-color: #0d0d0d !important;
+  transition: none !important;
+}
+html.light .group.cursor-pointer:hover p,
+html.light .group.cursor-pointer:hover span {
+  color: #fff !important;
+}
+/* HUD cards — P5R styling */
+html.light .clip-path-diag {
+  background: #faf7f3 !important;
+  border-right: 4px solid #e61919 !important;
+}
+/* Dossier download section — red bg */
+html.light section.bg-gradient-to-r {
+  background: #e61919 !important;
+  border: none !important;
+}
+html.light section.bg-gradient-to-r h2 { color: #fff !important; filter: none !important; }
+html.light section.bg-gradient-to-r p { color: rgba(255,255,255,0.8) !important; }
+html.light section.bg-gradient-to-r a {
+  background: #0d0d0d !important;
+  color: #fff !important;
+  transform: skewX(-12deg) !important;
+  clip-path: none !important;
+}
+html.light section.bg-gradient-to-r a:hover {
+  background: #fff !important;
+  color: #e61919 !important;
+  transition: none !important;
+}
 {% endblock %}
 
 {% block content %}
 <main class="pt-14 md:pt-24 pb-20 px-6 max-w-7xl mx-auto">
   <header class="mb-12 border-l-4 border-primary-container pl-6">
     <div class="flex flex-wrap items-baseline gap-4 mb-2">
-      <h1 class="font-headline text-4xl md:text-6xl font-black uppercase glitch-text tracking-tighter text-primary-container">{{ pg.page_title }}</h1>
-      <span class="font-label text-secondary text-xs animate-pulse">{{ pg.port_scan }}</span>
+      <h1 class="font-headline text-4xl md:text-6xl font-black uppercase glitch-text tracking-tighter text-primary-container"><span data-p5r="{{ p5r.pages.contact.page_title }}">{{ pg.page_title }}</span></h1>
+      <span class="font-label text-secondary text-xs animate-pulse"><span data-p5r="{{ p5r.pages.contact.port_scan }}">{{ pg.port_scan }}</span></span>
     </div>
     <div class="h-8 overflow-hidden">
-      <p class="font-label text-lg text-secondary/80">{{ pg.status_prefix }} <span class="text-primary-container" id="typewriter"></span><span class="animate-[blink_1s_infinite]">|</span></p>
+      <p class="font-label text-lg text-secondary/80"><span data-p5r="{{ p5r.pages.contact.status_prefix }}">{{ pg.status_prefix }}</span> <span class="text-primary-container" id="typewriter"></span><span class="animate-[blink_1s_infinite]">|</span></p>
     </div>
   </header>
 
@@ -37,10 +96,14 @@
     <aside class="lg:col-span-5 space-y-6">
       <div class="flex items-center gap-4 mb-8">
         <div class="h-px flex-1 bg-gradient-to-r from-secondary/50 to-transparent"></div>
-        <h2 class="font-headline text-xl text-secondary uppercase tracking-widest">{{ pg.nodes_title }}</h2>
+        <h2 class="font-headline text-xl text-secondary uppercase tracking-widest"><span data-p5r="{{ p5r.pages.contact.nodes_title }}">{{ pg.nodes_title }}</span></h2>
       </div>
       <div class="space-y-3 relative">
-        <div class="copy-toast fixed top-20 right-8 bg-primary-container text-on-primary px-4 py-2 font-label text-xs z-[110] shadow-xl border-l-4 border-black" id="copy-notification">{{ pg.copy_toast }}</div>
+        <div class="mb-6 p-4 bg-primary-container text-on-primary font-headline text-lg flex items-center gap-4">
+        <span class="material-symbols-outlined">mail</span>
+        <a href="mailto:bruneed237@gmail.com" class="text-white hover:text-on-primary-container font-bold tracking-wider">bruneed237@gmail.com</a>
+      </div>
+      <div class="copy-toast fixed top-20 right-8 bg-primary-container text-on-primary px-4 py-2 font-label text-xs z-[110] shadow-xl border-l-4 border-black" id="copy-notification">{{ pg.copy_toast }}</div>
         {% for node in cfg.contact_nodes %}
         <div class="group cursor-pointer flex items-center justify-between p-4 bg-surface-container-lowest border-l-2 border-secondary/20 hover:border-secondary hover:bg-secondary/5 transition-all" onclick="copyNode('{{ node.value }}')">
           <div class="flex items-center gap-4">
@@ -54,7 +117,7 @@
       <div class="mt-12 p-6 bg-emerald-500/5 border border-emerald-500/20 clip-path-diag relative">
         <div class="flex items-center gap-4">
           <div class="relative"><div class="w-4 h-4 bg-emerald-400 rounded-full animate-ping absolute"></div><div class="w-4 h-4 bg-emerald-400 rounded-full relative z-10"></div></div>
-          <div><p class="font-headline text-sm text-emerald-400 uppercase tracking-tighter">{{ pg.availability_title }}</p><p class="font-label text-[10px] text-emerald-400/60 uppercase">{{ pg.availability_sub }}</p></div>
+          <div><p class="font-headline text-sm text-emerald-400 uppercase tracking-tighter"><span data-p5r="{{ p5r.pages.contact.availability_title }}">{{ pg.availability_title }}</span></p><p class="font-label text-[10px] text-emerald-400/60 uppercase"><span data-p5r="{{ p5r.pages.contact.availability_sub }}">{{ pg.availability_sub }}</span></p></div>
         </div>
       </div>
     </aside>
@@ -63,7 +126,7 @@
       <div class="bg-surface-container p-8 border-t-2 border-primary-container relative">
         <div class="absolute -top-3 -left-3 w-6 h-6 border-t-2 border-l-2 border-primary-container"></div>
         <div class="absolute -bottom-3 -right-3 w-6 h-6 border-b-2 border-r-2 border-primary-container"></div>
-        <h2 class="font-headline text-2xl text-primary-container mb-8 flex items-center gap-3"><span class="material-symbols-outlined">mail</span> {{ pg.form_title }}</h2>
+        <h2 class="font-headline text-2xl text-primary-container mb-8 flex items-center gap-3"><span class="material-symbols-outlined">mail</span> <span data-p5r="{{ p5r.pages.contact.form_title }}">{{ pg.form_title }}</span></h2>
         <form class="space-y-8 relative" id="contact-form">
           <div class="hidden absolute inset-0 z-10 bg-surface-container/80 backdrop-blur-sm flex items-center justify-center" id="form-loading">
             <div class="text-center"><div class="w-64 h-2 bg-neutral-800 relative overflow-hidden mb-4"><div class="absolute inset-0 loading-shimmer"></div></div><p class="font-label text-primary-container animate-pulse">{{ pg.transmitting }}</p></div>
@@ -82,8 +145,8 @@
             <div class="flex justify-between items-end"><label class="font-label text-xs text-primary-container/70 uppercase">{{ pg.form_fields.message_label }}</label><span class="font-label text-[10px] text-primary-container/40" id="char-count">0 / 500</span></div>
             <textarea name="message" class="w-full bracket-input text-on-surface font-body p-4 placeholder:text-secondary/10 min-h-[160px]" id="payload-text" maxlength="500" placeholder="{{ pg.form_fields.message_placeholder }}" required></textarea>
           </div>
-          <div class="pt-4"><button class="w-full bg-primary-container text-on-primary font-headline font-black py-5 clip-path-btn hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-4 group shadow-[0_0_20px_rgba(245,230,66,0.3)]" type="submit">{{ pg.btn_submit }}<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">send</span></button></div>
-          <div class="mt-4 font-label text-[10px] text-primary-container/40 text-center animate-pulse">{{ pg.encryption_label }}</div>
+          <div class="pt-4"><button class="w-full bg-primary-container text-on-primary font-headline font-black py-5 clip-path-btn hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-4 group shadow-[0_0_20px_rgba(245,230,66,0.3)]" type="submit"><span data-p5r="{{ p5r.pages.contact.btn_submit }}">{{ pg.btn_submit }}</span><span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">send</span></button></div>
+          <div class="mt-4 font-label text-[10px] text-primary-container/40 text-center animate-pulse"><span data-p5r="{{ p5r.pages.contact.encryption_label }}">{{ pg.encryption_label }}</span></div>
         </form>
       </div>
     </section>
@@ -115,10 +178,10 @@
   <section class="mt-24 bg-gradient-to-r from-purple-900/40 to-indigo-900/40 border-2 border-primary-container/50 p-8 md:p-12 relative overflow-hidden group">
     <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-30 mix-blend-overlay"></div>
     <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
-      <div><h2 class="font-headline text-3xl text-primary-container mb-2 drop-shadow-[0_0_10px_rgba(245,230,66,0.5)]">{{ pg.dossier_title }}</h2><p class="font-body text-secondary max-w-xl">{{ pg.dossier_desc }}</p></div>
-      <a class="bg-primary-container text-on-primary font-headline font-bold px-10 py-6 clip-path-btn hover:skew-x-[-3deg] hover:shadow-[0_0_30px_rgba(245,230,66,0.6)] transition-all flex items-center gap-4 group" href="{{ cfg.owner.resume_url }}">{{ pg.dossier_btn }}<span class="material-symbols-outlined group-hover:translate-y-1 transition-transform">file_download</span></a>
+      <div><h2 class="font-headline text-3xl text-primary-container mb-2 drop-shadow-[0_0_10px_rgba(245,230,66,0.5)]"><span data-p5r="{{ p5r.pages.contact.dossier_title }}">{{ pg.dossier_title }}</span></h2><p class="font-body text-secondary max-w-xl">{{ pg.dossier_desc }}</p></div>
+      <a class="bg-primary-container text-on-primary font-headline font-bold px-10 py-6 clip-path-btn hover:skew-x-[-3deg] hover:shadow-[0_0_30px_rgba(245,230,66,0.6)] transition-all flex items-center gap-4 group" href="{{ cfg.owner.resume_url }}"><span data-p5r="{{ p5r.pages.contact.dossier_btn }}">{{ pg.dossier_btn }}</span><span class="material-symbols-outlined group-hover:translate-y-1 transition-transform">file_download</span></a>
     </div>
-    <div class="absolute bottom-2 right-4 font-label text-[8px] text-primary-container/30 uppercase tracking-[0.2em]">{{ pg.dossier_footer }}</div>
+    <div class="absolute bottom-2 right-4 font-label text-[8px] text-primary-container/30 uppercase tracking-[0.2em]"><span data-p5r="{{ p5r.pages.contact.dossier_footer }}">{{ pg.dossier_footer }}</span></div>
   </section>
 </main>
 {% endblock %}

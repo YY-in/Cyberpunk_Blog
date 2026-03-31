@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>THE_PHANTOM | PROJECTS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;900&amp;family=Public+Sans:wght@400;700&amp;family=Space+Grotesk:wght@500;700&amp;family=Bebas+Neue&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface": "#0d0d0d",
+              "secondary": "#454744",
+              "surface-container-high": "#e4e3de",
+              "tertiary": "#e8c840",
+              "inverse-surface": "#313030",
+              "inverse-on-surface": "#f5f5f0",
+              "background": "#f5f5f0",
+              "on-error": "#ffffff",
+              "on-secondary-fixed": "#1a1c19",
+              "tertiary-container": "#e8c840",
+              "on-surface-variant": "#444748",
+              "secondary-fixed-dim": "#c6c7c2",
+              "on-primary-container": "#ffffff",
+              "surface-variant": "#dee3e5",
+              "surface": "#f5f5f0",
+              "secondary-fixed": "#e3e3de",
+              "on-error-container": "#410002",
+              "error-container": "#ffdad6",
+              "surface-tint": "#e61919",
+              "inverse-primary": "#ffb4aa",
+              "outline": "#70787d",
+              "on-primary": "#ffffff",
+              "primary-container": "#e61919",
+              "on-secondary-container": "#101e23",
+              "surface-dim": "#d8dadd",
+              "on-background": "#0d0d0d",
+              "on-primary-fixed": "#410001",
+              "on-tertiary-fixed": "#221b00",
+              "tertiary-fixed-dim": "#e4c53d",
+              "on-secondary": "#ffffff",
+              "on-tertiary": "#000000",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-container": "#221b00",
+              "primary-fixed": "#ffdad5",
+              "secondary-container": "#cfe6f1",
+              "surface-container-highest": "#e2e2e2",
+              "outline-variant": "#c2c8cc",
+              "surface-container": "#efeff0",
+              "on-secondary-fixed-variant": "#454744",
+              "tertiary-fixed": "#ffe16c",
+              "on-tertiary-fixed-variant": "#544600",
+              "primary-fixed-dim": "#ffb4aa",
+              "error": "#ba1a1a",
+              "primary": "#e61919",
+              "surface-container-low": "#f7f9fc",
+              "surface-bright": "#f9f9f9",
+              "on-primary-fixed-variant": "#930006"
+            },
+            fontFamily: {
+              "headline": ["Epilogue"],
+              "body": ["Public Sans"],
+              "label": ["Space Grotesk"],
+              "bebas": ["Bebas Neue"]
+            },
+            borderRadius: {"DEFAULT": "0", "lg": "0", "xl": "0", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.skew-canvas {
+    transform: skewx(-12deg)
+    }
+.unskew-content {
+    transform: skewx(12deg)
+    }
+.glitch-overlay {
+    background: linear-gradient(45deg, rgba(230, 25, 25, 0.2) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(230, 25, 25, 0.2) 100%);
+    mix-blend-mode: multiply
+    }
+.diagonal-cut {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%)
+    }
+.noise-texture {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.06
+    }
+.paper-texture {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCtNL_gSrIryiiOYyei84JS9xBNug0Nt0W1Ddj6Blil4FQACe0TvV48NKt5z7rJTPUcROTz5Nptq-w-pZGbiPB297FUtPTH5AdhIrlk7udy570WD9DaXl47faMTAdwpUMyopYY7h6Y8AQuXo-1TKw6UVRyUaqt88hwdo0qsv3GquV3PQDiTSYx4IGNHoLJre_OoHP3FwUznXTicdmIgSaFHg9PiXL2o5CCF9au_B26hUTWuoYRdUTOqOJ_2R9Ovu1vJcElbKs9H6vc)
+    }</style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-tertiary selection:text-black min-h-screen overflow-x-hidden paper-texture">
+<div class="fixed inset-0 noise-texture pointer-events-none z-[100]"></div>
+<!-- Background Decorative Text -->
+<div class="fixed inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
+<span class="text-[25vw] font-headline font-black text-black/5 -skew-x-12 tracking-tighter leading-none select-none">PROJECTS</span>
+</div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-6 py-4 bg-transparent h-20">
+<div class="flex items-center gap-8">
+<div class="text-4xl font-black text-white bg-primary-container px-4 py-1 -skew-x-12 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+<span class="inline-block unskew-content">THE_PHANTOM</span>
+</div>
+<nav class="hidden md:flex gap-1">
+<a class="bg-black text-white px-6 py-2 -skew-x-12 border-r-4 border-red-600 hover:bg-red-600 hover:text-white transition-none group" href="#">
+<span class="inline-block unskew-content font-['Epilogue'] uppercase tracking-tighter italic">INFILTRATE</span>
+</a>
+<a class="bg-black text-white px-6 py-2 -skew-x-12 border-r-4 border-red-600 hover:bg-red-600 hover:text-white transition-none group" href="#">
+<span class="inline-block unskew-content font-['Epilogue'] uppercase tracking-tighter italic">LOGS</span>
+</a>
+<a class="bg-primary-container text-white px-6 py-2 -skew-x-12 border-r-4 border-tertiary hover:bg-black transition-none group" href="#">
+<span class="inline-block unskew-content font-['Epilogue'] uppercase tracking-tighter italic">RECORDS</span>
+</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-primary hover:text-black transition-none">
+<span class="material-symbols-outlined text-3xl">notifications</span>
+</button>
+<button class="text-primary hover:text-black transition-none">
+<span class="material-symbols-outlined text-3xl">settings</span>
+</button>
+</div>
+</header>
+<main class="relative pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto z-10">
+<!-- Filter Bar -->
+<div class="flex flex-wrap gap-2 mb-16 items-end">
+<div class="h-1 w-24 bg-primary-container mb-4 -skew-x-12"></div>
+<div class="flex gap-1 overflow-x-auto pb-2 no-scrollbar">
+<button class="bg-primary-container text-on-primary-container px-8 py-3 -skew-x-12 font-headline font-black text-xl hover:bg-black hover:text-white transition-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+<span class="inline-block unskew-content">ALL_INTEL</span>
+</button>
+<button class="bg-black text-white px-8 py-3 -skew-x-12 font-headline font-black text-xl hover:bg-primary-container hover:text-white transition-none">
+<span class="inline-block unskew-content">COVERT</span>
+</button>
+<button class="bg-black text-white px-8 py-3 -skew-x-12 font-headline font-black text-xl hover:bg-primary-container hover:text-white transition-none">
+<span class="inline-block unskew-content">ASSAULT</span>
+</button>
+<button class="bg-black text-white px-8 py-3 -skew-x-12 font-headline font-black text-xl hover:bg-primary-container hover:text-white transition-none">
+<span class="inline-block unskew-content">RECON</span>
+</button>
+</div>
+<div class="ml-auto mb-4 hidden lg:block">
+<p class="font-label text-xs tracking-widest text-primary font-bold uppercase">System Status: Active</p>
+<div class="h-1 w-full bg-surface-container-highest mt-1">
+<div class="h-full w-2/3 bg-primary-container"></div>
+</div>
+</div>
+</div>
+<!-- Project Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-12">
+<!-- Project Card 1 -->
+<div class="group relative">
+<div class="absolute -inset-2 bg-primary-container -skew-x-12 opacity-0 group-hover:opacity-100 transition-none z-0"></div>
+<div class="relative bg-white p-2 -skew-x-12 border-l-8 border-primary-container shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)] group-hover:shadow-none">
+<div class="unskew-content relative">
+<div class="relative overflow-hidden diagonal-cut h-64 bg-black">
+<img class="w-full h-full object-cover grayscale contrast-125 brightness-90 group-hover:grayscale-0 transition-none" data-alt="Retro gaming hardware and neon lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaIsYiyOgkq4kgmV1PpIqkSQO49Urfqm7yYE4Bl_jfVGMk5WMGhTuGC3QO_Qah958_JZ3s2fgdXEOHtCLyzixVjfAZNnUjLT4IKdD-R-795SV5xCniQaJfwTFx8rgVAXnvQFt5WkDr_z1VKyiw3wGGrxo75-2RGzVhb1Xi9j-3t7_WkdGZH-5CZNH_y9XxXbLN3uSD7OsKYsiVeNTNXWqD29pWseJh2qux_ytgxvjssVcdnArTwck6Xc9zl4O4N4EDrJYYKju8p30"/>
+<div class="absolute inset-0 glitch-overlay opacity-40"></div>
+<div class="absolute top-4 left-4 bg-tertiary text-black font-label text-[10px] px-2 py-1 uppercase font-bold tracking-tighter shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                                PRIORITY: EXTREME
+                            </div>
+</div>
+<div class="mt-4 px-2">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-black text-white text-[10px] font-bold px-2 py-0.5 tracking-widest font-label">INFRASTRUCTURE</span>
+<span class="text-primary font-label text-[10px] font-bold tracking-widest">ID: 099-X</span>
+</div>
+<h3 class="font-bebas text-5xl leading-none text-black group-hover:text-primary transition-none mb-2">NEON_OVERRIDE</h3>
+<p class="font-body text-sm text-neutral-600 line-clamp-2 italic">Subverting central control systems via high-frequency signal injection.</p>
+</div>
+</div>
+</div>
+<div class="absolute -bottom-4 right-4 bg-black text-white font-bebas text-2xl px-6 py-1 -skew-x-12 z-20 group-hover:bg-primary-container transition-none shadow-[4px_4px_0px_0px_rgba(230,25,25,0.3)] group-hover:shadow-none">
+                    VIEW_FILE
+                </div>
+</div>
+<!-- Project Card 2 -->
+<div class="group relative lg:translate-y-12">
+<div class="absolute -inset-2 bg-primary-container -skew-x-12 opacity-0 group-hover:opacity-100 transition-none z-0"></div>
+<div class="relative bg-white p-2 -skew-x-12 border-l-8 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)] group-hover:shadow-none">
+<div class="unskew-content relative">
+<div class="relative overflow-hidden diagonal-cut h-64 bg-black">
+<img class="w-full h-full object-cover grayscale contrast-125 brightness-90 group-hover:grayscale-0 transition-none" data-alt="Digital network visualization" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4QWqRtwK3HBNFpfh7iKMSFmWDPkdA4JtF3-KkQyI8mTUWPmBSeFwd4xJzxcGB6mIyH3VCzyfnRmyQ2XYTmb4M9DGOBe5Usi9csn6h_--fgNq9joq4H49unoWOhF-SfG4Q_UbsL0aAEiFSC_h3bVT7eWfhDGRvvF1CLg8BQa72Kf32jS6uDcPDNBS4gvxC6E__VkmZz59VO1XW7lvdbgJnaKmr09hiQ4qtmHD5JYdjjRQhhIEUU8U0BqfAhhJYIQ7StQsRlO-phH4"/>
+<div class="absolute inset-0 glitch-overlay opacity-40"></div>
+<div class="absolute top-4 left-4 bg-tertiary text-black font-label text-[10px] px-2 py-1 uppercase font-bold tracking-tighter shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                                PRIORITY: HIGH
+                            </div>
+</div>
+<div class="mt-4 px-2">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-black text-white text-[10px] font-bold px-2 py-0.5 tracking-widest font-label">CYBERNETICS</span>
+<span class="text-primary font-label text-[10px] font-bold tracking-widest">ID: 442-A</span>
+</div>
+<h3 class="font-bebas text-5xl leading-none text-black group-hover:text-primary transition-none mb-2">GHOST_SHELL</h3>
+<p class="font-body text-sm text-neutral-600 line-clamp-2 italic">Deploying autonomous shadow proxies within the metropolitan data grid.</p>
+</div>
+</div>
+</div>
+<div class="absolute -bottom-4 right-4 bg-black text-white font-bebas text-2xl px-6 py-1 -skew-x-12 z-20 group-hover:bg-primary-container transition-none shadow-[4px_4px_0px_0px_rgba(230,25,25,0.3)] group-hover:shadow-none">
+                    VIEW_FILE
+                </div>
+</div>
+<!-- Project Card 3 -->
+<div class="group relative">
+<div class="absolute -inset-2 bg-primary-container -skew-x-12 opacity-0 group-hover:opacity-100 transition-none z-0"></div>
+<div class="relative bg-white p-2 -skew-x-12 border-l-8 border-primary-container shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)] group-hover:shadow-none">
+<div class="unskew-content relative">
+<div class="relative overflow-hidden diagonal-cut h-64 bg-black">
+<img class="w-full h-full object-cover grayscale contrast-125 brightness-90 group-hover:grayscale-0 transition-none" data-alt="Modern architecture with sharp shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDif0c1H3xDF853x1fA8QjIBkEmr3mjpiIlMsBizpwWQEqXUOFdL_fioiH_GJvKWYkuO9p2gXE7Ul7q9rLLBsFBztxzwrVEFvV5IY07SiZbwhiZ-FVP7gvONo4tnV8CAw00qlu-umKPju7UELyxHj05MRjtPXjG-0qWF3ativENIu9mJZkjU3NM9JBJDQbkUJcbHPCvpdAAq15GerU-2pXHTkrx4hUVM4hDR5FVzkTW4PXxMzamnYr6AYajYViQEjEHja-t3iiUXA0"/>
+<div class="absolute inset-0 glitch-overlay opacity-40"></div>
+<div class="absolute top-4 left-4 bg-tertiary text-black font-label text-[10px] px-2 py-1 uppercase font-bold tracking-tighter shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                                PRIORITY: VITAL
+                            </div>
+</div>
+<div class="mt-4 px-2">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-black text-white text-[10px] font-bold px-2 py-0.5 tracking-widest font-label">EXTRACTION</span>
+<span class="text-primary font-label text-[10px] font-bold tracking-widest">ID: 115-Z</span>
+</div>
+<h3 class="font-bebas text-5xl leading-none text-black group-hover:text-primary transition-none mb-2">SCARLET_ECHO</h3>
+<p class="font-body text-sm text-neutral-600 line-clamp-2 italic">Recovering encrypted assets from high-security vault systems.</p>
+</div>
+</div>
+</div>
+<div class="absolute -bottom-4 right-4 bg-black text-white font-bebas text-2xl px-6 py-1 -skew-x-12 z-20 group-hover:bg-primary-container transition-none shadow-[4px_4px_0px_0px_rgba(230,25,25,0.3)] group-hover:shadow-none">
+                    VIEW_FILE
+                </div>
+</div>
+<!-- Project Card 4 -->
+<div class="group relative lg:-translate-y-8">
+<div class="absolute -inset-2 bg-primary-container -skew-x-12 opacity-0 group-hover:opacity-100 transition-none z-0"></div>
+<div class="relative bg-white p-2 -skew-x-12 border-l-8 border-primary-container shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)] group-hover:shadow-none">
+<div class="unskew-content relative">
+<div class="relative overflow-hidden diagonal-cut h-64 bg-black">
+<img class="w-full h-full object-cover grayscale contrast-125 brightness-90 group-hover:grayscale-0 transition-none" data-alt="Microchip circuit board" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCXpTqUO2PWe_ktBo4EgjyNGWOqJLixfnt-qCmBpfBDUdA3VXrMIiL4K7eBevPuoanX5tYFWrzOzFPy9TortoNpcD93Ldj6PQcjkYC4gx6KS3vtjB6pMFhuYSIqkeuxsxH91bG1Ym3VKlQ6Y-MXM56wJYEQFhcCviUoQ5Fhat2VVzoTbCsqoblZDN95CrLGKAKq4FDbi-dnq2y33GnB7Y8EkI-wtjSoulN0N_VeT9A8wRqpxT7_Fw0WPX0fyocx4RkKmXIQB3UgU4"/>
+<div class="absolute inset-0 glitch-overlay opacity-40"></div>
+<div class="absolute top-4 left-4 bg-tertiary text-black font-label text-[10px] px-2 py-1 uppercase font-bold tracking-tighter shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                                PRIORITY: MEDIUM
+                            </div>
+</div>
+<div class="mt-4 px-2">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-black text-white text-[10px] font-bold px-2 py-0.5 tracking-widest font-label">SABOTAGE</span>
+<span class="text-primary font-label text-[10px] font-bold tracking-widest">ID: 887-B</span>
+</div>
+<h3 class="font-bebas text-5xl leading-none text-black group-hover:text-primary transition-none mb-2">VOID_RUNNER</h3>
+<p class="font-body text-sm text-neutral-600 line-clamp-2 italic">Neutralizing black-site servers through physical hardware disruption.</p>
+</div>
+</div>
+</div>
+<div class="absolute -bottom-4 right-4 bg-black text-white font-bebas text-2xl px-6 py-1 -skew-x-12 z-20 group-hover:bg-primary-container transition-none shadow-[4px_4px_0px_0px_rgba(230,25,25,0.3)] group-hover:shadow-none">
+                    VIEW_FILE
+                </div>
+</div>
+<!-- Project Card 5 -->
+<div class="group relative">
+<div class="absolute -inset-2 bg-primary-container -skew-x-12 opacity-0 group-hover:opacity-100 transition-none z-0"></div>
+<div class="relative bg-white p-2 -skew-x-12 border-l-8 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)] group-hover:shadow-none">
+<div class="unskew-content relative">
+<div class="relative overflow-hidden diagonal-cut h-64 bg-black">
+<img class="w-full h-full object-cover grayscale contrast-125 brightness-90 group-hover:grayscale-0 transition-none" data-alt="Abstract dark binary code" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4J4rzQEG7BaBKNggDhth_5nk_jzC2gjzPnWjnAkA1U7DnmGcb7izg5O53dD_Vu7eFhg-HZkhKOfKXCkCWI1ewR_9s69MegD2q7s218_uG8IaC_Dfm3NBwFzkckVJCvp66JKtCPfnwxNQDQ-QjsvpnIgSBwCuvQzU6oxckMnVZWogK8H3VlSsRUZZ2R0g5LhkjgnZu96MM2df1xhI-H3DMSi-ViWWYCpcymGkLMfX0Vc3gnWp-ZPQt8JRkc7yCaxxVvhHe_NDLlIU"/>
+<div class="absolute inset-0 glitch-overlay opacity-40"></div>
+<div class="absolute top-4 left-4 bg-tertiary text-black font-label text-[10px] px-2 py-1 uppercase font-bold tracking-tighter shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                                PRIORITY: LOW
+                            </div>
+</div>
+<div class="mt-4 px-2">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-black text-white text-[10px] font-bold px-2 py-0.5 tracking-widest font-label">INTEL</span>
+<span class="text-primary font-label text-[10px] font-bold tracking-widest">ID: 001-D</span>
+</div>
+<h3 class="font-bebas text-5xl leading-none text-black group-hover:text-primary transition-none mb-2">SILENT_PATH</h3>
+<p class="font-body text-sm text-neutral-600 line-clamp-2 italic">Monitoring encrypted traffic patterns without triggering security flags.</p>
+</div>
+</div>
+</div>
+<div class="absolute -bottom-4 right-4 bg-black text-white font-bebas text-2xl px-6 py-1 -skew-x-12 z-20 group-hover:bg-primary-container transition-none shadow-[4px_4px_0px_0px_rgba(230,25,25,0.3)] group-hover:shadow-none">
+                    VIEW_FILE
+                </div>
+</div>
+<!-- Project Card 6 -->
+<div class="group relative lg:translate-y-4">
+<div class="absolute -inset-2 bg-primary-container -skew-x-12 opacity-0 group-hover:opacity-100 transition-none z-0"></div>
+<div class="relative bg-white p-2 -skew-x-12 border-l-8 border-primary-container shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)] group-hover:shadow-none">
+<div class="unskew-content relative">
+<div class="relative overflow-hidden diagonal-cut h-64 bg-black">
+<img class="w-full h-full object-cover grayscale contrast-125 brightness-90 group-hover:grayscale-0 transition-none" data-alt="Dramatic city skyline at night" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOc8Z2RTxAsj4x5yox5rfYYAv0dUsvHin5GLn9VJcWanpCRqKVEs6UXTJQ5thTDUkJhM2kMwvsqdluCMlgof9Cw6m8co3lqUt6KUXQzsfT7PeO5dxGxQvZi8ORA_T2NuZ7t-Zkjm6Jr0D5Ga2s-_kwZoRkPJyM1pwlqb8I-cTWfOaiowc8jM8pKE_LSgqSbbUrHPi6xjQo--PZgKrFCSmJOQouOhdrRiAuiAJx5BCS66bEdrCkD-HX226dr1VomU8ifMcD-UWQm30"/>
+<div class="absolute inset-0 glitch-overlay opacity-40"></div>
+<div class="absolute top-4 left-4 bg-tertiary text-black font-label text-[10px] px-2 py-1 uppercase font-bold tracking-tighter shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                                PRIORITY: CRITICAL
+                            </div>
+</div>
+<div class="mt-4 px-2">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-black text-white text-[10px] font-bold px-2 py-0.5 tracking-widest font-label">ASSAULT</span>
+<span class="text-primary font-label text-[10px] font-bold tracking-widest">ID: 665-K</span>
+</div>
+<h3 class="font-bebas text-5xl leading-none text-black group-hover:text-primary transition-none mb-2">LAST_SURPRISE</h3>
+<p class="font-body text-sm text-neutral-600 line-clamp-2 italic">Full-scale coordinated infiltration of the core executive mainframe.</p>
+</div>
+</div>
+</div>
+<div class="absolute -bottom-4 right-4 bg-black text-white font-bebas text-2xl px-6 py-1 -skew-x-12 z-20 group-hover:bg-primary-container transition-none shadow-[4px_4px_0px_0px_rgba(230,25,25,0.3)] group-hover:shadow-none">
+                    VIEW_FILE
+                </div>
+</div>
+</div>
+<!-- System Action Shard -->
+<div class="mt-24 relative">
+<div class="absolute left-0 top-1/2 w-full h-1 bg-black/10 -translate-y-1/2"></div>
+<div class="relative bg-primary-container text-white px-12 py-6 -skew-x-12 inline-block border-r-[12px] border-tertiary shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]">
+<div class="unskew-content flex items-center gap-8">
+<div>
+<span class="font-label text-xs tracking-widest block opacity-80">CURRENT_PHASE</span>
+<span class="font-headline font-black text-3xl">EXECUTION_READY</span>
+</div>
+<div class="h-12 w-px bg-white/20"></div>
+<button class="bg-white text-black font-headline font-black px-8 py-2 hover:bg-tertiary transition-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-1 active:translate-y-1">INITIATE_ALL</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="relative w-full py-12 px-10 flex flex-col items-start gap-8 overflow-hidden bg-white border-t-8 border-primary-container">
+<span class="text-8xl font-black opacity-10 absolute -bottom-4 -left-4 -skew-x-12 pointer-events-none font-headline text-black">THE_PHANTOM</span>
+<div class="flex flex-wrap gap-12 z-10">
+<div class="flex flex-col gap-2">
+<span class="font-['Space_Grotesk'] font-bold uppercase tracking-widest text-primary">MISSION_CONTROL</span>
+<nav class="flex flex-col gap-1">
+<a class="text-black/60 -skew-x-12 hover:text-primary transition-none font-label" href="#">STRIKE</a>
+<a class="text-black/60 -skew-x-12 hover:text-primary transition-none font-label text-tertiary" href="#">VANISH</a>
+<a class="text-black/60 -skew-x-12 hover:text-primary transition-none font-label" href="#">SILENCE</a>
+</nav>
+</div>
+<div class="max-w-xs">
+<p class="font-label text-xs text-black/60 leading-relaxed uppercase font-bold">
+                    Unauthorized access is strictly prohibited. All mental bypasses are monitored by the collective conscience.
+                </p>
+</div>
+</div>
+<div class="w-full flex justify-between items-end z-10">
+<p class="font-['Space_Grotesk'] font-bold uppercase tracking-widest text-black text-sm">SYSTEM_OVERRIDE_2024</p>
+<div class="flex gap-4">
+<div class="w-12 h-12 bg-black text-white -skew-x-12 flex items-center justify-center hover:bg-primary-container cursor-pointer transition-none">
+<span class="material-symbols-outlined unskew-content">terminal</span>
+</div>
+<div class="w-12 h-12 bg-black text-white -skew-x-12 flex items-center justify-center hover:bg-primary-container cursor-pointer transition-none">
+<span class="material-symbols-outlined unskew-content">share</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- Bottom Nav (Mobile Only) -->
+<div class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-white grid grid-cols-3 h-16 border-t-4 border-primary-container">
+<button class="flex flex-col items-center justify-center text-black/40">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-label font-bold uppercase">LOGS</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">folder_special</span>
+<span class="text-[10px] font-label font-bold uppercase">RECORDS</span>
+</button>
+<button class="flex flex-col items-center justify-center text-black/40">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-label font-bold uppercase">PROFILE</span>
+</button>
+</div>
+</body></html>

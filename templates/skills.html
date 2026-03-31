@@ -8,16 +8,206 @@
 @keyframes system-fill { 0% { width: 0%; opacity: 0; } 100% { opacity: 1; } }
 .animate-system-fill { animation: system-fill 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
 .segmented-bar-bg { background-image: linear-gradient(to right, currentColor 1px, transparent 1px); background-size: 4px 100%; }
+
+/* ====== P5R LIGHT — Skills Page Complete Overhaul ====== */
+
+/* --- Page title: giant Bebas Neue, red, with decorative skew bar --- */
+html.light h1.text-\[\#f5e642\] {
+  font-family: 'Bebas Neue', sans-serif !important;
+  color: #e61919 !important;
+  font-size: clamp(3rem, 8vw, 5.5rem) !important;
+  letter-spacing: 0.04em !important;
+  line-height: 0.9 !important;
+  position: relative !important;
+}
+/* Red left bar → thicker, P5R style */
+html.light .absolute.-left-4.w-1.bg-\[\#f5e642\] {
+  width: 6px !important;
+  background: #e61919 !important;
+}
+/* Scan message: gold accent */
+html.light .animate-pulse.text-secondary-container {
+  color: #e8c840 !important;
+  animation: none !important;
+  font-weight: 700 !important;
+}
+/* Decorative bars: red / gold / black */
+html.light .h-1.w-24.bg-\[\#f5e642\] { background: #e61919 !important; height: 5px !important; transform: skewX(-12deg) !important; }
+html.light .h-1.w-12.bg-secondary-container { background: #e8c840 !important; height: 5px !important; transform: skewX(-12deg) !important; }
+html.light .h-1.w-6.bg-error { background: #0d0d0d !important; height: 5px !important; transform: skewX(-12deg) !important; }
+
+/* --- Radar chart container: bordered panel with P5R frame --- */
+html.light .lg\:col-span-5.bg-surface-container-low.border-l-4 {
+  background: #fff !important;
+  border-left: 6px solid #e61919 !important;
+  border: 2px solid #e61919 !important;
+  border-left-width: 6px !important;
+  box-shadow: 4px 4px 0 #0d0d0d !important;
+  position: relative !important;
+}
+html.light .lg\:col-span-5 h3.font-headline {
+  font-family: 'Bebas Neue', sans-serif !important;
+  color: #e61919 !important;
+  font-size: 1.1rem !important;
+  letter-spacing: 0.15em !important;
+  background: #e61919 !important;
+  color: #fff !important;
+  display: inline-block !important;
+  padding: 2px 16px !important;
+  transform: skewX(-12deg) !important;
+  margin-bottom: 1.5rem !important;
+}
+html.light .lg\:col-span-5 .text-\[\#f5e642\].opacity-40 {
+  color: #e8c840 !important;
+}
+/* Radar SVG: red strokes, gold fill */
+html.light svg polygon[stroke="#f5e642"] { stroke: #e61919 !important; }
+html.light svg line[stroke="#f5e642"] { stroke: rgba(230,25,25,0.3) !important; }
+html.light svg polygon[fill="#f5e642"] { fill: rgba(230,25,25,0.2) !important; }
+html.light svg polygon[stroke="#00d4ff"] { stroke: #0d0d0d !important; stroke-width: 2 !important; }
+html.light svg text[fill="#f5e642"] { fill: #0d0d0d !important; font-weight: bold !important; }
+/* Sync bar */
+html.light .bg-secondary-container.w-\[98\%\] {
+  background: #e61919 !important;
+  box-shadow: none !important;
+}
+
+/* --- Skill columns: strong contrast, P5R card style --- */
+html.light .cut-corner-br {
+  background: #fff !important;
+  border: 2px solid rgba(230,25,25,0.2) !important;
+  border-top: 5px solid #e61919 !important;
+  box-shadow: 3px 3px 0 rgba(230,25,25,0.12) !important;
+  clip-path: none !important;
+}
+html.light .cut-corner-br h4[style] {
+  font-family: 'Bebas Neue', sans-serif !important;
+  color: #fff !important;
+  background: #e61919 !important;
+  display: inline-flex !important;
+  padding: 2px 12px !important;
+  transform: skewX(-12deg) !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 0.12em !important;
+  margin-bottom: 1.5rem !important;
+}
+html.light .cut-corner-br h4[style] .material-symbols-outlined {
+  color: #fff !important;
+}
+/* Skill names: bold black */
+html.light .cut-corner-br li span { color: #0d0d0d !important; font-weight: 600 !important; }
+/* Level labels: gold */
+html.light .cut-corner-br li span[style*="color"] { color: #e8c840 !important; font-weight: 700 !important; }
+/* Progress bar track: visible border */
+html.light .cut-corner-br .bg-surface-container-highest {
+  background: rgba(230,25,25,0.08) !important;
+  border: 1px solid rgba(230,25,25,0.15) !important;
+}
+/* Progress bar fill: all red, segmented */
+html.light .cut-corner-br .segmented-bar-bg[style],
+html.light .segmented-bar-bg {
+  background-color: #e61919 !important;
+}
+/* Second column bars: gold accent */
+html.light .cut-corner-br:nth-child(2) .segmented-bar-bg[style] { background-color: #e8c840 !important; }
+/* Third column bars: dark red */
+html.light .cut-corner-br:nth-child(3) .segmented-bar-bg[style] { background-color: #8b0000 !important; }
+
+/* --- Tools grid: clean P5R treatment --- */
+html.light .hover\:bg-\[\#f5e642\]\/5:hover {
+  background: rgba(230,25,25,0.06) !important;
+  transition: none !important;
+}
+html.light .hover\:text-\[\#f5e642\]:hover { color: #e61919 !important; }
+html.light .text-secondary-container\/40 { color: rgba(230,25,25,0.35) !important; }
+html.light .border-secondary-container\/10 { border-color: rgba(230,25,25,0.08) !important; }
+html.light .text-secondary-container\/60 { color: rgba(13,13,13,0.5) !important; }
+/* Tools sys bar */
+html.light .bg-surface-container-low\/50 {
+  background: rgba(230,25,25,0.04) !important;
+  border-bottom-color: rgba(230,25,25,0.1) !important;
+}
+html.light .hover\:text-\[\#f5e642\] { color: rgba(13,13,13,0.5) !important; }
+html.light button.hover\:text-\[\#f5e642\]:hover { color: #e61919 !important; transition: none !important; }
+
+/* --- Separator: P5R bold red skewed bar --- */
+html.light .bg-error\/5 {
+  background: #e61919 !important;
+  animation: none !important;
+}
+html.light .text-error.font-label.font-bold {
+  color: #fff !important;
+}
+html.light .text-error.font-label.font-bold .opacity-50 { color: rgba(255,255,255,0.4) !important; }
+html.light .text-error.font-label.font-bold .material-symbols-outlined { color: #e8c840 !important; }
+html.light .text-error\/60 { color: rgba(255,255,255,0.6) !important; }
+
+/* --- Social Link Protocols section --- */
+html.light h2.text-tertiary-container {
+  font-family: 'Bebas Neue', sans-serif !important;
+  color: #e61919 !important;
+  font-size: 2rem !important;
+  letter-spacing: 0.06em !important;
+}
+/* Protocol sidebar items: P5R card style */
+html.light [onclick*="showProtocol"] {
+  background: #fff !important;
+  border: 1px solid rgba(230,25,25,0.15) !important;
+  border-left: 5px solid #e61919 !important;
+  transition: none !important;
+}
+html.light [onclick*="showProtocol"] .font-label[style] { color: #e61919 !important; }
+html.light [onclick*="showProtocol"]:hover {
+  background: #e61919 !important;
+  color: #fff !important;
+  border-color: #e61919 !important;
+  box-shadow: 3px 3px 0 #0d0d0d !important;
+}
+html.light [onclick*="showProtocol"]:hover .font-label,
+html.light [onclick*="showProtocol"]:hover .font-label[style] { color: #fff !important; }
+html.light [onclick*="showProtocol"]:hover .text-on-surface-variant { color: rgba(255,255,255,0.6) !important; }
+
+/* Locked item */
+html.light .border-error\/30.opacity-60 {
+  background: rgba(230,25,25,0.03) !important;
+  border-left-color: rgba(230,25,25,0.2) !important;
+}
+
+/* Protocol detail panel */
+html.light .cyber-modal-outline {
+  background: #fff !important;
+  border: 2px solid #e61919 !important;
+  box-shadow: 4px 4px 0 #0d0d0d !important;
+  clip-path: none !important;
+}
+html.light .cyber-modal-outline .text-\[\#f5e642\] { color: #e61919 !important; }
+html.light .protocol-content h3[style] {
+  font-family: 'Bebas Neue', sans-serif !important;
+  color: #e61919 !important;
+}
+html.light .protocol-content .border-l-2[style] { border-left-color: #e61919 !important; }
+html.light .protocol-content .border-l-2[style] p[style] { color: #0d0d0d !important; }
+/* Protocol image container */
+html.light .protocol-content .bg-\[\#131318\] { background: #f5f0eb !important; }
+html.light .protocol-content img { filter: none !important; opacity: 1 !important; }
+/* Protocol icon boxes */
+html.light .protocol-content .border.border-on-surface-variant\/30 {
+  border: 2px solid rgba(230,25,25,0.2) !important;
+  background: #fff !important;
+}
+
+/* Fixed shell logs — hide in light mode (too cyberpunk) */
+html.light .fixed.pointer-events-none.opacity-20.font-label { display: none !important; }
 {% endblock %}
 
 {% block content %}
 <main class="pt-14 md:pt-24 pb-20 px-4 md:px-12 max-w-7xl mx-auto">
   <section class="mb-12 relative">
     <div class="absolute -left-4 top-0 w-1 h-full bg-[#f5e642]"></div>
-    <h1 class="text-5xl md:text-7xl font-black font-headline tracking-tighter text-[#f5e642] mb-2 uppercase italic">{{ pg.page_title }}</h1>
+    <h1 class="text-5xl md:text-7xl font-black font-headline tracking-tighter text-[#f5e642] mb-2 uppercase italic"><span data-p5r="{{ p5r.pages.skills.page_title }}">{{ pg.page_title }}</span></h1>
     <div class="flex items-center gap-4 font-label text-secondary-container animate-pulse">
       <span class="text-xl">&gt;</span>
-      <p class="tracking-widest uppercase text-sm md:text-base">{{ pg.scan_message }}</p>
+      <p class="tracking-widest uppercase text-sm md:text-base"><span data-p5r="{{ p5r.pages.skills.scan_message }}">{{ pg.scan_message }}</span></p>
     </div>
     <div class="mt-4 flex gap-2"><div class="h-1 w-24 bg-[#f5e642]"></div><div class="h-1 w-12 bg-secondary-container"></div><div class="h-1 w-6 bg-error"></div></div>
   </section>
@@ -25,7 +215,7 @@
   <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
     <div class="lg:col-span-5 bg-surface-container-low p-8 border-l-4 border-[#f5e642] relative group overflow-hidden">
       <div class="absolute top-2 right-2 font-label text-[10px] text-[#f5e642] opacity-40">{{ pg.radar_ref }}</div>
-      <h3 class="font-headline text-lg mb-8 text-[#f5e642] tracking-widest uppercase">{{ pg.radar_title }}</h3>
+      <h3 class="font-headline text-lg mb-8 text-[#f5e642] tracking-widest uppercase"><span data-p5r="{{ p5r.pages.skills.radar_title }}">{{ pg.radar_title }}</span></h3>
       <div class="relative w-full aspect-square flex items-center justify-center">
         <svg class="w-full h-full" viewBox="0 0 100 100">
           <polygon fill="none" opacity="0.3" points="50,5 95,25 95,75 50,95 5,75 5,25" stroke="#f5e642" stroke-dasharray="2" stroke-width="0.5"/>
@@ -39,7 +229,7 @@
         </svg>
       </div>
       <div class="mt-8 space-y-2">
-        <div class="flex justify-between items-center font-label text-xs text-on-surface-variant"><span>{{ pg.sync_label }}</span><span class="text-secondary-container">{{ pg.sync_value }}</span></div>
+        <div class="flex justify-between items-center font-label text-xs text-on-surface-variant"><span><span data-p5r="{{ p5r.pages.skills.sync_label }}">{{ pg.sync_label }}</span></span><span class="text-secondary-container">{{ pg.sync_value }}</span></div>
         <div class="w-full h-2 bg-surface-container-highest"><div class="h-full bg-secondary-container w-[98%] shadow-[0_0_10px_#00d4ff]"></div></div>
       </div>
     </div>
@@ -72,7 +262,7 @@
     <div class="flex justify-between items-end border-b border-secondary-container/20 pb-2 mb-4">
       <div class="flex-1 flex items-center gap-4">
         <div class="h-px flex-1 bg-secondary-container/20"></div>
-        <h3 class="text-sm tracking-[0.4em] text-on-surface-variant uppercase whitespace-nowrap">{{ pg.tools_title }}</h3>
+        <h3 class="text-sm tracking-[0.4em] text-on-surface-variant uppercase whitespace-nowrap"><span data-p5r="{{ p5r.pages.skills.tools_title }}">{{ pg.tools_title }}</span></h3>
         <div class="h-px flex-1 bg-secondary-container/20"></div>
       </div>
       <div class="hidden md:block text-right text-[8px] leading-tight text-secondary-container/60 tracking-widest pl-8">{% for part in pg.sys_info.split('|') %}{{ part }}{% if loop.last %} <span class="text-secondary-container">&#9646;&#9646;&#9646;&#9646;&#9647;</span>{% else %}<br/>{% endif %}{% endfor %}</div>
@@ -96,14 +286,14 @@
     <div class="absolute inset-0 bg-error/5 animate-pulse"></div>
     <div class="flex items-center gap-4 text-error font-label font-bold tracking-[0.2em] text-center justify-center overflow-hidden whitespace-nowrap">
       <span class="opacity-50">━━━━━━━━━━</span><span class="material-symbols-outlined text-sm">warning</span>
-      <span>{{ pg.separator_text }}</span>
+      <span><span data-p5r="{{ p5r.pages.skills.separator_text }}">{{ pg.separator_text }}</span></span>
       <span class="material-symbols-outlined text-sm">warning</span><span class="opacity-50">━━━━━━━━━━</span>
     </div>
-    <div class="mt-4 text-center font-label text-[10px] text-error/60 uppercase">{{ pg.separator_sub }}</div>
+    <div class="mt-4 text-center font-label text-[10px] text-error/60 uppercase"><span data-p5r="{{ p5r.pages.skills.separator_sub }}">{{ pg.separator_sub }}</span></div>
   </div>
 
   <section class="mb-32">
-    <h2 class="font-headline text-3xl font-black italic text-tertiary-container mb-12 tracking-tighter uppercase">{{ pg.offd_title }}</h2>
+    <h2 class="font-headline text-3xl font-black italic text-tertiary-container mb-12 tracking-tighter uppercase"><span data-p5r="{{ p5r.pages.skills.offd_title }}">{{ pg.offd_title }}</span></h2>
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       <div class="lg:col-span-4 space-y-4">
         {% for proto in pg.protocols %}

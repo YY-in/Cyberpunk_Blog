@@ -2,10 +2,16 @@
 {% set pg = cfg.pages.blog %}
 {% block title %}{{ cfg.site.title }} // {{ meta.get('title', 'POST') }}{% endblock %}
 
+{% block extra_css %}
+/* P5R light mode: Blog post */
+html.light header.mb-12.border-l-4 { border-left-color: #d92323 !important; }
+html.light article.bg-surface-container-low { background-color: #faf7f3 !important; border-top-color: #d92323 !important; }
+{% endblock %}
+
 {% block content %}
 <main class="pt-14 md:pt-24 pb-32 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
   <header class="mb-12 border-l-4 border-[#f5e642] pl-6">
-    <a href="/blog" class="font-label text-[#00d4ff] text-xs hover:text-[#f5e642] transition-colors mb-4 inline-block">{{ pg.back_label }}</a>
+    <a href="/blog" class="font-label text-[#00d4ff] text-xs hover:text-[#f5e642] transition-colors mb-4 inline-block"><span data-p5r="{{ p5r.pages.blog.back_label }}">{{ pg.back_label }}</span></a>
     <h1 class="font-headline text-4xl md:text-6xl font-black uppercase glitch-text tracking-tighter text-[#f5e642] mb-4">{{ meta.get('title', pg.untitled) }}</h1>
     {% if meta.get('date') %}<p class="font-label text-[10px] text-[#f5e642]/40">{{ meta.date }}</p>{% endif %}
   </header>

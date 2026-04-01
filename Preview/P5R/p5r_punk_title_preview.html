@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Special+Elite&family=Oswald:wght@400;700&family=Bebas+Neue&family=Courier+Prime:wght@400;700&family=Anton&family=Black+Han+Sans&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#fff;font-family:sans-serif;padding:32px 24px}
+
+.section-label{
+  font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:6px;
+  color:#444;text-transform:uppercase;margin-bottom:14px;padding-left:2px;
+}
+.card{
+  background:#111;border:1px solid #1e1e1e;
+  padding:28px 24px;margin-bottom:32px;position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:0.04;pointer-events:none;
+}
+
+/* ── 1. RANSOM NOTE ── */
+.ransom-wrap{display:flex;align-items:baseline;flex-wrap:wrap;gap:5px}
+.r{display:inline-block;font-weight:900;line-height:1;padding:1px 7px;transform-origin:center}
+
+/* ── 2. VELVET ROOM ANNOUNCEMENT ── */
+.velvet{
+  border:2px solid #4a3f8a;padding:18px 20px;position:relative;
+  background:linear-gradient(160deg,#0d0b1a 0%,#1a1530 100%);
+}
+.velvet-corner{
+  position:absolute;width:10px;height:10px;border-color:#7b6fc4;border-style:solid;
+}
+.velvet-title{
+  font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:8px;
+  color:#c8baff;text-align:center;display:block;
+}
+.velvet-sub{
+  font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:5px;
+  color:#5a4f9a;text-align:center;display:block;margin-top:6px;
+}
+
+/* ── 3. CALLING CARD ── */
+.card-paper{
+  background:#f5f0e8;color:#111;padding:20px 24px;
+  border:1px solid #ccc;position:relative;
+  transform:rotate(-0.5deg);
+  box-shadow:3px 3px 0 #00000033;
+}
+.card-paper::after{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 22px,#ddd8cc 22px,#ddd8cc 23px);
+  opacity:0.4;pointer-events:none;
+}
+.card-headline{
+  font-family:'Anton',sans-serif;font-size:44px;color:#cc0000;
+  transform:rotate(-1.5deg);display:inline-block;line-height:1;
+  text-shadow:2px 2px 0 #88000044;
+}
+.card-body{
+  font-family:'Special Elite',monospace;font-size:13px;color:#333;
+  margin-top:10px;line-height:1.8;position:relative;z-index:1;
+}
+.card-sig{
+  font-family:'Permanent Marker',cursive;font-size:22px;color:#cc0000;
+  margin-top:12px;transform:rotate(-2deg);display:inline-block;
+}
+
+/* ── 4. GRAFFITI WALL ── */
+.graffiti-bg{
+  background:#0d0d0d;padding:24px;position:relative;
+  border-left:4px solid #e8001a;
+}
+.tag-main{
+  font-family:'Permanent Marker',cursive;
+  font-size:64px;color:#fff;line-height:0.95;
+  text-shadow:
+    3px 3px 0 #cc0000,
+    6px 6px 0 #88000055,
+   -1px -1px 0 #00000088;
+  display:inline-block;transform:rotate(-3deg);
+}
+.tag-fill{
+  font-family:'Permanent Marker',cursive;
+  font-size:24px;color:#e8001a;
+  display:inline-block;transform:rotate(-1deg);margin-left:8px;
+  vertical-align:middle;
+}
+.tag-outline{
+  font-family:'Bebas Neue',sans-serif;font-size:80px;
+  -webkit-text-stroke:1px #333;color:transparent;
+  position:absolute;top:10px;left:20px;opacity:0.15;letter-spacing:4px;
+  pointer-events:none;
+}
+
+/* ── 5. DISTRESS STAMP ── */
+.stamp-block{
+  display:inline-block;border:4px solid #e8001a;
+  padding:6px 18px;transform:rotate(-4deg);position:relative;
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:42px;
+  color:#e8001a;letter-spacing:6px;
+}
+.stamp-block::before{
+  content:'';position:absolute;inset:0;
+  background:#e8001a;opacity:0.07;
+}
+.stamp-worn{
+  position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    45deg,transparent,transparent 3px,
+    rgba(10,10,10,0.4) 3px,rgba(10,10,10,0.4) 4px
+  );
+}
+
+/* ── 6. NEWSPAPER CUTOUT ── */
+.news-wrap{display:flex;align-items:flex-start;gap:0;flex-wrap:wrap}
+.cut{
+  display:inline-block;font-weight:900;padding:2px 5px;
+  transform-origin:center;margin:2px;
+  font-family:'Special Elite',monospace;
+}
+
+/* ── 7. SYSTEM ALERT ── */
+.alert-box{
+  border:1px solid #e8001a;padding:0;overflow:hidden;
+  font-family:'Courier Prime',monospace;
+}
+.alert-header{
+  background:#e8001a;padding:4px 12px;
+  font-size:11px;letter-spacing:4px;color:#fff;font-weight:700;
+}
+.alert-body{padding:14px 12px}
+.alert-title{
+  font-family:'Bebas Neue',sans-serif;font-size:32px;
+  letter-spacing:3px;color:#e8001a;
+}
+.alert-sub{font-size:11px;letter-spacing:3px;color:#555;margin-top:4px}
+.alert-code{
+  font-size:10px;color:#333;margin-top:10px;letter-spacing:2px;
+  border-top:1px solid #1e1e1e;padding-top:8px;
+}
+
+/* ── 8. MEMENTOS TAG ── */
+.mementos{
+  background:#0a0a0a;padding:20px;
+  border:1px dashed #2a2a2a;position:relative;
+}
+.mem-big{
+  font-family:'Black Han Sans','Anton',sans-serif;
+  font-size:56px;color:#fff;letter-spacing:-2px;line-height:1;
+  display:block;
+}
+.mem-red{color:#e8001a}
+.mem-sub{
+  font-family:'Courier Prime',monospace;font-size:10px;
+  color:#333;letter-spacing:6px;margin-top:6px;display:block;
+}
+.mem-num{
+  position:absolute;top:16px;right:20px;
+  font-family:'Bebas Neue',sans-serif;font-size:72px;
+  color:#1a1a1a;line-height:1;pointer-events:none;
+}
+
+/* splatter dots shared */
+.sp{position:absolute;border-radius:50%;background:#cc0000;pointer-events:none}
+</style>
+</head>
+<body>
+
+<!-- 1. RANSOM NOTE -->
+<div class="section-label">01 — ransom note / 剪报拼贴</div>
+<div class="card">
+  <div class="ransom-wrap">
+    <span class="r" style="font-family:'Bebas Neue',sans-serif;font-size:62px;background:#e8001a;color:#fff;transform:rotate(-2deg)">TAKE</span>
+    <span class="r" style="font-family:'Special Elite',monospace;font-size:40px;background:#f0f0f0;color:#111;transform:rotate(2deg);border:2px solid #111">YOUR</span>
+    <span class="r" style="font-family:'Permanent Marker',cursive;font-size:54px;color:#e8001a;transform:rotate(-1.5deg);text-shadow:2px 2px 0 #111">HEART</span>
+  </div>
+  <div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">
+    <span class="r" style="font-family:'Courier Prime',monospace;font-size:14px;background:#222;color:#aaa;transform:rotate(1deg);letter-spacing:3px">by order of</span>
+    <span class="r" style="font-family:'Anton',sans-serif;font-size:20px;background:#111;color:#e8001a;transform:rotate(-1deg);border:1px solid #e8001a;letter-spacing:2px">THE PHANTOM THIEVES</span>
+  </div>
+</div>
+
+<!-- 2. VELVET ROOM -->
+<div class="section-label">02 — velvet room / 天鹅绒密室公告</div>
+<div class="card">
+  <div class="velvet">
+    <div class="velvet-corner" style="top:6px;left:6px;border-width:2px 0 0 2px"></div>
+    <div class="velvet-corner" style="top:6px;right:6px;border-width:2px 2px 0 0"></div>
+    <div class="velvet-corner" style="bottom:6px;left:6px;border-width:0 0 2px 2px"></div>
+    <div class="velvet-corner" style="bottom:6px;right:6px;border-width:0 2px 2px 0"></div>
+    <span class="velvet-sub">— WELCOME TO —</span>
+    <span class="velvet-title">THE VELVET ROOM</span>
+    <span class="velvet-sub">THIS PLACE EXISTS BETWEEN DREAM AND REALITY</span>
+    <div style="text-align:center;margin-top:14px">
+      <span style="font-family:'Courier Prime',monospace;font-size:10px;color:#3a2f7a;letter-spacing:4px">⬡ &nbsp; IGOR PRESIDES &nbsp; ⬡</span>
+    </div>
+  </div>
+</div>
+
+<!-- 3. CALLING CARD -->
+<div class="section-label">03 — calling card / 预告信</div>
+<div class="card">
+  <div class="card-paper">
+    <div class="card-headline">CALLING CARD</div>
+    <div class="card-body">
+      We have decided to steal your distorted desires.<br>
+      Your heart shall be changed — the date is set.<br>
+      Prepare yourself for the arrival of your sentence.
+    </div>
+    <div class="card-sig">— Phantom Thieves</div>
+    <div class="sp" style="width:5px;height:5px;top:12px;right:20px;opacity:0.6"></div>
+    <div class="sp" style="width:3px;height:3px;top:16px;right:26px;opacity:0.4"></div>
+  </div>
+</div>
+
+<!-- 4. GRAFFITI -->
+<div class="section-label">04 — graffiti tag / 涂鸦喷漆</div>
+<div class="card">
+  <div class="graffiti-bg">
+    <div class="tag-outline">REBEL</div>
+    <span class="tag-main">REBEL</span>
+    <span class="tag-fill">against fate</span>
+    <div style="margin-top:8px">
+      <span style="font-family:'Permanent Marker',cursive;font-size:16px;color:#444;letter-spacing:3px">// no gods no masters //</span>
+    </div>
+    <div class="sp" style="width:7px;height:7px;bottom:16px;right:24px;opacity:0.7"></div>
+    <div class="sp" style="width:3px;height:3px;bottom:20px;right:32px;opacity:0.4"></div>
+  </div>
+</div>
+
+<!-- 5. DISTRESS STAMP -->
+<div class="section-label">05 — distress stamp / 红章戳印</div>
+<div class="card" style="display:flex;align-items:center;gap:32px;flex-wrap:wrap">
+  <div style="position:relative">
+    <div class="stamp-block">
+      WANTED
+      <div class="stamp-worn"></div>
+    </div>
+  </div>
+  <div>
+    <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:28px;letter-spacing:4px;color:#fff">JOKER</div>
+    <div style="font-family:'Courier Prime',monospace;font-size:11px;color:#555;letter-spacing:3px;margin-top:4px">ALIAS: PHANTOM THIEF NO.1</div>
+    <div style="font-family:'Courier Prime',monospace;font-size:10px;color:#333;letter-spacing:2px;margin-top:8px;border-top:1px solid #1e1e1e;padding-top:6px">CHARGE: MENTAL SHUTDOWN ×∞</div>
+  </div>
+  <div style="position:relative">
+    <div class="stamp-block" style="font-size:28px;color:#555;border-color:#333;transform:rotate(6deg)">
+      CLASSIFIED
+      <div class="stamp-worn"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 6. NEWSPAPER CUTOUT -->
+<div class="section-label">06 — newspaper cutout / 报纸剪字</div>
+<div class="card">
+  <div class="news-wrap">
+    <span class="cut" style="font-size:48px;background:#f5f0e8;color:#111;transform:rotate(-1deg)">P</span>
+    <span class="cut" style="font-size:32px;background:#e8001a;color:#fff;transform:rotate(2deg)">H</span>
+    <span class="cut" style="font-size:52px;background:#fff;color:#222;transform:rotate(-2.5deg);font-family:'Bebas Neue',sans-serif">A</span>
+    <span class="cut" style="font-size:36px;background:#222;color:#f5f0e8;transform:rotate(1deg)">N</span>
+    <span class="cut" style="font-size:44px;background:#f5f0e8;color:#cc0000;transform:rotate(-1.5deg)">T</span>
+    <span class="cut" style="font-size:28px;background:#e8001a;color:#fff;transform:rotate(3deg);font-family:'Bebas Neue',sans-serif">O</span>
+    <span class="cut" style="font-size:50px;background:#fff;color:#111;transform:rotate(-2deg)">M</span>
+  </div>
+  <div style="margin-top:6px;font-family:'Special Elite',monospace;font-size:11px;color:#444;letter-spacing:4px">
+    THIEVES STRIKE AGAIN — CITY IN PANIC
+  </div>
+</div>
+
+<!-- 7. SYSTEM ALERT -->
+<div class="section-label">07 — system alert / 系统警报</div>
+<div class="card">
+  <div class="alert-box">
+    <div class="alert-header">⚠ &nbsp; METAVERSE NAVIGATION SYSTEM &nbsp; ⚠</div>
+    <div class="alert-body">
+      <div class="alert-title">PALACE DETECTED</div>
+      <div class="alert-sub">TARGET COGNITIVE DISTORTION — LEVEL CRITICAL</div>
+      <div class="alert-code">
+        SUBJECT_ID: ████████ &nbsp;|&nbsp; DISTORTION: 98.4% &nbsp;|&nbsp; STATUS: AHAB<br>
+        INFILTRATION WINDOW: 14 DAYS &nbsp;|&nbsp; SHADOW DENSITY: MAX
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 8. MEMENTOS -->
+<div class="section-label">08 — mementos depth / 梦魇深处</div>
+<div class="card">
+  <div class="mementos">
+    <div class="mem-num">IX</div>
+    <span class="mem-big">MEMEN<span class="mem-red">TOS</span></span>
+    <span class="mem-big" style="font-size:28px;color:#333;letter-spacing:6px">DEPTH &nbsp; ███</span>
+    <span class="mem-sub">⬡ &nbsp; THE PRISON OF REGRESSION &nbsp; ⬡ &nbsp; PROCEED WITH CAUTION</span>
+  </div>
+</div>
+
+</body>
+</html>

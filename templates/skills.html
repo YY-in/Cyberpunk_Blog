@@ -147,12 +147,17 @@ html.light .bg-error\/5 {
   background: #e61919 !important;
   animation: none !important;
 }
-html.light .text-error.font-label.font-bold {
+/* Separator bar — white text on red, high specificity to beat base overrides */
+html.light .py-12 .text-error.font-label.font-bold,
+html.light .py-12 .text-error.font-label.font-bold span,
+html.light .py-12 .text-error.font-label.font-bold [data-p5r] {
   color: #fff !important;
 }
-html.light .text-error.font-label.font-bold .opacity-50 { color: rgba(255,255,255,0.4) !important; }
-html.light .text-error.font-label.font-bold .material-symbols-outlined { color: #e8c840 !important; }
-html.light .text-error\/60 { color: rgba(255,255,255,0.6) !important; }
+html.light .py-12 .text-error.font-label.font-bold .opacity-50 { color: rgba(255,255,255,0.4) !important; }
+html.light .py-12 .text-error.font-label.font-bold .material-symbols-outlined { color: #e8c840 !important; }
+html.light .py-12 .text-error\/60,
+html.light .py-12 .text-error\/60 span,
+html.light .py-12 .text-error\/60 [data-p5r] { color: rgba(255,255,255,0.6) !important; }
 
 /* --- Social Link Protocols section --- */
 html.light h2.text-tertiary-container {

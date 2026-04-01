@@ -389,6 +389,138 @@ html.light .p5r-sys-label {
   color: #444 !important; text-transform: uppercase !important;
 }
 
+/* ── P5R Comic / Manga Texture System ── */
+
+/* Halftone dot pattern — reusable SVG data URI */
+html.light .comic-halftone,
+html.light .bg-surface-container-low,
+html.light .bg-surface-container-lowest {
+  position: relative;
+}
+html.light .comic-halftone::before,
+html.light section.bg-surface-container-low::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-size: 6px 6px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ben-Day dots on red surfaces (P5R primary-container, buttons etc.) */
+html.light .bg-primary-container,
+html.light .bg-\[\#f5e642\] {
+  position: relative;
+}
+html.light .bg-primary-container::after,
+html.light a.bg-\[\#f5e642\].text-black::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1.5px, transparent 1.5px);
+  background-size: 8px 8px;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Comic thick borders — section separators become bold panel dividers */
+html.light .border-t-4,
+html.light .border-b-4 {
+  border-width: 4px !important;
+  border-style: solid !important;
+}
+html.light .border-t-8 {
+  border-top-width: 6px !important;
+}
+
+/* Speed lines on hover — nav items, CTA buttons, interactive cards */
+@keyframes p5r-speedlines {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+html.light header nav a:hover,
+html.light a.bg-\[\#f5e642\].text-black:hover {
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 8px,
+    rgba(255,255,255,0.1) 8px,
+    rgba(255,255,255,0.1) 10px
+  ) !important;
+  background-size: 200% 100%;
+  animation: p5r-speedlines 0.4s linear;
+}
+
+/* Manga panel shadow — hard offset, zero blur */
+html.light .shadow-xl { box-shadow: 5px 5px 0 rgba(0,0,0,0.15) !important; }
+html.light .shadow-lg { box-shadow: 4px 4px 0 rgba(0,0,0,0.12) !important; }
+html.light .shadow-md { box-shadow: 3px 3px 0 rgba(0,0,0,0.1) !important; }
+
+/* Ink border on interactive cards */
+html.light .group.cursor-pointer,
+html.light a.group.block {
+  border: 2px solid #111 !important;
+  box-shadow: 3px 3px 0 #111 !important;
+  transition: none !important;
+}
+html.light .group.cursor-pointer:hover,
+html.light a.group.block:hover {
+  box-shadow: 0 0 0 #111 !important;
+  transform: translate(2px, 2px);
+}
+
+/* Screentone overlay on surface containers (subtle diagonal lines) */
+html.light .bg-surface-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 4px,
+    rgba(0,0,0,0.02) 4px,
+    rgba(0,0,0,0.02) 5px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Comic emphasis — thick red underline on key labels */
+html.light .font-headline.italic {
+  text-decoration: underline !important;
+  text-decoration-color: #e61919 !important;
+  text-decoration-thickness: 3px !important;
+  text-underline-offset: 4px !important;
+}
+
+/* Onomatopoeia impact — badge/error labels get comic pop */
+html.light .bg-\[\#ff2d78\].text-white,
+html.light .bg-error {
+  border: 2px solid #000 !important;
+  box-shadow: 2px 2px 0 #000 !important;
+  transform: rotate(-2deg) !important;
+}
+
+/* Footer — comic panel bottom bar */
+html.light footer {
+  border-top: 4px solid #111 !important;
+  position: relative;
+}
+html.light footer::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    #e61919 0px, #e61919 20px,
+    transparent 20px, transparent 24px
+  );
+}
+
 /* -- Body & Background -- */
 html.light { background-color: var(--p5r-bg) !important; }
 html.light body { background-color: var(--p5r-bg) !important; color: var(--p5r-black) !important; }
@@ -528,11 +660,11 @@ html.light .shadow-\[10px_10px_0px_rgba\(0\,212\,255\,0\.1\)\] { box-shadow: 4px
 html.light .shadow-\[20px_20px_0px_rgba\(255\,45\,120\,0\.2\)\] { box-shadow: 6px 6px 0 rgba(230,25,25,0.2) !important; }
 html.light .shadow-\[8px_8px_0px_rgba\(255\,45\,120\,0\.2\)\] { box-shadow: 4px 4px 0 rgba(230,25,25,0.2) !important; }
 
-/* ====== P5R HEADER ====== */
+/* ====== P5R HEADER — comic panel frame ====== */
 html.light header.fixed {
   background-color: var(--p5r-bg) !important;
-  border-bottom: 3px solid var(--p5r-red) !important;
-  box-shadow: none !important;
+  border-bottom: 4px solid #111 !important;
+  box-shadow: 0 4px 0 0 var(--p5r-red) !important;
 }
 /* Site title: red skewed block */
 html.light header a[href="/"].font-headline {
@@ -542,7 +674,7 @@ html.light header a[href="/"].font-headline {
   transform: skewX(-12deg) !important;
   display: inline-block !important;
 }
-/* Nav items: black skewed blocks */
+/* Nav items: black skewed blocks with comic ink outline */
 html.light header nav a {
   background: var(--p5r-black) !important;
   color: #fff !important;
@@ -553,7 +685,8 @@ html.light header nav a {
   font-size: 0.85rem !important;
   letter-spacing: 0.1em !important;
   transition: none !important;
-  box-shadow: none !important;
+  box-shadow: 3px 3px 0 rgba(230,25,25,0.4) !important;
+  border: 2px solid #111 !important;
 }
 /* Nav active: red block */
 html.light header nav a.bg-\[\#f5e642\],
@@ -640,10 +773,13 @@ html.light .fixed.bottom-0 .text-\[\#f5e642\] {
   color: var(--p5r-red) !important;
 }
 
-/* ====== P5R GATE — Red SHOWTIME sweep ====== */
+/* ====== P5R GATE — Red SHOWTIME sweep with halftone ====== */
 html.light .gate-panel { background: var(--p5r-red) !important; }
 html.light .gate-panel::before {
-  background: repeating-linear-gradient(0deg,transparent,transparent 20px,rgba(0,0,0,0.08) 20px,rgba(0,0,0,0.08) 21px) !important;
+  background:
+    radial-gradient(circle, rgba(0,0,0,0.1) 1.5px, transparent 1.5px),
+    repeating-linear-gradient(0deg,transparent,transparent 20px,rgba(0,0,0,0.08) 20px,rgba(0,0,0,0.08) 21px) !important;
+  background-size: 8px 8px, auto !important;
 }
 html.light .gate-glow {
   background: var(--p5r-black) !important;
